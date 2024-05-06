@@ -58,12 +58,12 @@ const Header = () => {
   return (
     <nav className="bg-black p-4">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="flex space-x-2">
-          <div className="text-rose-600 text-xl animate-pulse mt-3">
+        <div className="flex space-x-2 ">
+          <div className="text-rose-600 text-xl animate-pulse ">
             <FaPlay />
           </div>
           <div>
-          <h1 className='text-rose-600'>Movie<h1 className='text-white'>Spot</h1></h1>
+          <h1 className='text-rose-600'>Movie<span className='text-white'>Spot</span></h1>
 
           </div>
         </div>
@@ -71,16 +71,7 @@ const Header = () => {
           <RainbowText userName={userName} />
         </div>
         <div className="flex items-center space-x-4 md:hidden">
-          <button
-            type="button"
-            className={`text-rose-600 hover:text-gray-300 focus:outline-none`}
-            onClick={toggleMobileNav}
-          >
-            <FontAwesomeIcon
-              icon={isMobileNavOpen ? faTimes : faChevronDown}
-              className="h-6 w-6"
-            />
-          </button>
+          
         </div>
         <div className={`hidden md:flex items-center space-x-4 relative group`}>
           <button className={`text-white cursor-pointer group-hover:text-gray-300`} onClick={handleSignOut}>

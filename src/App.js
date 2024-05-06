@@ -56,7 +56,7 @@ const App = () => {
   const isLoginPage = window.location.pathname === '/';
   
   return (
-    <div className={isLoginPage ? 'bg-black' : 'bg-black'}>
+    <div className={isLoginPage ? 'bg-black pr-6' : 'bg-black '} >
       <Routes>
         <Route
           path="/login"
