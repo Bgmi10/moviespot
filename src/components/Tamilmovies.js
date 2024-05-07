@@ -42,7 +42,7 @@ const Moviecard = () => {
   return (
     <div >
      {<div className="mb-6">
-      <h2 className="text-2xl font-bold text-white mb-4 ml-3 mt-2 ">Tamil Movies HD</h2>
+      <h2 className="text-2xl font-bold text-white mb-4 ml-3 mt-2 ">hindi Movies HD</h2>
       <Slider {...settings} className='lg:p-5'>
          {
           tamilmovies?.map((item,index)=> (
