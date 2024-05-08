@@ -16,33 +16,35 @@ const Moviecard = () => {
     slidesToShow: 8,
     slidesToScroll: 2,
     speed:500,
+    
     responsive: [
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 4,
           speed:500,
+          arrows: false
         },
       },
     ],  
    };
 
-  //  const Shimmer = ()=>{
-  //   return(
-  //     <div>
-  //       <Slider  {...settings} className='p-0'>
-  //       <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3'></img>
-  //       <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3'></img>
-  //       <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3'></img>
-  //       <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3'></img>
-  //       </Slider>
-  //     </div>
-  //   )
-  //  }
+   const Shimmer = ()=>{
+    return(
+      <div>
+        <Slider  {...settings} className='p-0'>
+        <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3 w-10 h-10' alt=''></img>
+        <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3 w-10 h-10' alt=''></img>
+        <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3' alt=''></img>
+        <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3' alt=''></img>
+        </Slider>
+      </div>
+    )
+   }
   return (
     <div >
-     {<div className="mb-6">
-      <h2 className="text-2xl font-bold text-white mb-4 ml-3 mt-2 ">hindi Movies HD</h2>
+     {tamilmovies.length === 0  ? <Shimmer /> :<div className="mb-6">
+      <h2 className="text-2xl font-bold text-white mb-4 ml-3 mt-2 ">Newly Added </h2>
       <Slider {...settings} className='lg:p-5'>
          {
           tamilmovies?.map((item,index)=> (
