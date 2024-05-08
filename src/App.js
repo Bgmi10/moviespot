@@ -7,6 +7,7 @@ import MovieList from './components/MovieList';
 import Login from './components/Login';
 import Tamilmovies from './components/Tamilmovies';
 import Vijayhits from './components/Vijayhits';
+import Chatbot from '../src/components/Chatbot'
 
 
 
@@ -72,7 +73,7 @@ const App = () => {
             authenticated || pageLoad ? (
               <>
                 <Header onLogout={handleLogout} toggleMobileNav={toggleMobileNav} />
-                {!isMobileNavOpen && <Searchbar onSearch={handleSearch} />}
+                {!isMobileNavOpen && <Searchbar onSearch={handleSearch} /> }
                 <React.Suspense fallback={<div className={isLoginPage ? '' : 'bg-black'}></div>}>
                   <Routes>
                     <Route
@@ -80,6 +81,7 @@ const App = () => {
                       element={
                         <> <Tamilmovies /> 
                         <Vijayhits />
+                        <Chatbot />
                           {!isMobileNavOpen && <MovieList searchTerm={searchTerm} />}
                          
 

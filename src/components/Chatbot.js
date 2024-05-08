@@ -3,14 +3,14 @@ import { Widget, toggleWidget, addResponseMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import ChatbotLogo from '../../src/img/botgif.gif';
 import nlp from 'compromise';
-import { movies } from '../utils/Json';
+import { tamilmovies } from '../utils/constans';
 
 
 
 
 
 const handleMovieQuery = (movieTitle) => {
-  const movie = movies.find((movie) => movie.title.toLowerCase() === movieTitle.toLowerCase());
+  const movie = tamilmovies.find((movie) => movie.title.toLowerCase() === movieTitle.toLowerCase());
 
   if (movie) {
     const response = `Title: ${movie.title}\nOverview: ${movie.overview}\nDownload Link: ${movie.download_link}`;
@@ -30,7 +30,7 @@ const handleChatbotQuery = async (doc) => {
         return "I'm sorry, I couldn't understand your movie preference. Can you provide more details?";
       }
 
-      const movieTitles = movies.map((movie) => movie.title);
+      const movieTitles = tamilmovies.map((movie) => movie.title);
       return `Here are some movies related to '${searchTerm}': ${movieTitles.join(', ')}`;
     } catch (error) {
       console.error('Error fetching movie data:', error);

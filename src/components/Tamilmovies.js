@@ -22,6 +22,7 @@ const Moviecard = () => {
         breakpoint: 768,
         settings: {
           slidesToShow: 4,
+          speed: 1000,
           arrows: false
         },
       },
@@ -44,7 +45,7 @@ const Moviecard = () => {
     <div >
      {tamilmovies.length === 0  ? <Shimmer /> :<div className="mb-6">
       <h2 className="text-2xl font-bold text-white mb-4 ml-3 mt-2 ">Newly Added </h2>
-      <Slider {...settings} className=' lg:p-5  opacity-80   '>
+      <Slider {...settings} className=' lg:p-5  opacity-85   '>
          {
           tamilmovies?.map((item,index)=> (
             <div key={index} >
