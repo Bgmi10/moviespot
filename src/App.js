@@ -8,6 +8,10 @@ import Login from './components/Login';
 import Tamilmovies from './components/Tamilmovies';
 import Vijayhits from './components/Vijayhits';
 import Chatbot from '../src/components/Chatbot'
+import { Search } from './components/Search';
+import { Provider } from 'react-redux';
+import { Livechat } from './components/Livechat';
+import store from './utils/Store';
 
 
 
@@ -57,6 +61,7 @@ const App = () => {
   const isLoginPage = window.location.pathname === '/';
   
   return (
+    <Provider store={store}>
     <div className={isLoginPage ? 'bg-black pr-6' : 'bg-black '} >
       <Routes>
         <Route
@@ -73,7 +78,7 @@ const App = () => {
             authenticated || pageLoad ? (
               <>
                 <Header onLogout={handleLogout} toggleMobileNav={toggleMobileNav} />
-                {!isMobileNavOpen && <Searchbar onSearch={handleSearch} /> }
+                <Searchbar onSearch={handleSearch} /> 
                 <React.Suspense fallback={<div className={isLoginPage ? '' : 'bg-black'}></div>}>
                   <Routes>
                     <Route
@@ -91,6 +96,8 @@ const App = () => {
                     <Route path="/movie/:id" element={<LazyMovieDetails />} />
                      <Route path="/tamilmoviedetails/:movieId" element={<LazyTamilmovieDetails />} />
                      <Route path="/vijayhitsdetails/:movieId" element={<LazyVijayhitsDetails/>} />
+                     <Route path="/search" element={<Search/>}  />
+                     <Route path='/livechat' element={<Livechat />} />
                   </Routes>
                 </React.Suspense>
               </>
@@ -101,6 +108,7 @@ const App = () => {
         />
       </Routes>
     </div>
+    </Provider>
   );
 };
 

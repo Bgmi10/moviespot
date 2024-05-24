@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player/youtube';
-
+import { poster_url } from '../utils/constans';
 import renderStarRating from './RenderStarRating'
 import useMovieDetails from './useMovieDetails'
 
@@ -57,7 +57,7 @@ const MovieDetails = () => {
               {movieDetails.poster_path && (
                 <img
                   className="w-52 h-52 rounded-lg "
-                  src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movieDetails.poster_path}`}
+                  src={`${poster_url}${movieDetails.poster_path}`}
                   alt=""
                 />
               )}

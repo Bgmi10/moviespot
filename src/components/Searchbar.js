@@ -1,21 +1,55 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import {api_key} from '../utils/constans'
+import { Search } from './Search';
+import { useDispatch } from 'react-redux';
+import { cacheresults } from '../utils/Searchcacheslice';
+import { useSelector } from 'react-redux';
 
-const Searchbar = ({ onSearch }) => {
+
+
+const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const latestSearchTerm = useRef('');
+  const [movies, setmovies] = useState('')
+  const dispatch = useDispatch()
+  const cache = useSelector(store=>store.cache)
+ 
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   onSearch(latestSearchTerm.current || searchTerm);
-  // };
+  useEffect(()=>{
+   
+   const timer =  setTimeout(()=>
+  {  if(cache[searchTerm]){
+   return  setmovies(cache[searchTerm])
+    
+  } else{
+   return fetchmovies()
+  }}
+    ,150)
 
-  const handleSpeechRecognition = () => {
+    return ()=> {clearTimeout(timer)}
+  },[searchTerm])
+
+  const fetchmovies = async() =>{
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchTerm}&api_key=${api_key}`)
+
+    const data = await response.json()
+
+  
+   
+    dispatch(cacheresults({[searchTerm] : data}))
+    setmovies(data)
+  }
+
+   const SpeechRecognition = () => {
+
+   
+
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
       const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
@@ -41,9 +75,12 @@ const Searchbar = ({ onSearch }) => {
     }
   };
 
+
+
   return (
-    <div className="flex justify-center items-center bg-black">
-      <form  className="flex items-center relative">
+    <div>
+      <div className="flex justify-center items-center bg-black  ">
+      <div  className="flex items-center relative">
         <div className="relative">
           <input
             type="text"
@@ -54,7 +91,7 @@ const Searchbar = ({ onSearch }) => {
           />
           <button
             type="button"
-            onClick={handleSpeechRecognition}
+            onClick={SpeechRecognition}
             className="absolute right-0 top-3 p-2 mr-3 transition-all duration-300 flex items-end"
             disabled={listening}
           >
@@ -85,8 +122,12 @@ const Searchbar = ({ onSearch }) => {
             {transcript}
           </p>
         )}
-      </form>
+           
+      </div>
     </div>
+    
+     <Search movies={movies}/>
+      </div>
   );
 };
 

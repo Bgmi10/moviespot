@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import {  Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { signOut } from 'firebase/auth';
@@ -73,7 +73,14 @@ const Header = () => {
         <div className="flex items-center space-x-4 md:hidden">
           
         </div>
+        
+        <Link to='/livechat'>  <button className={`text-rose-600 cursor-pointer hover:text-gray-300`}>
+            Live Chat
+          </button>
+        </Link>  
+     
         <div className={`hidden md:flex items-center space-x-4 relative group`}>
+       
           <button className={`text-white cursor-pointer group-hover:text-gray-300`} onClick={handleSignOut}>
             Sign Out
           </button>

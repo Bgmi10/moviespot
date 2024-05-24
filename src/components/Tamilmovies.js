@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {tamilmovies} from '../utils/constans'
 import gif from '../img/movieSpotgif.gif'
-
+import playgif from '../img/play.gif'
 
 
 
@@ -42,14 +42,15 @@ const Moviecard = () => {
     )
    }
   return (
-    <div >
+    <div>
      {tamilmovies.length === 0  ? <Shimmer /> :<div className="mb-6">
       <h2 className="text-2xl font-bold text-white mb-4 ml-3 mt-2 ">Newly Added </h2>
       <Slider {...settings} className=' lg:p-5  opacity-85   '>
          {
           tamilmovies?.map((item,index)=> (
             <div key={index} >
-              <img src={item.poster_path} className='rounded-2xl p-[3px]  ml-3  '>
+              <img src={playgif} className='h-5 w-6  ml-[22px] absolute mt-[9px]   rounded-l-sm    '></img>
+              <img src={item.poster_path} className='rounded-2xl p-[10px]  ml-3  '>
               </img>
               <p className='text-gray-500 ml-3'>{item.title}</p>
             </div>
