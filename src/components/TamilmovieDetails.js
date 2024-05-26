@@ -1,56 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import ReactPlayer from 'react-player';
-import axios from 'axios';
 
-const TamilmovieDetails = () => {
-  const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchMovieDetails = async () => {
-      try {
-        // Make a request to your server to fetch movie details using the movieId
-        const response = await axios.get(`http://localhost:3002/api/movies/${movieId}`);
-    
-        if (response.data) {
-          const selectedMovie = response.data;
-    
-          setMovieDetails({
-            title: selectedMovie.title,
-            poster_path: selectedMovie.poster_path,
-            videoUrl: selectedMovie.download_link,
-            background_path: selectedMovie.background_path,
-            overview: selectedMovie.overview,
-          });
-        } else {
-          console.error('Movie not found.');
-        }
-      } catch (error) {
-        console.error('Error fetching movie details:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
 
-    fetchMovieDetails();
-  }, [movieId]);
+const TamilmovieDetails = ({data}) => {
+  const { id } = useParams();
+  console.log(id)
+
+  const movieDetails = data.filter((i)=> i.id === id)
+  console.log(movieDetails)
+
+
 
   return (
-    <div className="relative flex flex-col items-center">
-      {loading ? (
-        <p>Loading movie details...</p>
-      ) : movieDetails ? (
+    <div className="relative flex flex-col items-center ">
+      {movieDetails ? (
         <div className="relative max-w-screen-md m-4 p-4 shadow-lg rounded-lg text-white">
           <div
-            style={{ backgroundImage: `url(${movieDetails.background_path})` }}
+            style={{ backgroundImage: `url(${movieDetails?.[0]?.background_path})` }}
             className="w-full h-64 bg-cover rounded-lg mb-2 relative"
           >
             {/* Overlay with Poster Image */}
             <div className="absolute top-0 left-0 w-full h-full bg-cover rounded-lg">
-              <img src={movieDetails.poster_path} alt="" className="w-38 h-40 rounded-lg" />
+              <img src={movieDetails?.[0]?.poster_path} alt="" className="w-38 h-40 rounded-lg" />
             </div>
 
             {/* Gradient Overlay */}
@@ -70,24 +42,22 @@ const TamilmovieDetails = () => {
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold mb-2">{movieDetails.title}</h1>
+          <h1 className="text-3xl font-bold mb-2 text-gray-200">{movieDetails?.[0]?.title}</h1>
 
           {/* Overview */}
-          <p className="text-white mb-4">{movieDetails.overview}</p>
+          <p className="text-gray-400 mb-4">{movieDetails?.[0]?.overview}</p>
 
-          {/* Video Player */}
-          <ReactPlayer
-            url={movieDetails.videoUrl}
-            controls={true}
-            width="100%"
-            height="auto"
-            className="mt-4"
-          />
-
-          {/* Download Button */}
+          
           <a
-            href={movieDetails.videoUrl}
-            download={`${encodeURIComponent(movieDetails.title)}.mkv`}
+            href={`https://tamilyogi.beer/${movieDetails?.[0]?.title}-hd-720p-tamil-movie-watch-online/`}
+            //https://tamilyogi.beer/leo-2023-hd-720p-tamil-movie-watch-online/
+            //https://tamilyogi.beer/salaar-part-1-ceasefire-2023-hd-720p-tamil-movie-watch-online/c
+            // /https://tamilyogi.beer/beast-2022-hdrip-720p-tamil-movie-watch-online/
+            //https://tamilyogi.beer/mersal-tamil-full-movie-watch-online/
+            //https://tamilyogi.beer/kaththi-2014-bluray-720p-hd-tamil-movie-watch-online-a/
+            //https://tamilyogi.beer/thuppakki-2012-bluray-720p-tamil-movie-watch-online/
+            //https://tamilyogi.beer/nanban-2012-hd-720p-tamil-movie-bluray-watch-online/
+
             className="mt-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 inline-block"
           >
             Download

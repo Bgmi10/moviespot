@@ -1,63 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {tamilmovies} from '../utils/constans'
 import gif from '../img/movieSpotgif.gif'
-import playgif from '../img/play.gif'
+import {settings} from '../utils/Helper'
+import { Link } from 'react-router-dom';
 
 
 
-const Moviecard = () => {
+
+const Moviecard = ({title, data ,playgif}) => {
 
 
-  const settings = {
-    infinite: false,
-    slidesToShow: 8,
-    slidesToScroll: 2,
-    speed:500,
-    
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 4,
-          speed: 1000,
-          arrows: false
-        },
-      },
-    ],  
-   };
-
-   const Shimmer = ()=>{
-    return(
-      <div>
-        <Slider  {...settings} className='p-0'>
-        <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3 w-10 h-10' alt=''></img>
-        <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3 w-10 h-10' alt=''></img>
-        <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3' alt=''></img>
-        <img src={gif} className='rounded-2xl p-[3px] lg:p-2 ml-3' alt=''></img>
-        </Slider>
-      </div>
-    )
-   }
   return (
     <div>
-     {tamilmovies.length === 0  ? <Shimmer /> :<div className="mb-6">
-      <h2 className="text-2xl font-bold text-white mb-4 ml-3 mt-2 ">Newly Added </h2>
-      <Slider {...settings} className=' lg:p-5  opacity-85   '>
+     <div className="mb-6">
+     <h2 className="text-2xl font-bold text-gray-300 mb-4 ml-3 mt-2 ">{title}</h2>
+      <Slider {...settings} className=' lg:p-5  opacity-85'>
          {
-          tamilmovies?.map((item,index)=> (
+         data?.map((item,index)=> (
+          
             <div key={index} >
-              <img src={playgif} className='h-5 w-6  ml-[22px] absolute mt-[9px]   rounded-l-sm    '></img>
-              <img src={item.poster_path} className='rounded-2xl p-[10px]  ml-3  '>
+              <Link to={ data.length >= 13  ? `/moviedetail/nowplaying/${item.id}` : `/moviedetail/vijayhits/${item.id}`}>
+               
+              <img src={ playgif } className={playgif ? `h-5 w-6  ml-[22px] absolute mt-[9px]   rounded-l-sm  `  : `h-0 w-0 `}></img>
+              <img src={data ? item.poster_path : gif} className='rounded-2xl p-[10px]  ml-3  cursor-pointer '>
               </img>
               <p className='text-gray-500 ml-3'>{item.title}</p>
+              </Link>
             </div>
+            
           ))
          }
       </Slider>
-      </div>}
+      </div>
     </div>
   );
 };

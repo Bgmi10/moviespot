@@ -6,20 +6,22 @@ import Searchbar from './components/Searchbar';
 import MovieList from './components/MovieList';
 import Login from './components/Login';
 import Tamilmovies from './components/Tamilmovies';
-import Vijayhits from './components/Vijayhits';
 import Chatbot from '../src/components/Chatbot'
 import { Search } from './components/Search';
 import { Provider } from 'react-redux';
 import { Livechat } from './components/Livechat';
 import store from './utils/Store';
-
+import { tamilmovies } from './utils/constans';
+import { vijayhits } from './utils/constans';
+import playgif from './img/play.gif'
 
 
 
 
 const LazyMovieDetails = React.lazy(() => import('./components/Moviedetails'));
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
-const LazyVijayhitsDetails = React.lazy(()=> import('./components/VijayhitsDetails'))
+const LazySearchdetail = React.lazy(()=> import('./components/Searchdetail'))
+
 
 
 const App = () => {
@@ -84,19 +86,25 @@ const App = () => {
                     <Route
                       index
                       element={
-                        <> <Tamilmovies /> 
-                        <Vijayhits />
+                        <>
+                        <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
+                        <Tamilmovies title='Vijay hits' data={vijayhits} />
+                      
                         <Chatbot />
-                          {!isMobileNavOpen && <MovieList searchTerm={searchTerm} />}
-                         
-
+                        {!isMobileNavOpen && <MovieList searchTerm={searchTerm} />}
+        
                         </>
                       }
                     />
+                     <Route path="/moviedetail/nowplaying/:id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
+                   
+                     <Route path="/moviedetail/vijayhits/:id" element={<LazyTamilmovieDetails data={vijayhits} />} />
                     <Route path="/movie/:id" element={<LazyMovieDetails />} />
-                     <Route path="/tamilmoviedetails/:movieId" element={<LazyTamilmovieDetails />} />
-                     <Route path="/vijayhitsdetails/:movieId" element={<LazyVijayhitsDetails/>} />
+                   
+                     
+                     
                      <Route path="/search" element={<Search/>}  />
+                     <Route path="/searchdetail/:id" element={<LazySearchdetail />} />
                      <Route path='/livechat' element={<Livechat />} />
                   </Routes>
                 </React.Suspense>

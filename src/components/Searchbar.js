@@ -15,6 +15,7 @@ const Searchbar = () => {
   const [movies, setmovies] = useState('')
   const dispatch = useDispatch()
   const cache = useSelector(store=>store.cache)
+
  
 
   const handleSearch = (e) => {
@@ -74,8 +75,8 @@ const Searchbar = () => {
       alert('Speech recognition is not supported in your browser');
     }
   };
-
-
+  
+  
 
   return (
     <div>
@@ -126,9 +127,12 @@ const Searchbar = () => {
       </div>
     </div>
     
-     <Search movies={movies}/>
+     <Search movies={movies} searchTerm = {setSearchTerm}/>
       </div>
   );
 };
 
 export default Searchbar;
+
+
+
