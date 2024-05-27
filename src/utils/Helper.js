@@ -16,6 +16,7 @@ export const random = () =>{
         breakpoint: 768,
         settings: {
           slidesToShow: 4,
+          
           arrows: false
         },
       },

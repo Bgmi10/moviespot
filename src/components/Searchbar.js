@@ -79,7 +79,7 @@ const Searchbar = () => {
   
 
   return (
-    <div>
+    <div >
       <div className="flex justify-center items-center bg-black  ">
       <div  className="flex items-center relative">
         <div className="relative">

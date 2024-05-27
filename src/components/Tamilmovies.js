@@ -15,8 +15,8 @@ const Moviecard = ({title, data ,playgif}) => {
   return (
     <div>
      <div className="mb-6">
-     <h2 className="text-2xl font-bold text-gray-300 mb-4 ml-3 mt-2 ">{title}</h2>
-      <Slider {...settings} className=' lg:p-5  opacity-85'>
+     <h2 className="text-2xl font-medium text-gray-300 mb-4 ml-3 mt-2 ">{title}</h2>
+      <Slider {...settings} className=' lg:p-5  '>
          {
          data?.map((item,index)=> (
           

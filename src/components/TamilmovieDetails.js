@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import download_gif from '../img/download-4292867-3562179-ezgif.com-video-to-gif-converter.gif'
 
 
 
@@ -15,18 +16,18 @@ const TamilmovieDetails = ({data}) => {
   return (
     <div className="relative flex flex-col items-center ">
       {movieDetails ? (
-        <div className="relative max-w-screen-md m-4 p-4 shadow-lg rounded-lg text-white">
+        <div className="relative max-w-screen-lg m-4 p-4 shadow-lg rounded-lg text-white">
           <div
             style={{ backgroundImage: `url(${movieDetails?.[0]?.background_path})` }}
             className="w-full h-64 bg-cover rounded-lg mb-2 relative"
           >
             {/* Overlay with Poster Image */}
-            <div className="absolute top-0 left-0 w-full h-full bg-cover rounded-lg">
-              <img src={movieDetails?.[0]?.poster_path} alt="" className="w-38 h-40 rounded-lg" />
+            <div className="absolute top-0 left-0  w-full h-full bg-cover rounded-lg bg-gradient-to-b from-transparent to-black p-4">
+              <img src={movieDetails?.[0]?.poster_path} alt="" className="w-38 h-60 rounded-lg" />
             </div>
 
             {/* Gradient Overlay */}
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black p-4">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black ">
               {/* Play Button */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <svg
@@ -42,10 +43,10 @@ const TamilmovieDetails = ({data}) => {
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold mb-2 text-gray-200">{movieDetails?.[0]?.title}</h1>
+          <h1 className="text-3xl font-medium mb-2 text-gray-200">{movieDetails?.[0]?.title}</h1>
 
           {/* Overview */}
-          <p className="text-gray-400 mb-4">{movieDetails?.[0]?.overview}</p>
+          <p className="text-gray-400 mb-4 font-light">{movieDetails?.[0]?.overview}</p>
 
           
           <a
@@ -58,9 +59,9 @@ const TamilmovieDetails = ({data}) => {
             //https://tamilyogi.beer/thuppakki-2012-bluray-720p-tamil-movie-watch-online/
             //https://tamilyogi.beer/nanban-2012-hd-720p-tamil-movie-bluray-watch-online/
 
-            className="mt-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 inline-block"
+            className="mt-4 bg-green-500  hover:bg-green-600   text-white px-4 py-2 rounded-md  flex w-36"
           >
-            Download
+            Download <img src={download_gif}  className='rounded-full h-6 w-6  ml-3  '/>
           </a>
         </div>
       ) : (
