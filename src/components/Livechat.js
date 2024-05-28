@@ -46,7 +46,7 @@ export const Livechat = () => {
         
 
         return ()=> clearInterval(interval)
-    })
+    },[])
 
   return (
     <div className='border border-gray-400 w-80 h-80 overflow-y-scroll  rounded-lg '>

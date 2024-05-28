@@ -1,12 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import { Validate } from '../utils/Validate';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile, multiFactor } from 'firebase/auth';
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa';
 import '../login.css';
+import { lang } from '../utils/lang'
 
-const Login = ({ onAuthentication }) => {
+
+const Login = ({ onAuthentication  }) => {
+  
   const [issigninform, setIssignform] = useState(true);
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
@@ -16,6 +19,7 @@ const Login = ({ onAuthentication }) => {
   const name = useRef(null);
   const [alert, setAlert] = useState(null);
   const [shimmerError, setShimmerError] = useState(false);
+
 
   const SignUP = () => {
     setIssignform(!issigninform);
@@ -102,8 +106,29 @@ const Login = ({ onAuthentication }) => {
     }
   };
 
+  
+  const [currlang,setcurrlang] = useState('en')
+  const Multilang = lang[currlang]
+
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div  >
+      <div  className='flex justify-end px-5 py-3 relative'>
+  
+        
+  <select className='bg-gray-400 rounded-sm outline-none ' onChange={(e)=>setcurrlang(e.target.value)}>
+     <option value={"en"} >
+      en
+     </option>
+     <option value={"ta"}>
+      ta
+     </option>
+     <option value={"hi"}>
+      hi
+     </option>
+  </select>
+
+</div>
+      <div className="relative h-screen overflow-hidden  ">
       {/* Background images */}
       <div className="absolute top-0 left-0 right-0 bottom-0 z-[-1] overflow-hidden">
         {/* Large devices */}
@@ -127,22 +152,22 @@ const Login = ({ onAuthentication }) => {
       {/* Login form */}
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 w-96 bg-opacity-75 bg-black text-white rounded-lg text-center shadow-md relative"
+        className="top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 w-96 bg-opacity-75 bg-black text-white rounded-lg text-center shadow-md relative "
       >
         {/* Logo */}
         <div className="flex space-x-2 mb-4">
-          <FaPlay className="text-rose-700 text-2xl animate-pulse" />
-          <h1 className="text-xl font-bold text-rose-700">Movie Spot</h1>
+          <FaPlay className="text-rose-600 text-2xl animate-pulse" />
+          <h1 className="text-xl font-bold text-rose-600">Movie <span className='text-white'>Spot</span></h1>
         </div>
 
         {/* Title */}
-        <h1 className="font-bold text-3xl py-2">{issigninform ? 'Sign In' : 'Sign Up'}</h1>
+        <h1 className="font-bold text-3xl py-2">{issigninform ? Multilang.signin : Multilang.signup}</h1>
 
         {/* Name input (for Sign Up) */}
         {!issigninform && (
           <input
             type="text"
-            placeholder="Name"
+            placeholder={Multilang.name}
             className="p-3 my-3 w-full bg-gray-800 rounded text-white"
             ref={name}
           />
@@ -151,7 +176,7 @@ const Login = ({ onAuthentication }) => {
         {/* Email input */}
         <input
           type="text"
-          placeholder="E-mail"
+          placeholder={Multilang.email}
           className="p-3 my-3 w-full bg-gray-800 rounded text-white"
           ref={email}
         />
@@ -160,7 +185,7 @@ const Login = ({ onAuthentication }) => {
         <div className="relative">
           <input
             type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
+            placeholder={Multilang.password}
             className="p-3 my-3 w-full bg-gray-800 rounded text-white pl-10"
             ref={password}
           />
@@ -179,10 +204,10 @@ const Login = ({ onAuthentication }) => {
 
         {/* Sign In/Sign Up button */}
         <button
-          className="p-3 my-3 bg-rose-700 w-full text-white font-bold rounded cursor-pointer hover:bg-rose-800"
+          className="p-3 my-3 bg-rose-600 w-full text-white font-bold rounded cursor-pointer hover:bg-rose-800"
           onClick={click}
         >
-          {issigninform ? 'Sign In' : 'Sign Up'}
+          {issigninform ? Multilang.signin : Multilang.signup}
         </button>
         <p className={`text-red-600 py-2 font-bold text-lg ${shimmerError ? 'animate-shimmer' : ''}`}>
           {err}
@@ -193,14 +218,14 @@ const Login = ({ onAuthentication }) => {
           onClick={SignUP}
         >
           {issigninform
-            ? 'New to Movie Spot? Sign Up'
-            : 'Already have an account? Sign In'}
+            ? Multilang.new_to_movie_spot
+            : Multilang.Already_have_an_account}
         </p>
 
         {/* Forgot Password link */}
         <div className="flex mt-2 justify-center">
           <a href="/" className="text-sm text-rose-400 hover:underline relative" onClick={handleForgotPassword}>
-            {issigninform ? 'Forget Password ?' : ''}
+            {issigninform && Multilang.forget_password }
           </a>
         </div>
 
@@ -216,17 +241,13 @@ const Login = ({ onAuthentication }) => {
         )}
 
         {/* Terms of Service and Privacy Policy */}
-        <div className="mt-4 text-xs text-gray-500">
-          By continuing, you agree to our{' '}
-          <a href="/terms-of-service" className="text-white hover:underline">
-            Terms of Service
-          </a>{' '}
-          and{' '}
-          <a href="/privacy-policy" className="text-white hover:underline">
-            Privacy Policy
-          </a>
+        <Link to="/terms/condition">
+        <div className="mt-4 text-xs text-gray-500 cursor-pointer">
+       {Multilang.terms}
         </div>
+        </Link> 
       </form>
+    </div>
     </div>
   );
 };

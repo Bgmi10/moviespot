@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { poster_url } from '../utils/constans'
 import preeloader from '../img/Animation - 1716723337124.gif'
-import download_gif from '../img/download-4292867-3562179-ezgif.com-video-to-gif-converter.gif'
 import { Recommendation } from './Recommendation'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 
 
 const Searchdetail = () => {
@@ -15,7 +16,7 @@ const Searchdetail = () => {
 
   useEffect(()=>{
     const fetch_search_data = async() =>{
-     try{ const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=a79a50cc9c617bb7abb717d180c0e357`) 
+     try{ const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`) 
       const datas = await res.json()
      
      setdata(datas)
@@ -32,32 +33,17 @@ const Searchdetail = () => {
     <div>
       <div  className="relative flex flex-col items-center ">
       {data ? (
-        <div className="relative max-w-screen-lg m-4 p-4 shadow-lg rounded-lg text-white">
+        <div className="relative max-w-screen-md m-4 p-4 shadow-lg rounded-lg text-white ">
           <div
-            style={{ backgroundImage: `url(${poster_url}${data?.backdrop_path})` }}
-            className="w-full h-64 bg-cover rounded-lg mb-2 relative"
+            style={{ backgroundImage: `url(${`https://image.tmdb.org/t/p/w1066_and_h600_bestv2`}${data?.backdrop_path})` }}
+            className="w-full h-80 bg-cover rounded-lg mb-2 relative  "
           >
+           
             {/* Overlay with Poster Image */}
-            <div className="absolute top-0 left-0 w-full h-full  rounded-lg">
-              <img src={poster_url + data?.poster_path} alt="" className="w-38 h-60 rounded-lg " />
+            <div className="absolute top-0 left-0 w-full h-full  rounded-lg   bg-gradient-to-l from-transparent to-black  p-2">
+              <img src={poster_url + data?.poster_path} alt="" className="w-38 h-60 rounded-lg  " />
             </div>
 
-            {/* Gradient Overlay */}
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black p-4">
-              {/* Play Button */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 24"
-                  stroke="white"
-                  width={30}
-              
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3l7 9-7 9V3z" />
-                </svg>
-              </div>
-            </div>
           </div>
 
           <h1 className="text-3xl font-medium mb-2 text-gray-200">{data?.title}</h1>
@@ -76,9 +62,9 @@ const Searchdetail = () => {
             //https://tamilyogi.beer/thuppakki-2012-bluray-720p-tamil-movie-watch-online/
             //https://tamilyogi.beer/nanban-2012-hd-720p-tamil-movie-bluray-watch-online/
 
-            className="mt-4 bg-green-500    text-white px-4 py-2 rounded-md  flex w-36"
+            className="mt-4 border-r-pink-600 border  border-t-orange-600 border-b-blue-600 border-l-purple-600  px-4 py-2 rounded-md  flex w-32  text-gray-300"
           >
-            Download <img src={download_gif}  className='rounded-full h-6 w-6  ml-3 '/>
+            Download <FontAwesomeIcon icon={faArrowDown}  className='animate-bounce px-2 py-1  '/>
 
           </a>
           
@@ -99,3 +85,11 @@ const Searchdetail = () => {
 
 
 export default Searchdetail
+
+
+
+
+
+
+
+

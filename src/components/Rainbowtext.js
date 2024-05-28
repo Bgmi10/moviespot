@@ -28,7 +28,7 @@ const RainbowText = ({ userName }) => {
         className="text-white"
         style={{ borderBottom: `2px solid ${borderColor}` }}
       >
-        Hey, {userName}
+        
       </div>
     </div>
   );

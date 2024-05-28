@@ -21,6 +21,7 @@ import playgif from './img/play.gif'
 const LazyMovieDetails = React.lazy(() => import('./components/Moviedetails'));
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
 const LazySearchdetail = React.lazy(()=> import('./components/Searchdetail'))
+const Lazyterms = React.lazy(()=>import('./components/Terms'))
 
 
 
@@ -99,9 +100,9 @@ const App = () => {
                      <Route path="/moviedetail/nowplaying/:id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
                    
                      <Route path="/moviedetail/vijayhits/:id" element={<LazyTamilmovieDetails data={vijayhits} />} />
-                    <Route path="/movie/:id" element={<LazyMovieDetails />} />
-                   
-                     
+                     <Route path="/movie/:id" element={<LazyMovieDetails />} />
+                     <Route path='/terms/condition' element={<Lazyterms />} />
+                      
                      
                      <Route path="/search" element={<Search/>}  />
                      <Route path="/searchdetail/:id" element={<LazySearchdetail />} />
