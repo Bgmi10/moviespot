@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Searchbar from './components/Searchbar';
-import MovieList from './components/MovieList';
 import Login from './components/Login';
 import Tamilmovies from './components/Tamilmovies';
 import Chatbot from '../src/components/Chatbot'
@@ -14,11 +13,9 @@ import store from './utils/Store';
 import { tamilmovies } from './utils/constans';
 import { vijayhits } from './utils/constans';
 import playgif from './img/play.gif'
+import { Popular } from './components/Popular';
 
 
-
-
-const LazyMovieDetails = React.lazy(() => import('./components/Moviedetails'));
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
 const LazySearchdetail = React.lazy(()=> import('./components/Searchdetail'))
 const Lazyterms = React.lazy(()=>import('./components/Terms'))
@@ -90,9 +87,9 @@ const App = () => {
                         <>
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
-                      
+                        <Popular title='Popular Movies' />
                         <Chatbot />
-                        {!isMobileNavOpen && <MovieList searchTerm={searchTerm} />}
+                       
         
                         </>
                       }
@@ -100,10 +97,7 @@ const App = () => {
                      <Route path="/moviedetail/nowplaying/:id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
                    
                      <Route path="/moviedetail/vijayhits/:id" element={<LazyTamilmovieDetails data={vijayhits} />} />
-                     <Route path="/movie/:id" element={<LazyMovieDetails />} />
                      <Route path='/terms/condition' element={<Lazyterms />} />
-                      
-                     
                      <Route path="/search" element={<Search/>}  />
                      <Route path="/searchdetail/:id" element={<LazySearchdetail />} />
                      <Route path='/livechat' element={<Livechat />} />

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {  Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { signOut } from 'firebase/auth';
 import { FaPlay } from 'react-icons/fa';
 import { auth } from '../utils/firebase';
-import RainbowText from './Rainbowtext';
 import { onAuthStateChanged } from 'firebase/auth';
 
 
@@ -66,12 +63,6 @@ const Header = () => {
           <h1 className='text-rose-600'>Movie<span className='text-white'>Spot</span></h1>
 
           </div>
-        </div>
-        <div>
-          <RainbowText userName={userName} />
-        </div>
-        <div className="flex items-center space-x-4 md:hidden">
-          
         </div>
         
         <Link to='/livechat'>  <button className={`text-rose-600 cursor-pointer hover:text-gray-300`}>

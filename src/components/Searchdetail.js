@@ -72,7 +72,7 @@ const Searchdetail = () => {
           </div>
        
       ) : (
-       <img src={preeloader} />
+       <img src={preeloader}  className='h-10 w-10'/>
       )}
       </div>
      <div>
