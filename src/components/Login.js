@@ -129,27 +129,8 @@ const Login = ({ onAuthentication  }) => {
 
 </div>
       <div className="relative h-screen overflow-hidden  ">
-      {/* Background images */}
-      <div className="absolute top-0 left-0 right-0 bottom-0 z-[-1] overflow-hidden">
-        {/* Large devices */}
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/32c47234-8398-4a4f-a6b5-6803881d38bf/eed3a573-8db7-47ca-a2ce-b511e0350439/IN-en-20240122-popsignuptwoweeks-perspective_alpha_website_small.jpg"
-          alt=""
-          className="w-full h-full z-10 object-cover hidden md:block"
-        />
-
-        {/* Small devices */}
-        {Array.from({ length: 3 }).map((_, index) => (
-          <img
-            key={index}
-            src="https://assets.nflxext.com/ffe/siteui/vlv3/32c47234-8398-4a4f-a6b5-6803881d38bf/eed3a573-8db7-47ca-a2ce-b511e0350439/IN-en-20240122-popsignuptwoweeks-perspective_alpha_website_small.jpg"
-            alt=""
-            className="w-/4 h-3/5 object-cover"
-          />
-        ))}
-      </div>
-
       {/* Login form */}
+      
       <form
         onSubmit={(e) => e.preventDefault()}
         className="top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 w-96 bg-opacity-75 bg-black text-white rounded-lg text-center shadow-md relative "

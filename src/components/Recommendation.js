@@ -3,9 +3,11 @@ import Slider from 'react-slick'
 import {settings} from '../utils/Helper'
 import {poster_url} from '../utils/constans'
 import moviespotgif from '../img/movieSpotgif.gif'
+import { useSelector } from 'react-redux'
 
 export const Recommendation = ({id}) => {
 const [data,setdata] = useState('')
+const theme = useSelector(store => store.theme.toggletheme)
 
 
     useEffect(()=>{
@@ -33,15 +35,15 @@ const [data,setdata] = useState('')
  
   return (
   <div>
-   {!data ? <p className='text-gray-400 ml-[120px] font-bold'>recommendations not available</p>  : <div className='lg:ml-[105px] '>
-         <h2 className="text-2xl font-mono  text-gray-300 mb-4 ml-8  mt-2 ">Recommendations</h2>
+   {!data ? <p className='text-gray-400 ml-[120px] font-bold'>recommendations not available</p>  : <div className='lg:ml-[10px] '>
+         <h2 className={theme ? "text-2xl font-mono  text-gray-300 mb-4 ml-8  mt-2 " : "text-2xl font-mono  text-gray-700 mb-4 ml-8  mt-2 "}>Recommendations</h2>
         <Slider {...settings} className='ml-5'>
          {
           data?.results?.map((item)=>(
             <a href={`/searchdetail/${item.id}`} >
             <div key={item.id}>
-              <img src={data  ? poster_url + item.poster_path : moviespotgif} alt=''  className='p-2 m-2 rounded-2xl cursor-pointer'/>
-              <p className='text-gray-400 ml-6 text-md font-medium'>{item.title}</p>
+              <img src={data  ? poster_url + item.poster_path : moviespotgif} alt=''  className='p-2 m-2 rounded-2xl cursor-pointer hover:scale-105'/>
+              <p className={theme ? 'text-gray-400 ml-6 text-md font-medium' : 'text-gray-600 ml-6 text-md font-medium'} >{item.title}</p>
 
             </div>
             </a>

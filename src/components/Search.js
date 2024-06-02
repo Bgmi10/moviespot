@@ -6,7 +6,7 @@ export const Search = ({movies}) => {
 
  
   return (
-    <div>
+    <div className='relative'>
       {
         movies?.results?.map((item )=>(
           <a href ={`/searchdetail/${item.id}`}>

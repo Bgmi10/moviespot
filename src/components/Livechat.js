@@ -39,7 +39,7 @@ export const Livechat = () => {
         const interval = setInterval(()=>{
 
             dispatch(addmessage(message ))
-        },1500)
+        },1000)
             
 
         dispatch(removemessage())
@@ -49,7 +49,7 @@ export const Livechat = () => {
     },[])
 
   return (
-    <div className='border border-gray-400 w-80 h-80 overflow-y-scroll  rounded-lg '>
+    <div className='border border-gray-400 w-80 h-80 overflow-y-scroll  rounded-lg  relative'>
       <div className='text-gray-500  flex-col-reverse flex  ' >
     
     {
@@ -69,7 +69,7 @@ export const Livechat = () => {
     </div>
     
     <form className=' flex' onSubmit={sendmsg}>
-        <input type='text' placeholder='type anything...' onChange={(e)=>setmsg(e.target.value)}  className=' rounded-md ml-4 border-gray-500 border text-gray-400 w-56 p-3 h-10 mb-4 bg-black  ' />
+        <input type='text' placeholder='type anything...' onChange={(e)=>setmsg(e.target.value)}  className=' rounded-md ml-4 border-gray-500 border text-gray-400 w-56 p-3 h-10 mb-4 bg-black  '  />
        <button className='ml-2 h-10 w-10'> 
          <SendIcon className='text-rose-600 '/>  
        </button>     

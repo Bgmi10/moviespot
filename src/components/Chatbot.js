@@ -8,7 +8,7 @@ import { tamilmovies } from '../utils/constans';
 
 
 
-const handleMovieQuery = (movieTitle) => {
+const handleMovieQuery = ({movieTitle}) =>{
   const movie = tamilmovies.find((movie) => movie.title.toLowerCase() === movieTitle.toLowerCase());
 
   if (movie) {
@@ -91,13 +91,16 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-4 md:bottom-8 lg:bottom-12 right-4 z-50 items-center bg-colour-black">
+    <div className="fixed bottom-4 md:bottom-8 lg:bottom-12 right-4 z-50 items-center text-gray-500 ">
       <Widget
         handleNewUserMessage={handleNewUserMessage}
+        
         onClick={toggleChatbot}
         title="Chatbot"
         //titleAvatar={}
         subtitle="Ask me about movies, recommendations."
+        style={{ backgroundColor: 'red', color: 'black' }}
+        
       />
     </div>
   );

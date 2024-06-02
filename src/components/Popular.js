@@ -4,19 +4,25 @@ import {poster_url} from '../utils/constans'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import moviespot from '../img/movieSpotgif.gif'
+import {moviespot_gif} from '../utils/constans'
+import gif from '../img/movieSpotgif.gif'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-export const Popular = ({title}) => {
+export const Popular = ({title , apiurl, sort}) => {
+
+  const theme = useSelector(store => store.theme.toggletheme)
 
     const [data, setdata] = useState('')
+
+
     useEffect(()=>{
         const fetch_data = async () =>{
           try{  
-            const res = await fetch(`https://api.themoviedb.org/3/movie/popular?language=ta&page=1&api_key=${process.env.REACT_APP_API_KEY}`,)
+            const res = await fetch(`${apiurl}${process.env.REACT_APP_API_KEY}${sort}`)
 
             const data = await res.json()
-            console.log(data)
+         
             setdata(data)
 
         }
@@ -29,31 +35,31 @@ export const Popular = ({title}) => {
     },[])
 
 
+ 
 
+ 
   return (
-    <div className='py-3'>
-         <div className=''>
-         <h2 className="text-2xl font-medium text-gray-300 mb-4 px-4 mt-2">{title}</h2>
-         </div>
+    <div className='py-4 sm:p-0 lg:p-10  '>
          
-          <Slider {...settings} >
-           {
+         <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-4 mt-2" : "text-2xl font-medium text-gray-800 mb-4 px-4 mt-2"}>{title}</h2>
       
-            data?.results?.map((item) =>(
-                <Link to={`/searchdetail/${item.id}`}>
-                <div key={item.id}>
-                  {
-                    item.poster_path ? <div><img src={ poster_url + item.poster_path } className='rounded-2xl p-[10px]  ml-3  cursor-pointer hover:scale-105' alt=''></img>
-                  </div>: 
-                  <img src={moviespot } className='rounded-2xl p-[10px]  ml-3  cursor-pointer hover:scale-105'></img>}
-                    <h1 className='text-gray-500 px-6 '>{item.title}</h1>
+         
+         {!data ?<p>loadings..</p> : <Slider {...settings} >
+           {
+                data?.results?.map((item) =>(
+                <Link to={`/searchdetail/${item.id}`} key={item.id}>
+                <div>
+                <img src={ poster_url + item.poster_path } className='rounded-2xl p-[10px] ml-3   cursor-pointer  border-none outline-none hover:scale-105' alt=''></img>
+                <p className='text-gray-500 px-[26px] text-sm '>{item.title}</p>
                 </div>
                 </Link>
-            ))
-            
+            )
+          )
            }
-         </Slider>
+          
+         </Slider>}
     </div>
+  
   )
 }
 

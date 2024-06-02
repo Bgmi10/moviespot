@@ -10,7 +10,7 @@ const chatslice = createSlice({
             state.chatmessage.unshift(action.payload)
         },
         removemessage : (state)=>{
-            state.chatmessage.splice(20,1)
+            state.chatmessage.splice(20,3)
         }
     }
 })

@@ -1,5 +1,5 @@
 export const random = () =>{
-    const a = ["subash", "mukesj" , "ramesh" , "pandiammal" , "ravi" , ]
+    const a = ["subash", "mukesj" , "ramesh" , "pandiammal" , "ravi" , "rekaer"]
     
     const b = Math.floor(Math.random() * a.length)
     return a[b] 
@@ -8,7 +8,8 @@ export const random = () =>{
   export const settings = {
     infinite: false,
     slidesToShow: 8,
-    slidesToScroll: 2,
+    slidesToScroll: 8,
+  
    
     
     responsive: [
@@ -16,7 +17,7 @@ export const random = () =>{
         breakpoint: 768,
         settings: {
           slidesToShow: 4,
-          
+          slidesToScroll: 4,
           arrows: false
         },
       },
