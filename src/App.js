@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import Header from './components/Header';
@@ -6,24 +5,21 @@ import Searchbar from './components/Searchbar';
 import Tamilmovies from './components/Tamilmovies';
 import Chatbot from '../src/components/Chatbot'
 import { Search } from './components/Search';
-import { Provider } from 'react-redux';
 import { Livechat } from './components/Livechat';
 import {Mainslider} from './components/Mainslider'
-import store from './utils/Store';
 import { tamilmovies } from './utils/constans';
 import { vijayhits } from './utils/constans';
 import playgif from './img/play.gif'
 import { Popular } from './components/Popular';
 import { useSelector } from 'react-redux';
-
+import Footer from './components/Footer';
 
 
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
 const LazySearchdetail = React.lazy(()=> import('./components/Searchdetail'))
 const Lazyterms = React.lazy(()=>import('./components/Terms'))
-
-
+const Lazysearchpage = React.lazy(()=> import('./components/Searchpage'))
 
 
 
@@ -58,7 +54,7 @@ const App = () => {
                         <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?page=1&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
                        
                         <Chatbot />
-        
+                         <Footer />
                         </>
                       }
                     />
@@ -68,6 +64,7 @@ const App = () => {
                      <Route path='/terms/condition' element={<Lazyterms />} />
                      <Route path="/search" element={<Search/>}  />
                      <Route path="/searchdetail/:id" element={<LazySearchdetail />} />
+                     <Route path={`/searchpage`} element={<Lazysearchpage />} />
                      <Route path='/livechat' element={<Livechat />} />
                   </Routes>
                 </React.Suspense>

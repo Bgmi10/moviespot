@@ -6,6 +6,7 @@ import { main_slider } from '../utils/constans';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'animate.css/animate.min.css';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export const Mainslider = () => {
   const [animating, setAnimating] = useState(false);
@@ -25,6 +26,8 @@ export const Mainslider = () => {
         breakpoint: 768,
         settings: {
           arrows: false,
+          beforeChange: () => setAnimating(true),
+          afterChange: () => setAnimating(false),
         },
       },
     ],
@@ -33,8 +36,9 @@ export const Mainslider = () => {
   return (
     <div className="slider-container relative sm:p-8 lg:p-20 lg:py-2 ">
       <Slider {...settings}>
-        {main_slider.map((i, index) => (
-          <div key={index} className="relative">
+        {main_slider.map((i) => (
+          <Link to = {`/searchdetail/${i.id}`} >
+          <div className="relative">
             <img
               src={i.background_path}
               className={`lg:w-full lg:h-96 object-cover rounded-lg sm:h-40  ${animating ? 'animate__animated animate__fadeIn' : ''}`}
@@ -60,6 +64,7 @@ export const Mainslider = () => {
               </div>
             </div>
           </div>
+          </Link>
         ))}
       </Slider>
     </div>

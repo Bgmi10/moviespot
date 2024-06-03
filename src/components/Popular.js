@@ -20,7 +20,7 @@ export const Popular = ({title , apiurl, sort}) => {
         const fetch_data = async () =>{
           try{  
             const res = await fetch(`${apiurl}${process.env.REACT_APP_API_KEY}${sort}`)
-
+            
             const data = await res.json()
          
             setdata(data)

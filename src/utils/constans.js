@@ -280,7 +280,7 @@ export const main_slider = [
     download_link: "https://tamilvip.app/link/?jjb4lao2shk3",
   },
   {
-    id:  1208217,
+    id:  1072790,
     title: "Anyone But You-2023",
     title1: "Anyone But You",
     overview:
@@ -300,7 +300,7 @@ export const main_slider = [
     download_link: "https://drive.google.com/file/d/1-WJ5aRgv30NinWCYOj8EQmMEC-ahTjjD/view?usp=drivesdk",
   },
   {
-    id:  755388,
+    id:  1096342,
     title: "Beautiful Wedding (2024)",
     title1: "Beautiful Wedding (2024)",
     overview:

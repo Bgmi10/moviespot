@@ -71,18 +71,18 @@ const Header = () => {
   }, [userName]);
 
   return (
-    <nav className="p-4"> 
+    <nav className={"p-4 "}> 
 
       <div className="container mx-auto flex items-center justify-between">
 
-          {/* <img src='https://showflix.xyz/static/media/footer-bg.67e95f05.jpg ' className='absolute   lg:w-full lg:p-36  opacity-80  sm:px-10 ' />  */}
+         
 
         <div className="flex space-x-2  ">
-          <div className="text-rose-600 text-xl animate-pulse ">
+          <div className="text-rose-600 text-2xl animate-pulse py-[2px]">
             <FaPlay />
           </div>
           <div>
-          <h1 className='text-rose-600 relative '>Movie<span className={theme1 ? 'text-white' : 'text-black'}>Spot</span></h1>
+          <h1 className='text-rose-600 relative text-lg'>Movie<span className={theme1 ? 'text-white' : 'text-black'}>Spot</span></h1>
 
           </div>
         

@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {api_key} from '../utils/constans'
 import { Search } from './Search';
 import { useDispatch } from 'react-redux';
 import { cacheresults } from '../utils/Searchcacheslice';
 import { useSelector } from 'react-redux';
+
+
 
 
 
@@ -16,12 +17,16 @@ const Searchbar = () => {
   const dispatch = useDispatch()
   const cache = useSelector(store=>store.cache)
   const theme = useSelector(store => store.theme.toggletheme)
+ 
+
 
  
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
+
+  
 
   useEffect(()=>{
    
@@ -38,7 +43,7 @@ const Searchbar = () => {
   },[searchTerm])
 
   const fetchmovies = async() =>{
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchTerm}&api_key=${api_key}`)
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchTerm}&api_key=${process.env.REACT_APP_API_KEY}`)
 
     const data = await response.json()
 
@@ -116,9 +121,12 @@ const Searchbar = () => {
             </svg>
           </button>
         </div>
-        <button type="submit" className="bg-rose-600 rounded-md p-2 cursor-pointer">
+        <a href={`/searchpage?query=${searchTerm}`} >
+        <button type="submit" className="bg-rose-600 rounded-md p-2 cursor-pointer" >
           Search
         </button>
+        </a>
+        
         {listening && (
           <p className="absolute right-8 top-8 text-gray-600 m-4 p-2">
             {transcript}
@@ -128,7 +136,8 @@ const Searchbar = () => {
       </div>
     </div>
     
-     <Search movies={movies} searchTerm = {setSearchTerm}/>
+     <Search movies={movies} />
+    
       </div>
   );
 };
