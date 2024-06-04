@@ -8,7 +8,7 @@ export const api_url = `https://api.themoviedb.org/3/movie/popular?api_key=${api
 export const poster_url = 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2'
 
 export const moviespot_gif = {gif}
-
+{/* <img src={  gif } className='rounded-2xl p-[10px] ml-3  cursor-pointer  border-none outline-none hover:scale-105 h-[131px] lg:w-[150px] lg:h-[200px] ' alt={item.title}></img> */}
 
 
   export const tamilmovies = [
@@ -270,7 +270,7 @@ export const moviespot_gif = {gif}
 export const main_slider = [
   {
     id: 781732,
-    title: "Animal-2023",
+    title: "Animal",
     title1: "Animal",
     overview:
       "The son of a wealthy, powerful industrialist returns to India and undergoes a remarkable transformation as he becomes consumed by a quest for vengeance against those threatening his father's life.",
@@ -281,7 +281,7 @@ export const main_slider = [
   },
   {
     id:  1072790,
-    title: "Anyone But You-2023",
+    title: "Anyone But You",
     title1: "Anyone But You",
     overview:
       "After an amazing first date, Bea and Ben’s fiery attraction turns ice cold — until they find themselves unexpectedly reunited at a destination wedding in Australia. So they do what any two mature adults would do: pretend to be a couple..",
@@ -291,7 +291,7 @@ export const main_slider = [
   },
   {
     id:  962074,
-    title: "Captain-Miller-2024",
+    title: "Captain-Miller",
     title1: "Captain-Miller",
     overview:
       "A renegade Captain and his unconventional outlaws execute daring heists in the 1930s and 1940s. Miller must decide whether to continue running or confront the challenges head-on.",
@@ -301,7 +301,7 @@ export const main_slider = [
   },
   {
     id:  1096342,
-    title: "Beautiful Wedding (2024)",
+    title: "Beautiful Wedding ",
     title1: "Beautiful Wedding (2024)",
     overview:
       "In the aftermath of Beautiful Disaster, Abby and Travis wake after a crazy night in Vegas as accidental newlyweds! With the mob on their heels, they flee to Mexico for a wild, weird honeymoon—but are they in for another disaster?.",
@@ -311,7 +311,7 @@ export const main_slider = [
   },
   {
     id:  1118232,
-    title: "Saba-Nayagan-2023",
+    title: "Saba-Nayagan",
     title1: "Saba-Nayagan",
     overview:
       "Arrested for nuisance, Saba spins breakup tales to melt a sympathetic cop, hoping to charm his way out.",

@@ -44,12 +44,12 @@ export const Popular = ({title , apiurl, sort}) => {
          <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-4 mt-2" : "text-2xl font-medium text-gray-800 mb-4 px-4 mt-2"}>{title}</h2>
       
          
-         {!data ?<p>loadings..</p> : <Slider {...settings} >
+         {data.length === 0  ?<img src={gif} className='h-10 w-10 ' alt='moviespot'/> : <Slider {...settings} >
            {
                 data?.results?.map((item) =>(
                 <Link to={`/searchdetail/${item.id}`} key={item.id}>
                 <div>
-                <img src={ poster_url + item.poster_path } className='rounded-2xl p-[10px] ml-3   cursor-pointer  border-none outline-none hover:scale-105' alt=''></img>
+                <img src={ poster_url + item.poster_path } className='rounded-2xl p-[10px] ml-3   cursor-pointer  border-none outline-none hover:scale-105' alt={item.title}></img>
                 <p className='text-gray-500 px-[26px] text-sm '>{item.title}</p>
                 </div>
                 </Link>

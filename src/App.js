@@ -54,7 +54,7 @@ const App = () => {
                         <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?page=1&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
                        
                         <Chatbot />
-                         <Footer />
+                         {/* <Footer /> */}
                         </>
                       }
                     />
