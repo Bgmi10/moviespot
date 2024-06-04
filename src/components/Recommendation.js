@@ -5,20 +5,15 @@ import {poster_url} from '../utils/constans'
 import moviespotgif from '../img/movieSpotgif.gif'
 import { useSelector } from 'react-redux'
 
-export const Recommendation = ({id}) => {
+
+export const Recommendation = ({url , Recommendations}) => {
 const [data,setdata] = useState('')
 const theme = useSelector(store => store.theme.toggletheme)
 
 
     useEffect(()=>{
         const fetch_recommend_data = async () =>{
-         try{   const res  = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations`,{
-             method:"GET",
-             headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzlhNTBjYzljNjE3YmI3YWJiNzE3ZDE4MGMwZTM1NyIsInN1YiI6IjY1YTE3OWEyMjE2MjFiMDEzMjU5NzAxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8kSxkmzsk-de6T_drytirygqdNamu0CSJokC4xYMpsw'
-              }
-            })
+         try{   const res  = await fetch(url)
 
             const datas= await res.json()
             setdata(datas)
@@ -33,15 +28,16 @@ const theme = useSelector(store => store.theme.toggletheme)
     },[])
 
  
+ 
   return (
-  <div>
+  <div className='lg:p-7'>
    {!data ? <p className='text-gray-400 ml-[120px] font-bold'>recommendations not available</p>  : <div className='lg:ml-[10px] '>
-         <h2 className={theme ? "text-2xl font-mono  text-gray-300 mb-4 ml-8  mt-2 " : "text-2xl font-mono  text-gray-700 mb-4 ml-8  mt-2 "}>Recommendations</h2>
-        <Slider {...settings} className='ml-5'>
+         <h2 className={theme ? "text-2xl font-mono  text-gray-300 mb-4 ml-8  mt-2 " : "text-2xl font-mono  text-gray-700 mb-4 ml-8  mt-2 "}>{Recommendations}</h2>
+        <Slider {...settings} className='ml-5  '>
          {
           data?.results?.map((item)=>(
-            <a href={`/searchdetail/${item.id}`} >
-            <div key={item.id}>
+            <a href={`/searchdetail/${item.id}`}  key={item.id}>
+            <div>
               <img src={data  ? poster_url + item.poster_path : moviespotgif} alt=''  className='p-2 m-2 rounded-2xl cursor-pointer hover:scale-105'/>
               <p className={theme ? 'text-gray-400 ml-6 text-md font-medium' : 'text-gray-600 ml-6 text-md font-medium'} >{item.title}</p>
 
@@ -51,6 +47,7 @@ const theme = useSelector(store => store.theme.toggletheme)
          }
         </Slider>
     </div>}
+  
   </div>
   )
 }

@@ -65,8 +65,8 @@ const Searchpage = () => {
                         <div >
                         <div className="lg:p-10 lg:justify-center items-center sm: p-7 ">
                          
-                                <img src={poster_url + i.poster_path} className="rounded-lg w-full lg:w-40 sm: h-40    lg:h-auto hover:scale-105 " alt="no img" />
-                                {!i.poster_path && <img src='https://static.vecteezy.com/system/resources/previews/005/720/408/original/crossed-image-icon-picture-not-available-delete-picture-symbol-free-vector.jpg ' className='h-60 w-40 rounded-lg'></img>}
+                                <img src={poster_url + i.poster_path} className="rounded-lg w-full lg:w-40 sm: h-40    lg:h-auto hover:scale-105 " alt="movie poster" />
+                                {!i.poster_path && <img src='https://static.vecteezy.com/system/resources/previews/005/720/408/original/crossed-image-icon-picture-not-available-delete-picture-symbol-free-vector.jpg' className='h-60 w-40 rounded-lg' ></img>}
                             <h1 className="text-gray-400 flex-wrap flex">{i.original_language}</h1>
                         </div>
                         </div>
