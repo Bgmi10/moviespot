@@ -82,7 +82,7 @@ const Header = () => {
             <FaPlay />
           </div>
           <div>
-          <h1 className='text-rose-600 relative text-lg'>space<span className={theme1 ? 'text-white' : 'text-black'}>Spot</span></h1>
+          <h1 className='text-rose-600 relative text-lg'>Movie<span className={theme1 ? 'text-white' : 'text-black'}>Spot</span></h1>
 
           </div>
         
