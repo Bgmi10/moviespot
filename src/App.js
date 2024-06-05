@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import Header from './components/Header';
 import Searchbar from './components/Searchbar';
@@ -13,6 +13,8 @@ import playgif from './img/play.gif'
 import { Popular } from './components/Popular';
 import { useSelector } from 'react-redux';
 import Footer from './components/Footer';
+import HomeInifinte from './components/HomeInifinte';
+
 
 
 
@@ -20,13 +22,17 @@ const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDe
 const LazySearchdetail = React.lazy(()=> import('./components/Searchdetail'))
 const Lazyterms = React.lazy(()=>import('./components/Terms'))
 const Lazysearchpage = React.lazy(()=> import('./components/Searchpage'))
+const Lazypopulardetail  = React.lazy(()=>import('./components/Populardetail'))
+const Lazylogin = React.lazy(()=> import ('./components/Login'))
+
 
 
 
 const App = () => {
+ 
   
   const theme = useSelector(store => store.theme.toggletheme)
-
+  const isloginpage = window.location.pathname === '/login'
   
   return (
    
@@ -38,26 +44,33 @@ const App = () => {
           element={
            
               <>
-                <Header  />
-                <Searchbar  /> 
+              
+                {!isloginpage &&<Header  />}
+                {!isloginpage && <Searchbar  /> }
+                
                 <React.Suspense fallback={<div>loading...</div>}>
                   <Routes>
                     <Route
                       path='/'
                       element={
                         <>
-                      
+                         
                          <Mainslider /> 
-                         <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?page=1&api_key=`}   sort={'&with_original_language=ta&sort_by=release_date.desc'}/>
+                         <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`}   sort={''}/>
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
-                        <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?page=1&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
-                       
+                        <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
+                        <HomeInifinte  />
                         <Chatbot />
-                         {/* <Footer /> */}
+                       
                         </>
+                         
+                       
                       }
+                      
+                      
                     />
+                    
                      <Route path="/moviedetail/nowplaying/:Id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
                    
                      <Route path="/moviedetail/vijayhits/:Id" element={<LazyTamilmovieDetails data={vijayhits} />} />
@@ -66,6 +79,8 @@ const App = () => {
                      <Route path="/searchdetail/:id" element={<LazySearchdetail />} />
                      <Route path={`/searchpage`} element={<Lazysearchpage />} />
                      <Route path='/livechat' element={<Livechat />} />
+                     <Route path='/popular-detail' element={<Lazypopulardetail />} />
+                     <Route path= "/login" element={<Lazylogin />} />
                   </Routes>
                 </React.Suspense>
               </>
@@ -73,6 +88,7 @@ const App = () => {
           }
         />
       </Routes>
+      <Footer />
     </div>
    
   );

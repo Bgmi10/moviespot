@@ -1,6 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { Validate } from '../utils/Validate';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile, multiFactor } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile} from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import { useNavigate , Link } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa';
@@ -8,11 +8,10 @@ import '../login.css';
 import { lang } from '../utils/lang'
 
 
-const Login = ({ onAuthentication  }) => {
+const Login = () => {
   
   const [issigninform, setIssignform] = useState(true);
   const [err, setErr] = useState(null);
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const email = useRef(null);
   const password = useRef(null);
@@ -57,10 +56,8 @@ const Login = ({ onAuthentication  }) => {
         setIssignform(true); // Switch to the sign-in form after successful sign-up
       } else {
         await signInWithEmailAndPassword(auth, emailValue, passwordValue);
-        onAuthentication();
-        localStorage.setItem('authenticated', JSON.stringify(true));
-
-        navigate('/');
+        
+        window.location.href = '/';
       }
     } catch (error) {
       const errorCode = error.code;
@@ -79,7 +76,7 @@ const Login = ({ onAuthentication  }) => {
           setErr('Invalid email or password. Please check your credentials.');
           break;
         default:
-          setErr(errorMessage);
+          ;
           break;
       }
   

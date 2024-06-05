@@ -34,18 +34,18 @@ export const Mainslider = () => {
   return (
     <div className="slider-container relative sm: p-4 lg:p-16 lg:py-2">
       <Slider {...settings}>
-        {main_slider.map((i, index) => (
-          <Link to={`/searchdetail/${i.id}`} key={index}>
+        {main_slider.map((i) => (
+          <Link to={`/searchdetail/${i.id}`} key={i.id}>
             <div className="relative">
               <img
                 src={i.background_path}
                 className={`lg:w-full lg:h-96 object-cover rounded-lg sm:h-40 transition-opacity duration-1000 ${animating ? 'opacity-0' : 'opacity-100'}`}
                 alt=""
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50 flex sm: px-4 sm: py-4 lg:px-10 lg:py-10 rounded-lg transition-all duration-1000">
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex sm: px-4 sm: py-4 lg:px-10 lg:py-10 rounded-lg transition-all duration-100 0 ">
                 <img
                   src={i.poster_path}
-                  className={`shadow-lg mb-4 rounded-lg transition-transform duration-1000 ${animating ? 'transform scale-90 opacity-0' : 'transform scale-100 opacity-100'}`}
+                  className={`shadow-lg mb-4 rounded-lg  duration-1000   transition-transform ${animating ? 'transform scale-90 opacity-0' : 'transform scale-100 opacity-100'}`}
                   alt=""
                 />
                 <div className="px-5">

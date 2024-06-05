@@ -91,15 +91,16 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-4 md:bottom-8 lg:bottom-12 right-4 z-50 items-center text-gray-500 ">
+    <div className="fixed bottom-4 md:bottom-8 lg:bottom-12 right-4 z-50 items-center">
       <Widget
         handleNewUserMessage={handleNewUserMessage}
-        
+       
         onClick={toggleChatbot}
         title="Chatbot"
         //titleAvatar={}
         subtitle="Ask me about movies, recommendations."
-        style={{ backgroundColor: 'red', color: 'black' }}
+        style={{ backgroundColor: 'red', color: 'red' }}
+        
         
       />
     </div>

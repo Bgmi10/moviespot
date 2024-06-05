@@ -1,5 +1,5 @@
 import React from 'react'
-import footerimg from '../img/WhatsApp Image 2024-03-14 at 01.59.21.jpeg'
+import footerimg from '../img/crop footer.jpeg'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
@@ -13,9 +13,9 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons'
        
   
           <div className='relative' >
-            <div className='flex px-10 py-10'>
-            <FontAwesomeIcon icon={faPlay}  className='text-rose-600  py-[2px] text-2xl'/>
-          <h1 className='text-rose-600 px-2 text-lg'>Movie<span className={theme ? 'text-white' : 'text-black'}>Spot</span></h1>
+            <div className='flex px-5 py-5'>
+            <FontAwesomeIcon icon={faPlay}  className='text-rose-600  py-[2px] text-xl'/>
+          <h1 className='text-rose-600 px-1 text-md'>Movie<span className={theme ? 'text-white' : 'text-black'}>Spot</span></h1>
           </div>
           </div>
           </div>

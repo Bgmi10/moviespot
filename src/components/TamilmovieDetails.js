@@ -34,7 +34,7 @@ const TamilmovieDetails = ({data}) => {
           <h1 className={theme ? "text-3xl font-medium mb-2 text-gray-200" : "text-3xl font-medium mb-2 text-gray-600"}>{movieDetails?.[0]?.title}</h1>
 
          
-          <p className={theme ? " text-gray-400 mb-4 font-light" : " text-gray-500 mb-4 font-light"}>{movieDetails?.[0]?.overview}</p>
+          <p className={theme ? " text-gray-400 mb-4 font-light" : " text-gray-500 mb-4 font-light"}>{movieDetails?.[0]?.overview}</p>t
 
           <div className={theme ? 'text-gray-300 ' : 'text-gray-700'}>
           <a
@@ -52,7 +52,8 @@ const TamilmovieDetails = ({data}) => {
       
     </div>
     <div >
-        <Recommendation id={id} />
+    <Recommendation Recommendations = "Recommendations"  url = {`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=1`}/>
+    <Recommendation  url={`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=2`}/>
       </div>
     </div>
   );

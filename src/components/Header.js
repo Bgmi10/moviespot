@@ -10,6 +10,8 @@ import { useDispatch } from 'react-redux';
 import { toggletheme } from '../utils/Themeslice';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -97,6 +99,9 @@ const Header = () => {
            
           </button>
         </Link>  
+        <a href="/login">
+        <FontAwesomeIcon icon={faUserAlt}  className='text-gray-400 cursor-pointer'/>
+        </a>
         <DarkModeSwitch
           checked={theme}
           onChange={toggle} 

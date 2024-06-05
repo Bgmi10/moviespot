@@ -276,13 +276,13 @@ export const main_slider = [
       "The son of a wealthy, powerful industrialist returns to India and undergoes a remarkable transformation as he becomes consumed by a quest for vengeance against those threatening his father's life.",
       poster_path: 'https://image.tmdb.org/t/p/original/q14R8XgOKZx2ytwMg7PPqBmGPv0.jpg',
     background_path: "https://image.tmdb.org/t/p/original/nBIHiMCLjdDX2GXbbPBRWafFJNn.jpg",
-    //
+  
     download_link: "https://tamilvip.app/link/?jjb4lao2shk3",
   },
   {
     id:  1072790,
     title: "Anyone But You",
-    title1: "Anyone But You",
+  
     overview:
       "After an amazing first date, Bea and Ben’s fiery attraction turns ice cold — until they find themselves unexpectedly reunited at a destination wedding in Australia. So they do what any two mature adults would do: pretend to be a couple..",
     poster_path: "https://media.themoviedb.org/t/p/w440_and_h660_face/4SOtfIlRuEGa10YiopG9liQSecI.jpg",
@@ -292,7 +292,7 @@ export const main_slider = [
   {
     id:  962074,
     title: "Captain-Miller",
-    title1: "Captain-Miller",
+   
     overview:
       "A renegade Captain and his unconventional outlaws execute daring heists in the 1930s and 1940s. Miller must decide whether to continue running or confront the challenges head-on.",
     poster_path: "https://media.themoviedb.org/t/p/w188_and_h282_bestv2/gq5OlT5ImxsNpkirpgf4rYngd3M.jpg",
@@ -302,7 +302,7 @@ export const main_slider = [
   {
     id:  1096342,
     title: "Beautiful Wedding ",
-    title1: "Beautiful Wedding (2024)",
+   
     overview:
       "In the aftermath of Beautiful Disaster, Abby and Travis wake after a crazy night in Vegas as accidental newlyweds! With the mob on their heels, they flee to Mexico for a wild, weird honeymoon—but are they in for another disaster?.",
     poster_path: "https://media.themoviedb.org/t/p/w440_and_h660_face/cmeYlRD628KrijyY7thzwlV2KPT.jpg",
@@ -312,7 +312,6 @@ export const main_slider = [
   {
     id:  1118232,
     title: "Saba-Nayagan",
-    title1: "Saba-Nayagan",
     overview:
       "Arrested for nuisance, Saba spins breakup tales to melt a sympathetic cop, hoping to charm his way out.",
     poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/uYIw5Jt4xkcjObDwJqcgeLFP042.jpg",

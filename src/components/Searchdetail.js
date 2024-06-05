@@ -76,6 +76,7 @@ const Searchdetail = () => {
      <div>
        
        <Recommendation Recommendations = "Recommendations"  url = {`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=1`}/>
+      
        <Recommendation  url={`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=2`}/>
       </div> 
       

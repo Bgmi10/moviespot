@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import gif from '../img/movieSpotgif.gif';
 import { poster_url } from '../utils/constans';
 import { useSelector } from 'react-redux';
 
-const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-};
 
 const Searchpage = () => {
     const [data, setData] = useState([]);
     const theme = useSelector(store => store.theme.toggleTheme);
-    const query = useQuery();
+    const query = new URLSearchParams(useLocation().search);
     const [scrollCheck, setScrollCheck] = useState(false);
     
     const [page, setPage] = useState(1);
@@ -56,24 +52,24 @@ const Searchpage = () => {
     }, []);
        if(data?.results?.poster_path === null) return  "img not avialable"
     return (
-        <div className="sm: px-4   lg:px-32 lg:flex lg:flex-row lg:flex-wrap  sm: flex  sm: flex-wrap" >
-            {data.length === 0 ? (
-                <p className={`${theme ? 'text-white lg:px-[420px] sm: px-16' : 'text-black lg:px-[420px] sm: px-16'}`}>No search found</p>
-            ) : (
-                data.map(i => (
-                    <Link to={`/searchdetail/${i.id}`} key={i.id}>
-                        <div >
-                        <div className="lg:p-10 lg:justify-center items-center sm: p-7 ">
-                         
-                                <img src={poster_url + i.poster_path} className="rounded-lg w-full lg:w-40 sm: h-40    lg:h-auto hover:scale-105 " alt="movie poster" />
-                                {!i.poster_path && <img src='https://static.vecteezy.com/system/resources/previews/005/720/408/original/crossed-image-icon-picture-not-available-delete-picture-symbol-free-vector.jpg' className='h-60 w-40 rounded-lg' ></img>}
-                            <h1 className="text-gray-400 flex-wrap flex">{i.original_language}</h1>
-                        </div>
-                        </div>
-                    </Link>
-                ))
-            )}
-        </div>
+        <div className="px-4 lg:px-32 flex flex-wrap justify-center">
+            
+        {data.length === 0 ? <p className='text-gray-300 '>No search found </p> : data.map((item) => (
+          <Link to={`/searchdetail/${item.id}`} key={item.id} >
+            <div className="p-4 flex flex-col items-center">
+              <img
+                src={item.poster_path ? `${poster_url}${item.poster_path}` : ''}
+                alt="movie poster"
+                className="rounded-lg w-full lg:w-40  lg:h-60  sm: h-52  sm:w-42 hover:scale-105 transition-transform"
+              />
+              <div>
+              <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.title}</p>
+              </div>
+            </div>
+           
+          </Link>
+        ))}
+      </div>
     );
 };
 
