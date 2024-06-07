@@ -63,7 +63,7 @@ const Searchpage = () => {
                 className="rounded-lg w-full lg:w-40  lg:h-60  sm: h-52  sm:w-42 hover:scale-105 transition-transform"
               />
               <div>
-              <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.title}</p>
+              <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.original_language}</p>
               </div>
             </div>
            

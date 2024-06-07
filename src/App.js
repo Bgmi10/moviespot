@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import Header from './components/Header';
 import Searchbar from './components/Searchbar';
@@ -14,10 +14,11 @@ import { Popular } from './components/Popular';
 import { useSelector } from 'react-redux';
 import Footer from './components/Footer';
 import { Fet } from './components/Fet';
+import * as disnep from '../src/components/preloadanima.json';
+import * as preloader from '../src/components/anima.json';
 
-
-
-
+import { LottieAnimation } from './components/lottie';
+import { set } from 'lodash';
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
 const LazySearchdetail = React.lazy(()=> import('./components/Searchdetail'))
@@ -27,18 +28,34 @@ const Lazypopulardetail  = React.lazy(()=>import('./components/Populardetail'))
 const Lazylogin = React.lazy(()=> import ('./components/Login'))
 
 
-
-
 const App = () => {
- 
+ const [loading , setloading] = useState(true)
   
   const theme = useSelector(store => store.theme.toggletheme)
+ 
   const isloginpage = window.location.pathname === '/login'
+  const today = new Date().toISOString().split('T')[0];
   
+   useEffect(()=>{
+   setTimeout(() => {
+     setloading(false)
+  }, 1000);
+
+  
+   }, [])
+
   return (
    
     <div className={theme ? `bg-black` : `bg-white`}>
-      <Routes>
+      
+     
+      
+    {loading ?  
+       <div className='min-h-screen justify-center flex items-center'>
+       <LottieAnimation gif = {preloader} />
+       </div>
+        :
+        <Routes>
         
         <Route
           path="/*"
@@ -49,7 +66,7 @@ const App = () => {
                 {!isloginpage &&<Header  />}
                 {!isloginpage && <Searchbar  /> }
                 
-                <React.Suspense fallback={<div>loading...</div>}>
+                <React.Suspense fallback={<div><LottieAnimation  gif={preloader}/> </div>}>
                   <Routes>
                     <Route
                       path='/'
@@ -57,10 +74,14 @@ const App = () => {
                         <>
                          
                          <Mainslider /> 
-                         <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`}   sort={''}/>
+                         <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`}   sort={`popularity.desc&with_original_language=ta&release_date.gte=${today}`}/>
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
-                        <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
+         
+                       <div><Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
+                        <Popular title='Comedy genres' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'popularity.desc&with_original_language=ta&release_date.gte=${today}&with_genres=35'} />
+                        <Popular title='Malayalam Dubbed' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'popularity.desc&with_original_language=ml&release_date.gte=${today}&with_genres=10749'} />
+                        </div>
                           <Fet />
                         <Chatbot />
                        
@@ -88,8 +109,8 @@ const App = () => {
             
           }
         />
-      </Routes>
-      <Footer />
+      </Routes>}
+   {!loading &&   <Footer />}
     </div>
    
   );

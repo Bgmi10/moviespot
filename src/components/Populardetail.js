@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { poster_url } from '../utils/constans';
-
+import gif from '../img/movieSpotgif.gif'
 const Populardetail = () => {
   const [data, setData] = useState([]);
   const [scrollCheck, setScrollCheck] = useState(false);
@@ -45,9 +45,26 @@ const Populardetail = () => {
     };
   }, []);
 
+  const Shimmer = ( ) =>{
+    return(
+      <div className='flex flex-wrap justify-center px-4'>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+        <img src={gif} className='h-52 w-42'/>
+      </div>
+    )
+  }
+
   return (
     <div className="px-4 lg:px-32 flex flex-wrap justify-center">
-      {data.map((item) => (
+      {data.length ===0  ? <Shimmer /> : data.map((item) => (
         <Link to={`/searchdetail/${item.id}`} key={item.id} >
           <div className="p-4 flex flex-col items-center">
             <img
@@ -56,7 +73,7 @@ const Populardetail = () => {
               className="rounded-lg w-full lg:w-40  lg:h-60  sm: h-52  sm:w-42 hover:scale-105 transition-transform"
             />
             <div>
-            <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.title}</p>
+            <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.original_language}</p>
             </div>
           </div>
          

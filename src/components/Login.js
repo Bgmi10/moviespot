@@ -14,7 +14,17 @@ const Login = () => {
 
   return (
     <div  >
-      <div  className='flex justify-end px-5 py-3 relative'>
+      <div  className='flex justify-between px-5 py-3 relative'>
+      <div className="flex space-x-2  ">
+          <div className="text-rose-600 text-2xl animate-pulse py-[2px]">
+            <FaPlay />
+          </div>
+          <div>
+          <h1 className='text-rose-600 relative text-lg'>Movie<span className={'text-white'}>Spot</span></h1>
+
+          </div>
+        
+        </div>
   
         
   <select className='bg-gray-400 rounded-sm outline-none ' onChange={(e)=>setcurrlang(e.target.value)}>
@@ -29,29 +39,20 @@ const Login = () => {
      </option>
   </select>
 
+  
+
 </div>
-      <div className="relative h-screen overflow-hidden  ">
-    
-      
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 w-96 bg-opacity-75 bg-black text-white rounded-lg text-center shadow-md relative "
-      >
-       
-        <div className="flex space-x-2 mb-4">
-          <FaPlay className="text-rose-600 text-2xl animate-pulse" />
-          <h1 className="text-xl font-bold text-rose-600">Movie <span className='text-white'>Spot</span></h1>
-        </div>
 
-
+      <div className="relative h-screen  py-40 lg:items-center">
+        <div className='px-3 '>
         <Oauthlogin />
-
+        </div>
         <Link to="/terms/condition">
-        <div className="mt-20 text-xs text-gray-500 cursor-pointer">
+        <div className=" text-xs py-8 px-2 text-gray-500 cursor-pointer">
        {Multilang.terms}
         </div>
         </Link> 
-      </form>
+      
     </div>
     </div>
   );

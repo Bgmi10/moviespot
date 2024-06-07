@@ -5,6 +5,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import {settings} from '../utils/Helper'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { LottieAnimation } from './lottie';
+import * as animationData from './anima.json';
+
 
 
 
@@ -18,8 +21,9 @@ const Moviecard = ({title, data ,playgif}) => {
   
      <div  className='lg:p-10 sm:p-0tma'>
      <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-4 mt-2 relative" : "text-2xl font-medium text-gray-800 mb-4 px-4 mt-2 relative"}>{title}</h2>
-      <Slider {...settings}  >
+      {!data ? <LottieAnimation  gif={animationData}/> : <Slider {...settings}  >
          {
+          
          data?.map((item,index)=> (
           
             <div key={index} >
@@ -34,7 +38,7 @@ const Moviecard = ({title, data ,playgif}) => {
             
           ))
          }
-      </Slider>
+      </Slider>}
 
     </div>
   );

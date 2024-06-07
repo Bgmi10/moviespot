@@ -9,15 +9,8 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons'
   const theme = useSelector(store  => store.theme.toggletheme)
   return (
     <div className='mt-4 mb-0'>
-        <img src={footerimg} className='absolute  opacity-30' /> 
+        <img src={footerimg} className='absolute  opacity-25' /> 
        
-  
-          <div className='relative' >
-            <div className='flex px-5 py-5'>
-            <FontAwesomeIcon icon={faPlay}  className='text-rose-600  py-[2px] text-xl'/>
-          <h1 className='text-rose-600 px-1 text-md'>Movie<span className={theme ? 'text-white' : 'text-black'}>Spot</span></h1>
-          </div>
-          </div>
           </div>
       
   

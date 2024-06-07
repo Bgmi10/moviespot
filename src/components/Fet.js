@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 export const Fet = () => {
-
+      
 
     useEffect(()=>{
        const dummyapi = async () =>{

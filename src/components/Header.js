@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
-import {  Link, useNavigate } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { toggletheme } from '../utils/Themeslice';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import {  faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Profile from '../Oauth/Profile';
 
 
@@ -35,7 +34,7 @@ const Header = () => {
          
 
         <div className="flex space-x-2  ">
-          <div className="text-rose-600 text-2xl animate-pulse py-[2px]">
+          <div className="text-rose-600 text-2xl animate-pulse py-[1px]">
             <FaPlay />
           </div>
           <div>
@@ -48,14 +47,15 @@ const Header = () => {
        
         
         
-        <Link to='/livechat'>  <button className={`text-rose-600 cursor-pointer hover:text-gray-300 relative `}>
+        {/* <Link to='/livechat'>  <button className={`text-rose-600 cursor-pointer hover:text-gray-300 relative `}>
         
             Live Chat
            
           </button>
-        </Link>  
+        </Link>   */}
+
         <a href="/login">
-        {!isAuthenticated &&<FontAwesomeIcon icon={faUserAlt}  className='text-gray-400 cursor-pointer'/>}
+        {!isAuthenticated &&<FontAwesomeIcon icon={faUserCircle}  className='text-blue-600 text-2xl cursor-pointer '/>}
         </a>
         <Profile />
         <DarkModeSwitch

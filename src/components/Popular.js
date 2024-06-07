@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import {LottieAnimation} from './lottie';
+import *  as  animi from './anima.json'
 import {settings} from '../utils/Helper'
 import {poster_url} from '../utils/constans'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {moviespot_gif} from '../utils/constans'
-import gif from '../img/movieSpotgif.gif'
 import { Link, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import Populardetail from './Populardetail';
+import { useSelector } from 'react-redux';import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+;
+
 
 export const Popular = ({title , apiurl, sort}) => {
 
@@ -20,7 +22,7 @@ export const Popular = ({title , apiurl, sort}) => {
     useEffect(()=>{
         const fetch_data = async () =>{
           try{  
-            const res = await fetch(`${apiurl}${process.env.REACT_APP_API_KEY}${sort}`)
+            const res = await fetch(`${apiurl}${process.env.REACT_APP_API_KEY}&${sort}`)
             
             const data = await res.json()
            
@@ -46,13 +48,13 @@ export const Popular = ({title , apiurl, sort}) => {
          <div className='flex justify-between'>
              <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-4 mt-2" : "text-2xl font-medium text-gray-800 mb-4 px-4 mt-2"}>{title}</h2>
              <Link  to={`/popular-detail?apiurl=${encodeURIComponent(apiurl)}&sort=${encodeURIComponent(sort)}`} >
-         <h1 className='text-gray-300 cursor-pointer' >view More</h1>
+         <h1 className={theme && 'text-gray-300 cursor-pointer  text-md font-medium py-3 mr-2'  }  >View More <FontAwesomeIcon icon={faArrowCircleRight} /></h1>
          </Link>
          </div>
       
       
          
-         {data.length === 0  ?< img/> : <Slider {...settings} >
+         {!data.results  ?<LottieAnimation  gif= {animi}/> : <Slider {...settings} >
            {
                 data?.results?.map((item) =>(
                 <Link to={`/searchdetail/${item.id}`} key={item.id}>

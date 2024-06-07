@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { poster_url } from '../utils/constans'
-import preeloader from '../img/Animation - 1716723337124.gif'
 import { Recommendation } from './Recommendation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
-import { Mainslider } from './Mainslider'
 import { useSelector } from 'react-redux'
+import { LottieAnimation } from './lottie'
+import * as preloader  from './anima.json' 
 
 const Searchdetail = () => {
  
@@ -70,7 +70,7 @@ const Searchdetail = () => {
           </div>
        
       ) : (
-       <img src={preeloader}  className='h-10 w-10'/>
+     <LottieAnimation gif={preloader}/>
       )}
       </div>
      <div>

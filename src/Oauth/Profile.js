@@ -7,6 +7,7 @@ import { Login } from "@mui/icons-material";
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   
+  
   const [isHovered, setIsHovered] = useState(false);
   
 
@@ -21,7 +22,7 @@ const Profile = () => {
      
   return (
     isAuthenticated && (
-      <div className="relative inline-block"
+      <div className="relative inline-block "
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
        <img
@@ -33,10 +34,10 @@ const Profile = () => {
         />
         {isHovered && (
           <div
-            className="absolute top-full left-[-350%] transform -translate-x-1/2 bg-white border border-gray-200 shadow-md rounded-lg p-8 z-10"
+            className="absolute top-full lg:left-[-350%] transform -translate-x-1/2 bg-white border border-gray-200 shadow-md rounded-lg p-8 z-10 sm: left-[-100%]"
             style={{  visibility: isHovered ? "visible" : "hidden" }}
           >
-            <div className="flex items-center mb-4 mr-2">
+            <div className="flex items-center mb-4 mr-2 ">
               <img
                 src={user.picture}
                 alt={user.name}
