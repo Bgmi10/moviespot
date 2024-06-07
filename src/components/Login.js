@@ -1,109 +1,14 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
-import { Validate } from '../utils/Validate';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile} from 'firebase/auth';
-import { auth } from '../utils/firebase';
-import { useNavigate , Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import {  Link } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa';
 import '../login.css';
 import { lang } from '../utils/lang'
+import Oauthlogin from '../Oauth/Oauthlogin'
 
 
 const Login = () => {
   
-  const [issigninform, setIssignform] = useState(true);
-  const [err, setErr] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
-  const email = useRef(null);
-  const password = useRef(null);
-  const name = useRef(null);
-  const [alert, setAlert] = useState(null);
-  const [shimmerError, setShimmerError] = useState(false);
-
-
-  const SignUP = () => {
-    setIssignform(!issigninform);
-    setErr(null);
-  };
-
-  const closeAlert = () => {
-    setAlert(null);
-  };
-
-  const click = async () => {
-    const emailValue = email.current.value;
-    const passwordValue = password.current.value;
-    const nameValue = name.current ? name.current.value : null;
-  
-    // Reset previous errors and alerts
-    setErr(null);
-    setAlert(null);
-    setShimmerError(false);
-  
-    // Validate email and password
-    const validationErr = Validate(emailValue, passwordValue);
-    if (validationErr) {
-      setShimmerError(true);
-      setErr(validationErr);
-      return;
-    }
-  
-    // Perform Firebase authentication
-    try {
-      if (!issigninform) {
-        await createUserWithEmailAndPassword(auth, emailValue, passwordValue);
-        await updateProfile(auth.currentUser, { displayName: nameValue })
-        setAlert({ type: 'success', message: 'Account created successfully. You can now sign in.' });
-        setIssignform(true); // Switch to the sign-in form after successful sign-up
-      } else {
-        await signInWithEmailAndPassword(auth, emailValue, passwordValue);
-        
-        window.location.href = '/';
-      }
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-  
-      // Handle specific Firebase error codes
-      switch (errorCode) {
-        case 'auth/weak-password':
-          setErr('Weak password. Please use a stronger password.');
-          break;
-        case 'auth/email-already-in-use':
-          setErr('Email address is already in use. Please use a different email.');
-          break;
-        case 'auth/user-not-found':
-        case 'auth/wrong-password':
-          setErr('Invalid email or password. Please check your credentials.');
-          break;
-        default:
-          ;
-          break;
-      }
-  
-      setShimmerError(true);
-      setAlert({ type: 'error', message: 'Authentication failed. Please try again.' });
-    }
-  };
-  
-
-  const handleForgotPassword = async (e) => {
-    e.preventDefault();
-    const emailValue = email.current.value;
-
-    if (emailValue) {
-      try {
-        await sendPasswordResetEmail(auth, emailValue);
-        setAlert({ type: 'success', message: 'Check your mailbox to reset your password.' });
-      } catch (error) {
-        console.error('Forgot password error:', error.message);
-        setAlert({ type: 'error', message: 'Error sending password reset email. Please try again later.' });
-      }
-    } else {
-      setAlert({ type: 'error', message: 'Please enter your email before requesting a password reset.' });
-    }
-  };
-
-  
+ 
   const [currlang,setcurrlang] = useState('en')
   const Multilang = lang[currlang]
 
@@ -126,101 +31,23 @@ const Login = () => {
 
 </div>
       <div className="relative h-screen overflow-hidden  ">
-      {/* Login form */}
+    
       
       <form
         onSubmit={(e) => e.preventDefault()}
         className="top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 w-96 bg-opacity-75 bg-black text-white rounded-lg text-center shadow-md relative "
       >
-        {/* Logo */}
+       
         <div className="flex space-x-2 mb-4">
           <FaPlay className="text-rose-600 text-2xl animate-pulse" />
           <h1 className="text-xl font-bold text-rose-600">Movie <span className='text-white'>Spot</span></h1>
         </div>
 
-        {/* Title */}
-        <h1 className="font-bold text-3xl py-2">{issigninform ? Multilang.signin : Multilang.signup}</h1>
 
-        {/* Name input (for Sign Up) */}
-        {!issigninform && (
-          <input
-            type="text"
-            placeholder={Multilang.name}
-            className="p-3 my-3 w-full bg-gray-800 rounded text-white"
-            ref={name}
-          />
-        )}
+        <Oauthlogin />
 
-        {/* Email input */}
-        <input
-          type="text"
-          placeholder={Multilang.email}
-          className="p-3 my-3 w-full bg-gray-800 rounded text-white"
-          ref={email}
-        />
-
-        {/* Password input */}
-        <div className="relative">
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder={Multilang.password}
-            className="p-3 my-3 w-full bg-gray-800 rounded text-white pl-10"
-            ref={password}
-          />
-
-          <div
-            className="absolute top-1/2 transform -translate-y-1/2 left-3 cursor-pointer text-white"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? (
-              <span className="text-lg">👁️</span>
-            ) : (
-              <span className="text-lg">👁️‍🗨️</span>
-            )}
-          </div>
-        </div>
-
-        {/* Sign In/Sign Up button */}
-        <button
-          className="p-3 my-3 bg-rose-600 w-full text-white font-bold rounded cursor-pointer hover:bg-rose-800"
-          onClick={click}
-        >
-          {issigninform ? Multilang.signin : Multilang.signup}
-        </button>
-        <p className={`text-red-600 py-2 font-bold text-lg ${shimmerError ? 'animate-shimmer' : ''}`}>
-          {err}
-        </p>
-        {/* Toggle Sign In/Sign Up */}
-        <p
-          className="py-2 cursor-pointer text-lightgray hover:text-rose-600"
-          onClick={SignUP}
-        >
-          {issigninform
-            ? Multilang.new_to_movie_spot
-            : Multilang.Already_have_an_account}
-        </p>
-
-        {/* Forgot Password link */}
-        <div className="flex mt-2 justify-center">
-          <a href="/" className="text-sm text-rose-400 hover:underline relative" onClick={handleForgotPassword}>
-            {issigninform && Multilang.forget_password }
-          </a>
-        </div>
-
-        {alert && (
-          <div className={`relative p-3 my-3 border-l-4 ${alert.type === 'success' ? 'border-green-500' : 'border-red-600'} bg-gray-800 rounded text-white animate-shimmer`}>
-            <span className="absolute top-0 bottom-0 right-0 px-3 cursor-pointer" onClick={closeAlert}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </span>
-            {alert.message}
-          </div>
-        )}
-
-        {/* Terms of Service and Privacy Policy */}
         <Link to="/terms/condition">
-        <div className="mt-4 text-xs text-gray-500 cursor-pointer">
+        <div className="mt-20 text-xs text-gray-500 cursor-pointer">
        {Multilang.terms}
         </div>
         </Link> 

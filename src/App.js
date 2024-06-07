@@ -13,7 +13,8 @@ import playgif from './img/play.gif'
 import { Popular } from './components/Popular';
 import { useSelector } from 'react-redux';
 import Footer from './components/Footer';
-import HomeInifinte from './components/HomeInifinte';
+import { Fet } from './components/Fet';
+
 
 
 
@@ -60,7 +61,7 @@ const App = () => {
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
                         <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
-                        <HomeInifinte  />
+                          <Fet />
                         <Chatbot />
                        
                         </>

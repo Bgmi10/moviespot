@@ -1,76 +1,31 @@
-import React, { useState, useEffect, useDebugValue } from 'react';
+import React, { useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import {  Link, useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
 import { FaPlay } from 'react-icons/fa';
-import { auth } from '../utils/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
-import { useContext } from 'react';
-import themecontext from '../utils/themecontext';
 import { useDispatch } from 'react-redux';
 import { toggletheme } from '../utils/Themeslice';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import Profile from '../Oauth/Profile';
 
 
 
 const Header = () => {
-  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-  const [userName, setUserName] = useState(null);
-  const navigate = useNavigate();
-  const user_name  = useContext(themecontext)
+
   const theme1 = useSelector(store => store.theme.toggletheme)
-  
+  const {  isAuthenticated } = useAuth0();
+ 
   const dispatch = useDispatch()
   const [theme , settheme] = useState(true)
 
-  const update = localStorage.setItem("user_theme" , theme1 )
  
   const toggle = () =>{
     settheme(!theme)
     dispatch(toggletheme())
    
   }
-  const toggleMobileNav = () => {
-    setMobileNavOpen((prev) => !prev);
-    document.body.style.overflow = !isMobileNavOpen ? 'hidden' : 'auto';
-  };
-
-  const closeMobileNav = () => {
-    setMobileNavOpen(false);
-    document.body.style.overflow = 'auto';
-  };
-
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        navigate('/login');
-      })
-      .catch((error) => {
-        console.error('Sign-out error:', error.message);
-      });
-  };
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const storedUserName = sessionStorage.getItem('userName');
-        const newUserName = storedUserName || user.displayName || "";
-        setUserName(newUserName);
-        sessionStorage.setItem('userName', newUserName);
-      } else {
-        setUserName(null);
-        sessionStorage.removeItem('userName');
-      }
-    });
-    
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    sessionStorage.setItem('userName', userName);
-  }, [userName]);
 
   return (
     <nav className={"p-4 "}> 
@@ -100,8 +55,9 @@ const Header = () => {
           </button>
         </Link>  
         <a href="/login">
-        <FontAwesomeIcon icon={faUserAlt}  className='text-gray-400 cursor-pointer'/>
+        {!isAuthenticated &&<FontAwesomeIcon icon={faUserAlt}  className='text-gray-400 cursor-pointer'/>}
         </a>
+        <Profile />
         <DarkModeSwitch
           checked={theme}
           onChange={toggle} 
@@ -109,10 +65,6 @@ const Header = () => {
           size={24}
           
         />
-       
-         
-      
-     
        
       </div>
     </nav>
