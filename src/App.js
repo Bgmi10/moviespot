@@ -14,11 +14,8 @@ import { Popular } from './components/Popular';
 import { useSelector } from 'react-redux';
 import Footer from './components/Footer';
 import { Fet } from './components/Fet';
-import * as disnep from '../src/components/preloadanima.json';
 import * as preloader from '../src/components/anima.json';
-
 import { LottieAnimation } from './components/lottie';
-import { set } from 'lodash';
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
 const LazySearchdetail = React.lazy(()=> import('./components/Searchdetail'))
@@ -37,12 +34,16 @@ const App = () => {
   const today = new Date().toISOString().split('T')[0];
   
    useEffect(()=>{
-   setTimeout(() => {
+    const timeoutId =setTimeout(() => {
      setloading(false)
-  }, 1000);
+  }, 600);
+  return () => {
+    clearTimeout(timeoutId)
+  }
+
+   }, [])
 
   
-   }, [])
 
   return (
    

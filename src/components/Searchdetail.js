@@ -7,6 +7,7 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 import { LottieAnimation } from './lottie'
 import * as preloader  from './anima.json' 
+import TextRunner from './Textrunner'
 
 const Searchdetail = () => {
  
@@ -55,7 +56,9 @@ const Searchdetail = () => {
 
           {/* Overview */}
           <p className={theme ? "text-gray-400 mb-4 font-light" :  "text-gray-500 mb-4 font-light"}>{data?.overview}</p>
-
+            <div>
+               <TextRunner  text="please use Vpn to download this movie"  duration={10}/>
+             </div>
          <div className={theme ? 'text-gray-300 ' : 'text-gray-700'}>
           <a
             href={`https://tamilyogi.zone/${data.title}-${data?.release_date.slice(0,4)}-hd-720p-tamil-movie-watch-online/`}

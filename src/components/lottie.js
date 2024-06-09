@@ -16,7 +16,7 @@ export  const LottieAnimation = ({gif}) => {
 
   return (
     <div className="animation-container">
-      <Lottie options={defaultOptions} height={200} width={300}  />
+      <Lottie options={defaultOptions} height={200} width={200}  />
     </div>
   );
 };

@@ -22,13 +22,13 @@ const Profile = () => {
      
   return (
     isAuthenticated && (
-      <div className="relative inline-block "
+      <div className="relative inline-block  "
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
        <img
           src={user.picture}
           alt={user.name}
-          className="h-10 w-10 ml-0 cursor-pointer rounded-2xl"
+          className="h-[33px]  ml-0 cursor-pointer rounded-2xl "
           
 
         />

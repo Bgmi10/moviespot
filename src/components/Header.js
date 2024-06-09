@@ -53,18 +53,26 @@ const Header = () => {
            
           </button>
         </Link>   */}
-
-        <a href="/login">
-        {!isAuthenticated &&<FontAwesomeIcon icon={faUserCircle}  className='text-blue-600 text-2xl cursor-pointer '/>}
-        </a>
-        <Profile />
+        
+       
         <DarkModeSwitch
           checked={theme}
           onChange={toggle} 
-          className=''
+        
           size={24}
           
         />
+        <div className='sm: ml-[-100px] lg:ml-[-1000px] '>
+        <Profile /> 
+        </div>
+        <div className='sm: ml-[-110px] lg:ml-[-1000px]   '>
+       
+        <a href="/login">
+        {!isAuthenticated && <FontAwesomeIcon icon={faUserCircle}  className='text-teal-400 text-2xl cursor-pointer  '/>}
+
+        </a>
+       
+        </div>
        
       </div>
     </nav>
