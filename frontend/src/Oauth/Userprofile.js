@@ -75,11 +75,11 @@ catch(error) {
         
         <div className="abslute flex flex-col items-center">
           {/* Background Image */}
-          {/* <img
-            // src="https://img.freepik.com/free-photo/abstract-gradient-neon-lights_23-2149279137.jpg?t=st=1718009740~exp=1718013340~hmac=5a1aacadeb745e565fe6549bf7c4d65ec516e037ce80f4ac43b7e0c22560eb6c&w=360"
+          <img
+            src="https://img.freepik.com/free-photo/abstract-gradient-neon-lights_23-2149279137.jpg?t=st=1718009740~exp=1718013340~hmac=5a1aacadeb745e565fe6549bf7c4d65ec516e037ce80f4ac43b7e0c22560eb6c&w=360"
             className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
             alt="Background"
-          /> */}
+          />
 
           {/* Profile Picture */}
           <div className="relative mb-3 ">
@@ -115,7 +115,7 @@ catch(error) {
           <h1 className="mt-6 text-gray-400 relative  font-light text-lg ">{auth.user.email}</h1>
           </>}
 
-        {edit &&  <form onSubmit={handleSubmit} className="flex flex-col items-center mt-6 outline-none border-none">
+        {edit &&  <form onSubmit={handleSubmit} className="flex flex-col items-center mt-6 outline-none border-none relative">
               <div className="mb-4">
                 <label className="text-white block mb-1" htmlFor="name">Name:</label>
                 <input
