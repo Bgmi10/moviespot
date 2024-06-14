@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { FaPlay } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
@@ -26,8 +26,10 @@ const Header = () => {
    
   }
 
+
+  
   return (
-    <nav className={"p-2  "}> 
+    <nav className={"p-2"}> 
    
 
       <div className="container mx-auto flex items-center justify-between  shadow-sm">

@@ -25,6 +25,7 @@ const Lazysearchpage = React.lazy(()=> import('./components/Searchpage'))
 const Lazypopulardetail  = React.lazy(()=>import('./components/Populardetail'))
 const Lazylogin = React.lazy(()=> import ('./components/Login'))
 const Lazyuserprofile = React.lazy(() => import('./Oauth/Userprofile'))
+const Lazyherolighter = React.lazy(()=>import('./components/HeroLightpass'))
 
 
 const App = () => {
@@ -50,7 +51,7 @@ const App = () => {
 
   return (
    
-    <div className={theme ? `bg-black` : `bg-white`}>
+    <div className={theme ? `bg-slate-900` : `bg-white`}>
       
      
       
@@ -107,6 +108,7 @@ const App = () => {
                      <Route path='/livechat' element={<Livechat />} />
                      <Route path='/popular-detail' element={<Lazypopulardetail />} />
                      <Route path= "/login" element={<Lazylogin />} />
+                     <Route path= "/3d" element={<Lazyherolighter />} />
                   
                   </Routes>
                 </React.Suspense>

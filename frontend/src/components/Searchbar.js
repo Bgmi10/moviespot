@@ -85,7 +85,7 @@ const Searchbar = () => {
   
 
   return (
-    <div className={theme ? `bg-black` : `bg-white`}  >
+    <div className={theme ? `bg-slate-900` : `bg-white`}  >
       <div className={ `flex justify-center items-center mb-4 ` }>
       <div  className="flex items-center relative">
         <div className="relative">
@@ -94,7 +94,7 @@ const Searchbar = () => {
             placeholder="Search movies..."
             value={searchTerm}
             onChange={handleSearch}
-            className={theme ? "p-2 border rounded-md focus:outline-none focus:border-gray-500 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96 bg-black text-white"  : "p-2 border rounded-md focus:outline-none  border-gray-500 focus:border-gray-600 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96  text-gray-500" }
+            className={theme ? "p-2 border rounded-md focus:outline-none focus:border-gray-500 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96 bg-slate-900 text-white"  : "p-2 border rounded-md focus:outline-none  border-gray-500 focus:border-gray-600 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96  text-gray-500" }
           />
           <button
             type="button"
@@ -122,7 +122,7 @@ const Searchbar = () => {
           </button>
         </div>
         <a href={`/searchpage?query=${searchTerm}`} >
-        <button type="submit" className="bg-rose-600 rounded-md p-2 cursor-pointer" >
+        <button type="submit" className="bg-rose-600 rounded-md p-2 w-20  cursor-pointer font-serif" >
           Search
         </button>
         </a>

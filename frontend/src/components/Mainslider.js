@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
+import './cutom-slide.css'
 import 'slick-carousel/slick/slick-theme.css';
 import { main_slider } from '../utils/constans';
 import 'animate.css/animate.min.css';

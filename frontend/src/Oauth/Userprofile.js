@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import notverfied_gif from '../img/00024.png'
 import axios from 'axios';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import HeroLightpass from '../components/HeroLightpass';
 
 const UserProfile = () => {
   const auth = Useauth();
@@ -152,8 +153,8 @@ catch(error) {
                 Save Changes
               </button>
             </form>}
-          
-        
+            <buttpn>Click this button</buttpn>
+          {/* <HeroLightpass /> */}
         </div>
       )}
     </div>
@@ -161,3 +162,6 @@ catch(error) {
 };
 
 export default UserProfile;
+
+
+// user can add perference through via POST but the thing is im using TMDB API is it possible 

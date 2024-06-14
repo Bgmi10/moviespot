@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowCircleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 ;
 
 
@@ -48,7 +48,7 @@ export const Popular = ({title , apiurl, sort}) => {
          <div className='flex justify-between'>
              <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-4 mt-2" : "text-2xl font-medium text-gray-800 mb-4 px-4 mt-2"}>{title}</h2>
              <Link  to={`/popular-detail?apiurl=${encodeURIComponent(apiurl)}&sort=${encodeURIComponent(sort)}`} >
-         <h1 className={theme && 'text-gray-300 cursor-pointer  text-md font-medium py-3 mr-2'  }  >View More <FontAwesomeIcon icon={faArrowCircleRight} /></h1>
+         <h1 className={'text-gray-400 cursor-pointer  text-md font-medium  mr-2 py-3'  }  >More.. <FontAwesomeIcon icon={faArrowRight} /></h1>
          </Link>
          </div>
       
