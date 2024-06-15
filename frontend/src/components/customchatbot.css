@@ -1,0 +1,35 @@
+/* custom-chatbot.css */
+
+
+  
+  /* .rcw-header {
+    background-color: rgb(27, 210, 223) !important;
+    color: white !important;
+  } */
+  
+  /* .rcw-conversation-container {
+    background-color: #f4f4f8 !important;
+  }
+   */
+  .rcw-new-message {
+    background-color: white !important;
+  }
+  
+  .rcw-send {
+   margin-left: 10px;
+   padding-bottom: 10px;
+  }
+
+  /* custom-chatbot.css */
+
+/* Change the launcher icon color */
+.rcw-launcher {
+    background-color: rgb(0, 238, 255) !important;
+    padding-left: 10px;
+ /* Change the background color of the launcher */
+  }
+  
+  
+  /* Change the send button icon color */
+ 
+  

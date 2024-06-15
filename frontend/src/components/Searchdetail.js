@@ -9,17 +9,19 @@ import { LottieAnimation } from './lottie'
 import * as preloader  from './anima.json' 
 import TextRunner from './Textrunner'
 
-const Searchdetail = () => {
+const Searchdetail = ({category}) => {
  
 
   const [data, setdata] = useState('')
-
   const {id} = useParams()
   const theme = useSelector(store => store.theme.toggletheme)
 
+  const movie = 'movie'
+  const tv = 'tv'
+
   useEffect(()=>{
     const fetch_search_data = async() =>{
-     try{ const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`) 
+     try{ const res = await fetch(`https://api.themoviedb.org/3/${category}/${id}?api_key=${process.env.REACT_APP_API_KEY}`) 
       const datas = await res.json()
       
      setdata(datas)
@@ -61,7 +63,7 @@ const Searchdetail = () => {
              </div>
          <div className={theme ? 'text-gray-300 ' : 'text-gray-700'}>
           <a
-            href={`https://tamilyogi.zone/${data.title}-${data?.release_date.slice(0,4)}-hd-720p-tamil-movie-watch-online/`}
+            // href={`https://tamilyogi.zone/${data.title}-${data?.release_date.slice(0,4)}-hd-720p-tamil-movie-watch-online/`}
             //https://tamilyogi.zone/anyone-but-you-2023-tamil-dubbed-movie-hd-720p-watch-online/
             className={"mt-4 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex w-32   " }
           >

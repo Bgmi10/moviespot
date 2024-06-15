@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState , lazy} from 'react';
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import Header from './components/Header';
 import Searchbar from './components/Searchbar';
@@ -16,6 +16,8 @@ import Footer from './components/Footer';
 import { Fet } from './components/Fet';
 import * as preloader from '../src/components/anima.json';
 import { LottieAnimation } from './components/lottie';
+import { Bottomnavbar } from './components/Bottomnavbar';
+import Usefetchmainslider from './components/Tvseries/Usefetchmainslider';
 
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
@@ -26,6 +28,8 @@ const Lazypopulardetail  = React.lazy(()=>import('./components/Populardetail'))
 const Lazylogin = React.lazy(()=> import ('./components/Login'))
 const Lazyuserprofile = React.lazy(() => import('./Oauth/Userprofile'))
 const Lazyherolighter = React.lazy(()=>import('./components/HeroLightpass'))
+const Lazytvseries = lazy(() => import('./components/Tvseries/Tvseries' ))
+
 
 
 const App = () => {
@@ -46,7 +50,10 @@ const App = () => {
   }
 
    }, [])
-
+   const category = 'movie'
+   const data = Usefetchmainslider({category})
+   const filtermovies = data?.data?.results.slice(0,5)
+   
   
 
   return (
@@ -78,18 +85,19 @@ const App = () => {
                       element={
                         <>
                          
-                         <Mainslider /> 
+                         <Mainslider data = {filtermovies} /> 
                          <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`}   sort={`popularity.desc&with_original_language=ta&release_date.gte=${today}`}/>
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
          
-                       <div><Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
+                       <div>
+                        <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
                         <Popular title='Comedy genres' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'popularity.desc&with_original_language=ta&release_date.gte=${today}&with_genres=35'} />
                         <Popular title='Malayalam Dubbed' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'popularity.desc&with_original_language=ml&release_date.gte=${today}&with_genres=10749'} />
-                        </div>
+                       </div>
                           <Fet />
                         <Chatbot />
-                       
+                     
                         </>
                          
                        
@@ -109,6 +117,7 @@ const App = () => {
                      <Route path='/popular-detail' element={<Lazypopulardetail />} />
                      <Route path= "/login" element={<Lazylogin />} />
                      <Route path= "/3d" element={<Lazyherolighter />} />
+                     <Route path='/tv-series' element={<Lazytvseries />} />
                   
                   </Routes>
                 </React.Suspense>
@@ -126,6 +135,7 @@ const App = () => {
          <Route path='/profile' element={<Lazyuserprofile />} />
       </Routes>
       </React.Suspense>
+      <Bottomnavbar />
    {!loading &&  !isprofilepage &&  <Footer />}
     </div>
    

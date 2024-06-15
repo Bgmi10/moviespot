@@ -3,7 +3,7 @@ import { Widget, toggleWidget, addResponseMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import nlp from 'compromise';
 import { tamilmovies } from '../utils/constans';
-
+import './customchatbot.css'
 
 
 
@@ -91,7 +91,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-4 md:bottom-8 lg:bottom-12 right-4 z-50 items-center">
+    <div>
       <Widget
         handleNewUserMessage={handleNewUserMessage}
        
@@ -99,10 +99,11 @@ const Chatbot = () => {
         title="Chatbot"
         //titleAvatar={}
         subtitle="Ask me about movies, recommendations."
-        style={{ backgroundColor: 'red', color: 'red' }}
+       
         
         
       />
+    
     </div>
   );
 };
