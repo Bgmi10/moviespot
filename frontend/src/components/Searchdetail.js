@@ -9,30 +9,39 @@ import { LottieAnimation } from './lottie'
 import * as preloader  from './anima.json' 
 import TextRunner from './Textrunner'
 
-const Searchdetail = ({category}) => {
+const Searchdetail = () => {
  
 
   const [data, setdata] = useState('')
   const {id} = useParams()
   const theme = useSelector(store => store.theme.toggletheme)
+  const movietoggle = useSelector(store => store.movietoggle.togglemovie)
+  const type = movietoggle ? 'movie' : 'tv'
+  
 
-  const movie = 'movie'
-  const tv = 'tv'
-
+// problem is changing the tv and movie category dynamic
   useEffect(()=>{
-    const fetch_search_data = async() =>{
-     try{ const res = await fetch(`https://api.themoviedb.org/3/${category}/${id}?api_key=${process.env.REACT_APP_API_KEY}`) 
+    const fetch_search_data = async () =>{
+
+     try{ 
+      const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}`) 
+
       const datas = await res.json()
-      
-     setdata(datas)
+
+      setdata(datas)
     }
+
     catch(error){
        console.log(error)
     }
-    }
+
+  }
+
     fetch_search_data()
 
-   },[])
+   },[type])
+
+   
 
    //max-w-screen-lg
   return (

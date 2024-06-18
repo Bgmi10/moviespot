@@ -33,10 +33,9 @@ const Lazytvseries = lazy(() => import('./components/Tvseries/Tvseries' ))
 
 
 const App = () => {
- const [loading , setloading] = useState(true)
-  
+  const [loading , setloading] = useState(true)
+  const isinnerwidth  = window.innerWidth <= 768
   const theme = useSelector(store => store.theme.toggletheme)
- 
   const isloginpage = window.location.pathname === '/login'
   const isprofilepage = window.location.pathname === '/profile'
   const today = new Date().toISOString().split('T')[0];
@@ -52,7 +51,7 @@ const App = () => {
    }, [])
    const category = 'movie'
    const data = Usefetchmainslider({category})
-   const filtermovies = data?.data?.results.slice(0,5)
+   const filtermovies = data?.data?.results.slice(15,20)
    
   
 
@@ -135,6 +134,7 @@ const App = () => {
          <Route path='/profile' element={<Lazyuserprofile />} />
       </Routes>
       </React.Suspense>
+      
       <Bottomnavbar />
    {!loading &&  !isprofilepage &&  <Footer />}
     </div>

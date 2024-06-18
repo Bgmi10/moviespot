@@ -53,7 +53,7 @@ export const Mainslider = ({data}) => {
                   <h1 className={`text-white lg:text-2xl font-bold sm:text-sm transition-transform duration-1000 ${animating ? 'transform translate-y-10 opacity-0' : 'transform translate-y-0 opacity-100'}`}>
                     {i.original_name || i.title}
                   </h1>
-                  <p className={`text-gray-300 sm: text-[9px] font-light py-3 lg:text-[24px] transition-transform duration-1000 ${animating ? 'transform translate-y-10 opacity-0' : 'transform translate-y-0 opacity-100'}`}>
+                  <p className={`text-gray-300 sm: text-[7px] font-light py-3 lg:text-[24px] transition-transform duration-1000 ${animating ? 'transform translate-y-10 opacity-0' : 'transform translate-y-0 opacity-100'}`}>
                     {i.overview}
                   </p>
                   <div className=''>

@@ -260,3 +260,57 @@ export const tamilmovies = [
   ]
     
 
+
+export const main_slider = [
+  {
+    id: 781732,
+    title: "Animal",
+    title1: "Animal",
+    overview:
+      "The son of a wealthy, powerful industrialist returns to India and undergoes a remarkable transformation as he becomes consumed by a quest for vengeance against those threatening his father's life.",
+      poster_path: 'https://image.tmdb.org/t/p/original/q14R8XgOKZx2ytwMg7PPqBmGPv0.jpg',
+    background_path: "https://image.tmdb.org/t/p/original/nBIHiMCLjdDX2GXbbPBRWafFJNn.jpg",
+  
+    download_link: "https://tamilvip.app/link/?jjb4lao2shk3",
+  },
+  {
+    id:  1072790,
+    title: "Anyone But You",
+  
+    overview:
+      "After an amazing first date, Bea and Ben’s fiery attraction turns ice cold — until they find themselves unexpectedly reunited at a destination wedding in Australia. So they do what any two mature adults would do: pretend to be a couple..",
+    poster_path: "https://media.themoviedb.org/t/p/w440_and_h660_face/4SOtfIlRuEGa10YiopG9liQSecI.jpg",
+    background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/nTPFkLUARmo1bYHfkfdNpRKgEOs.jpg",
+    download_link: "https://drive.google.com/file/d/11A_TEDjo9cnR_gN263yP_oK0gmFf8CHU/view?usp=drivesdk",
+  },
+  {
+    id:  962074,
+    title: "Captain-Miller",
+   
+    overview:
+      "A renegade Captain and his unconventional outlaws execute daring heists in the 1930s and 1940s. Miller must decide whether to continue running or confront the challenges head-on.",
+    poster_path: "https://media.themoviedb.org/t/p/w188_and_h282_bestv2/gq5OlT5ImxsNpkirpgf4rYngd3M.jpg",
+    background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/u3lWiLi0e0W3aU822QdcxQIGBES.jpg",
+    download_link: "https://drive.google.com/file/d/1-WJ5aRgv30NinWCYOj8EQmMEC-ahTjjD/view?usp=drivesdk",
+  },
+  {
+    id:  1096342,
+    title: "Beautiful Wedding ",
+   
+    overview:
+      "In the aftermath of Beautiful Disaster, Abby and Travis wake after a crazy night in Vegas as accidental newlyweds! With the mob on their heels, they flee to Mexico for a wild, weird honeymoon—but are they in for another disaster?.",
+    poster_path: "https://media.themoviedb.org/t/p/w440_and_h660_face/cmeYlRD628KrijyY7thzwlV2KPT.jpg",
+    background_path: "https://image.tmdb.org/t/p/original/42LVYCw3c36fT0jGbjYpO4G2zi6.jpg",
+    download_link: "https://drive.google.com/file/d/1198ztKFCOFbwFF4ZV__kr4YSl1dPQc2c/view?usp=drivesdk",
+  },
+  {
+    id:  1118232,
+    title: "Saba-Nayagan",
+    overview:
+      "Arrested for nuisance, Saba spins breakup tales to melt a sympathetic cop, hoping to charm his way out.",
+    poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/uYIw5Jt4xkcjObDwJqcgeLFP042.jpg",
+    background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/xf0Dg2NX6rnAfOPveP8Kp2v14G6.jpg",
+    download_link: "https://drive.google.com/file/d/12DsJte2bRVESc40T1-mV1FmkZNxu3OnL/view?usp=drivesdk",
+  },
+]
+

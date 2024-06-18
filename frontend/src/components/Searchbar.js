@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 
 
 const Searchbar = () => {
+
   const [searchTerm, setSearchTerm] = useState('');
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState('');
@@ -17,9 +18,6 @@ const Searchbar = () => {
   const dispatch = useDispatch()
   const cache = useSelector(store=>store.cache)
   const theme = useSelector(store => store.theme.toggletheme)
- 
-
-
  
 
   const handleSearch = (e) => {
@@ -31,13 +29,16 @@ const Searchbar = () => {
   useEffect(()=>{
    
    const timer =  setTimeout(()=>
-  {  if(cache[searchTerm]){
+  {  
+    if(cache[searchTerm]){
+
    return  setmovies(cache[searchTerm])
     
-  } else{
-   return fetchmovies()
-  }}
-    ,150)
+  } 
+   else{
+    return fetchmovies()
+   }
+},150)
 
     return ()=> {clearTimeout(timer)}
   },[searchTerm])
@@ -94,7 +95,7 @@ const Searchbar = () => {
             placeholder="Search movies..."
             value={searchTerm}
             onChange={handleSearch}
-            className={theme ? "p-2 border rounded-md focus:outline-none focus:border-gray-500 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96 bg-slate-900 text-white"  : "p-2 border rounded-md focus:outline-none  border-gray-500 focus:border-gray-600 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96  text-gray-500" }
+            className={theme ? "p-2 border rounded-md focus:outline-none focus:border-gray-500 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96 bg-slate-900 text-white "  : "p-2 border rounded-md focus:outline-none  border-gray-500 focus:border-gray-600 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96  text-gray-500 " }
           />
           <button
             type="button"

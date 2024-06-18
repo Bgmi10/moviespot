@@ -7,7 +7,7 @@ const Tvseries = () => {
   const category = 'tv'
 
   const data = Usefetchmainslider({category})
-  const filtermovies = data?.data?.results.slice(0,5)
+  const filtermovies = data?.data?.results.slice(10,15)
   return (
     <div className='text-white'>
      <Mainslider data={filtermovies} />
