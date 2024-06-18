@@ -21,11 +21,11 @@ export const Bottomnavbar = () => {
   return (
     <div className={`fixed inset-x-0 bottom-0  transition-colors bg-slate-900 opacity-80 duration-500 flex justify-between px-5 py-2 z-50`}>
       <Link to="/">
-        <FontAwesomeIcon icon={faTape} className={toggletype ? "text-rose-600 text-2xl" : 'text-white text-2xl '} onClick={handleClick} />
+        <FontAwesomeIcon icon={faTape} className={!toggletype ? "text-rose-600 text-2xl" : 'text-white text-2xl '} onClick={handleClick} />
       </Link>
       
       <Link to="/tv-series">
-        <FontAwesomeIcon icon={faTv} className={toggletype ? "text-white text-2xl cursor-pointer" : "text-rose-600 text-2xl cursor-pointer"} onClick={handleClick} />
+        <FontAwesomeIcon icon={faTv} className={!toggletype ? "text-white text-2xl cursor-pointer" : "text-rose-600 text-2xl cursor-pointer"} onClick={handleClick} />
       </Link>
       
       <FontAwesomeIcon icon={faSearch} className="text-white text-2xl" />

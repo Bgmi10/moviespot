@@ -16,7 +16,7 @@ const Searchdetail = () => {
   const {id} = useParams()
   const theme = useSelector(store => store.theme.toggletheme)
   const movietoggle = useSelector(store => store.movietoggle.togglemovie)
-  const type = movietoggle ? 'movie' : 'tv'
+  const type = !movietoggle ? 'movie' : 'tv'
   
 
 // problem is changing the tv and movie category dynamic
@@ -89,9 +89,9 @@ const Searchdetail = () => {
       </div>
      <div>
        
-       <Recommendation Recommendations = "Recommendations"  url = {`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=1`}/>
+       <Recommendation Recommendations = "Recommendations"  url = {`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=1`}/>
       
-       <Recommendation  url={`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=2`}/>
+       <Recommendation  url={`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=2`}/>
       </div> 
       
     </div>
