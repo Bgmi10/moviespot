@@ -18,6 +18,7 @@ import * as preloader from '../src/components/anima.json';
 import { LottieAnimation } from './components/lottie';
 import { Bottomnavbar } from './components/Bottomnavbar';
 import Usefetchmainslider from './components/Tvseries/Usefetchmainslider';
+import { Adbanner } from './components/Subscription/Adbanner';
 
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
@@ -60,7 +61,7 @@ const App = () => {
     <div className={theme ? `bg-slate-900` : `bg-white`}>
       
      
-      
+      < Adbanner />
     {loading ?  
        <div className='min-h-screen justify-center flex items-center'>
        <LottieAnimation gif = {preloader} />
@@ -83,7 +84,7 @@ const App = () => {
                       path='/'
                       element={
                         <>
-                         
+        
                          <Mainslider data = {filtermovies} /> 
                          <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`}   sort={`popularity.desc&with_original_language=ta&release_date.gte=${today}`}/>
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
