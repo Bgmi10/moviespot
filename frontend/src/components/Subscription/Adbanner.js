@@ -1,10 +1,14 @@
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 export const Adbanner = () => {
   const [popout, setpopout] = useState(false);
+
+  const {user , isAuthenticated} = useAuth0()
+  console.log(user)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -13,9 +17,18 @@ export const Adbanner = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return (
+  
+
+
+  const handlesuscriptionclick = () =>{
+      !isAuthenticated ? window.location.href = "/login" : <></>
+  }
+
+const isloginpage  = window.location.pathname === '/login' 
+
+   return (
     <>
-      {popout && (
+      { !isloginpage && popout && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-sm">
           <div className="relative flex justify-center items-center bg-blue-500 text-white h-[300px] w-[90%] lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 opacity-0 animate-fadeIn">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-75"></div>
@@ -27,7 +40,7 @@ export const Adbanner = () => {
               <p className="text-lg lg:text-3xl lg:mb-3">
                 Subscribe now for just <span className="bg-yellow-500 text-black px-2 py-1 rounded-md">₹49</span> /month and enjoy uninterrupted movie streaming!
               </p>
-              <button className="mt-3 px-6 py-2 bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-600 transition duration-300 lg:p-4">
+              <button className="mt-3 px-6 py-2 bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-600 transition duration-300 lg:p-4" onClick={handlesuscriptionclick}>
                 Subscribe Now
               </button>
             </div>
@@ -42,3 +55,8 @@ export const Adbanner = () => {
     </>
   );
 }
+
+
+// here onclick of subscription user redirect to payment page and there 
+
+// here i've implemented the redirection once user successufully authenticated then redirect to /payment page else /login 
