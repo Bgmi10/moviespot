@@ -12,7 +12,7 @@ import { faArrowCircleRight, faArrowRight } from '@fortawesome/free-solid-svg-ic
 ;
 
 
-export const Popular = ({title , apiurl, sort}) => {
+export const Popular = ({title , apiurl, sort }) => {
 
   const theme = useSelector(store => store.theme.toggletheme)
 
@@ -25,8 +25,7 @@ export const Popular = ({title , apiurl, sort}) => {
             const res = await fetch(`${apiurl}${process.env.REACT_APP_API_KEY}&${sort}`)
             
             const data = await res.json()
-           
-         
+          
             setdata(data)
 
         }
@@ -60,7 +59,7 @@ export const Popular = ({title , apiurl, sort}) => {
                 <Link to={`/searchdetail/${item.id}`} key={item.id}>
                 <div>
                 <img src={ poster_url + item.poster_path } className='rounded-2xl p-[10px] ml-3   cursor-pointer  border-none outline-none hover:scale-105 transition-transform' alt={item.title}></img>
-                <p className='text-gray-500 px-[26px] text-sm '>{item.title}</p>
+                <p className='text-gray-500 px-[26px] text-sm '>{item.title || item.name}</p>
                 </div>
                 </Link>
             )

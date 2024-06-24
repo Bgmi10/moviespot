@@ -35,7 +35,6 @@ const Lazytvseries = lazy(() => import('./components/Tvseries/Tvseries' ))
 
 const App = () => {
   const [loading , setloading] = useState(true)
-  const isinnerwidth  = window.innerWidth <= 768
   const theme = useSelector(store => store.theme.toggletheme)
   const isloginpage = window.location.pathname === '/login'
   const isprofilepage = window.location.pathname === '/profile'
@@ -44,7 +43,7 @@ const App = () => {
    useEffect(()=>{
     const timeoutId =setTimeout(() => {
      setloading(false)
-  }, 600);
+  },0);
   return () => {
     clearTimeout(timeoutId)
   }
@@ -95,7 +94,8 @@ const App = () => {
                         <Popular title='Comedy genres' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'popularity.desc&with_original_language=ta&release_date.gte=${today}&with_genres=35'} />
                         <Popular title='Malayalam Dubbed' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'popularity.desc&with_original_language=ml&release_date.gte=${today}&with_genres=10749'} />
                        </div>
-                          <Fet />
+                       
+                    
                         <Chatbot />
                      
                         </>

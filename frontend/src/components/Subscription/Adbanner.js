@@ -8,7 +8,7 @@ export const Adbanner = () => {
   const [popout, setpopout] = useState(false);
 
   const {user , isAuthenticated} = useAuth0()
-  console.log(user)
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -35,9 +35,9 @@ const isloginpage  = window.location.pathname === '/login'
             <div className="absolute top-2 right-2 z-20">
               <FontAwesomeIcon icon={faClose} className='text-lg text-black cursor-pointer' onClick={() => setpopout(false)} />
             </div>
-            <div className="relative p-3 mt-3 z-10 w-1/2 left-20 lg:left-0 lg:mt-[-7px]">
+            <div className="relative p-3 mt-2 z-10 w-1/2 left-20 lg:left-0 lg:mt-[-7px]">
               <h1 className="text-xl font-bold mb-2 lg:text-5xl lg:mb-6">Unlock Ad-Free Movies!</h1>
-              <p className="text-lg lg:text-3xl lg:mb-3">
+              <p className="text-md lg:text-3xl lg:mb-3">
                 Subscribe now for just <span className="bg-yellow-500 text-black px-2 py-1 rounded-md">₹49</span> /month and enjoy uninterrupted movie streaming!
               </p>
               <button className="mt-3 px-6 py-2 bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-600 transition duration-300 lg:p-4" onClick={handlesuscriptionclick}>
@@ -47,7 +47,7 @@ const isloginpage  = window.location.pathname === '/login'
             <img
               src="https://img.freepik.com/free-photo/fun-3d-illustration-cartoon-teenage-girl-with-rain-gear_183364-80088.jpg?w=360&t=st=1718905484~exp=1718906084~hmac=490f2a7e8b388f5e56da8344046ee3e181c5b5ac3f97f8d974f4377d07b52d84"
               alt="Celebration Confetti"
-              className="absolute inset-0 w-[45%] h-full object-cover z-0 lg:w-[166px]"
+              className="absolute inset-0 w-40 h-full object-cover z-0 lg:w-[166px]"
             />
           </div>
         </div>

@@ -39,7 +39,7 @@ const theme = useSelector(store => store.theme.toggletheme)
             <a href={`/searchdetail/${item.id}`}  key={item.id}>
             <div>
               <img src={data  ? poster_url + item.poster_path : moviespotgif} alt=''  className='p-2 m-2 rounded-2xl cursor-pointer hover:scale-105 transition-transform'/>
-              <p className={theme ? 'text-gray-400 ml-6 text-md font-medium' : 'text-gray-600 ml-6 text-md font-medium'} >{item.title}</p>
+              <p className={theme ? 'text-gray-400 ml-6 text-md font-medium' : 'text-gray-600 ml-6 text-md font-medium'} >{item.title || item.name}</p>
 
             </div>
             </a>

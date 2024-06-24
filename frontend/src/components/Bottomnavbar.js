@@ -6,14 +6,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { togglemovie } from '../utils/Movieslice';
 
 export const Bottomnavbar = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const dispatch = useDispatch();
+
   const toggletype = useSelector((store) => store.movietoggle.togglemovie);
 
+ 
   const handleClick = () => {
-    setToggle(!toggle);
-    dispatch(togglemovie(!toggle));
+    
+    dispatch(togglemovie(toggle));
   };
+
+  const handletvclick = () =>{   
+    setToggle(true)
+    dispatch(togglemovie(true))
+  }
 
   // Determine the background color based on toggletype
   
@@ -25,7 +32,7 @@ export const Bottomnavbar = () => {
       </Link>
       
       <Link to="/tv-series">
-        <FontAwesomeIcon icon={faTv} className={!toggletype ? "text-white text-2xl cursor-pointer" : "text-rose-600 text-2xl cursor-pointer"} onClick={handleClick} />
+        <FontAwesomeIcon icon={faTv} className={toggletype ?  "text-rose-600 text-2xl cursor-pointer" : 'text-white text-2xl'} onClick={handletvclick} />
       </Link>
       
       <FontAwesomeIcon icon={faSearch} className="text-white text-2xl" />
