@@ -43,7 +43,7 @@ const App = () => {
    useEffect(()=>{
     const timeoutId =setTimeout(() => {
      setloading(false)
-  },0);
+  },2000);
   return () => {
     clearTimeout(timeoutId)
   }

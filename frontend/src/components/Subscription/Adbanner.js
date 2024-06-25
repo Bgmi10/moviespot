@@ -36,7 +36,7 @@ const isloginpage  = window.location.pathname === '/login'
               <FontAwesomeIcon icon={faClose} className='text-lg text-black cursor-pointer' onClick={() => setpopout(false)} />
             </div>
             <div className="relative p-3 mt-2 z-10 w-1/2 left-20 lg:left-0 lg:mt-[-7px]">
-              <h1 className="text-xl font-bold mb-2 lg:text-5xl lg:mb-6">Unlock Ad-Free Movies!</h1>
+              <h1 className="text-xl font-bold mb-2 lg:text-5xl lg:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-400 to-pink-400">Unlock Ad-Free Movies!</h1>
               <p className="text-md lg:text-3xl lg:mb-3">
                 Subscribe now for just <span className="bg-yellow-500 text-black px-2 py-1 rounded-md">₹49</span> /month and enjoy uninterrupted movie streaming!
               </p>
