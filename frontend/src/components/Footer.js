@@ -18,8 +18,8 @@ const Footer = () => {
   }
   return (
     <footer className="relative bg-gray-900 text-white py-10 mt-20">
-      <img src={footerimg} className="absolute inset-0 w-full h-full object-cover opacity-25" alt="Footer background" />
-      <div className="relative z-10 container mx-auto px-6">
+      <img src={footerimg} className="absolute inset-0 w-full h-full mt-10 object-cover opacity-25  " alt="Footer background" />
+      <div className="relative z-10 container mx-auto px-6 bg-black bg-opacity-60 ">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="flex flex-col items-center text-center lg:text-left mt-[-60px]" onClick={handleshareclick}>
             <LottieAnimation gif={share} />

@@ -2,6 +2,7 @@ import gif from '../img/movieSpotgif.gif'
 export const poster_url = 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2'
 export const poster_url_desktop = 'https://media.themoviedb.org/t/p/w1066_and_h600_bestv2'
 export const moviespot_gif = {gif}
+export const profile_url  = 'https://media.themoviedb.org/t/p/w276_and_h350_face'
 
 {/* <img src={  gif } className='rounded-2xl p-[10px] ml-3  cursor-pointer  border-none outline-none hover:scale-105 h-[131px] lg:w-[150px] lg:h-[200px] ' alt={item.title}></img> */}
 

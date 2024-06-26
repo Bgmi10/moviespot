@@ -9,8 +9,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Link, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-;
-
+import moviesspotgif from '../img/movieSpotgif.gif'
+ 
 
 export const Popular = ({title , apiurl, sort }) => {
 
@@ -58,7 +58,7 @@ export const Popular = ({title , apiurl, sort }) => {
                 data?.results?.map((item) =>(
                 <Link to={`/searchdetail/${item.id}`} key={item.id}>
                 <div>
-                <img src={ poster_url + item.poster_path } className='rounded-2xl p-[10px] ml-3   cursor-pointer  border-none outline-none hover:scale-105 transition-transform' alt={item.title}></img>
+                <img src={ !item.poster_path ? moviesspotgif :poster_url + item.poster_path } className='rounded-2xl p-[6px] ml-3   cursor-pointer  border-none outline-none hover:scale-105 transition-transform' alt={item.title}></img>
                 <p className='text-gray-500 px-[26px] text-sm '>{item.title || item.name}</p>
                 </div>
                 </Link>

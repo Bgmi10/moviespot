@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {  Link } from 'react-router-dom';
 import { FaPlay } from 'react-icons/fa';
-import '../login.css';
 import { lang } from '../utils/lang'
 import Oauthlogin from '../Oauth/Oauthlogin'
 

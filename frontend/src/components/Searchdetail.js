@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import { LottieAnimation } from './lottie'
 import * as preloader  from './anima.json' 
 import TextRunner from './Textrunner'
+import { Crewcast } from './Crewcast'
 
 const Searchdetail = () => {
  
@@ -63,18 +64,20 @@ const Searchdetail = () => {
 
           </div>
 
-          <h1 className={theme ? "text-3xl font-medium mb-2 text-gray-200" :  "text-3xl font-medium mb-2 text-gray-600"} >{data?.title}</h1>
+          <h1 className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 lg:text-3xl font-bold sm:text-lg transition-transform duration-1000 mb-4`}>
+                     {  data?.name || data?.title}
+                     </h1>
 
           {/* Overview */}
           <p className={theme ? "text-gray-400 mb-4 font-light" :  "text-gray-500 mb-4 font-light"}>{data?.overview}</p>
             <div>
                <TextRunner  text="please use Vpn to download this movie"  duration={10}/>
              </div>
-         <div className={theme ? 'text-gray-300 ' : 'text-gray-700'}>
+         <div className={theme ? 'text-gray-300 ' : 'text-gray-700 '}>
           <a
             // href={`https://tamilyogi.zone/${data.title}-${data?.release_date.slice(0,4)}-hd-720p-tamil-movie-watch-online/`}
             //https://tamilyogi.zone/anyone-but-you-2023-tamil-dubbed-movie-hd-720p-watch-online/
-            className={"mt-4 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex w-32   " }
+            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex w-32   " }
           >
             Download <FontAwesomeIcon icon={faArrowDown}  className={theme ? 'animate-bounce px-2 py-1  text-teal-400' : 'animate-bounce px-2 py-1  text-rose-600'}/>
 
@@ -93,6 +96,10 @@ const Searchdetail = () => {
       
        <Recommendation  url={`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=2`}/>
       </div> 
+
+      <div>
+        <Crewcast data= {data} />
+      </div>
       
     </div>
     

@@ -13,7 +13,6 @@ import playgif from './img/play.gif'
 import { Popular } from './components/Popular';
 import { useSelector } from 'react-redux';
 import Footer from './components/Footer';
-import { Fet } from './components/Fet';
 import * as preloader from '../src/components/anima.json';
 import { LottieAnimation } from './components/lottie';
 import { Bottomnavbar } from './components/Bottomnavbar';
@@ -34,21 +33,13 @@ const Lazytvseries = lazy(() => import('./components/Tvseries/Tvseries' ))
 
 
 const App = () => {
-  const [loading , setloading] = useState(true)
+  
   const theme = useSelector(store => store.theme.toggletheme)
   const isloginpage = window.location.pathname === '/login'
   const isprofilepage = window.location.pathname === '/profile'
   const today = new Date().toISOString().split('T')[0];
   
-   useEffect(()=>{
-    const timeoutId =setTimeout(() => {
-     setloading(false)
-  },2000);
-  return () => {
-    clearTimeout(timeoutId)
-  }
-
-   }, [])
+ 
    const category = 'movie'
    const data = Usefetchmainslider({category})
    const filtermovies = data?.data?.results.slice(15,20)
@@ -59,13 +50,9 @@ const App = () => {
    
     <div className={theme ? `bg-slate-900` : `bg-white`}>
       
-     
-      < Adbanner />
-    {loading ?  
-       <div className='min-h-screen justify-center flex items-center'>
-       <LottieAnimation gif = {preloader} />
-       </div>
-        :
+{/*      
+      < Adbanner /> */}
+   
         <Routes>
         
         <Route
@@ -127,8 +114,6 @@ const App = () => {
         />
       </Routes>
       
-    
-      }
        
        <React.Suspense fallback={<LottieAnimation  gif={preloader}/> }>
         <Routes>
@@ -137,7 +122,7 @@ const App = () => {
       </React.Suspense>
       
       <Bottomnavbar />
-   {!loading &&  !isprofilepage &&  <Footer />}
+   { !isprofilepage &&  <Footer />}
     </div>
    
   );
