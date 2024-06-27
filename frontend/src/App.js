@@ -50,8 +50,8 @@ const App = () => {
    
     <div className={theme ? `bg-slate-900` : `bg-white`}>
       
-{/*      
-      < Adbanner /> */}
+     
+      {/* < Adbanner /> */}
    
         <Routes>
         

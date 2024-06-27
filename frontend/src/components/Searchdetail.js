@@ -30,6 +30,7 @@ const Searchdetail = () => {
       const datas = await res.json()
 
       setdata(datas)
+
     }
 
     catch(error){
@@ -42,16 +43,18 @@ const Searchdetail = () => {
 
    },[type])
 
-   
+ 
+
+
 
    //max-w-screen-lg
   return (
   
     <div>
       
-      <div  className="relative flex flex-col items-center  ">
+      <div  className="relative flex flex-col items-center " > 
       {data ? (
-        <div className="relative max-w-screen-md m-4 p-4 shadow-lg rounded-lg text-white ">
+        <div className="relative max-w-screen-md m-4 p-4 shadow-lg rounded-lg text-white " >
           <div
             style={{ backgroundImage: `url(${`https://image.tmdb.org/t/p/w1066_and_h600_bestv2`}${data?.backdrop_path})` }}
             className="w-full h-80 bg-cover rounded-lg mb-2 relative "
@@ -64,7 +67,7 @@ const Searchdetail = () => {
 
           </div>
 
-          <h1 className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 lg:text-3xl font-bold sm:text-lg transition-transform duration-1000 mb-4`}>
+          <h1 className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 lg:text-3xl font-bold sm: text-3xl transition-transform duration-1000 mb-4`}>
                      {  data?.name || data?.title}
                      </h1>
 
@@ -75,7 +78,7 @@ const Searchdetail = () => {
              </div>
          <div className={theme ? 'text-gray-300 ' : 'text-gray-700 '}>
           <a
-            // href={`https://tamilyogi.zone/${data.title}-${data?.release_date.slice(0,4)}-hd-720p-tamil-movie-watch-online/`}
+            href={`https://1moviesda.net/${data?.title.split(' ').join('-')}-${data?.release_date.slice(0,4)}-movie-download/`}
             //https://tamilyogi.zone/anyone-but-you-2023-tamil-dubbed-movie-hd-720p-watch-online/
             className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex w-32   " }
           >

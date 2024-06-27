@@ -16,6 +16,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/hr9rjR3J0xBBKmlJ4n3gHId9ccx.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/pwBtk8ngoMtqn0qv8j1feSFTKUn.jpg",
       download_link: "https://tamilvip.app/link/?jjb4lao2shk3",
+      realesdata: "2023"
     },
     {
       id:  1208217,
@@ -26,6 +27,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/yRMJ4Jvr5YUXOQlYwxX4Q6H6P71.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/jGMNc2MqJ2mPdc4ceFvx1JvVKV5.jpg",
       download_link: "https://drive.google.com/file/d/11A_TEDjo9cnR_gN263yP_oK0gmFf8CHU/view?usp=drivesdk",
+      realesdata: "2023"
     },
     {
       id:  962074,
@@ -36,6 +38,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w188_and_h282_bestv2/gq5OlT5ImxsNpkirpgf4rYngd3M.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/u3lWiLi0e0W3aU822QdcxQIGBES.jpg",
       download_link: "https://drive.google.com/file/d/1-WJ5aRgv30NinWCYOj8EQmMEC-ahTjjD/view?usp=drivesdk",
+      realesdata: "2024"
     },
     {
       id:  755388,
@@ -46,6 +49,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/8nryykQqfU7yqTz4FD7uEBjseZp.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/edF35dA59ltU0dZdCJ66M9TBrp5.jpg",
       download_link: "https://drive.google.com/file/d/1198ztKFCOFbwFF4ZV__kr4YSl1dPQc2c/view?usp=drivesdk",
+      realesdata: "2024"
     },
     {
       id:  1118232,
@@ -56,6 +60,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/uYIw5Jt4xkcjObDwJqcgeLFP042.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/xf0Dg2NX6rnAfOPveP8Kp2v14G6.jpg",
       download_link: "https://drive.google.com/file/d/12DsJte2bRVESc40T1-mV1FmkZNxu3OnL/view?usp=drivesdk",
+      realesdata: "2023"
     },
     {
       id:  1213076,
@@ -66,6 +71,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w188_and_h282_bestv2/1h6t9nCYVWOLRskB35K51payMok.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/nlDmuxSjJS1Fi2FgVToPm9ytm5S.jpg",
       download_link: "https://drive.google.com/file/d/11gEUcM7UgcxW6lHn2uToRY31JUdwtVfC/view?usp=drivesdk",
+      realesdata: "2023"
     },
     {
       id:  1174777,
@@ -76,6 +82,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/glgCXwJMd9IHSLBocsr8N1te3Sf.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/rIOjUd2fUazYTcnEfGLgSjG8i4m.jpg",
       download_link: "https://drive.google.com/file/d/11gNzculKcX37sbe978TUCxr0WBxIx7Mz/view?usp=drivesdk",
+      realesdata: "2023"
     },
     {
       id:  949229,
@@ -87,6 +94,7 @@ export const tamilmovies = [
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/jpuhJikambSdHYf18OE6706yJkc.jpg",
       
       download_link: "https://drive.google.com/file/d/118piJq67i98QQntoNdUpSrzXZ-4sRPAW/view?usp=drivesdk",
+      realesdata: "2023"
     },
     {
       id:  743563,
@@ -97,6 +105,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/774UV1aCURb4s4JfEFg3IEMu5Zj.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/1GGc5XXaFgNBoJnOEBJCnXSMwhx.jpg",
       download_link: "https://drive.google.com/file/d/11YywkDAwIiaZpA4_e_8bkK95P5VogLb8/view?usp=drivesdk",
+      realesdata: "2022"
     },
     {
       id:  922087,
@@ -107,6 +116,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/3xz1lfMrFlNtZ4H8DQKvYog8ilR.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/q8cXWpngGo5rYz2lkGJc5GiKcmL.jpg",
       download_link: "https://drive.google.com/file/d/12RcMIOMeERl-JFMI370bR3rd6R8zD5FU/view?usp=drivesdk",
+      realesdata: "2023"
     },
   {
       id:  1230097,
@@ -117,6 +127,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/8agxJ2Wv8EitO1xwF2HgxnyloCI.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/rPJzSvaOcssRPegJkKS7UVa8Ib3.jpg ",
       download_link: "https://drive.google.com/file/d/1-BvfopnKbv4KaKGs_1phn1T6WN_XShsP/view?usp=drivesdk",
+      realesdata: "2023"
     },
   {
       id:  1046924,
@@ -127,6 +138,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w188_and_h282_bestv2/x6AxOaH0BiWJZkgAzeunHe3ZCLG.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/5WWuqrJm9MScRpP0WnT5PQrUe17.jpg",
       download_link: "https://drive.google.com/file/d/10ka9V_3QQPX-eMwi6SXclOK9zG2DcARM/view?usp=drivesdk",
+      realesdata: "2024"
     },{
       id:  770906,
       title: "salaar-part-1-ceasefire-2023",
@@ -136,6 +148,7 @@ export const tamilmovies = [
       poster_path: "https://media.themoviedb.org/t/p/w220_and_h330_face/2G1C677cokQKFHbUKG9sVlIGOiX.jpg",
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/hOx2kPyniEHJj9wquzJMuStFFUG.jpg",
       download_link: "https://drive.google.com/file/d/12QFRSov7PyaixbUjncO6ThFfNXu54Rei/view?usp=drivesdk",
+      realesdata: "2023"
     },
   
   ];
@@ -151,6 +164,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w440_and_h660_face/wjbOlovDadOdPKkSAMohLCjbIsc.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/x1I63Mm5KU2DXjL4HdBy6JaGTms.jpg",
       download_link: "",
+      realesdata: "2021"
     },{
       id: 800383,
       title: "Beast-2022",
@@ -160,6 +174,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w440_and_h660_face/yE8bsjy9hvuSY5JdtFlJGXyaTeH.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/edwOyfLrZq9p16P4AAYcM8MzhJx.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2022"
     },
    {
       id: 835017,
@@ -170,6 +185,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w440_and_h660_face/iMUIsV6u0pPqfv1j8tGxbJw40sw.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/m8ynNk1Ju112Xq6ouaSMXwF13bu.jpg",
       download_link: "https://drive.google.com/file/d/139iksBu_54wMH4QbpRaTeyIkLyEBq8EH/view?usp=drivesdk",
+      realesdata: "2023"
     },{
       id: 563309,
       title: "Bigil-2019",
@@ -179,6 +195,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w440_and_h660_face/aaZX7jvKGgTK9VoZpo5DAPL6lET.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/cc14e095w0ri6ppoLxSEl7iUqHs.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2019"
     },
   {
       id: 504231,
@@ -189,6 +206,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w188_and_h282_bestv2/6uF4MtjUuee9CrlzMr4u9bzEz7P.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/v9CTg2i5d5oLMRIHAOOgFkxcJou.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2018"
     },{
       id:  456287,
       title: "Mersal-2017",
@@ -198,6 +216,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/65Q1wpRPZ5E3UVUv2V5JBbJQCcj.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/rx9kyO6YJLpXfFrU934C6i4yYMj.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2017"
     },{
       id:  370076,
       title: "Theri-2016",
@@ -207,6 +226,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/f6BhexotEqO3GejXa3FopBNGL6M.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/yzoyr6nuB3ChA38MSHjYKlMpU6W.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2016"
     },{
       id:  263475,
       title: "Kaththi-2014",
@@ -216,6 +236,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/3Zp3VCEzDJGHwvMT7pXkPj2vuYm.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/iOnnXN8XPMWrh7flteI1mCftYBZ.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2014"
     },{
       id:  246087,
       title: "Jilla-2014",
@@ -226,6 +247,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w188_and_h282_bestv2/kUBsvLoyzgxTqTvuiE0PmJHpsRU.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/n06GR0Jmd1gwglNVKdyJIphQG3d.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2014"
     },{
       id:  143010,
       title: "Thuppakki-2012",
@@ -236,6 +258,7 @@ export const tamilmovies = [
         poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/uTQNCqMnSDbZghFYNmzDvTVD413.jpg',
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/itm6HknrBWGTAicBITeqEThIrQw.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2012"
     },{
       id:  69537,
       title: "Nanban-2012",
@@ -246,6 +269,7 @@ export const tamilmovies = [
         //https://media.themoviedb.org/t/p/w440_and_h660_face/dmhPnvYQVtx4xS1dkA9trCpQXvY.jpg
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/gTK2lEyMSFxKsA52uEYLQlmpAWu.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2012"
     },{
       id:  63647,
       title: "Ghilli-2004",
@@ -257,6 +281,7 @@ export const tamilmovies = [
         //
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/y9uoFHBYjkMLMfYKtuDrB9i2yej.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
+      realesdata: "2004"
     },
   ]
     

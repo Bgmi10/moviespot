@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { poster_url } from '../utils/constans';
 import { useSelector } from 'react-redux';
+import gif from '../img/movieSpotgif.gif'
 
 
 const Searchpage = () => {
@@ -58,12 +59,12 @@ const Searchpage = () => {
           <Link to={`/searchdetail/${item.id}`} key={item.id} >
             <div className="p-4 flex flex-col items-center">
               <img
-                src={item.poster_path ? `${poster_url}${item.poster_path}` : ''}
+                src={item.poster_path ? `${poster_url}${item.poster_path}` : gif}
                 alt="movie poster"
                 className="rounded-lg w-full lg:w-40  lg:h-60  sm: h-52  sm:w-42 hover:scale-105 transition-transform"
               />
               <div>
-              <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.original_language}</p>
+              <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.title}</p>
               </div>
             </div>
            

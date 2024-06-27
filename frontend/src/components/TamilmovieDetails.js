@@ -31,14 +31,14 @@ const TamilmovieDetails = ({data}) => {
     
           </div>
 
-          <h1 className={theme ? "text-3xl font-medium mb-2 text-gray-200" : "text-3xl font-medium mb-2 text-gray-600"}>{movieDetails?.[0]?.title}</h1>
+          <h1 className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 lg:text-3xl font-bold sm:text-lg transition-transform duration-1000 mb-4`}>{movieDetails?.[0]?.title}</h1>
 
          
           <p className={theme ? " text-gray-400 mb-4 font-light" : " text-gray-500 mb-4 font-light"}>{movieDetails?.[0]?.overview}</p>t
 
           <div className={theme ? 'text-gray-300 ' : 'text-gray-700'}>
           <a
-            href={`https://tamilyogi.beer/${movieDetails?.[0]?.title}-hd-720p-tamil-movie-watch-online/`}
+            href={`https://1moviesda.net/${movieDetails?.[0]?.title1}-${movieDetails?.[0]?.realesdata}-movie-download/`}
             className="mt-4 border-r-pink-600 border border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex w-32  "
           >
             Download <FontAwesomeIcon icon={faArrowDown}  className={ theme ?'animate-bounce px-2 py-1 text-teal-400 ' : 'animate-bounce px-2 py-1 text-rose-600 '}/>

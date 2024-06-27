@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { profile_url } from '../utils/constans'
 import Slider from 'react-slick'
+import moviespot_gif  from '../img/moviespotsize_276x350.gif'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -10,7 +11,7 @@ export const Crewcast = ({data}) => {
    const [castdata , setcastdata] = useState(null)
 
    const id = data.id
-   console.log(castdata)
+  
  
    
 
@@ -37,7 +38,7 @@ export const Crewcast = ({data}) => {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              arrows: true
+              arrows: false
             },
           },
         ],  
@@ -45,12 +46,12 @@ export const Crewcast = ({data}) => {
       
   return (
     <div>
-          <h1 className='text-gray-300  font-medium text-2xl sm: px-11 lg:px-16 '>Cast & Crew </h1>
+          <h1 className='text-gray-300  font-medium text-2xl sm: px-11 lg:px-16  mt-10'>Cast & Crew </h1>
           <Slider  className='p-10 mr-10' {...settings}>
         {
             castdata?.cast?.map((i) =>(
-                <div>
-                    <img src={profile_url + i.profile_path}  className=' p-6   '/>
+                <div key={i.id}>
+                    <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path}  className=' p-6   '/>
                     <h1 className='text-gray-300 px-16 font-medium  text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 '>{i.name} </h1>
                       <p className='text-gray-500 px-[70px] font-light text-lg'>{i.character}</p>
                 </div>    
