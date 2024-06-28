@@ -7,7 +7,7 @@ import Chatbot from '../src/components/Chatbot'
 import { Search } from './components/Search';
 import { Livechat } from './components/Livechat';
 import {Mainslider} from './components/Mainslider'
-import { tamilmovies } from './utils/constans';
+import { ajith_hits, tamilmovies } from './utils/constans';
 import { vijayhits } from './utils/constans';
 import playgif from './img/play.gif'
 import { Popular } from './components/Popular';
@@ -29,6 +29,7 @@ const Lazylogin = React.lazy(()=> import ('./components/Login'))
 const Lazyuserprofile = React.lazy(() => import('./Oauth/Userprofile'))
 const Lazyherolighter = React.lazy(()=>import('./components/HeroLightpass'))
 const Lazytvseries = lazy(() => import('./components/Tvseries/Tvseries' ))
+const LazySearchcatagory = lazy(() => import('./components/Searchcatagory'))
 
 
 
@@ -75,11 +76,12 @@ const App = () => {
                          <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`}   sort={`popularity.desc&with_original_language=ta&release_date.gte=${today}`}/>
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
+                        <Tamilmovies title='Ajith hits' data={ajith_hits} />
          
                        <div>
-                        <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'&with_original_language=ta&sort_by =popularity.desc'} />
-                        <Popular title='Comedy genres' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'popularity.desc&with_original_language=ta&release_date.gte=${today}&with_genres=35'} />
-                        <Popular title='Malayalam Dubbed' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'popularity.desc&with_original_language=ml&release_date.gte=${today}&with_genres=10749'} />
+                        <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ta'} />
+                        <Popular title='Comedy genres' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ta&with_genres=35'} />
+                        <Popular title='Malayalam Dubbed' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ml&with_genres=10749'} />
                        </div>
                        
                     
@@ -94,7 +96,6 @@ const App = () => {
                     />
                     
                      <Route path="/moviedetail/nowplaying/:Id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
-                   
                      <Route path="/moviedetail/vijayhits/:Id" element={<LazyTamilmovieDetails data={vijayhits} />} />
                      <Route path='/terms/condition' element={<Lazyterms />} />
                      <Route path="/search" element={<Search/>}  />
@@ -104,9 +105,9 @@ const App = () => {
                      <Route path='/popular-detail' element={<Lazypopulardetail />} />
                      <Route path= "/login" element={<Lazylogin />} />
                      <Route path= "/3d" element={<Lazyherolighter />} />
-                     <Route path='/tv-series' element={<Lazytvseries />} />
-                  
-                  </Routes>
+                     <Route path='/tv-series' element={<Lazytvseries/>} />
+                     <Route path='/search-catagory' element={<LazySearchcatagory />} />
+                   </Routes>
                 </React.Suspense>
               </>
             

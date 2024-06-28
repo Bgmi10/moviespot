@@ -16,36 +16,30 @@ const Searchbar = () => {
   const latestSearchTerm = useRef('');
   const [movies, setmovies] = useState('')
   const dispatch = useDispatch()
-  const cache = useSelector(store=>store.cache)
   const theme = useSelector(store => store.theme.toggletheme)
+  const togglecategory = useSelector(store => store.movietoggle.togglecategory)
+  
  
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  
+  const type = togglecategory  ? 'tv' : 'movie'
+
 
   useEffect(()=>{
    
-   const timer =  setTimeout(()=>
-  {  
-    if(cache[searchTerm]){
-
-   return  setmovies(cache[searchTerm])
-    
-  } 
-   else{
-    return fetchmovies()
-   }
+   const timer =  setTimeout(()=>{
+          fetchmovies()
 },150)
 
     return ()=> {clearTimeout(timer)}
-  },[searchTerm])
+  },[searchTerm , type])
 
   const fetchmovies = async() =>{
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchTerm}&api_key=${process.env.REACT_APP_API_KEY}`)
-
+    const response = await fetch(`https://api.themoviedb.org/3/search/${type}?query=${searchTerm}&api_key=${process.env.REACT_APP_API_KEY}`)
+    
     const data = await response.json()
 
   
@@ -147,3 +141,5 @@ export default Searchbar;
 
 
 
+
+// here problem is user type input results is coming from cache i need to  prevent that 

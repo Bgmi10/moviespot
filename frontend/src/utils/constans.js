@@ -266,7 +266,7 @@ export const tamilmovies = [
       overview:
         "The plot of the film illustrates the embankment of two friends on a quest for a lost buddy, who was once an optimistic and successful student. On their journey, they recount their college life and special moments that the three shared up until their lost friend secretly parted ways after convocation. During their quest, the two encounter a rival classmate who once made a long forgotten bet with them, a funeral that goes impossibly out of control, and a wedding they must crash..",
         poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/dmhPnvYQVtx4xS1dkA9trCpQXvY.jpg',
-        //https://media.themoviedb.org/t/p/w440_and_h660_face/dmhPnvYQVtx4xS1dkA9trCpQXvY.jpg
+      
       background_path: "https://media.themoviedb.org/t/p/w1066_and_h600_face/gTK2lEyMSFxKsA52uEYLQlmpAWu.jpg",
       download_link: "https://drive.google.com/file/d/134kz8gYBPksdC5AmFnXyhmT_dxOMm8I_/view?usp=drivesdk",
       realesdata: "2012"
@@ -340,3 +340,89 @@ export const main_slider = [
   },
 ]
 
+
+
+
+export const ajith_hits = [
+  {
+    id: 904557 ,
+    title: "Thunivu",
+    overview:
+      "A gang goes to rob a bank only to find that there's already a criminal mastermind holding it for ransom, but his identities and motives behind the heist remains mysterious. As they plan to collect the bounty and disappear without a trace, their crimes and their past slowly catches up with them.",
+      poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/5Cdi9MFxEGsfphvDxV4TyY4znP6.jpg',
+    background_path: "https://media.themoviedb.org/t/p/w500_and_h282_face/woLEI1MC1Ya4eHrFveUXd60hVU.jpg",
+    download_link: "",
+  },
+
+
+{
+    id: 640484 ,
+    title: "Valimai",
+    overview:
+      "A gang goes to rob a bank only to find that there's already a criminal mastermind holding it for ransom, but his identities and motives behind the heist remains mysterious. As they plan to collect the bounty and disappear without a trace, their crimes and their past slowly catches up with them.",
+      poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/xa5USFw4I2SQPlD3wZ9kRn9shtB.jpg',
+    background_path: "https://media.themoviedb.org/t/p/w500_and_h282_face/woLEI1MC1Ya4eHrFveUXd60hVU.jpg",
+    download_link: "",
+  },
+
+
+
+{
+    id: 586291 ,
+    title: "Nerkonda Paarvai",
+    overview:
+      "When three young women are harassed and implicated in a crime they didn't commit, a bipolar lawyer sets out to help them clear their names and prove it to everyone that a woman's consent matters..",
+      poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/8Ttg8jI3rOG6RSAj195MwdXlnc1.jpg',
+    background_path: "https://media.themoviedb.org/t/p/w500_and_h282_face/kgqZkSw8pH8AX365k15kULHs0fk.jpg",
+    download_link: "",
+  },
+
+
+{
+    id: 503356,
+    title: "Viswasam",
+    overview:
+      "A village ruffian, who settles disputes in his native, takes on a big shot when he tries to sort out the rough patch in his marriage after several years..",
+      poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/9XXABbZY62OWkkjUDPVysMTs7fc.jpg',
+    background_path: "https://media.themoviedb.org/t/p/w500_and_h282_face/oq0YL751gFY1lQBZM06Vb18Cav7.jpg",
+    download_link: "",
+  },
+
+
+{
+    id: 362150,
+    title: "Vedalam",
+    overview:
+      "Ganesh, a cab driver and a doting brother to his sister Tamizh, is hunting down three notorious criminals in Kolkata. Who is he actually and what's his motive?.",
+      poster_path: 'https://media.themoviedb.org/t/p/w188_and_h282_bestv2/cily2czYaIla7RoPQc8L1KO948e.jpg',
+    background_path: "https://image.tmdb.org/t/p/w500_and_h282_face/pVvJJgqnvj6JjHpCyzmIExGurkk.jpg",
+    download_link: "",
+  },
+
+
+
+{
+    id: 300983 ,
+    title: "Yennai Arindhaal",
+    overview:
+      "Sathyadev, who is on a career break, is forced to put on his cop shoes ones again to save Thenmozhi, a young woman who is the target of a criminal organ harvesting group, led by a ghost from his past.",
+      poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/9IY8JqjLE63AESmzDGKmfhlgvGZ.jpg',
+    background_path: "https://media.themoviedb.org/t/p/w500_and_h282_face/cDuWMH2lXenwj5MfCtM9EqHONwK.jpg",
+    download_link: "",
+  },
+
+{
+    id: 247504 ,
+    title: " Veeram",
+    overview:
+      "A straightforward man, who uses violence to settle disputes, decides to mend his ways for the sake of his lover, but when he learns that her family is in danger, he decides to save them at all cost.",
+      poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/nN8R6j4KhKh5W7AQmtTcIgeGSK7.jpg',
+    background_path: "https://media.themoviedb.org/t/p/w500_and_h282_face/4wTcPRyHlWdpCpIUmfPDrMvMBZ6.jpg",
+    download_link: "",
+  },{
+    id: 188540,
+    title: " Arrambam",
+    overview:
+      "A man, along with a computer hacker, sets off on a mission to uncover a government scandal. As the dark secrets begin to tumble out"
+  }
+]

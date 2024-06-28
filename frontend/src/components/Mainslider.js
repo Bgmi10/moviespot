@@ -28,6 +28,8 @@ export const Mainslider = ({data}) => {
         breakpoint: 768,
         settings: {
           arrows: false,
+          autoplaySpeed: 3000,
+          autoplay : true
         },
       },
     ],

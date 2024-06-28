@@ -34,8 +34,9 @@ export const Bottomnavbar = () => {
       <Link to="/tv-series">
         <FontAwesomeIcon icon={faTv} className={toggletype ?  "text-rose-600 text-2xl cursor-pointer" : 'text-white text-2xl'} onClick={handletvclick} />
       </Link>
-      
+      <Link to={'/search-catagory'}>
       <FontAwesomeIcon icon={faSearch} className="text-white text-2xl" />
+      </Link>
     </div>
   );
 };

@@ -4,11 +4,13 @@ import Slider from 'react-slick'
 import moviespot_gif  from '../img/moviespotsize_276x350.gif'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useSelector } from 'react-redux';
 
 
 export const Crewcast = ({data}) => {
     
    const [castdata , setcastdata] = useState(null)
+   const theme = useSelector(store => store.theme.toggletheme);
 
    const id = data.id
   
@@ -46,14 +48,14 @@ export const Crewcast = ({data}) => {
       
   return (
     <div>
-          <h1 className='text-gray-300  font-medium text-2xl sm: px-11 lg:px-16  mt-10'>Cast & Crew </h1>
-          <Slider  className='p-10 mr-10' {...settings}>
+          <h1 className={ theme ? 'text-gray-300  font-medium text-2xl sm: px-11 lg:px-16  mt-10' :'text-gray-500  font-medium text-2xl sm: px-11 lg:px-16  mt-10'}>Cast & Crew </h1>
+          <Slider  className='p-10 lg:mr-10 sm: ml-2' {...settings}>
         {
             castdata?.cast?.map((i) =>(
                 <div key={i.id}>
-                    <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path}  className=' p-6   '/>
-                    <h1 className='text-gray-300 px-16 font-medium  text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 '>{i.name} </h1>
-                      <p className='text-gray-500 px-[70px] font-light text-lg'>{i.character}</p>
+                    <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path}  className=' p-6'/>
+                    <h1 className='text-gray-300 px-20 font-medium  text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 '>{i.name} </h1>
+                      <p className={theme ? 'text-gray-500 px-[80px] font-light text-lg' : 'text-gray-700 px-[80px] font-light text-lg'}>{i.character}</p>
                 </div>    
             ))
         }

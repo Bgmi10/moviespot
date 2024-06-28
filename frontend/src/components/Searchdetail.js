@@ -18,6 +18,8 @@ const Searchdetail = () => {
   const theme = useSelector(store => store.theme.toggletheme)
   const movietoggle = useSelector(store => store.movietoggle.togglemovie)
   const type = !movietoggle ? 'movie' : 'tv'
+  console.log(movietoggle)
+ 
   
 
 // problem is changing the tv and movie category dynamic
@@ -28,7 +30,7 @@ const Searchdetail = () => {
       const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}`) 
 
       const datas = await res.json()
-
+     console.log(datas)
       setdata(datas)
 
     }
@@ -42,6 +44,9 @@ const Searchdetail = () => {
     fetch_search_data()
 
    },[type])
+
+   const categoryname = !movietoggle  ? data?.title?.split(' ').join('-') : data?.name?.split(' ').join('-')
+   const toggle_type_release_data = !movietoggle ? data?.release_date?.slice(0,4) : data?.last_air_date?.slice(0,4)
 
  
 
@@ -78,7 +83,7 @@ const Searchdetail = () => {
              </div>
          <div className={theme ? 'text-gray-300 ' : 'text-gray-700 '}>
           <a
-            href={`https://1moviesda.net/${data?.title.split(' ').join('-')}-${data?.release_date.slice(0,4)}-movie-download/`}
+             href={`https://1moviesda.net/${categoryname}-${toggle_type_release_data}-movie-download/`}
             //https://tamilyogi.zone/anyone-but-you-2023-tamil-dubbed-movie-hd-720p-watch-online/
             className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex w-32   " }
           >
