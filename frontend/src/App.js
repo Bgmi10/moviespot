@@ -37,6 +37,7 @@ const App = () => {
   
   const theme = useSelector(store => store.theme.toggletheme)
   const isloginpage = window.location.pathname === '/login'
+  const ishomepage = window.location.pathname === '/'
   const isprofilepage = window.location.pathname === '/profile'
   const today = new Date().toISOString().split('T')[0];
   
@@ -62,7 +63,7 @@ const App = () => {
            
               <>
               
-                {!isloginpage && !isprofilepage && <Header  />}
+                {!isloginpage && !isprofilepage &&  <Header  />}
                 {!isloginpage && !isprofilepage && <Searchbar  /> }
                 
                 <React.Suspense fallback={<LottieAnimation  gif={preloader}/> }>
@@ -72,7 +73,7 @@ const App = () => {
                       element={
                         <>
         
-                         <Mainslider data = {filtermovies} /> 
+                          <Mainslider data = {filtermovies} /> 
                          <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`}   sort={`popularity.desc&with_original_language=ta&release_date.gte=${today}`}/>
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
@@ -86,7 +87,7 @@ const App = () => {
                        
                     
                         <Chatbot />
-                     
+                      
                         </>
                          
                        

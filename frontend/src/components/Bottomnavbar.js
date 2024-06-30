@@ -26,7 +26,7 @@ export const Bottomnavbar = () => {
   
 
   return (
-    <div className={`fixed inset-x-0 bottom-0  transition-colors bg-slate-900 opacity-80 duration-500 flex justify-between px-5 py-2 z-50`}>
+    <div className={` sm:hidden fixed inset-x-0 bottom-0  transition-colors bg-slate-900 opacity-80 duration-500 flex justify-between px-5 py-2 z-50 `}>
       <Link to="/">
         <FontAwesomeIcon icon={faTape} className={!toggletype ? "text-rose-600 text-2xl" : 'text-white text-2xl '} onClick={handleClick} />
       </Link>

@@ -5,10 +5,14 @@ import { Recommendation } from './Recommendation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
+import ShareIcon from '@mui/icons-material/Share';
 import { LottieAnimation } from './lottie'
+import SlowMotionVideoIcon from '@mui/icons-material/SlowMotionVideo';
 import * as preloader  from './anima.json' 
 import TextRunner from './Textrunner'
+import how_to_Donload_vid from '../img/howodownload.mp4'
 import { Crewcast } from './Crewcast'
+import ReactPlayer from 'react-player'
 
 const Searchdetail = () => {
  
@@ -17,8 +21,9 @@ const Searchdetail = () => {
   const {id} = useParams()
   const theme = useSelector(store => store.theme.toggletheme)
   const movietoggle = useSelector(store => store.movietoggle.togglemovie)
+  const [isshow , setisshow] = useState(false)
   const type = !movietoggle ? 'movie' : 'tv'
-  console.log(movietoggle)
+  
  
   
 
@@ -30,7 +35,7 @@ const Searchdetail = () => {
       const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}`) 
 
       const datas = await res.json()
-     console.log(datas)
+     
       setdata(datas)
 
     }
@@ -49,8 +54,19 @@ const Searchdetail = () => {
    const toggle_type_release_data = !movietoggle ? data?.release_date?.slice(0,4) : data?.last_air_date?.slice(0,4)
 
  
+  
+
+   const handleshareclick = async () =>{
+    const url  = `https://movieapp-cd283.web.app/searchdetail/${id}`
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${url}`
+    window.open(whatsappUrl , '_blank')
+    
+   }
 
 
+    const handle_how_to_download = () =>{
+         setisshow(true)
+    }
 
    //max-w-screen-lg
   return (
@@ -81,19 +97,52 @@ const Searchdetail = () => {
             <div>
                <TextRunner  text="please use Vpn to download this movie"  duration={10}/>
              </div>
-         <div className={theme ? 'text-gray-300 ' : 'text-gray-700 '}>
+         <div className={theme ? 'text-gray-300 lg:flex   ' : 'text-gray-700 lg:flex  p-2 '}>
           <a
              href={`https://1moviesda.net/${categoryname}-${toggle_type_release_data}-movie-download/`}
-            //https://tamilyogi.zone/anyone-but-you-2023-tamil-dubbed-movie-hd-720p-watch-online/
-            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex w-32   " }
+            
+            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex  sm: ml-4  sm: w-48 lg:ml-0 " }
           >
-            Download <FontAwesomeIcon icon={faArrowDown}  className={theme ? 'animate-bounce px-2 py-1  text-teal-400' : 'animate-bounce px-2 py-1  text-rose-600'}/>
+            Download link-1 <FontAwesomeIcon icon={faArrowDown}  className={theme ? 'animate-bounce px-2 py-1  text-teal-400' : 'animate-bounce px-2 py-1  text-rose-600'}/>
 
           </a>
-          </div>
+          <a
+             href={`https://1moviesda.net/${categoryname}-movie-download/`}
+          
+            // https://1moviesda.net/thuppakki-movie-download/
+            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex   ml-4 sm: w-48 " }
+          >
+            Download link-2 <FontAwesomeIcon icon={faArrowDown}  className={theme ? 'animate-bounce px-2 py-1  text-teal-400' : 'animate-bounce px-2 py-1  text-rose-600'}/>
+          
+          </a>
+         
+          <button
+            className={"mt-6  bg-gray-500    px-4 py-2 rounded-md  flex   ml-4 text-black " }
+            onClick={handle_how_to_download}
+          >
+            
+          <SlowMotionVideoIcon />  How to download ?
+          </button>
+          <button
+            className={"mt-6   bg-blue-400   px-4 py-2 rounded-md  flex   ml-4 text-black " }
+            onClick={handleshareclick}
+          >
+            Share <ShareIcon className='mt-[2px]' />
+          
+          </button>
           
           </div>
-       
+          <div>
+          {
+            isshow && <div className='backdrop-blur-sm mt-3'>
+                 <ReactPlayer url={how_to_Donload_vid }  loop={true} controls={true}  playing={true} width={"350px"} height={'200px'} style={{borderRadius : "20px"}}/>
+            </div>
+          }
+            </div>
+          </div>
+         
+        
+
       ) : (
      <LottieAnimation gif={preloader}/>
       )}
