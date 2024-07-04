@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { poster_url } from '../utils/constans'
 import { Recommendation } from './Recommendation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { faArrowDown, faStar } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 import ShareIcon from '@mui/icons-material/Share';
 import { LottieAnimation } from './lottie'
@@ -13,6 +13,7 @@ import TextRunner from './Textrunner'
 import how_to_Donload_vid from '../img/howodownload.mp4'
 import { Crewcast } from './Crewcast'
 import ReactPlayer from 'react-player'
+import { Feedbackform } from './Feedback/Feedbackform'
 
 const Searchdetail = () => {
  
@@ -23,6 +24,9 @@ const Searchdetail = () => {
   const movietoggle = useSelector(store => store.movietoggle.togglemovie)
   const [isshow , setisshow] = useState(false)
   const type = !movietoggle ? 'movie' : 'tv'
+  
+  const [feedbackform , setfeedbackform] = useState(false)
+
   
  
   
@@ -68,12 +72,25 @@ const Searchdetail = () => {
          setisshow(true)
     }
 
-   //max-w-screen-lg
+   
+
+    const handleshowfeedbackform = () =>{
+      setfeedbackform(true)
+    }
+
   return (
   
     <div>
       
-      <div  className="relative flex flex-col items-center " > 
+      <div  className="relative flex flex-col items-center " >
+
+        {feedbackform &&  <div>
+
+             <Feedbackform data={data} toggleform={setfeedbackform}/>
+
+          </div>}
+
+
       {data ? (
         <div className="relative max-w-screen-md m-4 p-4 shadow-lg rounded-lg text-white " >
           <div
@@ -122,6 +139,13 @@ const Searchdetail = () => {
           >
             
           <SlowMotionVideoIcon />  How to download ?
+          </button>
+          <button
+            className={"mt-6  bg-rose-600    px-4 py-2 rounded-md  flex   ml-4 text-black " }
+            onClick={handleshowfeedbackform}
+          >
+            
+          < FontAwesomeIcon icon={faStar} className='text-yellow-300 mt-1 m-1'/>   Rate  Now
           </button>
           <button
             className={"mt-6   bg-blue-400   px-4 py-2 rounded-md  flex   ml-4 text-black " }

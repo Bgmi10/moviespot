@@ -18,6 +18,9 @@ const Searchbar = () => {
   const dispatch = useDispatch()
   const theme = useSelector(store => store.theme.toggletheme)
   const togglecategory = useSelector(store => store.movietoggle.togglecategory)
+  const cache_results = useSelector(store => store.cache)
+  console.log(movies)
+
   
  
 
@@ -31,7 +34,12 @@ const Searchbar = () => {
   useEffect(()=>{
    
    const timer =  setTimeout(()=>{
+         if(cache_results[searchTerm]){
+          setmovies(cache_results[searchTerm])
+         }
+         else{
           fetchmovies()
+         }
 },150)
 
     return ()=> {clearTimeout(timer)}
@@ -41,7 +49,7 @@ const Searchbar = () => {
     const response = await fetch(`https://api.themoviedb.org/3/search/${type}?query=${searchTerm}&api_key=${process.env.REACT_APP_API_KEY}`)
     
     const data = await response.json()
-
+    
   
    
     dispatch(cacheresults({[searchTerm] : data}))

@@ -39,7 +39,7 @@ const App = () => {
   const isloginpage = window.location.pathname === '/login'
   const ishomepage = window.location.pathname === '/'
   const isprofilepage = window.location.pathname === '/profile'
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0]; 
   
  
    const category = 'movie'

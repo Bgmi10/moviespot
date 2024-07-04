@@ -15,20 +15,23 @@ const root = createRoot(rootelement)
 root.render(
 
 
-  <Auth0Provider
-      domain="moviesspot.au.auth0.com"
-      clientId="0HS51AbFWHJWt7hdsFEJlCR21aFGuM6K"
-      authorizationParams={{
-      redirect_uri: window.location.origin,
-      }}
-  >
-          <Router>
+      <Auth0Provider
+          domain="moviesspot.au.auth0.com"
+          clientId="0HS51AbFWHJWt7hdsFEJlCR21aFGuM6K"
+          authorizationParams={{
+          redirect_uri: window.location.origin,
+          }}
+      >
+             <Router>
               
-               <Provider store={store}>
+                   <Provider store={store}>
               
-                 <App />
+                         <App />
                 
-               </Provider>
-          </Router>
+                   </Provider>
+
+             </Router>
+
       </Auth0Provider>
-            )
+
+  )
