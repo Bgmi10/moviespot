@@ -1,18 +1,22 @@
-import { faArrowCircleRight, faArrowRight, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleRight, faArrowRight, faClose, faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Formcontent } from './Formcontent'
 import { hashtags } from '../../utils/Feedbackhashtags'
+import Slider from '@mui/material/Slider';
 
-export const Feedbackform = ({data , toggleform}) => {
+
+
+export const Feedbackform = ({data , toggleform , movieid }) => {
+
+  console.log(movieid)
 
     const [starvalue , setstarvalue] = useState(0)
 
     const handlechange = (e) =>{
         setstarvalue(e.target.value)
     } 
-
-   
+     
     const targetRatingHashtags = hashtags.flatMap(ratingObj => ratingObj[starvalue ]);
     const dynamic_hash_heading = hashtags.flatMap(ratingObj => ratingObj[starvalue ] ? ratingObj.title : null);
     
@@ -41,22 +45,32 @@ export const Feedbackform = ({data , toggleform}) => {
 
                  <p className='font-extralight text-sm text-center '> slide to rate <FontAwesomeIcon icon={faArrowRight} className='text-gray-500 text-sm' /> </p>
                  
-                 <div className='flex'>
+                 <div className='flex items-center ml-4 w-[350px]'>
+                  
+               <Slider
+                   defaultValue={30}
+                   value={starvalue}
+                   valueLabelDisplay="auto"
+                   shiftStep={30}
+                   step={1}
+                   marks
+                   max={5}
+                   onChange={handlechange}
+                   size='medium'
+                   color="secondary"
+               />
+
+    <h1 className=' font-bold text-gray-600  text-2xl ml-4'>{starvalue} </h1>  <FontAwesomeIcon icon={faStar}  className='text-yellow-300 text-2xl '/>
+</div>
+
                  
-                 
-
-                 <input type='range' value={starvalue}   onChange={handlechange} max={5} className='w-80 ' />
-
-                 <p className='ml-2 font-bold text-gray-600 '>{starvalue} / 5</p>
-
-                 </div>
 
             </div>
 
-           < Formcontent starvalue={starvalue}  dynamic_hash_heading = { dynamic_hash_heading} targetRatingHashtags={targetRatingHashtags}/>
+           < Formcontent starvalue={starvalue}  dynamic_hash_heading = { dynamic_hash_heading} targetRatingHashtags={targetRatingHashtags} movieid={movieid}/>
 
 
-            <div className='mt-10  justify-center flex  mb-3'><button className={ starvalue === 0 ? `bg-gray-400  p-3 border-t border-b shadow-md w-80 rounded-md` :   `transition-transform bg-rose-600  p-3 border-t border-b shadow-md w-80 rounded-md`} > Sumbit your feedback </button></div>
+            
        </div>
        </div>
      </div>

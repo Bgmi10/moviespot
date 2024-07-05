@@ -86,7 +86,7 @@ const Searchdetail = () => {
 
         {feedbackform &&  <div>
 
-             <Feedbackform data={data} toggleform={setfeedbackform}/>
+             <Feedbackform data={data} toggleform={setfeedbackform} movieid={id}/>
 
           </div>}
 
