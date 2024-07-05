@@ -3,6 +3,7 @@ import Chatslice from "./Chatslice";
 import searchslice from "./Searchcacheslice";
 import Themeslice from "./Themeslice";
 import Movieslice from "./Movieslice";
+import feedbackFormsubmissionslice from "./feedbackFormsubmissionslice";
 
 
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
     chat:Chatslice,
     cache : searchslice,
     theme : Themeslice,
-    movietoggle : Movieslice 
+    movietoggle : Movieslice,
+    feedbackformsubmission : feedbackFormsubmissionslice
     
   
    }
