@@ -19,12 +19,8 @@ const Searchbar = () => {
   const theme = useSelector(store => store.theme.toggletheme)
   const togglecategory = useSelector(store => store.movietoggle.togglecategory)
   const cache_results = useSelector(store => store.cache)
-  console.log(movies)
-
   
- 
-
-  const handleSearch = (e) => {
+ const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { doc, collection, addDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 
@@ -12,10 +12,9 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
 
   const [userfeedbackmessage , setuserfeedbackmessage] = useState('')
 
-  console.log(movieid)
-
   const handleChange = (id, i) => {
-    // Toggle the selection status for the specific item and store its value
+   
+
     setSelectedItems(prev => ({
       ...prev,
       [id]: {
@@ -27,10 +26,11 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
    
 
     sethashtag(prev => [...prev , i] )
-
+  
     
   };
-
+  
+   
   
   const removeUndefined = targetRatingHashtags.filter(i => i !== undefined)
 
@@ -98,3 +98,6 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
 
 
 // here the logic for storing the movie feedback in firestore DB 
+
+
+// herr the issue was user click on hashtag it is updating the value in arr but when user reclick the event it adding another tag , case is when user click it event re it should pop from array 

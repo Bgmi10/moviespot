@@ -9,7 +9,6 @@ import Slider from '@mui/material/Slider';
 
 export const Feedbackform = ({data , toggleform , movieid }) => {
 
-  console.log(movieid)
 
     const [starvalue , setstarvalue] = useState(0)
 
@@ -46,7 +45,7 @@ export const Feedbackform = ({data , toggleform , movieid }) => {
                  <p className='font-extralight text-sm text-center '> slide to rate <FontAwesomeIcon icon={faArrowRight} className='text-gray-500 text-sm' /> </p>
                  
                  <div className='flex items-center ml-4 w-[350px]'>
-                  
+
                <Slider
                    defaultValue={30}
                    value={starvalue}
