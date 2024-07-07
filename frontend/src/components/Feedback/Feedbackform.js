@@ -1,13 +1,14 @@
-import { faArrowCircleRight, faArrowRight, faClose, faStar } from '@fortawesome/free-solid-svg-icons'
+import {  faArrowRight, faClose, faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { Formcontent } from './Formcontent'
 import { hashtags } from '../../utils/Feedbackhashtags'
 import Slider from '@mui/material/Slider';
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import * as gif from './feedBackcompletedgif.json'
 import { LottieAnimation } from '../lottie'
-import { updation } from '../../utils/feedbackFormsubmissionslice'
+
+import * as emojigif from './emoji2.json'
 
 
 
@@ -17,14 +18,7 @@ export const Feedbackform = ({data , toggleform , movieid }) => {
     const [starvalue , setstarvalue] = useState(0)
 
     const feedbackformsubmission = useSelector(store => store.feedbackformsubmission)
-    const [removethegif , SetRemoveTheGif] = useState(feedbackformsubmission)
-    console.log(feedbackformsubmission)
-    const dispatch = useDispatch()
-
-    // setTimeout(() => {
-    //   dispatch(updation(false))
-    // }, 4000);
-
+  
     const handlechange = (e) =>{
         setstarvalue(e.target.value)
     } 
@@ -33,15 +27,15 @@ export const Feedbackform = ({data , toggleform , movieid }) => {
     const dynamic_hash_heading = hashtags.flatMap(ratingObj => ratingObj[starvalue ] ? ratingObj.title : null);
 
     
-    
+
 
   return (
    <>
      <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-sm ">
           <div className="relative flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 opacity-0 animate-fadeIn ">
     
-          { feedbackformsubmission ?  <LottieAnimation gif={gif} /> : <div className='border w-96 h-auto  rounded-sm bg-white transition-transform'>
-           <div className='flex justify-evenly shadow-md border-b '>
+          { feedbackformsubmission ? <div><LottieAnimation gif={gif}   />  <p className='text-white '>Your Feedback Is Our Beacon ! </p> </div> : <div className='border w-96 h-auto  rounded-sm bg-white transition-transform'>
+           <div className='flex justify-evenly shadow-md border-b   '>
             
               <h1 className='text-black p-2  font-medium text-center m-3'> How was the movie ? <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600  transition-transform duration-1000 '>{data?.title}</span> </h1>
 
@@ -52,10 +46,13 @@ export const Feedbackform = ({data , toggleform , movieid }) => {
             <div>
 
                 <h1 className='font-medium  p-2 mt-6'> How would you rate the movie ? </h1>
+                {starvalue === 0 && <div className='mb-[-70px] mt-[-70px]'><LottieAnimation gif={emojigif}  /></div> }
 
             </div>
                
-            <div className='mt-6'>
+            <div > 
+                
+               
 
                  <p className='font-extralight text-sm text-center '> slide to rate <FontAwesomeIcon icon={faArrowRight} className='text-gray-500 text-sm' /> </p>
                  

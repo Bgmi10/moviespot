@@ -17,7 +17,7 @@ import { Feedbackform } from './Feedback/Feedbackform'
 
 const Searchdetail = () => {
  
-
+  const [feedbackform , setfeedbackform] = useState(false)
   const [data, setdata] = useState('')
   const {id} = useParams()
   const theme = useSelector(store => store.theme.toggletheme)
@@ -25,12 +25,7 @@ const Searchdetail = () => {
   const [isshow , setisshow] = useState(false)
   const type = !movietoggle ? 'movie' : 'tv'
   
-  const [feedbackform , setfeedbackform] = useState(false)
-
   
- 
-  
-
 // problem is changing the tv and movie category dynamic
   useEffect(()=>{
     const fetch_search_data = async () =>{

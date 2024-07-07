@@ -1,9 +1,8 @@
 import React, {  useState } from 'react';
 import { db } from "../../utils/firebase";
 import { doc, collection, addDoc } from "firebase/firestore";
-import *  as  feedbackgif from './feedBackcompletedgif.json'
-import { LottieAnimation } from '../lottie';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'; 
+import { useAuth0 } from "@auth0/auth0-react";
 import { updation } from '../../utils/feedbackFormsubmissionslice';
 
 
@@ -15,6 +14,8 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
   const [selectedItems, setSelectedItems] = useState({});
   const [ userfeedbackmessage , SetUserFeedbackMessage] = useState('')
   const [hashtag , sethashtag] = useState([])
+
+  const { user } = useAuth0();
 
   const [id , SetId] = useState()
  
@@ -34,7 +35,8 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
    
 
     sethashtag(prev => [...prev , i] )
-  
+
+   
     
   };
   
@@ -52,11 +54,10 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
       const feedbackCollectionRef = collection(movieDocRef , 'feedbacks')
 
       const final_data = {
-        movieid : movieid,
+        username : user?.name || '',
+        userprofilepic : user?.picture || '',
         userfeedbackhashtag :  hashtag ,
-    
         rating : starvalue,
-    
         userfeedbackmessage : userfeedbackmessage
        
       }
@@ -67,7 +68,7 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
 
       dispatch(updation( id === movieid))
       
-    
+      //
     }
 
     catch (error){
@@ -75,6 +76,12 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
       console.log(error)
 
     }
+
+   const t =  setTimeout(() => {
+      return  window.location.href = `/searchdetail/${movieid}`
+     }, 5000);
+
+     return () => clearTimeout(t)
 
   }
 
@@ -87,26 +94,30 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
           <p className='text-center font-light text-sm text-gray-400'>They help others decide what to watch next.</p>
         </div>
       ) : (
-        <div className='mt-6 '>
+        <div className='mt-3  '>
           <h1 className='p-2'>{dynamic_hash_heading}</h1>
           <p className='text-gray-400 font-sans text-sm p-2 '>Express yourself with hashtags!</p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {removeUndefined.map((i, index) => (
-              <button
-                className={
-                  selectedItems[index]?.isSelected ? 'p-2 text-white m-1 border rounded-full bg-rose-600' : 'p-2 text-rose-600 m-1 border rounded-full'
-                }
-                key={index}
-                onClick={() => handleChange(index, i)}
-              >
-                {i}
-              </button>
-            ))}
-          </div>
+          <div className="  justify-center gap-2 grid grid-cols-2">
+  {removeUndefined.map((i, index) => (
+    <span
+      className={
+        selectedItems[index]?.isSelected ? 'p-1 m-1 text-center text-white  border rounded-full bg-rose-600 ' : 'text-rose-600 p-1 m-1 text-center border rounded-full'
+      }
+      key={index}
+      onClick={() => handleChange(index, i)}
+    >
+      {i}
+    </span>
+  ))}
+</div>
+
         </div>
       )}
+      <div>
 
-<div className='mt-10  justify-center flex  mb-3'><button  disabled = {starvalue === 0} className={ starvalue === 0 ? `bg-gray-400  p-3 border-t border-b shadow-md w-80 rounded-md` :   `transition-transform bg-rose-600  p-3 border-t border-b shadow-md w-80 rounded-md`} onClick={handleformsubmit}> Sumbit your feedback </button></div>
+      </div>
+
+<div className='  justify-center flex  mb-3 mt-10 '><button  disabled = {starvalue === 0} className={ starvalue === 0 ? `bg-gray-400  p-3 border-t border-b shadow-md w-80 rounded-md` :   `transition-transform bg-rose-600  p-3 border-t border-b shadow-md w-80 rounded-md`} onClick={handleformsubmit}> Sumbit your feedback </button></div>
     </div>}
     </>
   );
