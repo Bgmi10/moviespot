@@ -10,6 +10,7 @@ const Searchpage = () => {
     const theme = useSelector(store => store.theme.toggleTheme);
     const query = new URLSearchParams(useLocation().search);
     const [scrollCheck, setScrollCheck] = useState(false);
+    const type = useSelector(store => store)
     
     const [page, setPage] = useState(1);
 
@@ -35,7 +36,7 @@ const Searchpage = () => {
     }, [page]);
 
     const scrollevent = () =>{
-        const isScrolledToBottom = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight - 100;
+        const isScrolledToBottom = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight - 400;
         setScrollCheck(isScrolledToBottom)
     }
  
@@ -64,7 +65,7 @@ const Searchpage = () => {
                 className="rounded-lg w-full lg:w-40  lg:h-60  sm: h-52  sm:w-42 hover:scale-105 transition-transform"
               />
               <div>
-              <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.title}</p>
+              <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.title.length >= 9 ? item.title.slice(0,9)    : item.title}  {item?.name?.length >= 9 ? item.name?.slice(0,9)    :item.name}</p>
               </div>
             </div>
            

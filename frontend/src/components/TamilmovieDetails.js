@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 
 const TamilmovieDetails = ({data}) => {
-  const { Id } = useParams();
+  const { Id } = useParams()
   const id  = parseInt(Id)
   const theme = useSelector(store => store.theme.toggletheme)
 
@@ -34,7 +34,7 @@ const TamilmovieDetails = ({data}) => {
           <h1 className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 lg:text-3xl font-bold sm:text-lg transition-transform duration-1000 mb-4`}>{movieDetails?.[0]?.title}</h1>
 
          
-          <p className={theme ? " text-gray-400 mb-4 font-light" : " text-gray-500 mb-4 font-light"}>{movieDetails?.[0]?.overview}</p>t
+          <p className={theme ? " text-gray-400 mb-4 font-light" : " text-gray-500 mb-4 font-light"}>{movieDetails?.[0]?.overview}</p>
 
           <div className={theme ? 'text-gray-300 ' : 'text-gray-700'}>
           <a

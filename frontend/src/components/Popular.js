@@ -6,10 +6,11 @@ import {poster_url} from '../utils/constans'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import moviesspotgif from '../img/movieSpotgif.gif'
+
  
 
 export const Popular = ({title , apiurl, sort }) => {
@@ -25,6 +26,8 @@ export const Popular = ({title , apiurl, sort }) => {
         const data = await res.json()
       
         setdata(data)
+    
+        
 
     }
 
@@ -39,8 +42,6 @@ catch(error){
     },[])
 
 
-
- 
   return (
     <div className='py-4 sm:p-0 lg:p-10  '>
          <div className='flex justify-between'>
@@ -57,16 +58,16 @@ catch(error){
          <Slider {...settings} >
            {
                 data?.results?.map((item) =>(
-                <Link to={`/searchdetail/${item.id}`} key={item.id} >
-                 <div >
-                 <img src={!item.poster_path ? moviesspotgif : poster_url + item.poster_path} className='block w-full rounded-2xl p-[6px] cursor-pointer transition-transform transform hover:scale-105' alt={item.title} />
-                 {/* <div className='absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity '>
-                  <img src={poster_url + item.backdrop_path} alt={`${item.title} Backdrop`} className='   rounded-2xl w-s' />
-                  
-                </div> */}
-                <p className='text-gray-500 px-[26px] text-sm '>{item.title || item.name}</p>
+                <a href={`/searchdetail/${item.id}`} key={item.id} >
+                 <div > 
+            
+
+                 <img src={!item.poster_path ? moviesspotgif : poster_url + item.poster_path} className='block w-full rounded-2xl p-[6px] cursor-pointer transition-transform transform hover:scale-105' alt={item.title || item.name}  />
+
+                         
+                <p className='text-gray-500 px-[26px] text-sm '>{item.title || item.name} </p>
                 </div>
-                </Link>
+                </a>
             )
           )
            }

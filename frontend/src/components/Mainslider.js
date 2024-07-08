@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { poster_url, poster_url_desktop } from '../utils/constans';
-import moviesspotgif from '../img/movieSpotgif.gif'
+
+
 
 export const Mainslider = ({data}) => {
   const [animating, setAnimating] = useState(false);

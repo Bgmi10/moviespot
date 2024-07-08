@@ -77,7 +77,7 @@ const Searchdetail = () => {
   
     <div>
       
-      <div  className="relative flex flex-col items-center " >
+      <div  className=" flex flex-col items-center " >
 
         {feedbackform &&  <div>
 
