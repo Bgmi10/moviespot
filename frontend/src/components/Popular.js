@@ -43,7 +43,7 @@ catch(error){
 
 
   return (
-    <div className='py-4 sm:p-0 lg:p-10  '>
+    <div className='sm:p-0 lg:p-10  '>
          <div className='flex justify-between'>
              <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-4 mt-2" : "text-2xl font-medium text-gray-800 mb-4 px-4 mt-2"}>{title}</h2>
              <Link  to={`/popular-detail?apiurl=${encodeURIComponent(apiurl)}&sort=${encodeURIComponent(sort)}`} >

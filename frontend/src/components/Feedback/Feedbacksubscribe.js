@@ -5,7 +5,7 @@ import {db} from '../../utils/firebase'
 export const Feedbacksubscribe = ({movieId}) => {
 
     const [data , setData]  = useState([])
-    console.log(data)
+    
 
     
 

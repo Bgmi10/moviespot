@@ -8,39 +8,24 @@ import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Profile from '../Oauth/Profile';
-import { Link } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
+
+import { Headeritems } from './Headeritems';
+
+
 
 const Header = () => {
   const theme1 = useSelector(store => store.theme.toggletheme);
   const { isAuthenticated } = useAuth0();
-
   const dispatch = useDispatch();
   const [theme, setTheme] = useState(true);
+
 
   const toggle = () => {
     setTheme(!theme);
     dispatch(toggletheme());
   };
 
-  const header_list = [
-    {
-      title  : 'Movies',
-      link : '/'
-    }, 
-    {
-      title  : 'Tv-series',
-      link : '/tv-series'
-    },
-    {
-      title  : 'About-us',
-      link : '/about'
-    },
-    {
-      title  : 'Contact-us',
-      link : '/contact'
-    },
-  ]
+  
 
   return (
     <nav className="p-2 shadow-md mb-8 border-b  border-gray-500  ">
@@ -54,19 +39,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="hidden sm:flex absolute ml-[400px] ">
-         
-
-          {
-            header_list.map((i , index) =>(
-              <Link to={i.link} key={index}>
-              <h1 className='p-2 bg-transparent text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600  m-4   '>{i.title}</h1>
-              </Link>
-            ))
-          }
-         
-        
-        </div>
+           <Headeritems />
 
         <div className="flex items-center space-x-2 sm: ml-[125px]  lg:ml-[950px]  ">
           
@@ -91,3 +64,4 @@ const Header = () => {
 };
 
 export default Header;
+

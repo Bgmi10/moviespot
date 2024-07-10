@@ -9,7 +9,6 @@ import { Livechat } from './components/Livechat';
 import {Mainslider} from './components/Mainslider'
 import { ajith_hits, tamilmovies } from './utils/constans';
 import { vijayhits } from './utils/constans';
-import playgif from './img/play.gif'
 import { Popular } from './components/Popular';
 import { useSelector } from 'react-redux';
 import Footer from './components/Footer';
@@ -74,7 +73,7 @@ const App = () => {
         
                         <Mainslider data = {filtermovies} /> 
                         <Popular title='Up coming..' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`}   sort={`popularity.desc&with_original_language=ta&release_date.gte=${today}`}/>
-                        <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
+                        <Tamilmovies title = 'Now playing' data={tamilmovies}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
                         <Tamilmovies title='Ajith hits' data={ajith_hits} />
                         < Adbanner />
