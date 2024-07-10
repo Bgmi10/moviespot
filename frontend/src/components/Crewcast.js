@@ -5,6 +5,7 @@ import moviespot_gif  from '../img/moviespotsize_276x350.gif'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useSelector } from 'react-redux';
+import { Feedbacksubscribe } from './Feedback/Feedbacksubscribe';
 
 
 export const Crewcast = ({data}) => {
@@ -60,6 +61,10 @@ export const Crewcast = ({data}) => {
             ))
         }
         </Slider>
+
+        <div>
+          <Feedbacksubscribe movieId={id}/>
+        </div>
     </div>
   )
 }

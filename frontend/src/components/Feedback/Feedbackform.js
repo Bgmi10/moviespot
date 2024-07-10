@@ -7,7 +7,6 @@ import Slider from '@mui/material/Slider';
 import {  useSelector } from 'react-redux'
 import * as gif from './feedBackcompletedgif.json'
 import { LottieAnimation } from '../lottie'
-
 import * as emojigif from './emoji2.json'
 
 

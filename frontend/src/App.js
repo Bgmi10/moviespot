@@ -52,7 +52,7 @@ const App = () => {
     <div className={theme ? `bg-slate-900` : `bg-white`}>
       
      
-      < Adbanner />
+    
    
         <Routes>
         
@@ -77,7 +77,7 @@ const App = () => {
                         <Tamilmovies title = 'Now playing' data={tamilmovies} playgif = {playgif}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
                         <Tamilmovies title='Ajith hits' data={ajith_hits} />
-         
+                        < Adbanner />
                        <div>
                         <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ta'} />
                         <Popular title='Comedy genres' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ta&with_genres=35'} />
