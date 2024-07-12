@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { poster_url } from '../utils/constans'
-import { Recommendation } from './Recommendation'
+import { poster_url } from '../../utils/constans'
+import { Recommendation } from '../Recommendation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faStar } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 import ShareIcon from '@mui/icons-material/Share';
-import { LottieAnimation } from './lottie'
+import { LottieAnimation } from '../lottie'
 import SlowMotionVideoIcon from '@mui/icons-material/SlowMotionVideo';
-import * as preloader  from './anima.json' 
-import TextRunner from './Textrunner'
-import how_to_Donload_vid from '../img/howodownload.mp4'
-import { Crewcast } from './Crewcast'
+import * as preloader  from '../anima.json' 
+import TextRunner from '../Textrunner'
+import how_to_Donload_vid from '../../img/howodownload.mp4'
+import { Crewcast } from '../Crewcast'
 import ReactPlayer from 'react-player'
-import { Feedbackform } from './Feedback/Feedbackform'
+import { Feedbackform } from '../Feedback/Feedbackform'
 
 const Searchdetail = () => {
  
@@ -81,7 +81,7 @@ const Searchdetail = () => {
 
         {feedbackform &&  <div>
 
-             <Feedbackform data={data} toggleform={setfeedbackform} movieid={id}/>
+             <Feedbackform data={data} toggleform={setfeedbackform} movieid={id} theme={theme}/>
 
           </div>}
 

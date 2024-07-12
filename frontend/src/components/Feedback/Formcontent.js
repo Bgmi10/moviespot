@@ -9,7 +9,7 @@ import { updation } from '../../utils/feedbackFormsubmissionslice';
 
 
 
-export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHashtags  , movieid}) => {
+export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHashtags  , movieid , theme}) => {
   // Adjusted state to hold an object with button values and selection statuses
   const [selectedItems, setSelectedItems] = useState({});
   const [ userfeedbackmessage , SetUserFeedbackMessage] = useState('')
@@ -95,7 +95,7 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
         </div>
       ) : (
         <div className='mt-3  '>
-          <h1 className='p-2'>{dynamic_hash_heading}</h1>
+          <h1 className={theme ? 'p-2 text-gray-200' :' text-black p-2'}>{dynamic_hash_heading}</h1>
           <p className='text-gray-400 font-sans text-sm p-2 '>Express yourself with hashtags!</p>
           <div className="  justify-center gap-2 grid grid-cols-2">
   {removeUndefined.map((i, index) => (
@@ -117,7 +117,7 @@ export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHasht
 
       </div>
 
-<div className='  justify-center flex  mb-3 mt-10 '><button  disabled = {starvalue === 0} className={ starvalue === 0 ? `bg-gray-400  p-3 border-t border-b shadow-md w-80 rounded-md` :   `transition-transform bg-rose-600  p-3 border-t border-b shadow-md w-80 rounded-md`} onClick={handleformsubmit}> Sumbit your feedback </button></div>
+<div className='  justify-center flex  mb-3 mt-10 '><button  disabled = {starvalue === 0} className={ starvalue === 0 ? `bg-gray-400  p-3   shadow-md w-80 rounded-md` :   `transition-transform bg-rose-600  p-3 shadow-md w-80 rounded-md`} onClick={handleformsubmit}> Sumbit your feedback </button></div>
     </div>}
     </>
   );

@@ -3,9 +3,33 @@
 @tailwind utilities;
 
 
-body{
+body {
     background-color: black;
+    cursor: url('./img/cursor.png'), auto;
+   
 }
 
 
-
+/* Track */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 100px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 6px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #888;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+    border-radius: 6px;
+  }
+  

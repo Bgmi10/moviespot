@@ -1,6 +1,6 @@
 import React from 'react'
-import { poster_url } from '../utils/constans'
-import moviespot_gif from '../img/movieSpotgif.gif'
+import { poster_url } from '../../utils/constans'
+import moviespot_gif from '../../img/movieSpotgif.gif'
 
 
 export const Search = ({movies}) => {

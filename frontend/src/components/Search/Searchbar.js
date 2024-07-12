@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search } from './Search';
 import { useDispatch } from 'react-redux';
-import { cacheresults } from '../utils/Searchcacheslice';
+import { cacheresults } from '../../utils/Searchcacheslice';
 import { useSelector } from 'react-redux';
 
 

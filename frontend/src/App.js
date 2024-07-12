@@ -1,10 +1,10 @@
-import React, {useEffect, useState , lazy} from 'react';
+import React, {lazy} from 'react';
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import Header from './components/Header';
-import Searchbar from './components/Searchbar';
+import Searchbar from './components/Search/Searchbar';
 import Tamilmovies from './components/Tamilmovies';
 import Chatbot from '../src/components/Chatbot'
-import { Search } from './components/Search';
+import { Search } from './components/Search/Search';
 import { Livechat } from './components/Livechat';
 import {Mainslider} from './components/Mainslider'
 import { ajith_hits, tamilmovies } from './utils/constans';
@@ -20,15 +20,14 @@ import { Adbanner } from './components/Subscription/Adbanner';
 
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
-const LazySearchdetail = React.lazy(()=> import('./components/Searchdetail'))
+const LazySearchdetail = React.lazy(()=> import('./components/Search/Searchdetail'))
 const Lazyterms = React.lazy(()=>import('./components/Terms'))
-const Lazysearchpage = React.lazy(()=> import('./components/Searchpage'))
+const Lazysearchpage = React.lazy(()=> import('./components/Search/Searchpage'))
 const Lazypopulardetail  = React.lazy(()=>import('./components/Populardetail'))
 const Lazylogin = React.lazy(()=> import ('./components/Login'))
 const Lazyuserprofile = React.lazy(() => import('./Oauth/Userprofile'))
-const Lazyherolighter = React.lazy(()=>import('./components/HeroLightpass'))
 const Lazytvseries = lazy(() => import('./components/Tvseries/Tvseries' ))
-const LazySearchcatagory = lazy(() => import('./components/Searchcatagory'))
+const LazySearchcatagory = lazy(() => import('./components/Search/Searchcatagory'))
 
 
 
@@ -103,7 +102,6 @@ const App = () => {
                      <Route path='/livechat' element={<Livechat />} />
                      <Route path='/popular-detail' element={<Lazypopulardetail />} />
                      <Route path= "/login" element={<Lazylogin />} />
-                     <Route path= "/3d" element={<Lazyherolighter />} />
                      <Route path='/tv-series' element={<Lazytvseries/>} />
                      <Route path='/search-catagory' element={<LazySearchcatagory />} />
                    </Routes>

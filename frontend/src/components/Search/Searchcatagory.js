@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { togglecategory } from '../utils/Movieslice'
+import { togglecategory } from '../../utils/Movieslice'
 
 const Searchcatagory = () => {
 

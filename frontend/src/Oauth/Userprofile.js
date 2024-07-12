@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import notverfied_gif from '../img/00024.png'
 import axios from 'axios';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import HeroLightpass from '../components/HeroLightpass';
+
 
 const UserProfile = () => {
   const auth = Useauth();
@@ -154,7 +154,7 @@ catch(error) {
               </button>
             </form>}
             <buttpn>Click this button</buttpn>
-          {/* <HeroLightpass /> */}
+          
         </div>
       )}
     </div>

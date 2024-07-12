@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { poster_url } from '../utils/constans';
+import { poster_url } from '../../utils/constans';
 import { useSelector } from 'react-redux';
-import gif from '../img/movieSpotgif.gif'
+import gif from '../../img/movieSpotgif.gif'
 
 
 const Searchpage = () => {

@@ -5,6 +5,7 @@ import {db} from '../../utils/firebase'
 export const Feedbacksubscribe = ({movieId}) => {
 
     const [data , setData]  = useState([])
+    console.log(data)
     
 
     
@@ -12,7 +13,7 @@ export const Feedbacksubscribe = ({movieId}) => {
 
     const fetch_data = async () => {
         try {
-            const movieRef = doc(db, "movies", movieId);
+            const movieRef = doc(db, "movies" , String(movieId));
             const feedbacksCollectionRef = collection(movieRef, "feedbacks");
             const q = query(feedbacksCollectionRef);
             const querySnapshot = await getDocs(q);
@@ -32,10 +33,14 @@ export const Feedbacksubscribe = ({movieId}) => {
 
     useEffect(() =>{
         fetch_data()
-    },[])
+    },[movieId])
   return (
-    <div>
-
-    </div>
+    <>
+      {data.length === 0 ? <p>loading...</p> : <div>
+              {
+                
+              }
+      </div>}
+    </>
   )
 }
