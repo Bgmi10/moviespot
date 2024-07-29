@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "movieapp-cd283"
-  }
+    "default": "moveispotfeedback",
+    "staging": "moveispotfeedback"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
