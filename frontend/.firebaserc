@@ -1,9 +1,22 @@
 {
   "projects": {
-    "default": "moveispotfeedback",
-    "staging": "moveispotfeedback"
+    "default": "movieapp-cd283",
+    "staging": "movieapp-cd283"
   },
-  "targets": {},
+  "targets": {
+    "moveispotfeedback": {
+      "hosting": {
+        "MovieSpot": [
+          "movieapp-cd283"
+        ]
+      }
+    }
+  },
   "etags": {},
-  "dataconnectEmulatorConfig": {}
+  "dataconnectEmulatorConfig": {},
+  "hosting": {
+    "MovieSpot": [
+      "default"
+    ]
+  }
 }
