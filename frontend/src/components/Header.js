@@ -28,7 +28,7 @@ const Header = () => {
   
 
   return (
-    <nav className="p-2 shadow-md mb-8 border-b  border-gray-500  ">
+    <nav className="p-2 shadow-md mb-3 border-b  border-gray-500  ">
       <div className="container mx-auto flex items-center justify-between  px-6 mt-4">
         <div className="flex space-x-2">
           <div className="text-rose-600 text-2xl animate-pulse py-[1px]">

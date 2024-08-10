@@ -13,7 +13,7 @@ const Login = () => {
 
   return (
     <div  >
-      <div  className='flex justify-between px-5 py-3 relative'>
+      <div className='flex justify-between px-5 py-3 relative'>
       <div className="flex space-x-2  ">
           <div className="text-rose-600 text-2xl animate-pulse py-[2px]">
             <FaPlay />

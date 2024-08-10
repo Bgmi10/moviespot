@@ -1,5 +1,5 @@
 import React, {lazy} from 'react';
-import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, } from 'react-router-dom';
 import Header from './components/Header';
 import Searchbar from './components/Search/Searchbar';
 import Tamilmovies from './components/Tamilmovies';
@@ -17,6 +17,7 @@ import { LottieAnimation } from './components/lottie';
 import { Bottomnavbar } from './components/Bottomnavbar';
 import Usefetchmainslider from './components/Tvseries/Usefetchmainslider';
 import { Adbanner } from './components/Subscription/Adbanner';
+import { Developerprofile } from './components/Developerprofile/Developerprofile';
 
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
@@ -37,11 +38,13 @@ const App = () => {
   const isloginpage = window.location.pathname === '/login'
   const isprofilepage = window.location.pathname === '/profile'
   const today = new Date().toISOString().split('T')[0]; 
-  
- 
+  const location = useLocation()
    const category = 'movie'
    const data = Usefetchmainslider({category})
    const filtermovies = data?.data?.results.slice(15,20)
+
+   const ishomepage = location.pathname === '/'
+   const developroute = window.location.pathname === '/developer-profile'
    
   
 
@@ -61,7 +64,7 @@ const App = () => {
               <>
               
                 {!isloginpage && !isprofilepage &&  <Header  />}
-                {!isloginpage && !isprofilepage && <Searchbar  /> }
+                {!isloginpage && !isprofilepage && !ishomepage && !developroute && <Searchbar  /> }
                 
                 <React.Suspense fallback={<LottieAnimation  gif={preloader}/> }>
                   <Routes>
@@ -104,6 +107,7 @@ const App = () => {
                      <Route path= "/login" element={<Lazylogin />} />
                      <Route path='/tv-series' element={<Lazytvseries/>} />
                      <Route path='/search-catagory' element={<LazySearchcatagory />} />
+                     <Route path='developer-profile' element={<Developerprofile />} />
                    </Routes>
                 </React.Suspense>
               </>
@@ -120,7 +124,7 @@ const App = () => {
       </React.Suspense>
       
       <Bottomnavbar />
-   { !isprofilepage &&  <Footer />}
+   { !isprofilepage  && !developroute &&  <Footer />}
     </div>
    
   );

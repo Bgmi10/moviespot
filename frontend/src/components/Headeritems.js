@@ -22,6 +22,10 @@ export const Headeritems = () => {
           title: 'Contact-us',
           link: '/contact'
         },
+        {
+            title : 'Developer Profile ',
+            link : '/developer-profile'
+        }
     ];
 
     useEffect(() => {
