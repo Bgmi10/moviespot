@@ -144,6 +144,7 @@ export const Project = ({projects , title}) => {
                 {selectedProject.title}
               </h3>
               <p className="text-white">{selectedProject.description}</p>
+              <button className='text-blue-400 mt-2' onClick={() => window.location.href = selectedProject.link}>Link</button>
             </motion.div>
           </motion.div>
         )}

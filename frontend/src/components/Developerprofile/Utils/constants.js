@@ -13,6 +13,11 @@ import moviespot2 from '../imgs/moviespot3.PNG'
 import moviespot3 from '../imgs/moviespot5.PNG'
 import moviespot4 from '../imgs/moviespot10.PNG'
 import moviespot5 from '../imgs/moviespot11.PNG'
+import foodies1 from '../imgs/foodies1.PNG'
+import foodies2 from '../imgs/foodies2.PNG'
+import foodies3 from '../imgs/foodies4.PNG'
+import stater1 from '../imgs/stater.PNG'
+import stater2 from '../imgs/staterlight.PNG'
 
 export const  projects = [
     {
@@ -43,6 +48,7 @@ export const  projects = [
                                                                                            -- XX --
       This e-commerce platform aims to enhance customer outreach and drive the company's product sales, particularly in the oil sector. The project is still in progress`,
       imageUrl: [leads , leads1 , leads2 , leads3],
+      link : ''
     },
     {
       title: 'Food ordering PWA using swiggy api ',
@@ -81,6 +87,7 @@ export const  projects = [
       FCP Optimization: Leveraged lazy loading and other performance enhancements to achieve faster content perception.
       User Experience: Employed the shimmer UI effect and optimized search functionality to enhance overall user satisfaction.`,
       imageUrl: [swiggy, swiggy1 , swiggy2 , swiggy3 , swiggy4 ],
+      link : ''
     },
     {
       title: 'Movie Spot using TMDB official api ',
@@ -100,6 +107,7 @@ export const  projects = [
       
       Join us on MOVIE SPOT for an unparalleled movie-watching journey. 🍿✨`,
       imageUrl: [moviespot , moviespot1 , moviespot2 , moviespot3 , moviespot4 , moviespot5 ],
+      link : 'https://movieapp-cd283.web.app/'
     },
   ];
 
@@ -107,33 +115,17 @@ export const  projects = [
 
   export const opensourceprojects = [
     {
-        title: '',
-        description: `Currently developing a small-scale Progressive Web App (PWA) for a client, with a focus on enhancing user experience and streamlining e-commerce operations. The project is approximately 70% complete, with production deployment anticipated by the end of the month. ...
-    
-        Key Features & Technologies:
-    
-        Frontend: Built using React for a dynamic and responsive user interface, with Redux Toolkit for efficient global state management. Designed with Tailwind CSS and Material UI to ensure a modern, fast-loading, and visually appealing UI.
-        
-        Cart Functionality: Implemented a robust cart system to facilitate easy product management and checkout.
-        
-        Payment Integration: Integrated Razorpay for secure and seamless payment processing.
-        
-        Order Management: Developed a manual order management system to track and handle orders effectively.
-        
-        Searchable Product Catalog: Added a search feature with debounce to minimize server API calls and enhance performance.
-        
-        Authentication: Currently using email and password for user authentication, with plans to extend provider options in the future.
-        
-        Backend: Leveraged Strapi as the headless CMS to handle content management and data storage, offering flexibility and scalability.
-        
-        Performance Optimization: Focused on improving page load times and reducing Largest Contentful Paint (LCP) and First Contentful Paint (FCP). Implemented chunking of pages and rendered chunks during page load to enhance initial response times.
-        
-        Reusable Components: Developed reusable components following the Single Responsibility Principle (SRP) to ensure maintainability and avoid code duplication.
-        
-        Chatbot Integration: Added a chatbot to enhance customer support, providing real-time assistance and improving user engagement.
-                                                                                             -- XX --
-        This e-commerce platform aims to enhance customer outreach and drive the company's product sales, particularly in the oil sector. The project is still in progress`,
-        imageUrl: [leads , leads1 , leads2 , leads3],
+        title: 'FEAT: contributors page e2e (Gssoc level-2)',
+        description: `l've implemented the Contributors page with infinite scroll, ensuring compatibility for both dark and light themes. The page is fully responsive across various devices. `,
+        imageUrl: [foodies1 , foodies2 , foodies3],
+        link : 'https://github.com/VanshKing30/FoodiesWeb/pull/441'
+      }, {
+        title: 'FEAT: Dark-light/toggle across all routes',
+        imageUrl: [stater1 , stater2],
+        link : 'https://github.com/ArslanYM/StarterHive/issues/229',
+        description: `l've implemented the dark-light-theme across all routes from scratch. using redux to handle the state globally`
+
       }
+
 
   ]

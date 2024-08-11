@@ -8,7 +8,7 @@ import { Headerprofile } from './Headerprofile';
 import { Contactform } from './Contactform';
 import { Skillls } from './Skillls';
 import { Project } from './Project';
-import { projects } from './Utils/constants';
+import { opensourceprojects, projects } from './Utils/constants';
 
 export const Developerprofile = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -149,7 +149,7 @@ export const Developerprofile = () => {
         <Skillls />
 
         <Project  projects={projects} title={'Projects'}/>
-        <Project  projects={opensourceprojects} title={'Projects'}/>
+        <Project  projects={opensourceprojects} title={'Open source'}/>
 
        <Whyhire />
       
