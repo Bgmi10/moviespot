@@ -6,6 +6,9 @@ import { Typeeffct } from './Typeeffct';
 import { Whyhire } from './Whyhire';
 import { Headerprofile } from './Headerprofile';
 import { Contactform } from './Contactform';
+import { Skillls } from './Skillls';
+import { Project } from './Project';
+import { projects } from './Utils/constants';
 
 export const Developerprofile = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -143,6 +146,10 @@ export const Developerprofile = () => {
         
        
        </div>
+        <Skillls />
+
+        <Project  projects={projects} title={'Projects'}/>
+        <Project  projects={opensourceprojects} title={'Projects'}/>
 
        <Whyhire />
       

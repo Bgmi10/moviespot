@@ -1,68 +1,84 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import JavascriptIcon from '@mui/icons-material/Javascript'; // Change to relevant icons for other technologies
-import { FaReact, FaNodeJs, FaDatabase } from 'react-icons/fa'; // Example: Using react-icons for variety
+import { FaReact, FaNodeJs, FaDatabase, FaCss3Alt, FaHtml5, FaFire } from 'react-icons/fa';
+import JavascriptIcon from '@mui/icons-material/Javascript';
 
-const techs = [
-  { icon: <JavascriptIcon fontSize="large" />, label: 'JavaScript' },
-  { icon: <FaReact fontSize="large" />, label: 'React' },
-  { icon: <FaNodeJs fontSize="large" />, label: 'Node.js' },
-  { icon: <FaDatabase fontSize="large" />, label: 'Database' },
+// Sample skill data with levels
+const skills = [
+  { icon: <JavascriptIcon fontSize="large" style={{ color: '#f7df1e' }} />, label: 'JavaScript', level: 80 },
+  { icon: <FaReact fontSize="large" style={{ color: '#61dafb' }} />, label: 'React', level: 80 },
+  { icon: <FaNodeJs fontSize="large" style={{ color: '#8cc84b' }} />, label: 'Node.js', level: 40 },
+  { icon: <FaDatabase fontSize="large" style={{ color: '#4db33d' }} />, label: 'MongoDB', level: 40 },
+  { icon: <FaCss3Alt fontSize="large" style={{ color: '#2965f1' }} />, label: 'TailwindCSS', level: 80 },
+  { icon: <FaHtml5 fontSize="large" style={{ color: '#e34c26' }} />, label: 'HTML5', level: 70 },
+  { icon: <FaFire fontSize="large" style={{ color: '#f39c12' }} />, label: 'Firebase', level: 40 },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
+// Animation Variants
+const hexagonVariants = {
+  hidden: { opacity: 0, scale: 0.5, rotate: 0 },
+  visible: { opacity: 1, scale: 1, rotate: 0 },
+  hover: {
+    scale: 1.1,
+    rotate: [0, 15, -15, 0],
+    backgroundColor: '#2d3748', // Slightly lighter shade on hover
+    transition: {
+      duration: 0.6,
+      ease: 'easeInOut',
+      backgroundColor: { duration: 0.3 },
+    },
+  },
 };
 
-export const Typeeffct = () => {
+const headingVariants = {
+  hidden: { opacity: 0, y: -50 },
+  visible: { opacity: 1, y: 0 },
+};
+
+export const Skillls = () => {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      transition={{ duration: 1, ease: 'easeInOut' }}
-      style={{
-        fontSize: '16px',
-        color: '#e2e8f0',
-        fontWeight: '500',
-        marginTop: '10px',
-        textAlign: 'center',
-      }}
-    >
+    <div className="flex flex-col items-center">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
+        initial="hidden"
+        animate="visible"
+        transition={{ staggerChildren: 0.2, delayChildren: 0.2 }}
+        className="flex justify-center items-center flex-wrap gap-8 p-10"
+        style={{ color: '#e2e8f0' }}
       >
-        {techs.map((tech, index) => (
+        {skills.map((skill, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2, duration: 0.5, type: 'spring' }}
+            variants={hexagonVariants}
+            whileHover="hover"
+            className="relative w-28 h-32"
             style={{
+              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              backgroundColor: '#1e293b',
               display: 'flex',
               alignItems: 'center',
-              margin: '5px 0',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              textAlign: 'center',
+              padding: '10px',
+              cursor: 'pointer',
+              boxShadow: '0px 10px 15px rgba(0, 0, 0, 0.4)',
+              border: '2px solid #38bdf8', // Default border color
+              transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
             }}
           >
             <motion.div
-              style={{ marginRight: '8px', fontSize: '24px', color: '#38bdf8' }}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
+              style={{ fontSize: '30px' }}
+              whileHover={{ scale: 1.3, rotate: [0, 15, -15, 0] }}
             >
-              {tech.icon}
+              {skill.icon}
             </motion.div>
-            <span>{tech.label}</span>
+            <span style={{ marginTop: '10px', fontSize: '14px', fontWeight: 'bold' }}>
+              {skill.label}
+            </span>
+            <span style={{ fontSize: '12px', color: '#f1f5f9' }}>{skill.level}%</span>
           </motion.div>
         ))}
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
