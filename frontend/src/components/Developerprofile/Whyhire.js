@@ -9,22 +9,31 @@ const faqs = [
     answer: "I combine strong problem-solving skills with an eye for detail and a passion for learning new technologies. My ability to adapt and implement modern frameworks effectively ensures that projects are both innovative and high-quality."
   },
   {
-    question: "Are you a Gssoc`24 Contributor?",
-    answer: "Yep , im contributing to gssoc projects since 2023 "
+    question: "How many pull requests have you raised?",
+    answer: "I've raised 5 pull requests in open-source projects found on GitHub."
+  },
+  {
+    question: "Are you a GSSoC'24 Contributor?",
+    answer: "Yes, I have been contributing to GSSoC projects since 2023."
   },
   {
     question: "Can you provide examples of your recent work?",
-    answer: "Absolutely! You can check out my portfolio section where I showcase various projects including web applications, interactive designs, and more. Each project demonstrates my skills in both front-end and back-end development."
+    answer: "Absolutely! You can check out my portfolio section where I showcase various projects, including web applications, interactive designs, and more. Each project demonstrates my skills in both front-end and back-end development."
   },
   {
-    question: "How do you approach problem-solving?",
-    answer: "I approach problem-solving methodically. I start by understanding the problem thoroughly, breaking it down into manageable parts, and then systematically addressing each part. This approach ensures that I tackle the root cause and find efficient solutions."
+    question: "what are the websites does you can develop?",
+    answer: "E-commerce, portfolio, chat-application, small-scale, mid-scale on single handed, Movie-showcasing like youtube, dashboard development (Role-based access control) and more"
   },
   {
     question: "What technologies are you proficient in?",
-    answer: "I am proficient in a range of technologies including React, Node.js, Javascript, Tailwindcss, Material-UI, Framer-motion, Firebase, Mongo-db, Redux, Socket.io, Express.js,    and various front-end and back-end tools. I am also comfortable with version control systems like Git and deployment processes."
+    answer: "I am proficient in a range of technologies including React, Node.js, JavaScript, Tailwind CSS, Material-UI, Framer Motion, Firebase, MongoDB, Redux, Socket.io, and Express.js. I am also comfortable with version control systems like GitHub."
+  },
+  {
+    question: "How much do you charge for websites?",
+    answer: "Currently, I charge 400 INR per hour."
   }
 ];
+
 
 export const Whyhire = () => {
   const [activeIndex, setActiveIndex] = useState(null);
