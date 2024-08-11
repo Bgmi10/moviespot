@@ -107,7 +107,7 @@ const App = () => {
                      <Route path= "/login" element={<Lazylogin />} />
                      <Route path='/tv-series' element={<Lazytvseries/>} />
                      <Route path='/search-catagory' element={<LazySearchcatagory />} />
-                     <Route path='developer-profile' element={<Developerprofile />} />
+                     <Route path='/developer-profile' element={<Developerprofile />} />
                    </Routes>
                 </React.Suspense>
               </>

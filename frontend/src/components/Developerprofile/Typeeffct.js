@@ -13,12 +13,13 @@ export const Typeeffct = () => {
     }}
   >
     <TypingEffect
-      text={['JavaScript', 'React', 'Tailwind css' , 'Redux-toolkit' ,'Freelancer' , 'Firebase' , 'Strapi' ]}
+      text={['JavaScript 🚀', 'React ⚛', 'Tailwind css' , 'Redux-toolkit' ,'Freelancer 💸' , 'Firebase 🔥' , 'Strapi' , 'Socket.io' , 'Express js' , 'Mongo db 🍃' , 'Material ui' , 'Framer motion' , 'Node js'  ]}
       speed={100}
       eraseSpeed={50}
       typingDelay={500}
       eraseDelay={2000}
       style={{ fontSize: '16px' }}
+      
     />
   </div>
   )
