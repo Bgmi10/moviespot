@@ -17,6 +17,9 @@ import foodies1 from '../imgs/foodies1.PNG'
 import foodies2 from '../imgs/foodies2.PNG'
 import foodies3 from '../imgs/foodies4.PNG'
 import stater1 from '../imgs/stater.PNG'
+import yputube1 from '../imgs/youtube1.PNG'
+import yputube2 from '../imgs/youtube2.PNG'
+import yputube3 from '../imgs/youtube3.PNG'
 import stater2 from '../imgs/staterlight.PNG'
 
 export const  projects = [
@@ -108,7 +111,40 @@ export const  projects = [
       Join us on MOVIE SPOT for an unparalleled movie-watching journey. 🍿✨`,
       imageUrl: [moviespot , moviespot1 , moviespot2 , moviespot3 , moviespot4 , moviespot5 ],
       link : 'https://movieapp-cd283.web.app/'
-    },
+    },{
+      title : 'new tube (inspired by youtube)',
+      description : `I developed a YouTube-inspired web application using React, Redux, and the official YouTube API, delivering a seamless and interactive video streaming experience. This project demonstrates my expertise in modern web development, focusing on API integration, state management, and UI/UX design.
+
+      Key Technologies:
+      
+      React for building the user interface.
+      
+      Redux for state management, ensuring efficient data flow and caching.
+      
+      YouTube API for fetching and displaying dynamic video content.
+      
+      Tailwind CSS & Material UI for crafting a responsive and intuitive design.
+      
+      
+      Features:
+      
+      Sidebar with Multiple Options: A user-friendly sidebar provides easy access to various categories and features, enhancing the navigation experience.
+      
+      Content Display with YouTube API Integration: Dynamically showcases videos fetched from the YouTube API, offering users a personalized video feed.
+      
+      Search with Debounce Technique: Implements a debouncing technique to optimize API calls, reducing unnecessary requests when the user types rapidly. Results are cached using Redux to avoid redundant API calls for repeated searches.
+      
+      Dynamic Routing: Utilizes react-router-dom for dynamic routing, ensuring smooth transitions between different pages and content.
+      
+      React Hooks & Data Management: Leverages React hooks to manage the data layer effectively, ensuring components are optimized and state management is seamless.
+      
+      Live Chat Feature: Integrated a real-time chat feature using Redux, where actions are dispatched on component mount. The useSelector hook is used to subscribe to specific portions of the Redux store, keeping the chat synchronized.
+      
+      Reddit-Style Nested Comments: The video detail page includes a nested comment section inspired by Reddit. This feature uses recursive methods to efficiently render comments and replies, providing an engaging discussion platform.`,
+      imageUrl : [  yputube2  , yputube3 , yputube1],
+      link : 'https://new-tube-black.vercel.app/'
+
+    }
   ];
 
 

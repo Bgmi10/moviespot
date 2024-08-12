@@ -77,12 +77,12 @@ export const Project = ({projects , title}) => {
             className="relative w-80 h-52 bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 ease-in-out"
           >
             <img
-              src={project.imageUrl[0]}
+              src={project?.imageUrl?.[0]}
               alt={project.title}
               className="w-full h-32 object-cover rounded-lg"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-transparent to-transparent text-white p-4">
-              <h3 className="text-xl font-semibold">{project.title}</h3>
+              <h3 className="text-xl font-semibold">{project?.title}</h3>
             </div>
           </motion.div>
         ))}
@@ -126,7 +126,7 @@ export const Project = ({projects , title}) => {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
                   <img
-                    src={selectedProject.imageUrl[currentImageIndex]}
+                    src={selectedProject?.imageUrl[currentImageIndex]}
                     alt={`Slide ${currentImageIndex}`}
                     className="w-full h-full object-cover"
                   />
@@ -141,10 +141,10 @@ export const Project = ({projects , title}) => {
               </button>
 
               <h3 className="text-2xl font-bold text-white mb-4">
-                {selectedProject.title}
+                {selectedProject?.title}
               </h3>
-              <p className="text-white">{selectedProject.description}</p>
-              <button className='text-blue-400 mt-2' onClick={() => window.location.href = selectedProject.link}>Link</button>
+              <p className="text-white">{selectedProject?.description}</p>
+              <button className='text-blue-400 mt-2' onClick={() => window.location.href = selectedProject?.link}>Link</button>
             </motion.div>
           </motion.div>
         )}

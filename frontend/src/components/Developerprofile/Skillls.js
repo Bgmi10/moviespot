@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaReact, FaNodeJs, FaDatabase, FaCss3Alt, FaHtml5, FaFire } from 'react-icons/fa';
 import JavascriptIcon from '@mui/icons-material/Javascript';
 
-// Sample skill data with levels
+// Skill icons and labels
 const skills = [
   { icon: <JavascriptIcon fontSize="large" style={{ color: '#f7df1e' }} />, label: 'JavaScript', level: 80 },
   { icon: <FaReact fontSize="large" style={{ color: '#61dafb' }} />, label: 'React', level: 80 },
@@ -14,71 +14,100 @@ const skills = [
   { icon: <FaFire fontSize="large" style={{ color: '#f39c12' }} />, label: 'Firebase', level: 40 },
 ];
 
-// Animation Variants
-const hexagonVariants = {
-  hidden: { opacity: 0, scale: 0.5, rotate: 0 },
-  visible: { opacity: 1, scale: 1, rotate: 0 },
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   hover: {
-    scale: 1.1,
-    rotate: [0, 15, -15, 0],
-    backgroundColor: '#2d3748', // Slightly lighter shade on hover
+    scale: 1.05,
     transition: {
-      duration: 0.6,
+      duration: 0.3,
       ease: 'easeInOut',
-      backgroundColor: { duration: 0.3 },
     },
   },
 };
 
-const headingVariants = {
-  hidden: { opacity: 0, y: -50 },
-  visible: { opacity: 1, y: 0 },
+// Circular shadow animation CSS
+const circularShadowAnimation = `
+@keyframes circularShadow {
+  0% {
+    box-shadow: 0 0 0px rgba;
+  }
+  25% {
+    box-shadow: 0px 0px 0px rgba(255,  0.1);
+  }
+  50% {
+    box-shadow: 1px 0px 0px rgba(255, 0.1);
+  }
+  75% {
+    box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.3);
+  }
+}
+`;
+
+const iconAnimations = {
+  React: {
+    animate: {
+      rotate: [0, 360],
+      transition: { duration: 2, repeat: Infinity },
+    },
+  },
+  Firebase: {
+    animate: {
+      scale: [1, 1.2, 1],
+      rotate: [0, 30, -30, 0],
+      transition: { duration: 1, repeat: Infinity },
+    },
+  },
 };
 
 export const Skillls = () => {
   return (
-    <div className="flex flex-col items-center">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        transition={{ staggerChildren: 0.2, delayChildren: 0.2 }}
-        className="flex justify-center items-center flex-wrap gap-8 p-10"
-        style={{ color: '#e2e8f0' }}
-      >
-        {skills.map((skill, index) => (
-          <motion.div
-            key={index}
-            variants={hexagonVariants}
-            whileHover="hover"
-            className="relative w-28 h-32"
-            style={{
-              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-              backgroundColor: '#1e293b',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'column',
-              textAlign: 'center',
-              padding: '10px',
-              cursor: 'pointer',
-              boxShadow: '0px 10px 15px rgba(0, 0, 0, 0.4)',
-              border: '2px solid #38bdf8', // Default border color
-              transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
-            }}
-          >
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      className="min-h-screen flex justify-center items-center bg-slate-900 relative"
+    >
+      {/* Inject the circular shadow animation CSS */}
+      <style>{circularShadowAnimation}</style>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 p-10">
+        {skills.map((skill, index) => {
+          const { icon, label } = skill;
+          const animation = iconAnimations[label];
+
+          return (
             <motion.div
-              style={{ fontSize: '30px' }}
-              whileHover={{ scale: 1.3, rotate: [0, 15, -15, 0] }}
+              key={index}
+              className="relative w-40 h-48 flex flex-col items-center justify-center bg-gradient-to-t from-slate-900 to-slate-900 rounded-lg p-4"
+              style={{
+                position: 'relative',
+                boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                animation: 'circularShadow 4s linear infinite',
+              }}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
             >
-              {skill.icon}
+              <motion.div
+                className="text-white"
+                style={{ fontSize: '40px', zIndex: 10 }}
+                {...(animation ? animation : {})} // Apply icon-specific animation if available
+              >
+                {icon}
+              </motion.div>
+              <div className="mt-4 text-white text-center">
+                <span className="block text-xl font-bold">{label}</span>
+                <span className="block text-sm text-gray-300">{skill.level}%</span>
+              </div>
             </motion.div>
-            <span style={{ marginTop: '10px', fontSize: '14px', fontWeight: 'bold' }}>
-              {skill.label}
-            </span>
-            <span style={{ fontSize: '12px', color: '#f1f5f9' }}>{skill.level}%</span>
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
+          );
+        })}
+      </div>
+    </motion.div>
   );
 };
