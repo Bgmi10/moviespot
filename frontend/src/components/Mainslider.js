@@ -19,7 +19,7 @@ export const Mainslider = ({data}) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    //autoplaySpeed: 5000,
     fade: true,
     dots: true,
     beforeChange: () => setAnimating(true),
@@ -37,30 +37,31 @@ export const Mainslider = ({data}) => {
   };
 
   return (
-    <div className="slider-container relative sm: p-4 lg:p-16 lg:py-2">
+    <div className="slider-container relative sm:p-4 lg:p-16 lg:py-2">
       <Slider {...settings}>
         {data?.map((i , index) => (
           <Link to={`/searchdetail/${i.id}`} key={index}>
             <div className="relative">
               <img
                 src={poster_url_desktop + i.backdrop_path}
-                className={`lg:w-full lg:h-96 object-cover rounded-lg sm:h-40 transition-opacity duration-1000 ${animating ? 'opacity-0' : 'opacity-100'}`}
+                className={`lg:w-full lg:h-96 object-cover  rounded-md sm: h-[450px] transition-opacity duration-1000 ${animating ? 'opacity-0' : 'opacity-100'}`}
                 alt=""
               />
-              <div className="absolute inset-0 bg-black bg-opacity-55 flex sm: px-4 sm: py-4 lg:px-10 lg:py-10 rounded-lg transition-all duration-100 0 ">
+              <div className="absolute inset-0 bg-black   bg-opacity-55 bg-gradient-to-tb from-black flex sm: px-4 sm: py-3 lg:px-10 lg:py-10 rounded-lg transition-all duration-100 0 ">
+                <div className='lg:flex'>
                 <img
                   src={ poster_url + i.poster_path}
-                  className={`mb-4 rounded-lg  duration-1000   transition-transform ${animating ? 'transform scale-90 opacity-0' : 'transform scale-100 opacity-100'}`}
+                  className={`mb-4 rounded-lg  duration-1000  sm: h-52 ml-5  transition-transform ${animating ? 'transform scale-90 opacity-0' : 'transform scale-100 opacity-100'}`}
                   alt=""
                 />
-                <div className="px-5">
+                <div className="px-5 ">
                 <h1 className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 lg:text-3xl font-bold sm: text-2xl transition-transform duration-1000 ${animating ? 'transform translate-y-10 opacity-0' : 'transform translate-y-0 opacity-100'}`}>
                      {  i.name || i.title}
                      </h1>
 
 
                 
-                  <p className={`text-gray-300 sm: text-[10px] py-3 lg:text-[24px] transition-transform duration-1000 font-extralight ${animating ? 'transform translate-y-10 opacity-0' : 'transform translate-y-0 opacity-100'}`}>
+                  <p className={`text-gray-100 sm: text-[10px] py-5  lg:text-[24px] transition-transform duration-1000 font-extralight ${animating ? 'transform translate-y-10 opacity-0' : 'transform translate-y-0 opacity-100'}`}>
                     {i.overview}
                   </p>
                   <div className=''>
@@ -68,6 +69,7 @@ export const Mainslider = ({data}) => {
                     Play Now
                     <FontAwesomeIcon icon={faPlayCircle} className="ml-2 text-blue-500" />
                   </span>
+                  </div>
                   </div>
                 </div>
               </div>
