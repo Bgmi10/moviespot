@@ -69,7 +69,7 @@ const Footer = () => {
          
             <span className="hover:text-rose-600 transition duration-300" onClick={() => window.location.href = '/terms-condition'}>| Terms of Service  </span>
             <span  className="hover:text-rose-600 transition duration-300" onClick={() => window.location.href = '/privacy-policy'}> | Privacy Policy </span> 
-            <span  className="hover:text-rose-600 transition duration-300" onClick={() => window.location.href = '/refund-policy'}> | Refundpolicy</span>
+            <span  className="hover:text-rose-600 transition duration-300" onClick={() => window.location.href = '/refund-policy`'}> | Refundpolicy</span>
            
            
             

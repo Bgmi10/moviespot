@@ -9,7 +9,7 @@ export const random = () =>{
     infinite: false,
     slidesToShow: 8,
     slidesToScroll: 8,
-  
+    arrows : false,
    
     
     responsive: [

@@ -53,7 +53,7 @@ export const Headeritems = () => {
                 position.y <= rect.bottom
             ) {
                 setTargetPosition({
-                    x: rect.left - 430,
+                    x: rect.left - 440,
                     y: rect.top -5,
                     width: rect.width ,
                     height: rect.height-4,
