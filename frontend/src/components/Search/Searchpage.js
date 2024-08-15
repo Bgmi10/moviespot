@@ -57,7 +57,7 @@ const Searchpage = () => {
         <div className="px-4 lg:px-32 flex flex-wrap justify-center">
             
         {data.length === 0 ? <p className='text-gray-300 '>No search found </p> : data.map((item) => (
-          <Link to={`/searchdetail/${item.id}`} key={item.id} >
+          <a href={`/searchdetail/${item.id}`} key={item.id} >
             <div className="p-4 flex flex-col items-center">
               <img
                 src={item.poster_path ? `${poster_url}${item.poster_path}` : gif}
@@ -69,7 +69,7 @@ const Searchpage = () => {
               </div>
             </div>
            
-          </Link>
+          </a>
         ))}
       </div>
     );

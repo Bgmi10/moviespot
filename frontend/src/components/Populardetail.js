@@ -27,7 +27,7 @@ const Populardetail = () => {
   }, [page]);
 
   const handleScroll = () => {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 1000) {
       setScrollCheck(true);
     }
   };
@@ -66,7 +66,7 @@ const Populardetail = () => {
   return (
     <div className="px-4 lg:px-32 flex flex-wrap justify-center">
       { data.map((item) => (
-        <Link to={`/searchdetail/${item.id}`} key={item.id} >
+        <a href={`/searchdetail/${item.id}`} key={item.id} >
           <div className="p-4 flex flex-col items-center">
             <img
               src={!item.poster_path ? gif  : `${poster_url}${item.poster_path}`}
@@ -78,7 +78,7 @@ const Populardetail = () => {
             </div>
           </div>
          
-        </Link>
+        </a>
       ))}
     </div>
   );
