@@ -41,12 +41,11 @@ const App = () => {
   const isprofilepage = window.location.pathname === '/profile'
   const today = new Date().toISOString().split('T')[0]; 
   const location = useLocation()
-   const category = 'movie'
-   const data = Usefetchmainslider({category})
-   const filtermovies = data?.data?.results.slice(15,20)
-
-   const ishomepage = location.pathname === '/'
-   const developroute = window.location.pathname === '/developer-profile'
+  const category = 'movie'
+  const data = Usefetchmainslider({category})
+  const filtermovies = data?.data?.results.slice(15,20)
+  const ishomepage = location.pathname === '/'
+  const developroute = window.location.pathname === '/developer-profile'
    
   
 

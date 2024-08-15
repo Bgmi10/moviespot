@@ -21,7 +21,7 @@ export const Mainslider = ({data}) => {
     autoplay: true,
     //autoplaySpeed: 5000,
     fade: true,
-    dots: true,
+    dots: true, 
     beforeChange: () => setAnimating(true),
     afterChange: () => setAnimating(false),
     arrows: false,
@@ -39,9 +39,9 @@ export const Mainslider = ({data}) => {
 
   return (
     <div className="slider-container ">
-      <Slider {...settings}>
+      <Slider {...settings} >
         {data?.map((i ) => (
-          <Link to={`/searchdetail/${i.id}`} key={i.id}>
+          <a href={`/searchdetail/${i.id}`} key={i.id}>
             <div className="">
               <img
                 src={poster_url_desktop + i.backdrop_path}
@@ -75,7 +75,7 @@ export const Mainslider = ({data}) => {
                 </div>
               </div>
             </div>
-          </Link>
+          </a>
         ))}
       </Slider>
     </div>

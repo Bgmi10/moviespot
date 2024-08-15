@@ -53,8 +53,8 @@ export const Headeritems = () => {
                 position.y <= rect.bottom
             ) {
                 setTargetPosition({
-                    x: rect.left - 440,
-                    y: rect.top -5,
+                    x: rect.left - 510,
+                    y: rect.top +4,
                     width: rect.width ,
                     height: rect.height-4,
                 });
@@ -76,7 +76,7 @@ export const Headeritems = () => {
 
     return (
         <>
-            <div className="hidden sm:flex ml-[400px] fixed">
+            <div className="hidden sm:flex ml-[400px] fixed  mt-[-30px]">
                 <div style={mouseeffect} ></div>
 
                 {header_list.map((item, index) => (

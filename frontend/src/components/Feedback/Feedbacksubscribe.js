@@ -5,12 +5,7 @@ import {db} from '../../utils/firebase'
 export const Feedbacksubscribe = ({movieId}) => {
 
     const [data , setData]  = useState([])
-    console.log(data)
-    
-
-    
-
-
+  
     const fetch_data = async () => {
         try {
             const movieRef = doc(db, "movies" , String(movieId));

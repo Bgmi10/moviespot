@@ -43,12 +43,12 @@ catch(error){
 
 
   return (
-    <div className='sm:p-0 lg:p-10 mt-2 '>
+    <div className='lg:p-2  mt-2 '>
          <div className='flex justify-between'>
-             <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-4 mt-2" : "text-2xl font-medium text-gray-800 mb-4 px-4 mt-2"}>{title}</h2>
-             <Link  to={`/popular-detail?apiurl=${encodeURIComponent(apiurl)}&sort=${encodeURIComponent(sort)}`} >
-         <h1 className={'text-gray-400 cursor-pointer  text-md font-medium  mr-2 py-3'  }  >More.. <FontAwesomeIcon icon={faArrowRight} /></h1>
-         </Link>
+             <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-2 mt-6 " : "text-2xl font-medium text-gray-800 mb-4 px-2 mt-6"}>{title}</h2>
+             <a  href={`/popular-detail?apiurl=${encodeURIComponent(apiurl)}&sort=${encodeURIComponent(sort)}`} >
+         <h1 className={'text-gray-400 cursor-pointer  text-md font-medium  mt-4 mr-2 py-3'  }  >More.. <FontAwesomeIcon icon={faArrowRight} /></h1>
+         </a>
          </div>
       
       
@@ -62,7 +62,7 @@ catch(error){
                  <div > 
             
 
-                 <img src={!item.poster_path ? moviesspotgif : poster_url + item.poster_path} className='block w-full rounded-2xl p-[6px] cursor-pointer transition-transform transform hover:scale-105' alt={item.title || item.name}  />
+                 <img src={!item.poster_path ? moviesspotgif : poster_url + item.poster_path} className='block w-full rounded-2xl p-[3px] cursor-pointer transition-transform transform hover:scale-105' alt={item.title || item.name}  />
 
                          
                 <p className='text-gray-500 px-[26px] text-sm '>{item.title || item.name} </p>
