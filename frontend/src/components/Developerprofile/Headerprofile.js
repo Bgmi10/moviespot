@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Timer from './Timer'; // Ensure this is the correct path to your Timer component
+import profile from './imgs/profile.jpg'
 
 const calculateStatusAndEndTime = () => {
   const now = new Date();
@@ -61,8 +62,8 @@ export const Headerprofile = () => {
         style={{ position: 'relative' }}
       >
         <img
-          src='https://img.freepik.com/premium-photo/cute-bald-hair-man-concept-without-beard_1057389-71897.jpg?size=626&ext=jpg&ga=GA1.1.1168591914.1718009553&semt=ais_hybrid'
-          className='w-12 h-12 rounded-full border-4 border-gray-800'
+          src={profile}
+          className='w-10 h-10 rounded-full border-4 border-gray-800'
           alt="Profile"
         />
         <motion.div

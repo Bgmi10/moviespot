@@ -9,6 +9,7 @@ import { Contactform } from './Contactform';
 import { Skillls } from './Skillls';
 import { Project } from './Project';
 import { opensourceprojects, projects } from './Utils/constants';
+import { Githubprofile } from './Gtihub/Githubprofile';
 
 export const Developerprofile = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -150,9 +151,9 @@ export const Developerprofile = () => {
 
         <Project  projects={projects} title={'Projects'}/>
         <Project  projects={opensourceprojects} title={'Open source'}/>
-
-       <Whyhire />
       
+       <Whyhire />
+       <Githubprofile />
     </>
   );
 };
