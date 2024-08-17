@@ -10,6 +10,7 @@ import { Skillls } from './Skillls';
 import { Project } from './Project';
 import { opensourceprojects, projects } from './Utils/constants';
 import { Githubprofile } from './Gtihub/Githubprofile';
+import { Downloadcv } from './Downloadcv';
 
 export const Developerprofile = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -37,7 +38,9 @@ export const Developerprofile = () => {
         }}
       >
         <AnimatePresence>
+          <Downloadcv />
           {!showForm && (
+            
             <motion.div
               initial={{ opacity: 0, scale: 0.5, y: -200 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -67,7 +70,8 @@ export const Developerprofile = () => {
                 }}
                 onClick={handleHireClick}
               />
-
+             
+             
               <motion.div
                 style={{
                   position: 'absolute',
@@ -86,6 +90,7 @@ export const Developerprofile = () => {
                 }}
                 
               >
+                
                 <motion.p
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -103,10 +108,15 @@ export const Developerprofile = () => {
                 >
                   <RocketLaunchIcon style={{ color: 'red' }} /> Hire Me
                 </motion.p>
+                
               </motion.div>
+              
             </motion.div>
+            
           )}
+          
         </AnimatePresence>
+        
 
         <div
           style={{
@@ -152,8 +162,9 @@ export const Developerprofile = () => {
         <Project  projects={projects} title={'Projects'}/>
         <Project  projects={opensourceprojects} title={'Open source'}/>
       
-       <Whyhire />
+       
        <Githubprofile />
+       <Whyhire />
     </>
   );
 };

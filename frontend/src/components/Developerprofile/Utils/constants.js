@@ -21,10 +21,15 @@ import yputube1 from '../imgs/youtube1.PNG'
 import yputube2 from '../imgs/youtube2.PNG'
 import yputube3 from '../imgs/youtube3.PNG'
 import stater2 from '../imgs/staterlight.PNG'
+import Chat1 from '../imgs/chat1.PNG'
+import Chat2 from '../imgs/chat2.PNG'
+import Chat3 from '../imgs/chat3.PNG' 
+import Chat4 from '../imgs/chat4.PNG'
+import Chat5 from '../imgs/chat5.PNG'  
 
 export const  projects = [
     {
-      title: 'Mid-Scale E-Commerce (Freelancing )',
+      title: 'Mid-Scale E-Commerce (Freelancing)',
       description: `Currently developing a small-scale Progressive Web App (PWA) for a client, with a focus on enhancing user experience and streamlining e-commerce operations. The project is approximately 70% complete, with production deployment anticipated by the end of the month. ...
   
       Key Features & Technologies:
@@ -54,7 +59,7 @@ export const  projects = [
       link : ''
     },
     {
-      title: 'Food ordering PWA using swiggy api ',
+      title: 'Food ordering PWA (swiggy api) ',
       description: `This project is a comprehensive frontend-only e-commerce platform inspired by Swiggy. It showcases advanced UI/UX design principles and leverages modern web technologies to create an intuitive and efficient shopping experience. Despite lacking a backend, the project covers essential features such as authentication, cart management, product display optimization, and more, all achieved through creative solutions and innovative techniques.
   
       Technologies Used:
@@ -93,7 +98,7 @@ export const  projects = [
       link : ''
     },
     {
-      title: 'Movie Spot using TMDB official api ',
+      title: 'Movie Spot (TMDB api) ',
       description: `🎬 Excited to unveil MOVIE SPOT, a cutting-edge movie web app! 🚀 Crafted with React.js, Tailwind CSS, and Firebase Auth, it boasts features like voice recognition, extreme UX, and code-splitting for optimal performance.
   
       🔍 Dynamic Search Functionality: Explore a vast collection of movies with our powerful search feature. Effortlessly find your favorite films or discover new ones using our intuitive search bar. We've integrated advanced search capabilities for a seamless and efficient user experience.
@@ -143,6 +148,13 @@ export const  projects = [
       Reddit-Style Nested Comments: The video detail page includes a nested comment section inspired by Reddit. This feature uses recursive methods to efficiently render comments and replies, providing an engaging discussion platform.`,
       imageUrl : [  yputube2  , yputube3 , yputube1],
       link : 'https://new-tube-black.vercel.app/'
+
+    },
+    {
+      title : "Real time Chat (socket.io)",
+      description : 'Implemented socket.io to connect the end user with Oauth and also group discussion  and for authentication used the Oauth 2.0 ',
+      link : 'https://realtimechat-xi-neon.vercel.app/', 
+      imageUrl : [Chat1 , Chat2 , Chat3 , Chat4 , Chat5]
 
     }
   ];
