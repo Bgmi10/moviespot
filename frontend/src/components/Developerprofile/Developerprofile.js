@@ -11,6 +11,7 @@ import { Project } from './Project';
 import { Freelanceprojects, opensourceprojects, projects } from './Utils/constants';
 import { Githubprofile } from './Gtihub/Githubprofile';
 import { Downloadcv } from './Downloadcv';
+import { Feedback } from './Feedback';
 
 export const Developerprofile = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -164,6 +165,7 @@ export const Developerprofile = () => {
         <Project projects={Freelanceprojects} title={'Freelance'} />
        
        <Githubprofile />
+       <Feedback />
        <Whyhire />
     </>
   );
