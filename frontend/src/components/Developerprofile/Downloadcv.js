@@ -8,7 +8,6 @@ export const Downloadcv = () => {
 
   const hadlepdfdownload = () => {
 
-   
      window.open(pdf , '_blank')
   }
 
@@ -28,6 +27,7 @@ export const Downloadcv = () => {
   }, []);
 
   return (
+   <> 
     <div style={{  marginLeft: '700px' , marginTop : '-50px' }}  >
       <motion.div
         animate={{
@@ -66,5 +66,6 @@ export const Downloadcv = () => {
        
       </motion.div>
     </div>
+  </>
   );
 };

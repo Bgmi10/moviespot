@@ -46,7 +46,7 @@ const App = () => {
   const filtermovies = data?.data?.results.slice(15,20)
   const ishomepage = location.pathname === '/'
   const developroute = window.location.pathname === '/developer-profile'
-   
+  
   
 
   return (
@@ -64,7 +64,7 @@ const App = () => {
            
               <>
               
-                {!isloginpage && !isprofilepage &&  <Header  />}
+                {!isloginpage && !isprofilepage && !developroute && <Header  />}
                 {!isloginpage && !isprofilepage && !ishomepage && !developroute && <Searchbar  /> }
                 
                 <React.Suspense fallback={<LottieAnimation  gif={preloader}/> }>

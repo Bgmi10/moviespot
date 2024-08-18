@@ -23,7 +23,7 @@ export const Headeritems = () => {
           link: '/contact'
         },
         {
-            title : 'Developer Profile ',
+            title : 'Developer-Profile ',
             link : '/developer-profile'
         }
     ];
@@ -53,7 +53,7 @@ export const Headeritems = () => {
                 position.y <= rect.bottom
             ) {
                 setTargetPosition({
-                    x: rect.left - 513,
+                    x: rect.left - 528,
                     y: rect.top +2,
                     width: rect.width ,
                     height: rect.height-4,
@@ -76,7 +76,7 @@ export const Headeritems = () => {
 
     return (
         <>
-            <div className="hidden sm:flex ml-[400px] fixed  mt-[-30px]">
+            <div className="hidden sm:flex ml-[400px] fixed  mt-[-33px]">
                 <div style={mouseeffect} ></div>
 
                 {header_list.map((item, index) => (
