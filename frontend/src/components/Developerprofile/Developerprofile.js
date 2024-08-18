@@ -8,7 +8,7 @@ import { Headerprofile } from './Headerprofile';
 import { Contactform } from './Contactform';
 import { Skillls } from './Skillls';
 import { Project } from './Project';
-import { opensourceprojects, projects } from './Utils/constants';
+import { Freelanceprojects, opensourceprojects, projects } from './Utils/constants';
 import { Githubprofile } from './Gtihub/Githubprofile';
 import { Downloadcv } from './Downloadcv';
 
@@ -161,7 +161,7 @@ export const Developerprofile = () => {
 
         <Project  projects={projects} title={'Projects'}/>
         <Project  projects={opensourceprojects} title={'Open source'}/>
-      
+        <Project projects={Freelanceprojects} title={'Freelance'} />
        
        <Githubprofile />
        <Whyhire />
