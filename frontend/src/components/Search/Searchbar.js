@@ -84,6 +84,7 @@ const Searchbar = () => {
   
 
   return (
+    <div className='py-32'>
     <div className={theme ? `bg-slate-900` : `bg-white`}  >
       <div className={ `flex justify-center items-center mb-4 ` }>
       <div  className="flex items-center relative">
@@ -137,6 +138,7 @@ const Searchbar = () => {
     
      <Search movies={movies} />
     
+      </div>
       </div>
   );
 };

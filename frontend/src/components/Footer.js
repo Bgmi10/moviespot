@@ -18,7 +18,7 @@ const Footer = () => {
     
   }
   return (
-    <footer className="relative bg-gray-900 text-white  mt-20">
+    <footer className=" bg-gray-900 text-white  mt-20 fixed" >
       <img src={footerimg} className="absolute inset-0 w-full h-full mt-10 object-cover opacity-25  " alt="Footer background" />
       <div className="relative z-10 container mx-auto px-6 bg-black bg-opacity-60 ">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

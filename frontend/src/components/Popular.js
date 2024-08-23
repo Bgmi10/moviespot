@@ -62,10 +62,10 @@ catch(error){
                  <div > 
             
 
-                 <img src={!item.poster_path ? moviesspotgif : poster_url + item.poster_path} className='block w-full rounded-2xl p-[3px] cursor-pointer transition-transform transform hover:scale-105' alt={item.title || item.name}  />
+                 <img src={!item.poster_path ? moviesspotgif : poster_url + item.poster_path} className='block w-full rounded-xl p-[4px] cursor-pointer transition-transform transform hover:scale-105' alt={item.title || item.name}  />
 
                          
-                <p className='text-gray-500 px-[26px] text-sm '>{item.title || item.name} </p>
+                <p className='text-gray-300 px-[26px] text-md '>{item.title || item.name} </p>
                 </div>
                 </a>
             )

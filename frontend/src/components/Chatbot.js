@@ -6,8 +6,6 @@ import { tamilmovies } from '../utils/constans';
 import './customchatbot.css'
 
 
-
-
 const handleMovieQuery = ({movieTitle}) =>{
   const movie = tamilmovies.find((movie) => movie.title.toLowerCase() === movieTitle.toLowerCase());
 

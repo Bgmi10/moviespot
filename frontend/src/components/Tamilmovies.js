@@ -30,9 +30,9 @@ const Moviecard = ({title, data }) => {
               <a href={ data.length >= 13  ? `/moviedetail/nowplaying/${item.id}` : `/moviedetail/vijayhits/${item.id}`}>
                
              
-              <img src={ item.poster_path } className='rounded-2xl  p-1 cursor-pointer  border-none outline-none hover:scale-105 transition-transform'>
+              <img src={ item.poster_path } className='     border-none outline-none  rounded-xl p-[4px] cursor-pointer transition-transform transform hover:scale-105'>
               </img>
-              <p className='text-gray-500 px-7 text-sm'>{item.title1}</p>
+              <p className='text-gray-300 px-7 text-md'>{item.title1}</p>
               </a>
             </div>
             

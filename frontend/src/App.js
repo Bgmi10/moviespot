@@ -18,6 +18,7 @@ import { Bottomnavbar } from './components/Bottomnavbar';
 import Usefetchmainslider from './components/Tvseries/Usefetchmainslider';
 import { Adbanner } from './components/Subscription/Adbanner';
 import { Developerprofile } from './components/Developerprofile/Developerprofile';
+import { Contact } from './components/Contact';
 
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
@@ -47,7 +48,9 @@ const App = () => {
   const ishomepage = location.pathname === '/'
   const developroute = window.location.pathname === '/developer-profile'
   
-  
+  const contacroute = window.location.pathname === '/contact'
+
+  const istvseries  =  window.location.pathname === '/tv-series '
 
   return (
    
@@ -65,7 +68,7 @@ const App = () => {
               <>
               
                 {!isloginpage && !isprofilepage && !developroute && <Header  />}
-                {!isloginpage && !isprofilepage && !ishomepage && !developroute && <Searchbar  /> }
+                {!isloginpage && !isprofilepage && !ishomepage && !developroute && !contacroute && !istvseries && <Searchbar  /> }
                 
                 <React.Suspense fallback={<LottieAnimation  gif={preloader}/> }>
                   <Routes>
@@ -79,7 +82,7 @@ const App = () => {
                         <Tamilmovies title = 'Now playing' data={tamilmovies}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
                         <Tamilmovies title='Ajith hits' data={ajith_hits} />
-                        < Adbanner />
+                        {/* < Adbanner /> */}
                        <div>
                         <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ta'} />
                         <Popular title='Comedy genres' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ta&with_genres=35'} />
@@ -111,6 +114,7 @@ const App = () => {
                      <Route path='/search-catagory' element={<LazySearchcatagory />} />
                      <Route path='/developer-profile' element={<Developerprofile />} />
                      <Route path='/refund-policy' element={<Lazyloadrefundpolicy />} />
+                     <Route path='/contact' element={<Contact />} />
                    </Routes>
                 </React.Suspense>
               </>

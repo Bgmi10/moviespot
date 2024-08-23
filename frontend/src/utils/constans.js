@@ -346,7 +346,7 @@ export const main_slider = [
 export const ajith_hits = [
   {
     id: 904557 ,
-    title: "Thunivu",
+    title1: "Thunivu",
     overview:
       "A gang goes to rob a bank only to find that there's already a criminal mastermind holding it for ransom, but his identities and motives behind the heist remains mysterious. As they plan to collect the bounty and disappear without a trace, their crimes and their past slowly catches up with them.",
       poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/5Cdi9MFxEGsfphvDxV4TyY4znP6.jpg',
@@ -357,7 +357,7 @@ export const ajith_hits = [
 
 {
     id: 640484 ,
-    title: "Valimai",
+    title1: "Valimai",
     overview:
       "A gang goes to rob a bank only to find that there's already a criminal mastermind holding it for ransom, but his identities and motives behind the heist remains mysterious. As they plan to collect the bounty and disappear without a trace, their crimes and their past slowly catches up with them.",
       poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/xa5USFw4I2SQPlD3wZ9kRn9shtB.jpg',
@@ -369,7 +369,7 @@ export const ajith_hits = [
 
 {
     id: 586291 ,
-    title: "Nerkonda Paarvai",
+    title1: "Nerkonda Paarvai",
     overview:
       "When three young women are harassed and implicated in a crime they didn't commit, a bipolar lawyer sets out to help them clear their names and prove it to everyone that a woman's consent matters..",
       poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/8Ttg8jI3rOG6RSAj195MwdXlnc1.jpg',
@@ -380,7 +380,7 @@ export const ajith_hits = [
 
 {
     id: 503356,
-    title: "Viswasam",
+    title1: "Viswasam",
     overview:
       "A village ruffian, who settles disputes in his native, takes on a big shot when he tries to sort out the rough patch in his marriage after several years..",
       poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/9XXABbZY62OWkkjUDPVysMTs7fc.jpg',
@@ -391,7 +391,7 @@ export const ajith_hits = [
 
 {
     id: 362150,
-    title: "Vedalam",
+    title1: "Vedalam",
     overview:
       "Ganesh, a cab driver and a doting brother to his sister Tamizh, is hunting down three notorious criminals in Kolkata. Who is he actually and what's his motive?.",
       poster_path: 'https://media.themoviedb.org/t/p/w188_and_h282_bestv2/cily2czYaIla7RoPQc8L1KO948e.jpg',
@@ -403,7 +403,7 @@ export const ajith_hits = [
 
 {
     id: 300983 ,
-    title: "Yennai Arindhaal",
+    title1: "Yennai Arindhaal",
     overview:
       "Sathyadev, who is on a career break, is forced to put on his cop shoes ones again to save Thenmozhi, a young woman who is the target of a criminal organ harvesting group, led by a ghost from his past.",
       poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/9IY8JqjLE63AESmzDGKmfhlgvGZ.jpg',
@@ -413,7 +413,7 @@ export const ajith_hits = [
 
 {
     id: 247504 ,
-    title: " Veeram",
+    title1: " Veeram",
     overview:
       "A straightforward man, who uses violence to settle disputes, decides to mend his ways for the sake of his lover, but when he learns that her family is in danger, he decides to save them at all cost.",
       poster_path: 'https://media.themoviedb.org/t/p/w220_and_h330_face/nN8R6j4KhKh5W7AQmtTcIgeGSK7.jpg',
@@ -421,7 +421,7 @@ export const ajith_hits = [
     download_link: "",
   },{
     id: 188540,
-    title: " Arrambam",
+    title1: " Arrambam",
     overview:
       "A man, along with a computer hacker, sets off on a mission to uncover a government scandal. As the dark secrets begin to tumble out"
   }
