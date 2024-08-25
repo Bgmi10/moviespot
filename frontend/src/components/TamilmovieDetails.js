@@ -14,7 +14,7 @@ const TamilmovieDetails = ({data}) => {
  const movieDetails = data.filter((item) => item.id === id)
 
   return (
-    <div>
+    <div className='mt-[-100px]'>
     <div className="relative flex flex-col items-center ">
       {movieDetails ? (
         <div className="relative  max-w-screen-md m-4 p-4 shadow-lg rounded-lg ">

@@ -75,7 +75,7 @@ const Searchdetail = () => {
 
   return (
   
-    <div>
+    <div className='mt-[-100px]'>
       
       <div  className=" flex flex-col items-center " >
 

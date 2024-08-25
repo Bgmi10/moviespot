@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export const Headeritems = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
+    const [scroll , setScroll] = useState(false)
 
     const header_list = [
         {
@@ -71,12 +72,25 @@ export const Headeritems = () => {
         transform: `translate(${targetPosition.x}px, ${targetPosition.y}px)`,
         transition: 'transform 0.3s ease, width 0.3s ease, height 0.3s ease', // Smooth transition
         pointerEvents: 'none',
-        zIndex: -1, // Ensure it appears behind the nav items
+        zIndex: -1, 
     };
+  
+   
+    const handlescroll = () => {
+       
+        setScroll(window.scrollY === 0)
+       
+    }
+   useEffect(() => {
 
+  
+    window.addEventListener('scroll' , handlescroll)
+
+    return () => window.removeEventListener('scroll' , handlescroll)
+   },[])
     return (
         <>
-            <div className="hidden sm:flex ml-[400px] fixed  mt-[-33px]">
+           {scroll  && <div className="hidden sm:flex ml-[400px] fixed  mt-[-33px] ">
                 <div style={mouseeffect} ></div>
 
                 {header_list.map((item, index) => (
@@ -86,7 +100,7 @@ export const Headeritems = () => {
                         </h1>
                     </Link>
                 ))}
-            </div>
+            </div>}
         </>
     );
 };

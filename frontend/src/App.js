@@ -49,8 +49,10 @@ const App = () => {
   const developroute = window.location.pathname === '/developer-profile'
   
   const contacroute = window.location.pathname === '/contact'
-
+  
   const istvseries  =  window.location.pathname === '/tv-series '
+  
+  const issearchdetaila  =  window.location.pathname === '/searchdetail/:id'
 
   return (
    
@@ -67,8 +69,8 @@ const App = () => {
            
               <>
               
-                {!isloginpage && !isprofilepage && !developroute && <Header  />}
-                {!isloginpage && !isprofilepage && !ishomepage && !developroute && !contacroute && !istvseries && <Searchbar  /> }
+                {!isloginpage && !isprofilepage && !developroute && <Header  />}  
+                {!isloginpage && !isprofilepage && !ishomepage && !developroute && !contacroute && !istvseries && !issearchdetaila && <Searchbar  /> }
                 
                 <React.Suspense fallback={<LottieAnimation  gif={preloader}/> }>
                   <Routes>
