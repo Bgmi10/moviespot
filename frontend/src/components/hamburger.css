@@ -5,13 +5,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    margin-left: 4px;
+    align-items: end;
     width: 35px;
     height: 35px;
     margin-top: 15px;
-    margin-left: 130px;
     cursor: pointer;
   }
+
   
   .line {
     width: 80%;

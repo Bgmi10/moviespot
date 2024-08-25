@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <div className='absolute z-20'>
+    <div className='absolute z-20' >
     <nav className=" mb-3 border-gray-500  flex items-center justify-between  ">
       <div className="flex items-center space-x-4 ml-2 sm: mt-3">
         <h1 className="text-rose-600 text-lg font-semibold  bg-black p-2 rounded-md  border-none outline-none ">
@@ -58,8 +58,8 @@ const Header = () => {
           )}
         </div>
         </div>
-
-        <div className="cursor-pointer lg:hidden" onClick={handleToggle}>
+        
+        <div className="cursor-pointer ml-32 lg:hidden" onClick={handleToggle}>
         <div className={`hamburger-icon ${isOpen ? 'open' : ''}`}>
           <div className="line top "></div>
           <div className="line middle"></div>
