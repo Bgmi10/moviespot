@@ -16,33 +16,32 @@ export const Mainslider = () => {
     setTimeout(() => {
       setAnimating(false);
       setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 1000); // Adjust duration to match transition time
+    }, 500); // Adjusted duration for faster transition
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Adjust interval time for autoplay
+    }, 5000); // Adjusted interval time for faster autoplay
     return () => clearInterval(interval);
   }, []);
 
   const handleclick = (id) => {
-    // console.log(id)
     // window.location.href = `/searchdetail/${id}`
   }
 
   return (
-    <div className="slider-container relative cursor-grab">
+    <div className="slider-container relative ">
       {showflixapi.map((i, index) => (
         <div
           key={i.objectId}
-          className={`slide absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+          className={`slide cursor-pointer absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
           style={{ zIndex: index === currentSlide ? 1 : 0 }}
           onClick={() => handleclick(i.objectId)}
         >
           <img
             src={i.backdrop}
-            className="sm: w-full sm: h-full lg:w-auto lg:h-auto  object-cover object-center"
+            className="sm: w-full sm: h-full lg:w-auto lg:h-auto object-cover object-center"
             alt=""
           />
           <div
@@ -54,22 +53,26 @@ export const Mainslider = () => {
             <div className="lg:flex sm: py-32 lg:py-0">
               <img
                 src={!i.poster ? moviespot_gif : i.poster}
-                className={`mb-2 rounded-xl duration-1000 lg:h-80  sm: h-auto  w-24 sm:w-auto ml-5 transition-transform ${animating ? 'transform scale-50 opacity-0' : 'transform scale-100 opacity-100'}`}
+                className={`mb-2 rounded-xl duration-500 lg:h-80 sm: h-auto w-24 sm:w-auto ml-5 transition-transform ${animating ? 'transform scale-50 opacity-0' : 'transform scale-100 opacity-100'}`}
                 alt=""
               />
               <div className="px-5">
-                <h1 className={`text-white lg:text-5xl font-bold text-xl sm:text-3xl transition-transform duration-1000 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
+                <h1 className={`text-white lg:text-5xl font-bold sm: text-3xl transition-transform duration-500 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
                   {i.name || i.title || i.movieName}
                 </h1>
-                <p className={`text-gray-100 text-[8px] sm:text-[10px] py-2 sm:py-4 lg:text-[15px] transition-transform duration-1000 font-extralight ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
+                <p className={`text-gray-100  sm: text-[10px] sm: py-4 lg:text-[15px] transition-transform duration-500 font-extralight ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
                   {i.overview || i.storyline}
                 </p>
-                <div className="mt-3">
-                  <span className={`border-2 rounded-md lg:p-[8px]  sm: p-[5px] text-white transition-transform duration-75 items-center w-16 sm:w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
+                <div className="mt-3  ">
+                  <span className={`border-2 rounded-md lg:p-[8px] sm: p-[5px] text-white transition-transform duration-500 items-center  sm: w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
                     Play Now
                     <FontAwesomeIcon icon={faPlayCircle} className="ml-1 sm:ml-2 text-rose-600 " />
                   </span>
+                 
                 </div>
+                {/* <div className='mt-8'>
+                    <span  className={`border-2 rounded-md lg:p-[8px] sm: p-[5px] text-white transition-transform duration-500 items-center  sm: w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>Download <img src='https://showflix.xyz/static/media/down.4feb75a3.gif'  className='h-7 w-7 rounded-full '/></span>
+                </div> */}
               </div>
             </div>
           </div>

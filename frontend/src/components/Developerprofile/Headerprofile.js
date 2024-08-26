@@ -47,7 +47,7 @@ export const Headerprofile = () => {
   }, []);
 
   return (
-    <div className='lg:flex lg:justify-between'>
+    <div className='lg:flex lg:justify-between p-10'>
     <Timer endTime={endTime} status={status} />
     <div className='flex justify-end mr-10 gap-3 items-center'>
       {/* Profile Picture with Animation */}

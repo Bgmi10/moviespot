@@ -14,10 +14,10 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const [theme, setTheme] = useState(true);
+ 
 
   const toggle = () => {
-    setTheme(!theme);
+
     dispatch(toggletheme());
   };
 
@@ -39,7 +39,7 @@ const Header = () => {
       
       <div className="flex items-center space-x-4  lg:ml-[1150px] sm: ml-72 sm: mt-3 absolute ">
         <DarkModeSwitch
-          checked={theme}
+          checked={theme1}
           onChange={toggle}
           size={27}
           className="mt-1"

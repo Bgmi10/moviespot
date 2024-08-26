@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const getpreference = () => {
      const data = localStorage.getItem('theme')
      
-     return data
+     return data ? JSON.parse(data) : true
 }
 const themeslice = createSlice({
     name : "theme",

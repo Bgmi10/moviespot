@@ -1,5 +1,5 @@
 import React, {lazy} from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, useParams, } from 'react-router-dom';
 import Header from './components/Header';
 import Searchbar from './components/Search/Searchbar';
 import Tamilmovies from './components/Tamilmovies';
@@ -47,12 +47,9 @@ const App = () => {
   const filtermovies = data?.data?.results.slice(15,20)
   const ishomepage = location.pathname === '/'
   const developroute = window.location.pathname === '/developer-profile'
-  
   const contacroute = window.location.pathname === '/contact'
-  
-  const istvseries  =  window.location.pathname === '/tv-series '
-  
-  const issearchdetaila  =  window.location.pathname === '/searchdetail/:id'
+  const istvseries  =  window.location.pathname === '/tv-series'
+  const issearchdetaila  =  window.location.pathname === `/searchdetail/`
 
   return (
    
@@ -95,10 +92,8 @@ const App = () => {
                         <Chatbot />
                       
                         </>
-                         
                        
                       }
-                      
                       
                     />
                     
