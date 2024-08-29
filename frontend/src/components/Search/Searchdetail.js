@@ -14,6 +14,8 @@ import how_to_Donload_vid from '../../img/howodownload.mp4'
 import { Crewcast } from '../Crewcast'
 import ReactPlayer from 'react-player'
 import { Feedbackform } from '../Feedback/Feedbackform'
+import { Feedbacksubscribe  } from '../Feedback/Feedbacksubscribe'
+
 
 const Searchdetail = () => {
  
@@ -175,6 +177,10 @@ const Searchdetail = () => {
 
       <div>
         <Crewcast data= {data} />
+      </div>
+
+      <div>
+          <Feedbacksubscribe />
       </div>
       
     </div>

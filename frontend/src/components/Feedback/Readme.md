@@ -14,3 +14,7 @@ content inside the card :
          => rating section with stars out of 10 
 
          => 
+
+# create a slider or a section with comment cards being load with UX & UI
+
+ => create a component called FeedbackUI 
