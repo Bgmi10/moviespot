@@ -34,7 +34,7 @@ const Profile = () => {
        <img
           src={auth.user.picture}
           alt='n'
-          className="h-[33px] w-[33px] ml-0 cursora-pointer rounded-full mt-2"
+          className="h-[40px] w-[50px] ml-6 cursor-pointer rounded-full mt-1"
 
           
 

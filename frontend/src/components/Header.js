@@ -37,7 +37,7 @@ const Header = () => {
         </div>
       </div>
       
-      <div className="flex items-center space-x-4  lg:ml-[1150px] sm: ml-72 sm: mt-3 absolute ">
+      <div className={"flex items-center space-x-4  lg:ml-[1150px] sm: ml-72 sm: mt-3 absolute "}>
         <DarkModeSwitch
           checked={theme1}
           onChange={toggle}

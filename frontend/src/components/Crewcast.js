@@ -55,7 +55,7 @@ export const Crewcast = ({data}) => {
         {
             castdata?.cast?.map((i) =>(
                 <div key={i.id} className='mt-6'>
-                    <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path}  className=' p-2  '/>\
+                    <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path}  className=' p-2  '/>
                     <div className='ml-3'>
                     <h1 className='text-gray-300 font-medium  text-xl text-transparent bg-clip-text  bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 '>{i.name} </h1>
                       <span className={theme ? 'text-gray-500  font-light text-lg' : 'text-gray-700 font-light text-lg'}>{i.character}</span>
