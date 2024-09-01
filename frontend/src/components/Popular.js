@@ -64,21 +64,21 @@ export const Popular = ({ title, apiurl, sort }) => {
               >
                 {item.id === hoverid && (
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-black via-black to-transparent flex items-center justify-center transition-transform duration-300 ease-in-out group-hover:scale-110 my-[9px] mx-1"
+                    className="absolute inset-0 bg-gradient-to-t from-black via-black  to-transparent flex items-center justify-center transition-transform duration-500 ease-in-out group-hover:scale-110 my-[9px] mx-1"
                     style={{ zIndex: 10 }}
                   >
                     <FaPlay
-                      className="text-rose-600 text-6xl shadow-lg animate-pulse"
+                      className="text-rose-600 text-3xl shadow-lg "
                       style={{
                         zIndex: 10,
-                        filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.9))',
+                        filter: 'drop-shadow(0 0 15px rgba(245, 255, 255, 0.9))',
                       }}
                     />
                   </div>
                 )}
                 <img
                   src={!item.poster_path ? moviesspotgif : `${poster_url}${item.poster_path}`}
-                  className="w-full rounded-xl p-[4px] cursor-pointer transition-transform duration-300 ease-in-out transform group-hover:scale-105"
+                  className="w-full rounded-xl p-[4px] cursor-pointer transition-transform duration-300 ease-in-out transform "
                   alt={item.title || item.name}
                 />
               </div>

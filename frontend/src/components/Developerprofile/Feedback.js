@@ -21,9 +21,97 @@ export const Feedback = () => {
     }),
   };
 
+  
+const headingVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  
+
+
+var mockdata = [
+    {
+        userimg : 'https://yt4.ggpht.com/ytc/AIdro_lN1r14JyVE1HV827fOA4jwcUpML9JATe2vub3wBZwgdO1_u1mEpcWHSejRd9oj5lcaaA=s64-c-k-c0x00ffffff-no-rj',
+        username : 'chrein',
+        usermsg : 'Working with subash was super cool❣️ ',
+        stars : 4
+
+    },
+    {
+        userimg : 'https://yt4.ggpht.com/XA7E0cVUxmGUkxuXGa0DO6UhE1DMuWN6UJ3VX0L3EhT_Kob_khuWdsUyBcTAR8r3g71xM0EvQw=s64-c-k-c0x00ffffff-no-rj',
+        username : 'leo-24',
+        usermsg : 'Highly recommended this guy to manage end to end UI',
+        stars  :3
+
+    },
+    {
+        userimg : 'https://yt4.ggpht.com/TBKoaJvmEiEypkw4gcEfe-uhEKP3G3kXItrDlscVbHJ7qBITPQCjcosXhkXjgzzADByVIPRdfp4=s64-c-k-c0x00ffffff-no-rj',
+        username : 'raje',
+        usermsg : 'On time project submission',
+        stars : 4
+
+    },{
+        userimg : 'https://yt4.ggpht.com/plXk6LHGu_M3wvIiX3i54scQqsUUn6NjsMyXAeKyprt5FzSqZ1VipH_YhhZC3KtAFdFGldGHqw=s64-c-k-c0x00ffffff-no-rj',
+        username : 'rake',
+        usermsg : '100 X developer 💨',
+        stars : 4
+
+    },
+    {
+        userimg : 'https://yt4.ggpht.com/Z7_PtvSQZeNuSZibVoo-6-VOM2cjqA8eoSPdLzcIIil2ecy3eD7YvUKpOrIJF0MgrmwfF-sY=s32-c-k-c0x00ffffff-no-rj',
+        username : 'Shrikanth sharma',
+        usermsg : 'Replaced the ugly UI within an hour',
+        stars : 5
+    },
+    {
+        userimg : 'https://yt4.ggpht.com/A3RrWRy7WUkwl17xC7PVQUIHwJpFn6ZSRtRgJKP2GG7RyKJ1sLTRRsQukJJpZOKXM79DId1n64Q=s64-c-k-c0x00ffffff-no-rj',
+        username : 'Nikhil',
+        usermsg : 'Reducing the lcp payload on UI. reduced bounce rate report',
+        stars : 4
+
+    },{
+        userimg : 'https://yt4.ggpht.com/nJ7z2jCd44so_bSOS8-sqYUR0cr05ZhrqHOe4lmMcCHMC96n6oj3LCLF01ypJ8fjkM1GLbfW5w=s32-c-k-c0x00ffffff-no-rj',
+        username : 'Harmit',
+        usermsg : 'Developed the whole page in a single night.  it was a amazing work with you :)',
+        stars : 5
+
+    },
+     {
+        userimg : 'https://yt4.ggpht.com/ytc/AIdro_l4XyS0lL3Q-TSA_hMIvrtgRaMUv3z_m7LQEhY-voPrR4U=s64-c-k-c0x00ffffff-no-rj',
+        username : 'karan sigh',
+        usermsg : 'i would highly recommend this person. will see on future projects',
+        stars : 3
+
+    },
+    {
+        userimg : 'https://yt4.ggpht.com/BBPEyRIuuqWHhPDrlt__nk1szuL1dB70d87e_J1ajEJY2txqebtavK4RYZ8vm3gmH3Vw-3Fp=s32-c-k-c0x00ffffff-no-rj',
+        username : 'Kush raghul',
+        usermsg : 'periodic knock ❤',
+        stars : 5
+
+    },
+   
+]
   return (
-    <div className='relative h-screen overflow-hidden  '>
-     
+    <>
+    <div className='justify-center flex mt-20'>
+
+                <span className='text-bold text-gray-600'></span>
+
+                <motion.h2
+                 variants={headingVariants}
+                 initial="hidden"
+                 animate="visible"
+                 transition={{ duration: 1, ease: 'easeInOut' }}
+                 className="text-4xl font-extrabold text-center text-white mb-12"
+                >
+                 Clients Acknowledgement
+                </motion.h2>
+
+             </div>
+    <div className='relative h-screen overflow-hidden   mb-20'>
+             
         <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black to-transparent z-10"></div>
 
        
@@ -38,7 +126,7 @@ export const Feedback = () => {
                 duration: 40, 
                 repeat: Infinity, 
                 ease: 'linear',
-                repeatType :"mirror"
+                
             }}
         >
             {mockdata.map((i, index) => (
@@ -57,97 +145,6 @@ export const Feedback = () => {
             ))}
         </motion.div>
     </div>
+    </>
 );
 };
-
-
-var mockdata = [
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'chrein',
-        usermsg : 'Working with subash was super cool❣️ ',
-        stars : 4
-
-    },
-    {
-        userimg : 'https://instagram.fmaa1-2.fna.fbcdn.net/v/t51.2885-19/451197649_1149334886291858_1342439340489177934_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fmaa1-2.fna.fbcdn.net&_nc_cat=1&_nc_ohc=YWhClVo6-xsQ7kNvgFkDNA-&edm=APs17CUBAAAA&ccb=7-5&oh=00_AYBCLqVp_CUrNBqs_AOhC8poJK_Uyz2kCXIxZ_JAvuG5iQ&oe=66C7E380&_nc_sid=10d13b',
-        username : 'leo-24',
-        usermsg : 'Highly recommended this guy and working with this people ',
-        stars  :3
-
-    },
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy '
-
-    },{
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy '
-
-    },
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy '
-
-    },
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy ',
-        stars : 4
-
-    },{
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy ',
-        stars : 5
-
-    },
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy ',
-        stars : 4
-
-    },
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy ',
-        stars : 5
-
-    }, {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy ',
-        stars : 4
-
-    },
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy ',
-        stars : 4
-
-    },
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy '
-
-    },{
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy '
-
-    },
-    {
-        userimg : 'https://ui.aceternity.com/_next/image?url=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F1774006615370276865%2F0gASM8m6_normal.jpg&w=1080&q=75',
-        username : 'subash',
-        usermsg : 'ive met this guy '
-
-    },
-]

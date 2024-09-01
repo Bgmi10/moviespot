@@ -54,23 +54,23 @@ export const Feedbacksubscribe = ({ movieId }) => {
     <>
       <div className='mt-10'>
         {data && (
-          <span className={`text-2xl font-bold ${theme ? 'text-gray-300' : 'text-gray-700'} sm:px-3`}>
+          <span className={` ${theme ? ' sm: text-3xl lg:text-3xl font-bold  text-gray-300 sm: px-3 m-1  mt-10  ' : 'text-3xl font-bold  text-gray-700 sm: px-4 m-1  mt-10'} `}>
             Ratings and Reviews
           </span>
         )}
       </div>
       {data?.length === 0 ? (
         <div className='justify-center flex '>
-        <p className={theme ? 'text-gray-400 font-medium text-xl mb-3' : 'text-gray-600 text-xl font-medium mb-3'}>No reviews</p>
+        <p className={theme ? 'text-gray-400 font-medium text-xl mb-14 mt-5' : 'text-gray-600 text-xl font-medium mb-14 mt-5'}>No reviews</p>
         </div>
       ) : (
-        <div className='flex justify-start  flex-wrap'>
+        <div className='flex justify-center  flex-wrap'>
           {data?.map((i) => (
             <div
               key={i.id}
-              className={`border ${theme ? 'border-gray-700 bg-slate-800 text-gray-300' : 'border-gray-300 bg-white text-gray-700'} rounded-lg mt-10 h-auto w-2/4 p-5 m-5 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out`}
+              className={`border ${theme ? 'border-gray-700 bg-slate-800 w-[370px] text-gray-300' : 'border-gray-300 bg-white text-gray-700'} rounded-lg mt-10 h-auto w-2/4 p-3 m-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out`}
             >
-              <div className='flex items-center justify-between mb-3'>
+              <div className='flex items-center justify-between mb-3 '>
                 <div className='flex justify-start '>
                 <img
                   src={i.userprofilepic || 'https://in.bmscdn.com/in/synopsis-new/noimguser.jpg'}
