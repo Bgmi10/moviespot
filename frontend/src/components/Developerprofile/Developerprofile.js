@@ -39,7 +39,7 @@ export const Developerprofile = () => {
         }}
       >
         <AnimatePresence>
-          <Downloadcv />
+          {/* <Downloadcv /> */}
           {!showForm && (
             
             <motion.div

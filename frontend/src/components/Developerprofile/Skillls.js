@@ -18,7 +18,7 @@ const cardVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   hover: {
-    scale: 1.05,
+
     transition: {
       duration: 0.3,
       ease: 'easeInOut',
@@ -84,8 +84,8 @@ export const Skillls = () => {
               className="relative w-40 h-48 flex flex-col items-center justify-center bg-gradient-to-t from-slate-900 to-slate-900 rounded-lg p-4"
               style={{
                 position: 'relative',
-                boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                // boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
+                // border: '1px solid rgba(255, 255, 255, 0.1)',
                 animation: 'circularShadow 4s linear infinite',
               }}
               variants={cardVariants}
@@ -94,8 +94,8 @@ export const Skillls = () => {
               whileHover="hover"
             >
               <motion.div
-                className="text-white"
-                style={{ fontSize: '40px', zIndex: 10 }}
+                className="text-white "
+                style={{ fontSize: '70px', zIndex: 10 }}
                 {...(animation ? animation : {})} // Apply icon-specific animation if available
               >
                 {icon}

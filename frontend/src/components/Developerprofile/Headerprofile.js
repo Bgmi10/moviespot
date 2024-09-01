@@ -4,12 +4,13 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Timer from './Timer'; // Ensure this is the correct path to your Timer component
 import profile from './imgs/profile.jpg'
+import { Downloadcv } from './Downloadcv';
 
 const calculateStatusAndEndTime = () => {
   const now = new Date();
   const currentHour = now.getHours();
   const currentMinutes = now.getMinutes();
-
+  
   // Set the work hours
   const WORK_START = 9; // 9 AM
   const WORK_END = 17; // 5 PM
@@ -38,6 +39,7 @@ export const Headerprofile = () => {
   const [{ status, endTime }, setStatusAndEndTime] = useState(calculateStatusAndEndTime());
 
 
+
   useEffect(() => {
     const interval = setInterval(() => {
       setStatusAndEndTime(calculateStatusAndEndTime());
@@ -51,6 +53,8 @@ export const Headerprofile = () => {
     <Timer endTime={endTime} status={status} />
     <div className='flex justify-end mr-10 gap-3 items-center'>
       {/* Profile Picture with Animation */}
+        
+          <Downloadcv />
       
       <motion.div
         whileHover={{
@@ -94,17 +98,11 @@ export const Headerprofile = () => {
             transition: { type: 'spring', stiffness: 300, damping: 10 },
           }}
           whileTap={{ scale: 0.9 }}
+         
         >
           <GitHubIcon className='text-white cursor-pointer' fontSize='large' onClick={() => { window.location.href = 'https://github.com/Bgmi10'; }} />
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className='absolute bottom-12 bg-gray-900 text-white text-xs rounded py-1 px-2'
-        >
-          GitHub Profile
-        </motion.div>
+       
       </div>
 
       {/* LinkedIn Icon with Tooltip */}
@@ -121,14 +119,7 @@ export const Headerprofile = () => {
         >
           <LinkedInIcon className='text-blue-500 cursor-pointer' style={{ fontSize: '40px' }} onClick={() => { window.location.href = 'https://www.linkedin.com/in/subash-profile/'; }} />
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className='absolute bottom-12 bg-gray-900 text-white text-xs rounded py-1 px-2'
-        >
-          LinkedIn Profile
-        </motion.div>
+       
       </div>
 
       {/* Timer Component */}

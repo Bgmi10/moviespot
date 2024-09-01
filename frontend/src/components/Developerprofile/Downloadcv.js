@@ -28,7 +28,7 @@ export const Downloadcv = () => {
 
   return (
    <> 
-    <div style={{  marginLeft: '700px' , marginTop : '-50px' }}  >
+    <div   >
       <motion.div
         animate={{
           rotateY: [10, 20, 10], // Oscillate rotation
@@ -42,10 +42,10 @@ export const Downloadcv = () => {
         style={{
           position: 'relative',
           width: '160px',
-          height: '50px',
+          height: '40px',
           backgroundColor: '#1f2937', // Darker slate color
           color: '#e5e7eb', // Lighter text for contrast
-          borderRadius: '12px',
+          borderRadius: '8px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Headeritems = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
-    const [scroll , setScroll] = useState(false)
+    const [scroll , setScroll] = useState(true)
 
     const header_list = [
         {
