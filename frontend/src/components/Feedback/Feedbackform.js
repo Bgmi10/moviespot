@@ -31,7 +31,7 @@ export const Feedbackform = ({data , toggleform , movieid , theme}) => {
   return (
    <>
      <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-sm ">
-          <div className="relative flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 opacity-0 animate-fadeIn ">
+          <div className="relativ e flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 opacity-0 animate-fadeIn ">
     
           { feedbackformsubmission ? <div><LottieAnimation gif={gif}   />  <p className='text-white '>Your Feedback Is Our Beacon ! </p> </div> : <div className={ (theme ? 'bg-slate-900' : 'bg-white' )+ ' w-96 h-auto  rounded-md transition-transform'}>
            <div className={theme ? 'flex justify-evenly shadow-gray-800  shadow-md rounded-md  ' :'flex justify-evenly  shadow-md rounded-md  ' }>
@@ -70,10 +70,8 @@ export const Feedbackform = ({data , toggleform , movieid , theme}) => {
                    color="secondary"
                />
 
-    <h1 className=' font-bold text-gray-600  text-2xl ml-4'>{starvalue} </h1>  <FontAwesomeIcon icon={faStar}  className='text-yellow-300 text-2xl '/>
-</div>
-
-                 
+    <h1 className=' font-bold text-gray-600  text-2xl ml-4'>{starvalue} </h1>  <FontAwesomeIcon icon= {faStar}  className='text-yellow-300 text-2xl '/>
+  </div>
 
             </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import moviespot_gif from '../img/movieSpotgif.gif';
 import { showflixapi } from '../utils/Showflixapi';
 import './cutom-slide.css'; 
@@ -63,10 +63,13 @@ export const Mainslider = () => {
                 <p className={`text-gray-100  sm: text-[10px] sm: py-4 lg:text-[15px] transition-transform duration-500 font-extralight ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
                   {i.overview || i.storyline}
                 </p>
-                <div className="mt-3  ">
-                  <span className={`border-2 rounded-md lg:p-[8px] sm: p-[5px] text-white transition-transform duration-500 items-center  sm: w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
+                <div className="mt-3  " >
+                  <span className={`border-2 rounded-md lg:p-[8px] sm: p-[5px] text-white transition-transform duration-500 items-center  sm: w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}  style={{
+                      
+                      filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.9))',
+                    }}>
                     Play Now
-                    <FontAwesomeIcon icon={faPlayCircle} className="ml-1 sm:ml-2 text-rose-600 " />
+                    <FontAwesomeIcon icon={faPlay} className="ml-1 sm:ml-2 text-rose-600" />
                   </span>
                  
                 </div>
