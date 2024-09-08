@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom'
 import { poster_url } from '../../utils/constans'
 import { Recommendation } from '../Recommendation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faStar } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from 'react-redux'
+import { faArrowDown, faClose, faPlay, faStar } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from 'react-redux'
 import ShareIcon from '@mui/icons-material/Share';
 import { LottieAnimation } from '../lottie'
 import SlowMotionVideoIcon from '@mui/icons-material/SlowMotionVideo';
@@ -14,6 +14,7 @@ import how_to_Donload_vid from '../../img/howodownload.mp4'
 import { Crewcast } from '../Crewcast'
 import ReactPlayer from 'react-player'
 import { Feedbackform } from '../Feedback/Feedbackform'
+import { Id } from '../../utils/Idslice'
 
 
 const Searchdetail = () => {
@@ -21,6 +22,8 @@ const Searchdetail = () => {
   const [feedbackform , setfeedbackform] = useState(false)
   const [data, setdata] = useState('')
   const {id} = useParams()
+  const dispatch = useDispatch()
+  dispatch(Id(id))
   const theme = useSelector(store => store.theme.toggletheme)
   const movietoggle = useSelector(store => store.movietoggle.togglemovie)
   const [isshow , setisshow] = useState(false)
@@ -76,7 +79,7 @@ const Searchdetail = () => {
 
   return (
   
-    <div className='mt-[-100px]'>
+    <div>
       
       <div  className=" flex flex-col items-center " >
 
@@ -88,63 +91,71 @@ const Searchdetail = () => {
 
 
       {data ? (
-        <div className="relative max-w-screen-md m-4 p-4 shadow-lg rounded-lg text-white " >
-          <div
-            style={{ backgroundImage: `url(${`https://image.tmdb.org/t/p/w1066_and_h600_bestv2`}${data?.backdrop_path})` }}
-            className="w-full h-80 bg-cover rounded-lg mb-2 relative "
-          >
-           
+        <div className="relative  inset-0 ease-in-out  shadow-lg rounded-lg text-white " >
+         
+            <img src={'https://www.themoviedb.org/t/p/original/' + data?.backdrop_path}  className="sm: w-full sm: h-[800px] lg:w-auto lg:h-auto object-cover object-center "/>
             {/* Overlay with Poster Image */}
-            <div className="absolute top-0 left-0 w-full h-full  rounded-lg   bg-gradient-to-b from-transparent to-black  p-2">
-              <img src={poster_url + data?.poster_path} alt="" className="w-38 h-60 rounded-lg  " />
-            </div>
+            <div
+            className="absolute inset-0 bg-black bg-opacity-60 flex flex-col  px-4  lg:py-[148px] sm: py-[120px] "
+            style={{
+              backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 50%)',
+            }}
+          >
+            <div className="lg:flex  lg:py-0 ">
+              <img
+                src={'https://www.themoviedb.org/t/p/original/' +  data?.poster_path}
+                className={`mb-2 rounded-xl duration-500 lg:h-80 sm:h-auto w-24 sm:w-auto ml-5 transition-transform `}
+                style={{
+                  zIndex: 10,
+                  
+                }}
+                alt=""
+               
+              />
+                 <div className="px-5">
+                <h1 className={`text-white lg:text-5xl font-bold sm: text-3xl transition-transform duration-500`}>
+                  {data?.name || data?.title || data?.movieName}
+                </h1>
+                <p className={`text-gray-100  sm: text-[10px] sm: py-4 lg:text-[15px] transition-transform duration-500 font-extralight`}>
+                  {data?.overview || data?.storyline}
+                </p>
+        <div className="mt-3   " >
 
-          </div>
-
-          <h1 className={`text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600 lg:text-3xl font-bold sm: text-3xl transition-transform duration-1000 mb-4`}>
-                     {  data?.name || data?.title}
-                     </h1>
-
-          {/* Overview */}
-          <p className={theme ? "text-gray-400 mb-4 font-light" :  "text-gray-500 mb-4 font-light"}>{data?.overview}</p>
-            <div>
-               <TextRunner  text="please use Vpn to download this movie"  duration={10}/>
-             </div>
-         <div className={theme ? 'text-gray-300 lg:flex   ' : 'text-gray-700 lg:flex  p-2 '}>
+                <div className={theme ? 'text-gray-300 lg:flex   ' : 'text-gray-700 lg:flex  p-2 '}>
           <a
              href={`https://1moviesda.net/${categoryname}-${toggle_type_release_data}-movie-download/`}
             
-            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex  sm: ml-4  sm: w-48 lg:ml-0 " }
+            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex    lg:ml-0 sm: w-52 lg:w-auto " }
           >
-            Download link-1 <FontAwesomeIcon icon={faArrowDown}  className={theme ? 'animate-bounce px-2 py-1  text-teal-400' : 'animate-bounce px-2 py-1  text-rose-600'}/>
+            Download link-1  <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1   ml-1  text-rose-600'}/>
 
           </a>
           <a
              href={`https://1moviesda.net/${categoryname}-movie-download/`}
           
             // https://1moviesda.net/thuppakki-movie-download/
-            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex   ml-4 sm: w-48 " }
+            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex lg:ml-4 sm: w-52 lg:w-auto" }
           >
-            Download link-2 <FontAwesomeIcon icon={faArrowDown}  className={theme ? 'animate-bounce px-2 py-1  text-teal-400' : 'animate-bounce px-2 py-1  text-rose-600'}/>
+            Download link-2 <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1 ml-1  text-rose-600'}/>
           
           </a>
          
           <button
-            className={"mt-6  bg-gray-500    px-4 py-2 rounded-md  flex   ml-4 text-black " }
+            className={"mt-6  bg-gray-500    px-4 py-2 rounded-md  flex   lg:ml-4 text-black " }
             onClick={handle_how_to_download}
           >
             
           <SlowMotionVideoIcon />  How to download ?
           </button>
           <button
-            className={"mt-6  bg-rose-600    px-4 py-2 rounded-md  flex   ml-4 text-black " }
+            className={"mt-6  bg-rose-600    px-4 py-2 rounded-md  flex   lg:ml-4 text-black " }
             onClick={handleshowfeedbackform}
           >
             
           < FontAwesomeIcon icon={faStar} className='text-yellow-300 mt-1 m-1'/>   Rate  Now
           </button>
           <button
-            className={"mt-6   bg-blue-400   px-4 py-2 rounded-md  flex   ml-4 text-black " }
+            className={"mt-6   bg-blue-400   px-4 py-2 rounded-md  flex   lg:ml-4 text-black " }
             onClick={handleshareclick}
           >
             Share <ShareIcon className='mt-[2px]' />
@@ -152,13 +163,34 @@ const Searchdetail = () => {
           </button>
           
           </div>
-          <div>
+                 
+                </div>
+                <div>
           {
-            isshow && <div className='backdrop-blur-sm mt-3'>
+            isshow && 
+            <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-sm ">
+               <FontAwesomeIcon icon={faClose}  onClick={() => setisshow(false)} className='text-4xl cursor-pointer text-rose-600 bg-black rounded-full p-3 mr-10 '/>
+          <div className="relativ e flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 opacity-0 animate-fadeIn ">
+         
+           
+            <div className='backdrop-blur-sm mt-3 outline-none'>
+            
                  <ReactPlayer url={how_to_Donload_vid }  loop={true} controls={true}  playing={true} width={"350px"} height={'200px'} style={{borderRadius : "20px"}}/>
+                 </div></div>
             </div>
           }
             </div>
+              </div>
+            
+            </div>
+          </div>
+
+          
+            {/* <div>
+               <TextRunner  text="please use Vpn to download this movie"  duration={10}/>
+             </div> */}
+     
+         
           </div>
          
         

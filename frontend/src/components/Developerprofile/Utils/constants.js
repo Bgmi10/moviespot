@@ -30,6 +30,19 @@ import nexsus from '../imgs/nexsus.PNG'
 import kari1 from '../imgs/kari1.PNG'
 import kari2 from '../imgs/kari2.PNG'
 import kari3 from '../imgs/kari3.PNG'
+import fj1 from '../imgs/findjob1.PNG'
+import fj2 from '../imgs/findjob2.PNG'
+import fj3 from '../imgs/findjob3.PNG'
+import fj4 from '../imgs/findjob4.PNG'
+import fj5 from '../imgs/findjob5.PNG'
+import fj6 from '../imgs/findjob6.PNG'
+import fj7 from '../imgs/findjob7.PNG'
+import fjlp from '../imgs/findjoblandpage.PNG'
+import fjr1 from '../imgs/findjobr1.PNG'
+import fjr2 from '../imgs/findjobr2.PNG'
+import fjr3 from '../imgs/findjobr3.PNG'
+import fjr4 from '../imgs/findjobr4.PNG'
+
 
 export const  projects = [
    
@@ -135,6 +148,47 @@ export const  projects = [
       link : 'https://realtimechat-xi-neon.vercel.app/', 
       repo : 'https://github.com/Bgmi10/Real-time-caht-application',
       imageUrl : [Chat1 , Chat2 , Chat3 , Chat4 , Chat5]
+
+    },
+    {
+      title : "Find Job (inspired by linkedin)",
+      description : ` 
+      Find Job (inspired by linkedin)Find Job (inspired by linkedin)
+      Aug 2024 - Sep 2024Aug 2024 - Sep 2024
+      Overview :
+       In this project ive leveraged the strapi for backend and react for frontend. goal of the project is to demonstrate the company requirements to every hunger candidate. who was looking to get a job. role based access control will handle the user preference. scheme design can be challenging part. my wish i had chat gpt to solve the problem 🙃. on the UI part i used react to build the user interface. recruiter can change the status of applicant profile. so, at the end the project is exists to find talented candidates on the other hand for candidates it will be very useful to apply for jobs 
+      
+      
+      key features : 
+      
+       => Candidate 
+       =>Role based access control 
+       => Able to track applied jobs
+       => landing page 
+       => Clerk to handle efficient user authentication management 
+       => Search && Filter jobs 
+       => Protected routes 
+       => Save the jobs 
+       => Apply for jobs 
+       
+       => Recruiter 
+       => Protected routes only be access by recruiter 
+       => Able to post jobs 
+       => Able to track jobs applicants profile
+       => Job Listing page 
+       => Update job applicant status
+      
+      Technologies : 
+      
+       => React.js (UI)
+       => tailwindcss (styling)
+       => strapi (Headless CMS)
+       => Clerk (authentication)
+       => DB (strapi build in sql)
+       => CDN (strapi)`,
+      link : '', 
+      repo : 'https://github.com/Bgmi10/jobportal-frontend.git',
+      imageUrl : [fjlp , fj1 , fj2, fj3, fj4 , fj5 , fj6 , fj7 , fjr1 , fjr2 , fjr3 , fjr4]
 
     }
   ];

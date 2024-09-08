@@ -64,7 +64,7 @@ export const Popular = ({ title, apiurl, sort }) => {
               >
                 {item.id === hoverid && (
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-black via-black  to-transparent flex items-center justify-center transition-transform duration-500 ease-in-out group-hover:scale-110 my-[9px] mx-1"
+                    className="absolute inset-0 bg-gradient-to-t from-black via-black  to-transparent flex items-center justify-center transition-transform duration-500 ease-in-out group-hover:scale-110 my-[10px] mx-1"
                     style={{ zIndex: 10 }}
                   >
                     <FaPlay

@@ -4,6 +4,7 @@ import searchslice from "./Searchcacheslice";
 import Themeslice from "./Themeslice";
 import Movieslice from "./Movieslice";
 import feedbackFormsubmissionslice from "./feedbackFormsubmissionslice";
+import Idslice from "./Idslice";
 
 
 const store = configureStore({
@@ -12,7 +13,8 @@ const store = configureStore({
     cache : searchslice,
     theme : Themeslice,
     movietoggle : Movieslice,
-    feedbackformsubmission : feedbackFormsubmissionslice
+    feedbackformsubmission : feedbackFormsubmissionslice,
+    searchId : Idslice
     
   
    }

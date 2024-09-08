@@ -64,7 +64,7 @@ const Populardetail = () => {
   }
 
   return (
-    <div className=' mt-[-100px]s'>
+    <div className=' mt-[-100px]'>
     <div className="px-4 lg:px-32 flex flex-wrap justify-center">
       { data.map((item) => (
         <a href={`/searchdetail/${item.id}`} key={item.id} >

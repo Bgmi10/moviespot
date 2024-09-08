@@ -49,15 +49,13 @@ const App = () => {
   const developroute = window.location.pathname === '/developer-profile'
   const contacroute = window.location.pathname === '/contact'
   const istvseries  =  window.location.pathname === '/tv-series'
-  const issearchdetaila  =  window.location.pathname === `/searchdetail/`
+  const searchid = useSelector(store => store.searchId)
+  const issearchdetaila  =  window.location.pathname === `/searchdetail/${searchid}`
 
   return (
    
     <div className={theme ? `bg-slate-900` : `bg-white`}>
       
-     
-    
-   
         <Routes>
         
         <Route
@@ -66,7 +64,7 @@ const App = () => {
            
               <>
               
-                {!isloginpage && !isprofilepage && !developroute && <Header  />}  
+                {!isloginpage && !isprofilepage && !developroute  && <Header  />}  
                 {!isloginpage && !isprofilepage && !ishomepage && !developroute && !contacroute && !istvseries && !issearchdetaila && <Searchbar  /> }
                 
                 <React.Suspense fallback={<LottieAnimation  gif={preloader}/> }>
@@ -81,7 +79,7 @@ const App = () => {
                         <Tamilmovies title = 'Now playing' data={tamilmovies}/> 
                         <Tamilmovies title='Vijay hits' data={vijayhits} />
                         <Tamilmovies title='Ajith hits' data={ajith_hits} />
-                        {/* < Adbanner /> */}
+                      
                        <div>
                         <Popular title='Popular Movies' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ta'} />
                         <Popular title='Comedy genres' apiurl = {`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort={'with_original_language=ta&with_genres=35'} />

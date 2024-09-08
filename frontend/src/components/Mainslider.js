@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import moviespot_gif from '../img/movieSpotgif.gif';
+import ColorThief from 'color-thief-browser';
 import { showflixapi } from '../utils/Showflixapi';
 import './cutom-slide.css'; 
 
 export const Mainslider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
+  const [animating, setAnimating] = useState(false); 
+  const [startPosition, setStartPosition] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dominantColor, setDominantColor] = useState('rgba(245, 255, 255, 0.9)');
+  console.log(dominantColor)
   const totalSlides = showflixapi.length;
+  const sliderRef = useRef(null);
 
   const nextSlide = () => {
     setAnimating(true);
@@ -17,6 +22,15 @@ export const Mainslider = () => {
       setAnimating(false);
       setCurrentSlide((prev) => (prev + 1) % totalSlides);
     }, 500); // Adjusted duration for faster transition
+  };
+  
+  
+    const prevSlide = () => {
+    setAnimating(true);
+    setTimeout(() => {
+      setAnimating(false);
+      setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+    }, 500);
   };
 
   useEffect(() => {
@@ -29,9 +43,74 @@ export const Mainslider = () => {
   const handleclick = (id) => {
     // window.location.href = `/searchdetail/${id}`
   }
+  useEffect(() => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous'; // To avoid CORS issues
+    img.src = showflixapi[currentSlide].poster || moviespot_gif;
 
+    img.onload = () => {
+      const colorThief = new ColorThief();
+      const dominant = colorThief.getColor(img);
+      setDominantColor(`rgba(${dominant[0]}, ${dominant[1]}, ${dominant[2]}, 0.9)`);
+    };
+  }, [currentSlide]);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartPosition(e.clientX); // Track initial mouse down position
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+
+    const currentPosition = e.clientX;
+    const difference = startPosition - currentPosition;
+
+    if (difference > 50) {
+      nextSlide(); // Slide to the next slide if dragged left
+      setIsDragging(false);
+    } else if (difference < -50) {
+      prevSlide(); // Slide to the previous slide if dragged right
+      setIsDragging(false);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false); // End the drag operation
+  };
+  const handleTouchStart = (e) => {
+    setStartPosition(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+
+    const currentPosition = e.touches[0].clientX;
+    const difference = startPosition - currentPosition;
+
+    if (difference > 50) {
+      nextSlide();
+      setIsDragging(false);
+    } else if (difference < -50) {
+      prevSlide();
+      setIsDragging(false);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
   return (
-    <div className="slider-container relative ">
+    <div className="slider-container relative "  ref={sliderRef}
+    onMouseDown={handleMouseDown}
+    onMouseMove={handleMouseMove}
+    onMouseUp={handleMouseUp}
+    onMouseLeave={handleMouseUp} // Handle if the mouse leaves the slider area
+    onTouchStart={handleTouchStart}
+    onTouchMove={handleTouchMove}
+    onTouchEnd={handleTouchEnd}>
+      
       {showflixapi.map((i, index) => (
         <div
           key={i.objectId}
@@ -54,7 +133,12 @@ export const Mainslider = () => {
               <img
                 src={!i.poster ? moviespot_gif : i.poster}
                 className={`mb-2 rounded-xl duration-500 lg:h-80 sm: h-auto w-24 sm:w-auto ml-5 transition-transform ${animating ? 'transform scale-50 opacity-0' : 'transform scale-100 opacity-100'}`}
+                style={{
+                  zIndex: 10,
+                  filter: `drop-shadow(0 0 7px ${dominantColor})`
+                }}
                 alt=""
+               
               />
               <div className="px-5">
                 <h1 className={`text-white lg:text-5xl font-bold sm: text-3xl transition-transform duration-500 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
@@ -64,10 +148,7 @@ export const Mainslider = () => {
                   {i.overview || i.storyline}
                 </p>
                 <div className="mt-3  " >
-                  <span className={`border-2 rounded-md lg:p-[8px] sm: p-[5px] text-white transition-transform duration-500 items-center  sm: w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}  style={{
-                      
-                      filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.9))',
-                    }}>
+                  <span className={`border-2 rounded-md lg:p-[8px] sm: p-[5px] text-white transition-transform duration-500 items-center  sm: w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`} >
                     Play Now
                     <FontAwesomeIcon icon={faPlay} className="ml-1 sm:ml-2 text-rose-600" />
                   </span>

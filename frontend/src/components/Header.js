@@ -28,8 +28,8 @@ const Header = () => {
   return (
     <div className='absolute z-20' >
     <nav className=" mb-3 border-gray-500  flex items-center justify-between  ">
-      <div className="flex items-center space-x-4 ml-2 sm: mt-3">
-        <h1 className="text-rose-600 text-lg font-semibold  bg-black p-2 rounded-md  border-none outline-none ">
+      <div className="flex items-center space-x-4 ml-2 sm: mt-3" >
+        <h1 className="text-rose-600 text-lg font-semibold  bg-black p-2 rounded-md  border-none outline-none " >
           Movie<span className='text-white'>Spot</span>
         </h1>
         <div className="hidden lg:flex">
