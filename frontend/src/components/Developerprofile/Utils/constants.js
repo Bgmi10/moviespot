@@ -43,7 +43,6 @@ import fjr2 from '../imgs/findjobr2.PNG'
 import fjr3 from '../imgs/findjobr3.PNG'
 import fjr4 from '../imgs/findjobr4.PNG'
 
-
 export const  projects = [
    
     {

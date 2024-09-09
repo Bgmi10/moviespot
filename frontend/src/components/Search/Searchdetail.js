@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { poster_url } from '../../utils/constans'
 import { Recommendation } from '../Recommendation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faClose, faPlay, faStar } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch, useSelector } from 'react-redux'
+import { faArrowDown, faClose, faStar } from '@fortawesome/free-solid-svg-icons'
+import {  useSelector } from 'react-redux'
 import ShareIcon from '@mui/icons-material/Share';
 import { LottieAnimation } from '../lottie'
 import SlowMotionVideoIcon from '@mui/icons-material/SlowMotionVideo';
@@ -14,7 +13,7 @@ import how_to_Donload_vid from '../../img/howodownload.mp4'
 import { Crewcast } from '../Crewcast'
 import ReactPlayer from 'react-player'
 import { Feedbackform } from '../Feedback/Feedbackform'
-import { Id } from '../../utils/Idslice'
+
 
 
 const Searchdetail = () => {
@@ -22,8 +21,6 @@ const Searchdetail = () => {
   const [feedbackform , setfeedbackform] = useState(false)
   const [data, setdata] = useState('')
   const {id} = useParams()
-  const dispatch = useDispatch()
-  dispatch(Id(id))
   const theme = useSelector(store => store.theme.toggletheme)
   const movietoggle = useSelector(store => store.movietoggle.togglemovie)
   const [isshow , setisshow] = useState(false)

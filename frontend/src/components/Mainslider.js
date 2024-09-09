@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import moviespot_gif from '../img/movieSpotgif.gif';
-import ColorThief from 'color-thief-browser';
 import { showflixapi } from '../utils/Showflixapi';
 import './cutom-slide.css'; 
+import { main_slider } from '../utils/constans';
 
 export const Mainslider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,7 +12,6 @@ export const Mainslider = () => {
   const [startPosition, setStartPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dominantColor, setDominantColor] = useState('rgba(245, 255, 255, 0.9)');
-  console.log(dominantColor)
   const totalSlides = showflixapi.length;
   const sliderRef = useRef(null);
 
@@ -41,20 +40,9 @@ export const Mainslider = () => {
   }, []);
 
   const handleclick = (id) => {
-    // window.location.href = `/searchdetail/${id}`
+    window.location.href = `/searchdetail/${id}`
   }
-  useEffect(() => {
-    const img = new Image();
-    img.crossOrigin = 'Anonymous'; // To avoid CORS issues
-    img.src = showflixapi[currentSlide].poster || moviespot_gif;
-
-    img.onload = () => {
-      const colorThief = new ColorThief();
-      const dominant = colorThief.getColor(img);
-      setDominantColor(`rgba(${dominant[0]}, ${dominant[1]}, ${dominant[2]}, 0.9)`);
-    };
-  }, [currentSlide]);
-
+ 
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartPosition(e.clientX); // Track initial mouse down position
@@ -119,7 +107,7 @@ export const Mainslider = () => {
           onClick={() => handleclick(i.objectId)}
         >
           <img
-            src={i.backdrop}
+            src={i.backdrop_path || i.backdrop }
             className="sm: w-full sm: h-full lg:w-auto lg:h-auto object-cover object-center"
             alt=""
           />
@@ -131,7 +119,7 @@ export const Mainslider = () => {
           >
             <div className="lg:flex sm: py-32 lg:py-0">
               <img
-                src={!i.poster ? moviespot_gif : i.poster}
+                src={!i.poster ? moviespot_gif : i.poster_path || i.poster}
                 className={`mb-2 rounded-xl duration-500 lg:h-80 sm: h-auto w-24 sm:w-auto ml-5 transition-transform ${animating ? 'transform scale-50 opacity-0' : 'transform scale-100 opacity-100'}`}
                 style={{
                   zIndex: 10,

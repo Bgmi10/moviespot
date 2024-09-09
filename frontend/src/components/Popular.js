@@ -16,7 +16,6 @@ export const Popular = ({ title, apiurl, sort }) => {
   const theme = useSelector(store => store.theme.toggletheme);
   const [hoverid, setHoverid] = useState('');
   const [data, setData] = useState('');
-  console.log(data)
 
   const fetch_data = async () => {
     try {

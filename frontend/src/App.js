@@ -49,8 +49,8 @@ const App = () => {
   const developroute = window.location.pathname === '/developer-profile'
   const contacroute = window.location.pathname === '/contact'
   const istvseries  =  window.location.pathname === '/tv-series'
-  const searchid = useSelector(store => store.searchId)
-  const issearchdetaila  =  window.location.pathname === `/searchdetail/${searchid}`
+  const issearchdetaila  =  window.location.pathname === `/searchdetail/:id`
+  const istamildetailpage  =  window.location.pathname === `/moviedetail/nowplaying/:id`
 
   return (
    
@@ -65,7 +65,7 @@ const App = () => {
               <>
               
                 {!isloginpage && !isprofilepage && !developroute  && <Header  />}  
-                {!isloginpage && !isprofilepage && !ishomepage && !developroute && !contacroute && !istvseries && !issearchdetaila && <Searchbar  /> }
+                {!isloginpage && !isprofilepage && !ishomepage && !developroute && !contacroute && !istvseries && issearchdetaila && istamildetailpage &&  <Searchbar  /> }
                 
                 <React.Suspense fallback={<LottieAnimation  gif={preloader}/> }>
                   <Routes>
