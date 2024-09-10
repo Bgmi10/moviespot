@@ -56,7 +56,7 @@ export const Headerprofile = () => {
         
           <Downloadcv />
       
-      <motion.div
+      {/* <motion.div
         whileHover={{
           scale: 1.15,
           rotate: 5,
@@ -85,7 +85,7 @@ export const Headerprofile = () => {
             border: '2px solid #000',
           }}
         />
-      </motion.div>
+      </motion.div> */}
 
       {/* GitHub Icon with Tooltip */}
       <div className='relative flex flex-col items-center'>

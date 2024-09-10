@@ -87,7 +87,7 @@ const Searchdetail = () => {
           </div>}
 
 
-      {data ? (
+      {data && (
         <div className="relative  inset-0 ease-in-out  shadow-lg rounded-lg text-white " >
          
             <img src={'https://www.themoviedb.org/t/p/original/' + data?.backdrop_path}  className="sm: w-full sm: h-[800px] lg:w-auto lg:h-auto object-cover object-center "/>
@@ -192,9 +192,7 @@ const Searchdetail = () => {
          
         
 
-      ) : (
-     <LottieAnimation gif={preloader}/>
-      )}
+      ) }
       </div>
      <div>
        

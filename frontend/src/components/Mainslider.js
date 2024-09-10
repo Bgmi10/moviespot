@@ -5,6 +5,7 @@ import moviespot_gif from '../img/movieSpotgif.gif';
 import { showflixapi } from '../utils/Showflixapi';
 import './cutom-slide.css'; 
 import { main_slider } from '../utils/constans';
+import { Link } from 'react-router-dom';
 
 export const Mainslider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -99,12 +100,12 @@ export const Mainslider = () => {
     onTouchMove={handleTouchMove}
     onTouchEnd={handleTouchEnd}>
       
-      {showflixapi.map((i, index) => (
+      {main_slider.map((i, index) => (
+        <Link to={`/searchdetail/${i.id}`}key={i.id || i.objectId}>
         <div
-          key={i.objectId}
-          className={`slide cursor-pointer absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+        className={`slide cursor-pointer absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
           style={{ zIndex: index === currentSlide ? 1 : 0 }}
-          onClick={() => handleclick(i.objectId)}
+          
         >
           <img
             src={i.backdrop_path || i.backdrop }
@@ -119,7 +120,7 @@ export const Mainslider = () => {
           >
             <div className="lg:flex sm: py-32 lg:py-0">
               <img
-                src={!i.poster ? moviespot_gif : i.poster_path || i.poster}
+                src={ i.poster_path || i.poster}
                 className={`mb-2 rounded-xl duration-500 lg:h-80 sm: h-auto w-24 sm:w-auto ml-5 transition-transform ${animating ? 'transform scale-50 opacity-0' : 'transform scale-100 opacity-100'}`}
                 style={{
                   zIndex: 10,
@@ -149,6 +150,7 @@ export const Mainslider = () => {
             </div>
           </div>
         </div>
+        </Link>
       ))}
       {/* Dot Indicators */}
       <ul className="slick-dots">

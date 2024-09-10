@@ -6,7 +6,7 @@ import JavascriptIcon from '@mui/icons-material/Javascript';
 // Skill icons and labels
 const skills = [
   { icon: <JavascriptIcon fontSize="large" style={{ color: '#f7df1e' }} />, label: 'JavaScript', level: 80 },
-  { icon: <FaReact fontSize="large" style={{ color: '#61dafb' }} />, label: 'React', level: 80 },
+  { icon: <FaReact fontSize="extralarge" style={{ color: '#61dafb' }} />, label: 'React', level: 80 },
   { icon: <FaNodeJs fontSize="large" style={{ color: '#8cc84b' }} />, label: 'Node.js', level: 40 },
   { icon: <FaDatabase fontSize="large" style={{ color: '#4db33d' }} />, label: 'MongoDB', level: 40 },
   { icon: <FaCss3Alt fontSize="large" style={{ color: '#2965f1' }} />, label: 'TailwindCSS', level: 80 },
@@ -89,21 +89,16 @@ export const Skillls = () => {
                 animation: 'circularShadow 4s linear infinite',
               }}
               variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
+             
             >
               <motion.div
                 className="text-white "
-                style={{ fontSize: '70px', zIndex: 10 }}
+                style={{ zIndex: 10 }}
                 {...(animation ? animation : {})} // Apply icon-specific animation if available
               >
                 {icon}
               </motion.div>
-              <div className="mt-4 text-white text-center">
-                <span className="block text-xl font-bold">{label}</span>
-                <span className="block text-sm text-gray-300">{skill.level}%</span>
-              </div>
+             
             </motion.div>
           );
         })}

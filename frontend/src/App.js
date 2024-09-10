@@ -125,7 +125,7 @@ const App = () => {
       </Routes>
       </React.Suspense>
       
-      <Bottomnavbar />
+     {!developroute && <Bottomnavbar />}
    { !isprofilepage  && !developroute &&  <Footer />}
     </div>
    
