@@ -101,7 +101,7 @@ export const Mainslider = () => {
     onTouchEnd={handleTouchEnd}>
       
       {main_slider.map((i, index) => (
-        <Link to={`/searchdetail/${i.id}`}key={i.id || i.objectId}>
+        <Link to={`/searchdetail/${i.id}`}key={i.id}>
         <div
         className={`slide cursor-pointer absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
           style={{ zIndex: index === currentSlide ? 1 : 0 }}

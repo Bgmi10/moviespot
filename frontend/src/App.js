@@ -19,6 +19,7 @@ import Usefetchmainslider from './components/Tvseries/Usefetchmainslider';
 import { Adbanner } from './components/Subscription/Adbanner';
 import { Developerprofile } from './components/Developerprofile/Developerprofile';
 import { Contact } from './components/Contact';
+import { Adminmsgchat } from './components/Developerprofile/Admin/Adminmsgchat';
 
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
@@ -51,6 +52,7 @@ const App = () => {
   const istvseries  =  window.location.pathname === '/tv-series'
   const issearchdetaila  =  window.location.pathname === `/searchdetail/:id`
   const istamildetailpage  =  window.location.pathname === `/moviedetail/nowplaying/:id`
+  const adminroute  = window.location.pathname === '/admin'
 
   return (
    
@@ -110,12 +112,15 @@ const App = () => {
                      <Route path='/developer-profile' element={<Developerprofile />} />
                      <Route path='/refund-policy' element={<Lazyloadrefundpolicy />} />
                      <Route path='/contact' element={<Contact />} />
+                 
                    </Routes>
                 </React.Suspense>
               </>
             
           }
+          
         />
+         <Route path='/admin'  element={<Adminmsgchat /> }/>
       </Routes>
       
        
@@ -126,7 +131,7 @@ const App = () => {
       </React.Suspense>
       
      {!developroute && <Bottomnavbar />}
-   { !isprofilepage  && !developroute &&  <Footer />}
+   { !isprofilepage  && !developroute && !adminroute && <Footer />}
     </div>
    
   );
