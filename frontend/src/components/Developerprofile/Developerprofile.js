@@ -10,7 +10,7 @@ import { Project } from './Project';
 import { Freelanceprojects, opensourceprojects, projects } from './Utils/constants';
 import { Githubprofile } from './Gtihub/Githubprofile';
 import { Feedback } from './Feedback';
-import ChatBox from './Chatbox';
+import ChatBox from './Chatbox/Chatbox';
 
 
 export const Developerprofile = () => {

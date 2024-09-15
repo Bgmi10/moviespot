@@ -53,6 +53,7 @@ const App = () => {
   const issearchdetaila  =  window.location.pathname === `/searchdetail/:id`
   const istamildetailpage  =  window.location.pathname === `/moviedetail/nowplaying/:id`
   const adminroute  = window.location.pathname === '/admin'
+  
 
   return (
    
@@ -120,6 +121,7 @@ const App = () => {
           }
           
         />
+         
          <Route path='/admin'  element={<Adminmsgchat /> }/>
       </Routes>
       
@@ -130,8 +132,8 @@ const App = () => {
       </Routes>
       </React.Suspense>
       
-     {!developroute && <Bottomnavbar />}
-   { !isprofilepage  && !developroute && !adminroute && <Footer />}
+     {!developroute &&  !adminroute && <Bottomnavbar />}
+   { !isprofilepage  && !developroute && !adminroute &&  <Footer />}
     </div>
    
   );
