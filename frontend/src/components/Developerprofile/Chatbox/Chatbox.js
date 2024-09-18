@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FaMinus } from 'react-icons/fa';
-import { addDoc, collection, query, orderBy, onSnapshot, doc } from 'firebase/firestore';
+import { FaClosedCaptioning, FaMinus } from 'react-icons/fa';
+import { addDoc, collection, query, orderBy, onSnapshot, doc, refEqual, updateDoc  } from 'firebase/firestore';
 import { db } from "../../../utils/firebase";
 import whatsapp from '../imgs/whatsapppng.png'
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function ChatBox() {
@@ -14,6 +17,9 @@ export default function ChatBox() {
   const [messages, setMessages] = useState([]);
   const [localUserNumber, setLocalUserNumber] = useState(localStorage.getItem('usernumber') || null);
   const scrollRef = useRef(null);
+  const [  isuseronline , setIsUserOnline] = useState(null)
+  const [lastseen , setLastseen ] = useState(null)
+  console.log(lastseen)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,12 +27,88 @@ export default function ChatBox() {
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
+  
+
+  useEffect(() => {
+    const adminId = 'admin-id'; // Replace with actual admin ID or auth ID
+    const userDocRef = doc(db, "users", adminId);
+
+    // Function to set the user's offline status
+    
+    const setOfflineStatus = async () => {
+      await updateDoc(userDocRef, {
+        onlineStatus: false,
+        lastActive: new Date(),
+      });
+    };
+    
+ 
+
+    // Subscribe to the user's online status with real-time updates
+
+    // const formatLastSeen = (date) => {
+    //   const now = new Date();
+    //   const diffInMs = now - date;
+    //   const diffInSec = Math.floor(diffInMs / 1000);
+    //   const diffInMin = Math.floor(diffInSec / 60);
+    //   const diffInHours = Math.floor(diffInMin / 60);
+    //   const diffInDays = Math.floor(diffInHours / 24);
+  
+    //   // If last seen just now
+    //   if (diffInMin < 1) {
+    //     return 'Last seen just now';
+    //   }
+    //   // If last seen within the last hour
+    //   else if (diffInMin < 60) {
+    //     return `Last seen ${diffInMin} minutes ago`;
+    //   }
+    //   // If last seen today
+    //   else if (diffInHours < 24) {
+    //     return `Last seen today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    //   }
+    //   // If last seen yesterday
+    //   else if (diffInDays === 1) {
+    //     return `Last seen yesterday at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    //   }
+    //   // If last seen more than 1 day ago
+    //   else {
+    //     return `Last seen on ${date.toLocaleDateString()} at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    //   }
+    // };
+  
+    const unsubscribe = onSnapshot(userDocRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        setIsUserOnline(data.onlineStatus);
+        if (data.lastActive) {
+          const seconds = data.lastActive.seconds;
+          const nanoseconds = data.lastActive.nanoseconds;
+
+          const date = new Date(seconds * 1000 + nanoseconds / 1000000);
+          // setLastseen(formatLastSeen(date)); // Format and set the last seen time
+        }
+      }
+      }
+    );
+
+    // Set offline status if user is not online when component mounts
+    if (!isuseronline) {
+      setOfflineStatus();
+    }
+
+    // Cleanup Firestore subscription on component unmount
+    return () => {
+      unsubscribe();
+      
+    };
+  }, [isuseronline]);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
+
 
   useEffect(() => {
     if (!localUserNumber) return;
@@ -64,7 +146,8 @@ export default function ChatBox() {
     await addDoc(messagesRef, {
       text: newMessage,
       createdAt: new Date(),
-      sentBy: "user"
+      sentBy: "user",
+      isread : false
     });
     setNewMessage("");
   };
@@ -107,12 +190,13 @@ export default function ChatBox() {
                       animate={{ opacity: 1 }}
                       initial={{ opacity: 0 }}
                       transition={{ duration: 0.5 }}
-                      className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#25D366] border-2 border-white"
+                      className={isuseronline ? "absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#25D366] border-2 border-white" : "absolute bottom-0 right-0 w-3 h-3 rounded-full bg-red-500 border-2 border-white"}
                     />
                   </div>
                   <div>
                     <span className="font-semibold text-gray-900">Subash</span>
-                    <p className="text-sm text-gray-600">online</p>
+                    <p className="text-sm text-gray-600">{isuseronline ? 'online' : 'offline'} </p>
+                   
                   </div>
                 </motion.div>
 
@@ -203,14 +287,21 @@ export default function ChatBox() {
           <li
             className={
               i.sentBy === 'user'
-                ? 'bg-[#DCF8C6] m-2 p-2 font-normal outline-none rounded-md '
-                : 'bg-white m-2 p-2 font-normal outline-none rounded-md '
+                ? 'bg-[#DCF8C6] m-2 p-1 font-normal outline-none rounded-md flex text-sm '
+                : 'bg-white m-2 p-1 font-normal outline-none rounded-md flex text-sm '
             }
           >
             {i.text}
             {/* Display the message time below the message */}
-            <span className=" text-[10px] text-gray-500  justify-end flex">{messageTime}</span>
+            <span className=" text-[8px] text-gray-500 mt-3">{messageTime}</span>
+           {i.sentBy === 'user' && <span className='flex justify-end mt-4'>{!i?.isread ? <DoneIcon className='text-gray-400 text-xs ml-1' style={{fontSize : "14px"}} />  : <DoneAllIcon  className='text-blue-400 ml-1' style={{fontSize : "14px"}}/>  }</span>}
+            
+          
           </li>
+          <div className='flex justify-end ml-10'>
+           
+            
+            </div>
         </ol>
       </div>
     );
@@ -235,10 +326,16 @@ export default function ChatBox() {
               </AnimatePresence>
             </div>
           </div>
-
-          <div className="absolute bottom-[355px] right-[12px] z-20">
-            <FaMinus onClick={() => setShowChat(false)} className="cursor-pointer" />
-          </div>
+         <AnimatePresence>
+          <motion.div className="absolute bottom-[355px] right-[12px] z-20"  
+                       initial={{ y: -50, opacity: 0 }}
+                       animate={{ y: 0, opacity: 1 }}
+                       exit={{ y: -50, opacity: 0 }}
+                       transition={{ type: 'spring', stiffness: 80, duration: 0.5, delay: 0.8 }}>
+            <CloseIcon onClick={() => setShowChat(false)} className="cursor-pointer text-gray-500" />
+            
+          </motion.div>
+          </AnimatePresence>
         </div>
       ) : (
         <motion.img

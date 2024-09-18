@@ -13,6 +13,7 @@ import how_to_Donload_vid from '../../img/howodownload.mp4'
 import { Crewcast } from '../Crewcast'
 import ReactPlayer from 'react-player'
 import { Feedbackform } from '../Feedback/Feedbackform'
+import { showflixapi } from '../../utils/Showflixapi'
 
 
 
@@ -25,9 +26,9 @@ const Searchdetail = () => {
   const movietoggle = useSelector(store => store.movietoggle.togglemovie)
   const [isshow , setisshow] = useState(false)
   const type = !movietoggle ? 'movie' : 'tv'
+  console.log(data)
   
   
-// problem is changing the tv and movie category dynamic
   useEffect(()=>{
     const fetch_search_data = async () =>{
 
@@ -46,7 +47,14 @@ const Searchdetail = () => {
 
   }
 
-    fetch_search_data()
+    
+    const data1 = showflixapi.filter((i) => i.objectId === id)
+    if(data1.length > 0){
+     setdata(data1)
+    }
+    else{
+      fetch_search_data()
+    }
 
    },[type])
 
@@ -73,6 +81,22 @@ const Searchdetail = () => {
     const handleshowfeedbackform = () =>{
       setfeedbackform(true)
     }
+    const getImageSource = () => {
+      if (data?.backdrop_path) {
+        return `https://www.themoviedb.org/t/p/original/${data.backdrop_path}`;
+      } else if (data?.[0]?.backdrop) {
+        return data[0].backdrop;
+      }
+    };
+    const posterimg = () => {
+      if (data?.backdrop_path) {
+        return `https://www.themoviedb.org/t/p/original/${data.poster_path}`;
+      } else if (data?.[0]?.poster) {
+        return data?.[0].poster;
+      }
+    };
+    
+    
 
   return (
   
@@ -90,7 +114,7 @@ const Searchdetail = () => {
       {data && (
         <div className="relative  inset-0 ease-in-out  shadow-lg rounded-lg text-white " >
          
-            <img src={'https://www.themoviedb.org/t/p/original/' + data?.backdrop_path}  className="sm: w-full sm: h-[800px] lg:w-auto lg:h-auto object-cover object-center "/>
+            <img src={getImageSource()}  className="sm: w-full sm: h-[800px] lg:w-auto lg:h-auto object-cover  object-center"/>
             {/* Overlay with Poster Image */}
             <div
             className="absolute inset-0 bg-black bg-opacity-60 flex flex-col  px-4  lg:py-[148px] sm: py-[120px] "
@@ -100,7 +124,7 @@ const Searchdetail = () => {
           >
             <div className="lg:flex  lg:py-0 ">
               <img
-                src={'https://www.themoviedb.org/t/p/original/' +  data?.poster_path}
+                src={posterimg()}
                 className={`mb-2 rounded-xl duration-500 lg:h-80 sm:h-auto w-24 sm:w-auto ml-5 transition-transform `}
                 style={{
                   zIndex: 10,
@@ -111,10 +135,10 @@ const Searchdetail = () => {
               />
                  <div className="px-5">
                 <h1 className={`text-white lg:text-5xl font-bold sm: text-3xl transition-transform duration-500`}>
-                  {data?.name || data?.title || data?.movieName}
+                  {data?.name || data?.title || data?.[0]?.movieName }
                 </h1>
                 <p className={`text-gray-100  sm: text-[10px] sm: py-4 lg:text-[15px] transition-transform duration-500 font-extralight`}>
-                  {data?.overview || data?.storyline}
+                  {data?.overview || data?.[0]?.storyline}
                 </p>
         <div className="mt-3   " >
 
@@ -128,12 +152,10 @@ const Searchdetail = () => {
 
           </a>
           <a
-             href={`https://1moviesda.net/${categoryname}-movie-download/`}
-          
-            // https://1moviesda.net/thuppakki-movie-download/
+             href={`https://rubyvid.com/d/${data?.[0]?.streamruby}`}
             className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex lg:ml-4 sm: w-52 lg:w-auto" }
           >
-            Download link-2 <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1 ml-1  text-rose-600'}/>
+            Direct Link  <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1 ml-1  text-rose-600'}/>
           
           </a>
          

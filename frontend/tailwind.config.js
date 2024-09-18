@@ -14,10 +14,19 @@ module.exports = {
           '0%': { opacity: 0, transform: 'scale(0.95)' },
           '100%': { opacity: 1, transform: 'scale(1)' },
         },
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
       },
       animation: {
         'scroll-text': 'scrollText 5s linear infinite', // Corrected name and added duration
         fadeIn: 'fadeIn 0.7s ease-in-out forwards', // Removed extra curly braces
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+      }, 
+      keyframes: {
+        
       },
     },
   },

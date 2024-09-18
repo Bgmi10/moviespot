@@ -100,8 +100,8 @@ export const Mainslider = () => {
     onTouchMove={handleTouchMove}
     onTouchEnd={handleTouchEnd}>
       
-      {main_slider.map((i, index) => (
-        <Link to={`/searchdetail/${i.id}`}key={i.id}>
+      {showflixapi.map((i, index) => (
+        <Link to={`/searchdetail/${i.objectId}`}key={i.objectId}>
         <div
         className={`slide cursor-pointer absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
           style={{ zIndex: index === currentSlide ? 1 : 0 }}
@@ -122,10 +122,10 @@ export const Mainslider = () => {
               <img
                 src={ i.poster_path || i.poster}
                 className={`mb-2 rounded-xl duration-500 lg:h-80 sm: h-auto w-24 sm:w-auto ml-5 transition-transform ${animating ? 'transform scale-50 opacity-0' : 'transform scale-100 opacity-100'}`}
-                style={{
-                  zIndex: 10,
-                  filter: `drop-shadow(0 0 7px ${dominantColor})`
-                }}
+                // style={{
+                //   zIndex: 10,
+                //   filter: `drop-shadow(0 0 7px ${dominantColor})`
+                // }}
                 alt=""
                
               />
