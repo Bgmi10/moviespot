@@ -42,11 +42,22 @@ export const Whyhire = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const headingVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
+ };
+
   return (
-    <div style={{ padding: '20px', minHeight: '100vh', backgroundColor: '#0f172a', marginBottom: '100px' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '30px', fontFamily: 'Arial, sans-serif', color: '#e2e8f0' }}>
-        Why Hire Me?
-      </h1>
+    <div style={{ padding: '20px', minHeight: '100vh', backgroundColor: '#0f172a', marginBottom: '100px' , marginTop : '60px' , marginBottom : '-100px'}}>
+       <motion.h2
+          variants={headingVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1, ease: 'easeInOut' }}
+          className="text-4xl font-extrabold text-center text-white mb-20"
+        >
+          Why Hire me? 
+         </motion.h2>
       {faqs.map((faq, index) => (
         <motion.div
           key={index}

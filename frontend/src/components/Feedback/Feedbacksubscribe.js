@@ -10,7 +10,7 @@ export const Feedbacksubscribe = ({ movieId }) => {
 
   const fetch_data = async () => {
     try {
-      const movieRef = doc(db, "movies", String(movieId));
+      const movieRef = doc(db, "movies", String(movieId ));
       const feedbacksCollectionRef = collection(movieRef, "feedbacks");
       const q = query(feedbacksCollectionRef);
       const querySnapshot = await getDocs(q);

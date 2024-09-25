@@ -18,8 +18,7 @@ export default function ChatBox() {
   const [localUserNumber, setLocalUserNumber] = useState(localStorage.getItem('usernumber') || null);
   const scrollRef = useRef(null);
   const [  isuseronline , setIsUserOnline] = useState(null)
-  const [lastseen , setLastseen ] = useState(null)
-  console.log(lastseen)
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,38 +43,7 @@ export default function ChatBox() {
     
  
 
-    // Subscribe to the user's online status with real-time updates
-
-    // const formatLastSeen = (date) => {
-    //   const now = new Date();
-    //   const diffInMs = now - date;
-    //   const diffInSec = Math.floor(diffInMs / 1000);
-    //   const diffInMin = Math.floor(diffInSec / 60);
-    //   const diffInHours = Math.floor(diffInMin / 60);
-    //   const diffInDays = Math.floor(diffInHours / 24);
-  
-    //   // If last seen just now
-    //   if (diffInMin < 1) {
-    //     return 'Last seen just now';
-    //   }
-    //   // If last seen within the last hour
-    //   else if (diffInMin < 60) {
-    //     return `Last seen ${diffInMin} minutes ago`;
-    //   }
-    //   // If last seen today
-    //   else if (diffInHours < 24) {
-    //     return `Last seen today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-    //   }
-    //   // If last seen yesterday
-    //   else if (diffInDays === 1) {
-    //     return `Last seen yesterday at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-    //   }
-    //   // If last seen more than 1 day ago
-    //   else {
-    //     return `Last seen on ${date.toLocaleDateString()} at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-    //   }
-    // };
-  
+    
     const unsubscribe = onSnapshot(userDocRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.data();
@@ -85,18 +53,17 @@ export default function ChatBox() {
           const nanoseconds = data.lastActive.nanoseconds;
 
           const date = new Date(seconds * 1000 + nanoseconds / 1000000);
-          // setLastseen(formatLastSeen(date)); // Format and set the last seen time
+          
         }
       }
       }
     );
 
-    // Set offline status if user is not online when component mounts
+   
     if (!isuseronline) {
       setOfflineStatus();
     }
 
-    // Cleanup Firestore subscription on component unmount
     return () => {
       unsubscribe();
       
@@ -343,7 +310,7 @@ export default function ChatBox() {
           alt="Chat Icon"
           className="fixed bottom-5 right-5  w-10 h-10 cursor-pointer"
           onClick={() => setShowChat(true)}
-          style={{ zIndex: 10, filter: `drop-shadow(0 0 7px rgba(245, 255, 255, 0.9))` }}
+          style={{ zIndex: 20, filter: `drop-shadow(0 0 7px rgba(245, 255, 255, 0.9))` }}
         ></motion.img>
       
       )}

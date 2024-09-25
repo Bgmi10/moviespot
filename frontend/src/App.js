@@ -53,6 +53,8 @@ const App = () => {
   const issearchdetaila  =  window.location.pathname === `/searchdetail/:id`
   const istamildetailpage  =  window.location.pathname === `/moviedetail/nowplaying/:id`
   const adminroute  = window.location.pathname === '/admin'
+  const contactroute  = window.location.pathname === '/contact'
+  
   
 
   return (
@@ -133,7 +135,7 @@ const App = () => {
       </React.Suspense>
       
      {!developroute &&  !adminroute && <Bottomnavbar />}
-   { !isprofilepage  && !developroute && !adminroute &&  <Footer />}
+   { !isprofilepage  && !developroute && !adminroute && !contactroute && <Footer />}
     </div>
    
   );

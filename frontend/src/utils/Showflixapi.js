@@ -66,7 +66,7 @@ export const showflixapi =  [
              "updatedAt": "2024-08-01T06:47:13.668Z"
          },
          {
-             "objectId": "PweQ2bB3UI",
+             "objectId": "1301290",
              "movieName": "Anjaamai (2024)",
              "rating": " 0",
              "storyline": "When Sarkaar’s son dreams of becoming a doctor, he gets unrelenting and unwavering support from his father. As bureaucratic errors and systemic obstacles threaten his future, a shocking turn of events propels him into a gripping quest for justice.",
@@ -1047,7 +1047,7 @@ export const showflixapi =  [
              "updatedAt": "2024-01-04T02:12:54.846Z"
          },
          {
-             "objectId": "HfgP6G5UPJ",
+             "objectId": "1174777",
              "movieName": "Parking (2023)",
              "rating": " 0",
              "storyline": "Two men become involved in an argument over a parking space outside their apartment building.",

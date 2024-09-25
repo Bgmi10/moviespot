@@ -51,7 +51,7 @@
     width: 100%;
   }
   
-  .menu span {
+  .menu a {
     display: block;
     padding: 10px 0;
     font-size: 16px;
@@ -66,7 +66,7 @@
   }
   
   .menu span:hover {
-    color: #007bff;
+    color: #ff004c;
   }
   
   @keyframes slide-down {

@@ -5,16 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faClose, faStar } from '@fortawesome/free-solid-svg-icons'
 import {  useSelector } from 'react-redux'
 import ShareIcon from '@mui/icons-material/Share';
-import { LottieAnimation } from '../lottie'
 import SlowMotionVideoIcon from '@mui/icons-material/SlowMotionVideo';
-import * as preloader  from '../anima.json' 
-import TextRunner from '../Textrunner'
 import how_to_Donload_vid from '../../img/howodownload.mp4'
 import { Crewcast } from '../Crewcast'
 import ReactPlayer from 'react-player'
 import { Feedbackform } from '../Feedback/Feedbackform'
 import { showflixapi } from '../../utils/Showflixapi'
-
 
 
 const Searchdetail = () => {
@@ -26,7 +22,6 @@ const Searchdetail = () => {
   const movietoggle = useSelector(store => store.movietoggle.togglemovie)
   const [isshow , setisshow] = useState(false)
   const type = !movietoggle ? 'movie' : 'tv'
-  console.log(data)
   
   
   useEffect(()=>{
@@ -81,6 +76,7 @@ const Searchdetail = () => {
     const handleshowfeedbackform = () =>{
       setfeedbackform(true)
     }
+
     const getImageSource = () => {
       if (data?.backdrop_path) {
         return `https://www.themoviedb.org/t/p/original/${data.backdrop_path}`;
@@ -88,6 +84,7 @@ const Searchdetail = () => {
         return data[0].backdrop;
       }
     };
+
     const posterimg = () => {
       if (data?.backdrop_path) {
         return `https://www.themoviedb.org/t/p/original/${data.poster_path}`;
@@ -104,11 +101,7 @@ const Searchdetail = () => {
       
       <div  className=" flex flex-col items-center " >
 
-        {feedbackform &&  <div>
-
-             <Feedbackform data={data} toggleform={setfeedbackform} movieid={id} theme={theme}/>
-
-          </div>}
+        {feedbackform && <Feedbackform data={data} toggleform={setfeedbackform} movieid={id} theme={theme}/>}
 
 
       {data && (
@@ -140,41 +133,41 @@ const Searchdetail = () => {
                 <p className={`text-gray-100  sm: text-[10px] sm: py-4 lg:text-[15px] transition-transform duration-500 font-extralight`}>
                   {data?.overview || data?.[0]?.storyline}
                 </p>
-        <div className="mt-3   " >
+        <div className="mt-3" >
 
                 <div className={theme ? 'text-gray-300 lg:flex   ' : 'text-gray-700 lg:flex  p-2 '}>
           <a
              href={`https://1moviesda.net/${categoryname}-${toggle_type_release_data}-movie-download/`}
             
-            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex    lg:ml-0 sm: w-52 lg:w-auto " }
+            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex    lg:ml-0 sm: w-fit lg:w-auto " }
           >
             Download link-1  <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1   ml-1  text-rose-600'}/>
 
           </a>
           <a
              href={`https://rubyvid.com/d/${data?.[0]?.streamruby}`}
-            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex lg:ml-4 sm: w-52 lg:w-auto" }
+            className={"mt-6 border-r-pink-600 border  border-t-pink-600 border-b-purple-600 border-l-purple-600  px-4 py-2 rounded-md  flex lg:ml-4 sm: w-fit lg:w-auto" }
           >
-            Direct Link  <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1 ml-1  text-rose-600'}/>
+            Direct Link  <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1 ml-1 text-rose-600'}/>
           
           </a>
          
           <button
-            className={"mt-6  bg-gray-500    px-4 py-2 rounded-md  flex   lg:ml-4 text-black " }
+            className={"mt-6 bg-gray-500 px-4 py-2 rounded-md flex lg:ml-4 text-black" }
             onClick={handle_how_to_download}
           >
             
           <SlowMotionVideoIcon />  How to download ?
           </button>
           <button
-            className={"mt-6  bg-rose-600    px-4 py-2 rounded-md  flex   lg:ml-4 text-black " }
+            className={"mt-6 bg-rose-600 px-4 py-2 rounded-md flex lg:ml-4 text-black" }
             onClick={handleshowfeedbackform}
           >
             
           < FontAwesomeIcon icon={faStar} className='text-yellow-300 mt-1 m-1'/>   Rate  Now
           </button>
           <button
-            className={"mt-6   bg-blue-400   px-4 py-2 rounded-md  flex   lg:ml-4 text-black " }
+            className={"mt-6 bg-blue-400 px-4 py-2 rounded-md  flex lg:ml-4 text-black" }
             onClick={handleshareclick}
           >
             Share <ShareIcon className='mt-[2px]' />
@@ -203,14 +196,7 @@ const Searchdetail = () => {
             
             </div>
           </div>
-
-          
-            {/* <div>
-               <TextRunner  text="please use Vpn to download this movie"  duration={10}/>
-             </div> */}
-     
-         
-          </div>
+        </div>
          
         
 
@@ -227,8 +213,6 @@ const Searchdetail = () => {
         <Crewcast data= {data} />
       </div>
 
-     
-      
     </div>
     
   )

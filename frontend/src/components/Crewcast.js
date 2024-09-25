@@ -13,7 +13,7 @@ export const Crewcast = ({data}) => {
    const [castdata , setcastdata] = useState(null)
    const theme = useSelector(store => store.theme.toggletheme);
 
-   const id = data?.id
+   const id = data?.id || data?.[0]?.objectId
   
  
    

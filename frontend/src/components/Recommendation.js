@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux'
 
 
 export const Recommendation = ({url , Recommendations}) => {
-const [data,setdata] = useState('')
+const [data,setdata] = useState(null)
 const theme = useSelector(store => store.theme.toggletheme)
+console.log(data)
 
 
     useEffect(()=>{

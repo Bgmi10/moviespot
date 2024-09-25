@@ -142,7 +142,7 @@ export const Developerprofile = () => {
              <button disabled> Subash Chandra Bose </button>
             </motion.p>
             <motion.p whileHover={{ scale: 1.1 }} style={{ fontSize: '16px', color: '#666', position: 'relative', zIndex: 1 }} >
-             <button disabled> Developer </button>
+             <button disabled> SDE-I </button>
             </motion.p>
 
             <button disabled><Typeeffct /></button>
@@ -164,7 +164,6 @@ export const Developerprofile = () => {
         <Project  projects={opensourceprojects} title={'Open source'}/>
         <Project projects={Freelanceprojects} title={'Freelance'} />
        
-       <Githubprofile />
        <Feedback />
        <Whyhire />
     </>

@@ -12,6 +12,7 @@ import * as emojigif from './emoji2.json'
 
 
 export const Feedbackform = ({data , toggleform , movieid , theme}) => {
+  
 
    
     const [starvalue , setstarvalue] = useState(0)
@@ -30,30 +31,29 @@ export const Feedbackform = ({data , toggleform , movieid , theme}) => {
 
   return (
    <>
-     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-sm ">
-          <div className="relativ e flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 opacity-0 animate-fadeIn ">
+     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-lg">
+          <div className="relative flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 animate-fadeIn">
     
-          { feedbackformsubmission ? <div><LottieAnimation gif={gif}   />  <p className='text-white '>Your Feedback Is Our Beacon ! </p> </div> : <div className={ (theme ? 'bg-slate-900' : 'bg-white' )+ ' w-96 h-auto  rounded-md transition-transform'}>
-           <div className={theme ? 'flex justify-evenly shadow-gray-800  shadow-md rounded-md  ' :'flex justify-evenly  shadow-md rounded-md  ' }>
+          { feedbackformsubmission ? <div> <LottieAnimation gif={gif}   />  <p className='text-white'>Your Feedback Is Our Beacon ! </p> </div> : 
+          <div className={  'w-96 h-auto  rounded-md transition-transform border'}>
+           <div className={theme ? 'flex justify-evenly shadow-gray-800  shadow-md rounded-md' : 'flex justify-evenly  shadow-md rounded-md' }>
             
-              <h1 className={theme ? ' text-white p-2  font-medium text-center m-3 ' : ' text-black p-2  font-medium text-center m-3'}> How was the movie ? <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600  transition-transform duration-1000 '>{data?.title}</span> </h1>
+              <span className={theme ? 'text-white p-2  font-medium text-center m-3' : 'text-black p-2  font-medium text-center m-1'}> How was the movie ? <p className='text-transparent bg-clip-text  bg-gradient-to-r from-blue-400 via-yellow-500 to-yellow-600  transition-transform duration-1000 '>{data?.title || data?.[0]?.movieName}</p> </span>
 
-              <FontAwesomeIcon icon={faClose} className={'text-gray-400  p-2  text-end text-2xl mt-3 cursor-pointer   '} onClick={() => toggleform(false)} />
+              <FontAwesomeIcon icon={faClose} className={'text-gray-400 text-end text-2xl mt-3 cursor-pointer'} onClick={() => toggleform(false)} />
 
             </div>            
 
             <div>
 
-                <h1 className={theme ?  'font-medium text-white p-2 mt-6 ' : 'text-black p-2 mt-6 '}> How would you rate the movie ? </h1>
+                <h1 className={theme ?  'font-medium text-white p-2 mt-6 text-center' : 'text-black p-2 mt-6'}> How would you rate the movie ? </h1>
                 {starvalue === 0 && <div className='mb-[-70px] mt-[-70px]'><LottieAnimation gif={emojigif}  /></div> }
 
             </div>
                
             <div > 
                 
-               
-
-                 <p className='font-extralight text-sm text-center text-gray-400 '> slide to rate <FontAwesomeIcon icon={faArrowRight} className='text-gray-500 text-sm' /> </p>
+                 <p className='font-extralight text-sm text-center text-gray-400'> slide to rate <FontAwesomeIcon icon={faArrowRight} className='text-gray-500 text-sm' /> </p>
                  
                  <div className='flex items-center ml-4 w-[350px]'>
 

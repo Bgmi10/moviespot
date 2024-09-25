@@ -52,42 +52,11 @@ export const Headerprofile = () => {
     <div className='lg:flex lg:justify-between p-10'>
     <Timer endTime={endTime} status={status} />
     <div className='flex justify-end mr-10 gap-3 items-center'>
-      {/* Profile Picture with Animation */}
-        
-          <Downloadcv />
       
-      {/* <motion.div
-        whileHover={{
-          scale: 1.15,
-          rotate: 5,
-          boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.3)',
-          transition: { type: 'spring', stiffness: 400, damping: 10 },
-        }}
-        style={{ position: 'relative' }}
-      >
-        <img
-          src={profile}
-          className='w-10 h-10 rounded-full border-4 border-gray-800'
-          alt="Profile"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            width: '14px',
-            height: '14px',
-            borderRadius: '50%',
-            backgroundColor: status === 'online' ? '#34D399' : '#F87171', // Status indicator color
-            border: '2px solid #000',
-          }}
-        />
-      </motion.div> */}
-
-      {/* GitHub Icon with Tooltip */}
+      
+          <Downloadcv /> 
+      
+      
       <div className='relative flex flex-col items-center'>
         <motion.div
           whileHover={{
@@ -122,8 +91,6 @@ export const Headerprofile = () => {
        
       </div>
 
-      {/* Timer Component */}
-     
     </div>
     </div>
   );

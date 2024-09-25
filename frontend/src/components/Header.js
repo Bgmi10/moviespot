@@ -37,7 +37,7 @@ const Header = () => {
         </div>
       </div>
       
-      <div className={"flex items-center space-x-4  lg:ml-[1150px] sm: ml-72 sm: mt-3 absolute "}>
+      <div className={"flex items-center space-x-4  lg:ml-[1150px]   mt-3 lg:absolute  sm: ml-36"}>
         <DarkModeSwitch
           checked={theme1}
           onChange={toggle}
@@ -59,7 +59,7 @@ const Header = () => {
         </div>
         </div>
         
-        <div className="cursor-pointer ml-32 lg:hidden" onClick={handleToggle}>
+        <div className="cursor-pointer  lg:hidden" onClick={handleToggle}>
         <div className={`hamburger-icon ${isOpen ? 'open' : ''}`}>
           <div className="line top "></div>
           <div className="line middle"></div>
@@ -72,16 +72,16 @@ const Header = () => {
         >
           {isOpen && (
             <>
-              <span onClick={() => window.location.href = '/search-catagory'}>Search Movies </span>
-              <span onClick={() => window.location.href = '/tv-series'}>Tv-series</span>
-              <span onClick={() => window.location.href = '/'}>Home</span>
-              <span  onClick={() => window.location.href = '/developer-profile'}>Developer-Profile</span>
-              <span  onClick={() => window.location.href = '/'}>Subscription</span>
-              <span  onClick={() => window.location.href = '/about-us'}>About us </span>
-              <span  onClick={() => window.location.href = '/contact-us'}>Contact us</span>
-              <span  onClick={() => window.location.href = '/terms-condition'}>Terms & condition</span>
-              <span  onClick={() => window.location.href = '/privacy-policy'}>Privacy policy</span>
-              <span  onClick={() => window.location.href = '/refund-policy'}>Refund policy </span>
+              <a onClick={() => window.location.href = '/search-catagory'}>Search Movies </a>
+              <a onClick={() => window.location.href = '/tv-series'}>Tv-series</a>
+              <a onClick={() => window.location.href = '/'}>Home</a>
+              <a  onClick={() => window.location.href = '/developer-profile'}>Developer-Profile</a>
+              <a  onClick={() => window.location.href = '/'}>Subscription</a>
+              <a  onClick={() => window.location.href = '/about-us'}>About us </a>
+              <a  onClick={() => window.location.href = '/contact-us'}>Contact us</a>
+              <a  onClick={() => window.location.href = '/terms-condition'}>Terms & condition</a>
+              <a  onClick={() => window.location.href = '/privacy-policy'}>Privacy policy</a>
+              <a  onClick={() => window.location.href = '/refund-policy'}>Refund policy </a>
           
               
             </>

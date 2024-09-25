@@ -7,19 +7,18 @@ import SendIcon from '@mui/icons-material/Send';
 export function Adminmsgchat() {
   const [newMessage, setNewMessage] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
-  const [showUserList, setShowUserList] = useState(true); // Toggle user list on small devices
+  const [showUserList, setShowUserList] = useState(true); 
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef(null);
   const [isauth, setisauth] = useState(false);
   const [password, setpassword] = useState('');
-  const mounted = useRef(true); // Track component mounted state
-  console.log(selectedUser)
+  const mounted = useRef(true); 
   const passwordmodle = 'Pubg@001';
 
   useEffect(() => {
     const storeInitialStatus = async () => {
-      const adminId = 'admin-id'; // Change this to the actual admin ID or auth ID.
+      const adminId = 'admin-id'; 
       const userDocRef = doc(db, 'users', adminId);
 
       await setDoc(userDocRef, {
@@ -33,7 +32,7 @@ export function Adminmsgchat() {
     return () => {
       if (mounted.current) {
         const setOfflineStatus = async () => {
-          const adminId = 'admin-id'; // Change this to the actual admin ID or auth ID.
+          const adminId = 'admin-id'; 
           const userStatusRef = doc(db, 'users', adminId);
           await updateDoc(userStatusRef, {
             onlineStatus: false,
@@ -47,7 +46,7 @@ export function Adminmsgchat() {
   }, []);
 
   useEffect(() => {
-    // Set mounted flag to false when component unmounts
+    
     return () => {
       mounted.current = false;
     };
