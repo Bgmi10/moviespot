@@ -16,8 +16,8 @@ export const Headeritems = () => {
           link: '/tv-series'
         },
         {
-          title: 'About-us',
-          link: '/about'
+          title: 'Search',
+          link: '/search-catagory'
         },
         {
           title: 'Contact-us',

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { profile_url } from '../utils/constans'
 import Slider from 'react-slick'
-import moviespot_gif  from '../img/moviespotsize_276x350.gif'
+import moviespot_gif  from '../img/ms1.gif'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useSelector } from 'react-redux';

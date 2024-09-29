@@ -8,16 +8,16 @@ import gif from '../../img/movieSpotgif.gif'
 const Searchpage = () => {
     const [data, setData] = useState([]);
     const theme = useSelector(store => store.theme.toggleTheme);
-    const query = new URLSearchParams(useLocation().search);
     const [scrollCheck, setScrollCheck] = useState(false);
-    const type = useSelector(store => store)
-    
+    const type = useSelector(store => store.movietoggle.type1)
     const [page, setPage] = useState(1);
+    const query = new URLSearchParams(useLocation().search);
+    const url =  query.get('query');
+    const loc = window.location.pathname === '/searchpage'
 
-    const searchQuery = query.get('query');
 
     const fetchSearchResults = async () => {
-        const res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchQuery}&page=${page}&api_key=${process.env.REACT_APP_API_KEY}`);
+        const res = await fetch(`https://api.themoviedb.org/3/search/${type}?query=${url}&page=${page}&api_key=${process.env.REACT_APP_API_KEY}`);
         const json = await res.json();
         setData(prevData => [...prevData, ...json.results]);
     };
@@ -30,10 +30,12 @@ const Searchpage = () => {
     }, [scrollCheck]);
 
     useEffect(() => {
-        if (scrollCheck || page === 1) {
+        if (scrollCheck || page === 1 ) {
             fetchSearchResults();
         }
     }, [page]);
+
+
 
     const scrollevent = () =>{
         const isScrolledToBottom = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight - 400;
@@ -48,29 +50,34 @@ const Searchpage = () => {
         return () => {
             window.removeEventListener('scroll', scrollevent);
 
-           
         };
        
     }, []);
-       if(data?.results?.poster_path === null) return  "img not avialable"
+
     return (
-        <div className="px-4 lg:px-32 flex flex-wrap justify-center">
+      <div className={'px-4 py-24'} >
+        <div className="grid sm: grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             
         {data.length === 0 ? <p className='text-gray-300 '>No search found </p> : data.map((item) => (
-          <a href={`/searchdetail/${item.id}`} key={item.id} >
-            <div className="p-4 flex flex-col items-center">
+          <a href={`/searchdetail/${item.id}`} key={item.id}  >
+          <div className="flex flex-col items-center">
+          <div className="w-full aspect-[2/3] relative overflow-hidden rounded-lg">
               <img
                 src={item.poster_path ? `${poster_url}${item.poster_path}` : gif}
                 alt="movie poster"
-                className="rounded-lg w-full lg:w-40  lg:h-60  sm: h-52  sm:w-42 hover:scale-105 transition-transform"
+                className="lg:w-full lg:h-full sm: h-52 sm: w-32 object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div>
-              <p className=" mt-2 text-gray-400  whitespace-normal overflow-hidden">{item.title.length >= 9 ? item.title.slice(0,9)    : item.title}  {item?.name?.length >= 9 ? item.name?.slice(0,9) : item.name}</p>
+           </div>
+            <div className="mt-2 w-full lg:p-1">
+                <p className="text-gray-300 lg:text-xl sm: text-sm sm:text-base font-normal truncate">
+                  {item.title}
+                </p>
               </div>
             </div>
            
           </a>
         ))}
+        </div>
       </div>
     );
 };

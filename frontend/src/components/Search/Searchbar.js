@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search } from './Search';
-import { useDispatch } from 'react-redux';
-import { cacheresults } from '../../utils/Searchcacheslice';
 import { useSelector } from 'react-redux';
+import Searchcatagory from './Searchcatagory';
+import { Quicksearch } from './Quicksearch';
 
 
 
@@ -14,44 +13,15 @@ const Searchbar = () => {
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const latestSearchTerm = useRef('');
-  const [movies, setmovies] = useState('')
-  const dispatch = useDispatch()
   const theme = useSelector(store => store.theme.toggletheme)
-  const togglecategory = useSelector(store => store.movietoggle.togglecategory)
-  const cache_results = useSelector(store => store.cache)
+  const category_type = useSelector(store => store.movietoggle.type1)
+
   
  const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const type = togglecategory  ? 'tv' : 'movie'
-
-
-  useEffect(()=>{
-   
-   const timer =  setTimeout(()=>{
-         if(cache_results[searchTerm]){
-          setmovies(cache_results[searchTerm])
-         }
-         else{
-          fetchmovies()
-         }
-},150)
-
-    return ()=> {clearTimeout(timer)}
-  },[searchTerm , type])
-
-  const fetchmovies = async() =>{
-    const response = await fetch(`https://api.themoviedb.org/3/search/${type}?query=${searchTerm}&api_key=${process.env.REACT_APP_API_KEY}`)
-    
-    const data = await response.json()
-    
   
-   
-    dispatch(cacheresults({[searchTerm] : data}))
-    setmovies(data)
-  }
-
    const SpeechRecognition = () => {
 
    
@@ -84,17 +54,17 @@ const Searchbar = () => {
   
 
   return (
-    <div className='py-32'>
-    <div className={theme ? `bg-slate-900` : `bg-white`}  >
-      <div className={ `flex justify-center items-center mb-4 ` }>
+    
+    <div className={theme ? `bg-slate-900 py-32` : `bg-white`}  >
+      <div className={ `flex justify-center items-center` }>
       <div  className="flex items-center relative">
         <div className="relative">
           <input
             type="text"
-            placeholder="Search movies..."
+            placeholder={'Search for ' + `${category_type}...`}
             value={searchTerm}
             onChange={handleSearch}
-            className={theme ? "p-2 border rounded-md focus:outline-none focus:border-gray-500 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96 bg-slate-900 text-white "  : "p-2 border rounded-md focus:outline-none  border-gray-500 focus:border-gray-600 transition-all duration-300 transform scale-100 hover:scale-105 m-2 sm:w-96  text-gray-500 " }
+            className={theme ? "p-2 border outline-none rounded-md m-2 lg:w-[700px] sm: w-60 bg-slate-900 text-white "  : "p-2 border rounded-md  border-gray-500  m-2 lg:w-[700px] outline-none sm: w-60  text-gray-500 " }
           />
           <button
             type="button"
@@ -135,11 +105,15 @@ const Searchbar = () => {
            
       </div>
     </div>
-    
-     <Search movies={movies} />
-    
+         <div>
+             <Searchcatagory />
+          </div>
+         <div>
+            <Quicksearch searchQuery={searchTerm}  type={category_type}/>
+        </div>
+         
       </div>
-      </div>
+      
   );
 };
 

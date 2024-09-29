@@ -45,7 +45,7 @@ export const Popular = ({ title, apiurl, sort }) => {
         <h2 className={`text-2xl font-medium mb-4 px-2 mt-6 ${theme ? 'text-gray-300' : 'text-gray-800'}`}>{title}</h2>
         <a href={`/popular-detail?apiurl=${encodeURIComponent(apiurl)}&sort=${encodeURIComponent(sort)}`}>
           <h1 className="text-gray-400 cursor-pointer text-md font-medium mt-4 mr-2 py-3">
-            More.. <FontAwesomeIcon icon={faArrowRight} />
+            More..<FontAwesomeIcon icon={faArrowRight} />
           </h1>
         </a>
       </div>
@@ -67,7 +67,7 @@ export const Popular = ({ title, apiurl, sort }) => {
                     style={{ zIndex: 10 }}
                   >
                     <FaPlay
-                      className="text-rose-600 text-3xl shadow-lg "
+                      className="text-rose-600 text-3xl shadow-lg"
                       style={{
                         zIndex: 10,
                         filter: 'drop-shadow(0 0 15px rgba(245, 255, 255, 0.9))',
@@ -77,7 +77,7 @@ export const Popular = ({ title, apiurl, sort }) => {
                 )}
                 <img
                   src={!item.poster_path ? moviesspotgif : `${poster_url}${item.poster_path}`}
-                  className="w-full rounded-xl p-[4px] cursor-pointer transition-transform duration-300 ease-in-out transform "
+                  className="w-full rounded-xl p-[4px] cursor-pointer transition-transform duration-300 ease-in-out transform"
                   alt={item.title || item.name}
                 />
               </div>
