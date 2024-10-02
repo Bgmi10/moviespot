@@ -306,7 +306,7 @@ export default function ChatBox() {
         </div>
       ) : (
         <motion.img
-          src={whatsapp}
+          src='chrome-extension://cebmnlammjhancocbbnfcglifgdpfejc/images/icon_128.png'
           alt="Chat Icon"
           className="fixed bottom-5 right-5  w-10 h-10 cursor-pointer"
           onClick={() => setShowChat(true)}

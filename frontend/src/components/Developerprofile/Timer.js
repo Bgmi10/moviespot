@@ -31,21 +31,21 @@ const Timer = ({ endTime, status }) => {
       style={{ fontSize: '10px', fontFamily: 'Arial, sans-serif' }}
     >
       {!sm && <span
-        className="text-gray-400"
-        style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px' }}
+        style={{
+          fontSize: '16px',
+          color: '#666',
+          fontWeight: '700',
+          textAlign: 'center',
+        }}
       >
         { status === 'online' ? 'Online - Time left until offline:' : 'Offline - Time until next workday:'}
       </span>}
 
      {!sm && <motion.span
-        initial={{ scale: 1 }}
-        animate={{ scale: 1.05 }}
-        transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
         style={{
           fontWeight: 'bold',
           fontSize: '12px',
           color: status === 'online' ? '#10B981' : '#EF4444',
-          backgroundColor: '#1F2937',
           padding: '4px 8px',
           borderRadius: '8px',
           letterSpacing: '1px',

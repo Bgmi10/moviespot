@@ -6,14 +6,13 @@ export const Typeeffct = () => {
     <div
     style={{
       fontSize: '16px',
-      color: '#555',
-      fontWeight: '500',
-      marginTop: '10px',
+      color: '#666',
+      fontWeight: '700',
       textAlign: 'center',
     }}
   >
     <TypingEffect
-      text={['JavaScript', 'React', 'Tailwind css' , 'Redux-toolkit' ,'Freelancer' , 'Firebase' , 'Strapi' , 'Socket.io' , 'Express js' , 'Mongo db' , 'Material ui' , 'Framer motion' , 'Node js'  ]}
+      text={['JavaScript', 'React', 'Tailwind css' , 'Redux-toolkit', 'Firebase' , 'Strapi' , 'Socket.io' , 'Express js' , 'Mongo db' , 'Material ui' , 'Framer motion' , 'Node js', 'Next js', 'Mantine'  ]}
       speed={100}
       eraseSpeed={50}
       typingDelay={500}

@@ -50,6 +50,7 @@ const Searchcatagory = () => {
                 TV
               </div>
             </div>
+          
           )}
         </div>
         </div>

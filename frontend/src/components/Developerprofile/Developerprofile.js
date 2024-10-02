@@ -132,18 +132,17 @@ export const Developerprofile = () => {
             transition={{ duration: 1, delay: 0.5, type: 'spring' }}
             style={{
               fontSize: '24px',
-              fontWeight: '600',
-              color: '#333',
+              fontWeight: '800',
               textAlign: 'center',
               position: 'relative',
             }}
           >
-            <motion.p whileHover={{ scale: 1.1 }} style={{ position: 'relative', zIndex: 1 }}>
-             <button disabled> Subash Chandra Bose </button>
-            </motion.p>
-            <motion.p whileHover={{ scale: 1.1 }} style={{ fontSize: '16px', color: '#666', position: 'relative', zIndex: 1 }} >
-             <button disabled> SDE-I </button>
-            </motion.p>
+            <motion.div whileHover={{ scale: 1.1 }} style={{ position: 'relative', zIndex: 1 , color : "#999"}}>
+             <button disabled > Subash Chandra Bose </button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }} className='justify-center flex' style={{ fontSize: '16px', color: '#888', position: 'relative', zIndex: 1 }} >
+             <button disabled className='flex'> SWE-I  <img src='https://www.f-cdn.com/assets/main/en/assets/badges/verified/verified-v2.svg' alt='verified' className='w-3 h-3  mt-[6px] ml-1'/></button>
+            </motion.div>
 
             <button disabled><Typeeffct /></button>
           </motion.div>
