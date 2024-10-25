@@ -8,6 +8,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import SendIcon from '@mui/icons-material/Send';
+import chaticon from '../imgs/chat_box_png.png'
 
 export default function ChatBox() {
   const [messageReady, setMessageReady] = useState(false);
@@ -306,7 +307,7 @@ export default function ChatBox() {
         </div>
       ) : (
         <motion.img
-          src='chrome-extension://cebmnlammjhancocbbnfcglifgdpfejc/images/icon_128.png'
+          src={chaticon}
           alt="Chat Icon"
           className="fixed bottom-5 right-5  w-10 h-10 cursor-pointer"
           onClick={() => setShowChat(true)}

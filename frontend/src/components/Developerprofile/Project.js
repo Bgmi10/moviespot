@@ -55,7 +55,7 @@ export const Project = ({projects , title}) => {
   };
 
   return (
-    <section className="p-10 bg-slate-900" id="projects">
+    <section className="p-10" id="projects">
       <motion.h2
         variants={headingVariants}
         initial="hidden"

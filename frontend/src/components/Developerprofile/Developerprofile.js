@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import profile from '../../img/profile.jpeg';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
@@ -8,19 +8,34 @@ import { Headerprofile } from './Headerprofile';
 import { Contactform } from './Contactform';
 import { Project } from './Project';
 import { Freelanceprojects, opensourceprojects, projects } from './Utils/constants';
-import { Githubprofile } from './Gtihub/Githubprofile';
 import { Feedback } from './Feedback';
 import ChatBox from './Chatbox/Chatbox';
+import { GlobeDemo } from './globe/GlobeConfig';
 
 
 export const Developerprofile = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [showForm, setShowForm] = useState(false); 
+  const [userscroll, setUserscroll] = useState(0);
 
   const handleHireClick = () => {
    
     setShowForm(true); 
   };
+
+  // useEffect(() => {
+
+  //   const handlescroll = () => {
+  //     const a = window.scrollY;
+  //     setUserscroll(a);
+  //   }
+
+  //    window.addEventListener('scroll' , handlescroll);
+
+  //    return () => window.removeEventListener('scroll', handlescroll);
+
+  // },[])
+
   return (
     <>
       <Headerprofile />
@@ -138,7 +153,7 @@ export const Developerprofile = () => {
             }}
           >
             <motion.div whileHover={{ scale: 1.1 }} style={{ position: 'relative', zIndex: 1 , color : "#999"}}>
-             <button disabled > Subash Chandra Bose </button>
+             <button disabled> Subash Chandra Bose </button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.1 }} className='justify-center flex' style={{ fontSize: '16px', color: '#888', position: 'relative', zIndex: 1 }} >
              <button disabled className='flex'> SWE-I  <img src='https://www.f-cdn.com/assets/main/en/assets/badges/verified/verified-v2.svg' alt='verified' className='w-3 h-3  mt-[6px] ml-1'/></button>
@@ -165,6 +180,8 @@ export const Developerprofile = () => {
        
        <Feedback />
        <Whyhire />
+
+      <GlobeDemo />
     </>
   );
 };

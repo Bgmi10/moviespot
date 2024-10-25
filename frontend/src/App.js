@@ -19,6 +19,8 @@ import { Developerprofile } from './components/Developerprofile/Developerprofile
 import { Contact } from './components/Contact';
 import { Adminmsgchat } from './components/Developerprofile/Admin/Adminmsgchat';
 import Searchbar from './components/Search/Searchbar';
+import { Index } from './components/porn/Index';
+import { Detailpage } from './components/porn/Detailpage';
 
 
 const LazyTamilmovieDetails = React.lazy(() => import('./components/TamilmovieDetails'));
@@ -54,7 +56,7 @@ const App = () => {
 
   return (
    
-    <div className={theme ? `bg-slate-900` : `bg-white`}>
+    <div className={theme ? `bg-slate-950` : `bg-white`}>
       
         <Routes>
         
@@ -108,6 +110,8 @@ const App = () => {
                      <Route path='/developer-profile' element={<Developerprofile />} />
                      <Route path='/refund-policy' element={<Lazyloadrefundpolicy />} />
                      <Route path='/contact' element={<Contact />} />
+                     <Route path='/porn' element={<Index />} />
+                     <Route path='/porn/detail/:id' element={<Detailpage />} />
                  
                    </Routes>
                 </React.Suspense>

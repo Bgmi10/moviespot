@@ -48,7 +48,7 @@ export const Whyhire = () => {
  };
 
   return (
-    <div style={{ padding: '20px', minHeight: '100vh', backgroundColor: '#0f172a', marginBottom: '100px' , marginTop : '60px' , marginBottom : '-100px'}}>
+    <div style={{ padding: '20px', minHeight: '100vh', marginBottom: '100px' , marginTop : '60px' , marginBottom : '-100px'}}>
        <motion.h2
           variants={headingVariants}
           initial="hidden"

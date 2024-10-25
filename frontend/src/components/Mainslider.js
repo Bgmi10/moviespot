@@ -38,11 +38,7 @@ export const Mainslider = () => {
       nextSlide();
     }, 5000); // Adjusted interval time for faster autoplay
     return () => clearInterval(interval);
-  }, []);
-
-  const handleclick = (id) => {
-    window.location.href = `/searchdetail/${id}`
-  }
+  }, []); 
  
   const handleMouseDown = (e) => {
     setIsDragging(true);
