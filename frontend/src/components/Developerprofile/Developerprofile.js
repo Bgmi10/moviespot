@@ -155,8 +155,8 @@ const Developerprofile = () => {
             <motion.div whileHover={{ scale: 1.1 }} style={{ position: 'relative', zIndex: 1 , color : "#999"}}>
              <button disabled> Subash Chandra Bose </button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.1 }} className='justify-center flex' style={{ fontSize: '16px', color: '#888', position: 'relative', zIndex: 1 }} >
-             <button disabled className='flex'> SWE-I  <img src='https://www.f-cdn.com/assets/main/en/assets/badges/verified/verified-v2.svg' alt='verified' className='w-3 h-3  mt-[6px] ml-1'/></button>
+            <motion.div whileHover={{ scale: 1.1 }} className='justify-center flex mt-1' style={{ fontSize: '13px', color: '#888', position: 'relative', zIndex: 1}} >
+             <button disabled className='flex font-medium'> SWE-I at Motorolo Solutions  <img src='https://www.f-cdn.com/assets/main/en/assets/badges/verified/verified-v2.svg' alt='verified' className='w-3 h-3  mt-[6px] ml-1'/></button>
             </motion.div>
 
             <button disabled><Typeeffct /></button>

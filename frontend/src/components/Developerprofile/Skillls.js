@@ -11,7 +11,7 @@ const skills = [
   { icon: <FaDatabase fontSize="large" style={{ color: '#4db33d' }} />, label: 'MongoDB', level: 40 },
   { icon: <FaCss3Alt fontSize="large" style={{ color: '#2965f1' }} />, label: 'TailwindCSS', level: 80 },
   { icon: <FaHtml5 fontSize="large" style={{ color: '#e34c26' }} />, label: 'HTML5', level: 70 },
-  { icon: <FaFire fontSize="large" style={{ color: '#f39c12' }} />, label: 'Firebase', level: 40 },
+  { icon: <FaFire fontSize="large" style={{ color: '#f39c12' }} />, label: 'Firebase', level: 40 }
 ];
 
 const cardVariants = {
