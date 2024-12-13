@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Timer from './Timer'; // Ensure this is the correct path to your Timer component
-import profile from './imgs/profile.jpg'
-
-import pdf from './cv.pdf'
+import Timer from './Timer'; 
+import pdf from './cv.pdf';
 
 const calculateStatusAndEndTime = () => {
   const now = new Date();

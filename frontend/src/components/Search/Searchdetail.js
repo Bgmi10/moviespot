@@ -16,28 +16,28 @@ import { showflixapi } from '../../utils/Showflixapi'
 const Searchdetail = () => {
  
   const [feedbackform , setfeedbackform] = useState(false)
-  const [data, setdata] = useState('')
-  const {id} = useParams()
-  const theme = useSelector(store => store.theme.toggletheme)
-  const movietoggle = useSelector(store => store.movietoggle.togglemovie)
-  const [isshow , setisshow] = useState(false)
-  const type = !movietoggle ? 'movie' : 'tv'
+  const [data, setdata] = useState(null);
+  const {id} = useParams();
+  const theme = useSelector(store => store.theme.toggletheme);
+  const movietoggle = useSelector(store => store.movietoggle.togglemovie);
+  const [isshow , setisshow] = useState(false);
+  const type = !movietoggle ? 'movie' : 'tv';
   
   
   useEffect(()=>{
     const fetch_search_data = async () =>{
 
      try{ 
-      const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}`) 
+      const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_API_KEY}`); 
 
-      const datas = await res.json()
+      const datas = await res.json();
      
-      setdata(datas)
+      setdata(datas);
 
     }
 
     catch(error){
-       console.log(error)
+       console.log(error);
     }
 
   }
@@ -45,36 +45,36 @@ const Searchdetail = () => {
     
     const data1 = showflixapi.filter((i) => i.objectId === id)
     if(data1.length > 0){
-     setdata(data1)
+     setdata(data1);
     }
     else{
-      fetch_search_data()
+      fetch_search_data();
     }
 
-   },[type])
+   },[type, id])
 
-   const categoryname = !movietoggle  ? data?.title?.split(' ').join('-') : data?.name?.split(' ').join('-')
-   const toggle_type_release_data = !movietoggle ? data?.release_date?.slice(0,4) : data?.last_air_date?.slice(0,4)
+   const categoryname = !movietoggle  ? data?.title?.split(' ').join('-') : data?.name?.split(' ').join('-');
+   const toggle_type_release_data = !movietoggle ? data?.release_date?.slice(0,4) : data?.last_air_date?.slice(0,4);
 
  
   
 
    const handleshareclick = async () =>{
-    const url  = `https://movieapp-cd283.web.app/searchdetail/${id}`
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${url}`
-    window.open(whatsappUrl , '_blank')
+    const url  = `https://movieapp-cd283.web.app/searchdetail/${id}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${url}`;
+    window.open(whatsappUrl , '_blank');
     
    }
 
 
     const handle_how_to_download = () =>{
-         setisshow(true)
+         setisshow(true);
     }
 
    
 
     const handleshowfeedbackform = () =>{
-      setfeedbackform(true)
+      setfeedbackform(true);
     }
 
     const getImageSource = () => {
@@ -97,18 +97,16 @@ const Searchdetail = () => {
 
   return (
   
-    <div>
+    <> 
+  {!data ? ( <span className='text-5xl text-red-700'>loading...</span>)  : (  <div>
       
-      <div  className=" flex flex-col items-center " >
+      <div  className="flex flex-col items-center">
 
-        {feedbackform && <Feedbackform data={data} toggleform={setfeedbackform} movieid={id} theme={theme}/>}
-
-
-      {data && (
-        <div className="relative  inset-0 ease-in-out  shadow-lg rounded-lg text-white " >
+        {  feedbackform && <Feedbackform data={data} toggleform={setfeedbackform} movieid={id} theme={theme}/>}
+        <div className="relative  inset-0 ease-in-out  shadow-lg rounded-lg text-white" >
          
             <img src={getImageSource()}  className="sm: w-full sm: h-[800px] lg:w-auto lg:h-auto object-cover  object-center"/>
-            {/* Overlay with Poster Image */}
+          
             <div
             className="absolute inset-0 bg-black bg-opacity-60 flex flex-col  px-4  lg:py-[148px] sm: py-[120px] "
             style={{
@@ -197,23 +195,18 @@ const Searchdetail = () => {
             </div>
           </div>
         </div>
-         
         
-
-      ) }
       </div>
-     <div>
-       
-       <Recommendation Recommendations = "Recommendations"  url = {`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=1`}/>
-      
-       <Recommendation  url={`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=2`}/>
-      </div> 
-
-      <div>
+  
+    <> 
+      { data && type && id && <div> <Recommendation Recommendations = "Recommendations"  url = {`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=1`}/>
+    
+       <Recommendation  url={`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=2`}/></div>}</>
         <Crewcast data= {data} />
-      </div>
+    
 
-    </div>
+    </div>)}
+    </>
     
   )
 }

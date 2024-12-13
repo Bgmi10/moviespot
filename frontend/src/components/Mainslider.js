@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-import moviespot_gif from '../img/movieSpotgif.gif';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { showflixapi } from '../utils/Showflixapi';
 import './cutom-slide.css'; 
-import { main_slider } from '../utils/constans';
 import { Link } from 'react-router-dom';
 
 export const Mainslider = () => {
@@ -12,7 +10,6 @@ export const Mainslider = () => {
   const [animating, setAnimating] = useState(false); 
   const [startPosition, setStartPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [dominantColor, setDominantColor] = useState('rgba(245, 255, 255, 0.9)');
   const totalSlides = showflixapi.length;
   const sliderRef = useRef(null);
 
@@ -87,7 +84,7 @@ export const Mainslider = () => {
     setIsDragging(false);
   };
   return (
-    <div className="slider-container relative "  ref={sliderRef}
+    <div className="slider-container relative cursor-grab"  ref={sliderRef}
     onMouseDown={handleMouseDown}
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
@@ -99,7 +96,7 @@ export const Mainslider = () => {
       {showflixapi.map((i, index) => (
         <Link to={`/searchdetail/${i.objectId}`}key={i.objectId}>
         <div
-        className={`slide cursor-pointer absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+        className={`slide absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
           style={{ zIndex: index === currentSlide ? 1 : 0 }}
           
         >
@@ -139,9 +136,6 @@ export const Mainslider = () => {
                   </span>
                  
                 </div>
-                {/* <div className='mt-8'>
-                    <span  className={`border-2 rounded-md lg:p-[8px] sm: p-[5px] text-white transition-transform duration-500 items-center  sm: w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>Download <img src='https://showflix.xyz/static/media/down.4feb75a3.gif'  className='h-7 w-7 rounded-full '/></span>
-                </div> */}
               </div>
             </div>
           </div>

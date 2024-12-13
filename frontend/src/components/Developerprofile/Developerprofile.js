@@ -10,10 +10,10 @@ import { Project } from './Project';
 import { Freelanceprojects, opensourceprojects, projects } from './Utils/constants';
 import { Feedback } from './Feedback';
 import ChatBox from './Chatbox/Chatbox';
-import { GlobeDemo } from './globe/GlobeConfig';
 
 
-export const Developerprofile = () => {
+
+const Developerprofile = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [showForm, setShowForm] = useState(false); 
   const [userscroll, setUserscroll] = useState(0);
@@ -181,7 +181,9 @@ export const Developerprofile = () => {
        <Feedback />
        <Whyhire />
 
-      <GlobeDemo />
+     
     </>
   );
 };
+
+export default  Developerprofile;

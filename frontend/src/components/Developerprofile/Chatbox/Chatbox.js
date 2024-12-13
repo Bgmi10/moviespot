@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FaClosedCaptioning, FaMinus } from 'react-icons/fa';
 import { addDoc, collection, query, orderBy, onSnapshot, doc, refEqual, updateDoc  } from 'firebase/firestore';
 import { db } from "../../../utils/firebase";
-import whatsapp from '../imgs/whatsapppng.png'
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import SendIcon from '@mui/icons-material/Send';
 import chaticon from '../imgs/chat_box_png.png'
+import profile from '../imgs/profile.jpg'
+
 
 export default function ChatBox() {
   const [messageReady, setMessageReady] = useState(false);
@@ -150,8 +150,8 @@ export default function ChatBox() {
                 >
                   <div className="relative">
                     <img
-                      src="https://media.licdn.com/dms/image/v2/D5603AQGOYh0eJH9-0A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1706411204773?e=1731542400&v=beta&t=R--5mdmmG0Lx1mqS9Cnk4QefgsQhAAzYtHnOeOmX2Ss"
-                      className="h-8 w-8 rounded-full"
+                      src={profile}
+                      className="h-9 w-9 rounded-full"
                       alt="Profile"
                     />
                     <motion.div

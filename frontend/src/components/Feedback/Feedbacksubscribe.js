@@ -99,7 +99,7 @@ export const Feedbacksubscribe = ({ movieId }) => {
               <div>
                 <p className={theme ? 'text-gray-400' : 'text-gray-600'}>{i?.userfeedbackmessage || ''}</p>
               </div>
-              <div className='justify-end flex'>
+              <div className='justify-end flex'>  
                 <span className={theme ? 'text-gray-500' : 'text-gray-400 text-sm'}>{timeAgo(i?.created_at)}</span>
               </div>
             </div>

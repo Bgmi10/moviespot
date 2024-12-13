@@ -7,28 +7,26 @@ import { useSelector } from 'react-redux'
 
 
 export const Recommendation = ({url , Recommendations}) => {
-const [data,setdata] = useState(null)
-const theme = useSelector(store => store.theme.toggletheme)
-console.log(data)
+const [data,setdata] = useState(null);
+const theme = useSelector(store => store.theme.toggletheme);
 
+const fetch_recommend_data = async () =>{
+  try{   
+
+     const res  = await fetch(url) 
+     const datas= await res.json()
+     setdata(datas)
+ }
+
+  catch(error){
+       console.log(error)
+     }
+  }
 
     useEffect(()=>{
-        const fetch_recommend_data = async () =>{
-         try{   const res  = await fetch(url)
-
-            const datas= await res.json()
-            setdata(datas)
-           
-        }
-    
-          catch(error){
-              console.log(error)
-         }
-      }
         fetch_recommend_data()
     },[])
 
- 
  
   return (
   <div >

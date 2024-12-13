@@ -4,7 +4,7 @@ import { addDoc, collection, query, orderBy, onSnapshot, doc, collectionGroup, u
 import { db } from "../../../utils/firebase";
 import SendIcon from '@mui/icons-material/Send';
 
-export function Adminmsgchat() {
+ function Adminmsgchat() {
   const [newMessage, setNewMessage] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const [showUserList, setShowUserList] = useState(true); 
@@ -164,7 +164,8 @@ export function Adminmsgchat() {
     <>
       {
         !isauth ? (
-          <div className='justify-center flex mt-72'>
+          <div className='justify-center flex'>
+            <div className='h-screen flex justify-center items-center'>
             <input
               type='text'
               className='ml-2 outline-none rounded-md m-1 p-2'
@@ -172,11 +173,12 @@ export function Adminmsgchat() {
               onChange={(e) => setpassword(e.target.value)}
             />
             <button
-              className='bg-blue-400 p-2 m-2 text-white rounded-md'
+              className='bg-rose-600 p-2 m-2 text-black rounded-md'
               onClick={checkPassword}
             >
               Let`s go
             </button>
+          </div>
           </div>
         ) : (
           <div className="fixed inset-0 z-10">
@@ -260,3 +262,6 @@ export function Adminmsgchat() {
     </>
   );
 }
+
+
+export default Adminmsgchat

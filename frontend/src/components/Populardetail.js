@@ -26,7 +26,7 @@ const Populardetail = () => {
   }, [page]);
 
   const handleScroll = () => {
-    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 1000) {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 250) {
       setScrollCheck(true);
     }
   };

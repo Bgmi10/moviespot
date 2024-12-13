@@ -29,7 +29,7 @@ const Header = () => {
     <div className='absolute z-20' >
     <nav className=" mb-3 border-gray-500  flex items-center justify-between  ">
       <div className="flex items-center space-x-4 ml-2 sm: mt-3" >
-        <h1 className="text-rose-600 text-lg font-semibold   p-2 rounded-md  border-none outline-none " >
+        <h1 className="text-rose-600 bg-black text-lg font-semibold   p-2 rounded-md  border-none outline-none " >
           Movie<span className='text-white'>Spot</span>
         </h1>
         <div className="hidden lg:flex">
@@ -37,12 +37,11 @@ const Header = () => {
         </div>
       </div>
       
-      <div className={"flex items-center space-x-4  lg:ml-[1150px]   mt-3 lg:absolute  sm: ml-36"}>
+      <div className={"flex items-center space-x-4  lg:ml-[1250px]   mt-3 lg:absolute  sm: ml-36"}>
         <DarkModeSwitch
           checked={theme1}
           onChange={toggle}
           size={27}
-          className="mt-1"
         />
 
         <div className="relative inline-block ">

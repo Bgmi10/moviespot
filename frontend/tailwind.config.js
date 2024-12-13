@@ -20,6 +20,9 @@ module.exports = {
           },
         },
       },
+      boxShadow: {
+        'text-shadow': '2px 2px 4px rgba(0, 0, 0, 0.7)',
+      },
       animation: {
         'scroll-text': 'scrollText 5s linear infinite', // Corrected name and added duration
         fadeIn: 'fadeIn 0.7s ease-in-out forwards', // Removed extra curly braces
