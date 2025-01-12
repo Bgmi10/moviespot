@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8"> 
-  <title>MoviesSpot</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  
+  <title>MovieSpot</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">  
   <link rel="manifest" href="manifest.json">
-
   <link rel="icon" href="./icons/icon-128x128.png" />
-  <meta property="og:title" content="Moviesspot" />
-  <meta property="og:description" content="Moviesspot is a movie showcasing website which you can download latests movies, series" />
+  <meta property="og:title" content="MovieSpot" />
+  <meta property="og:description" content="MovieSpot is a movie showcasing website which you can download latests movies, series" />
   <meta property="og:image" content="./icons/icon-128x128.png" />
   <meta property="og:url" content="https://movieapp-cd283.web.app/" />
-  
-
 </head>
-
-
 <body>
   <div id="root"></div>
- 
+  <script src="https://apis.google.com/js/api.js"></script>
   <script src="bundle.js"></script> 
-  
   <script>
     (function(t,e,n,r){function a(){return e&&e.now?e.now():null}if(!n.version){n._events=[];n._errors=[];n._metadata={};n._urlGroup=null;window.RM=n;n.install=function(e){n._options=e;var a=t.createElement("script");a.async=true;a.crossOrigin="anonymous";a.src=r;var o=t.getElementsByTagName("script")[0];o.parentNode.insertBefore(a,o)};n.identify=function(t,e){n._userId=t;n._identifyOptions=e};n.sendEvent=function(t,e){n._events.push({eventName:t,metadata:e,time:a()})};n.setUrlGroup=function(t){n._urlGroup=t};n.track=function(t,e){n._errors.push({error:t,metadata:e,time:a()})};n.addMetadata=function(t){n._metadata=Object.assign(n._metadata,t)}}})(document,window.performance,window.RM||{},"https://cdn.requestmetrics.com/agent/current/rm.js");
     RM.install({ 
         token: "g4qw5hk:p4js5dj"
     });
   </script>
-
 </body>
 </html>
 

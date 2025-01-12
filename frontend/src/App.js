@@ -15,6 +15,7 @@ import { Bottomnavbar } from './components/Bottomnavbar';
 import Usefetchmainslider from './components/Tvseries/Usefetchmainslider';
 import { Adbanner } from './components/Subscription/Adbanner';
 import Searchbar from './components/Search/Searchbar';
+import Admin from './components/admin/Admin';
 
 const LazyTamilmovieDetails = lazy(() => import('./components/TamilmovieDetails'));
 const LazySearchdetail = lazy(() => import('./components/Search/Searchdetail'));
@@ -74,8 +75,8 @@ const App = () => {
               </>
             }
           />
-
-          <Route path="/moviedetail/nowplaying/:Id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
+          <Route element={ <Admin /> } path="/admin" />
+          {/* <Route path="/moviedetail/nowplaying/:Id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
           <Route path="/moviedetail/vijayhits/:Id" element={<LazyTamilmovieDetails data={vijayhits} />} />
           <Route path="/terms-condition" element={<LazyTerms />} />
           <Route path="/privacy-policy" element={<LazyPrivacy />} />
@@ -85,17 +86,16 @@ const App = () => {
           <Route path="/popular-detail" element={<LazyPopulardetail />} />
           <Route path="/tv-series" element={<LazyTvseries />} />
           <Route path="/refund-policy" element={<LazyRefundPolicy />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} /> */}
         </Routes>
       </Suspense>
-         <Suspense>
+         {/* <Suspense>
           <Routes>
             <Route path="/login" element={<LazyLogin />} />
             <Route path="/profile" element={<LazyUserProfile />} />
             <Route path="/developer-profile" element={<DeveloperProfile />} />
-            <Route path="/admin" element={<AdminMsgChat />} />
           </Routes>
-         </Suspense>
+         </Suspense> */}
 
 
       {!isDeveloperPage && !isAdminPage && <Bottomnavbar />}

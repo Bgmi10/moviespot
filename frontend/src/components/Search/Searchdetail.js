@@ -183,7 +183,7 @@ const Searchdetail = () => {
           <div className="relativ e flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 opacity-0 animate-fadeIn ">
          
            
-            <div className='backdrop-blur-sm mt-3 outline-none'>
+            <div className='backdrop-blur-sm mt-3 outline-none z-50'>
             
                  <ReactPlayer url={how_to_Donload_vid }  loop={true} controls={true}  playing={true} width={"350px"} height={'200px'} style={{borderRadius : "20px"}}/>
                  </div></div>
@@ -197,7 +197,16 @@ const Searchdetail = () => {
         </div>
         
       </div>
-  
+      <iframe
+       src="https://drive.google.com/file/d/12qZir8oCEMM76BtC_udsS9FpraK_-CFt/preview"
+       width="350"
+       height="200"
+       allow="autoplay"
+       style={{ borderRadius: "20px", border: "none" }}
+       allowFullScreen
+     />
+
+
     <> 
       { data && type && id && <div> <Recommendation Recommendations = "Recommendations"  url = {`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&page=1`}/>
     

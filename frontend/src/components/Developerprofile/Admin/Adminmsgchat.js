@@ -181,11 +181,11 @@ import SendIcon from '@mui/icons-material/Send';
           </div>
           </div>
         ) : (
-          <div className="fixed inset-0 z-10">
+          <div className="w-full z-10">
             <div className="relative w-full h-full flex rounded-lg shadow-xl overflow-hidden">
 
               {/* User List for Small and Medium Screens */}
-              <div className={`w-full sm:w-[30%] md:w-[25%] h-full p-2 border-r overflow-y-auto transition-all duration-300 ${showUserList ? 'block' : 'hidden sm:block'}`}>
+              <div className={`lg:w-full sm: w-[30%] md:w-[25%] h-full p-2 border-r overflow-y-auto transition-all duration-300 ${showUserList ? 'block' : 'hidden sm:block'}`}>
                 <p className="font-semibold text-gray-400 mb-4">Users</p>
                 <ul className="space-y-2 max-h-full">
                   {users.map((user, index) => (
@@ -202,7 +202,7 @@ import SendIcon from '@mui/icons-material/Send';
               </div>
 
               {/* Chat Window */}
-              <div className={`relative flex-1 flex flex-col bg-slate-900 mb-12 ${showUserList ? 'hidden sm:flex' : 'flex'}`}>
+              <div className={`w-fit flex-1 flex flex-col bg-slate-900 mb-12 ${showUserList ? 'hidden sm:flex' : 'flex'}`}>
                 {selectedUser ? (
                   <>
                     <div className="flex items-center justify-between p-4 bg-green-300 border-b">
