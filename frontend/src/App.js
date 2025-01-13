@@ -76,7 +76,7 @@ const App = () => {
             }
           />
           <Route element={ <Admin /> } path="/admin" />
-          {/* <Route path="/moviedetail/nowplaying/:Id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
+          <Route path="/moviedetail/nowplaying/:Id" element={<LazyTamilmovieDetails data={tamilmovies} />} />
           <Route path="/moviedetail/vijayhits/:Id" element={<LazyTamilmovieDetails data={vijayhits} />} />
           <Route path="/terms-condition" element={<LazyTerms />} />
           <Route path="/privacy-policy" element={<LazyPrivacy />} />
@@ -86,18 +86,16 @@ const App = () => {
           <Route path="/popular-detail" element={<LazyPopulardetail />} />
           <Route path="/tv-series" element={<LazyTvseries />} />
           <Route path="/refund-policy" element={<LazyRefundPolicy />} />
-          <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Suspense>
-         {/* <Suspense>
+         <Suspense>
           <Routes>
             <Route path="/login" element={<LazyLogin />} />
             <Route path="/profile" element={<LazyUserProfile />} />
             <Route path="/developer-profile" element={<DeveloperProfile />} />
           </Routes>
-         </Suspense> */}
-
-
+         </Suspense>
       {!isDeveloperPage && !isAdminPage && <Bottomnavbar />}
     </div>
   );

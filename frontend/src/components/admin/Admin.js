@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Adminmsgchat from "../Developerprofile/Admin/Adminmsgchat";
 import UploadFileToDrive from "./UploadFileToDrive";
+import ManageMedia from "./ManageMedia";
 
 export default function Admin() {
     const [selecteditem, setSelectedItem] = useState('');
@@ -15,6 +16,10 @@ export default function Admin() {
             id: 2,
             name: "Upload Video To Drive"
         },
+        {
+            id: 3,
+            name: "Manage Media"
+        }
     ]
     
     return(
@@ -41,6 +46,7 @@ export default function Admin() {
                </div>}
                  { selecteditem === "Admin Chat" && <Adminmsgchat /> }
                  { selecteditem === "Upload Video To Drive" && <UploadFileToDrive /> }
+                 { selecteditem === "Manage Media" && <ManageMedia /> }
           </div>
         </>
     )
