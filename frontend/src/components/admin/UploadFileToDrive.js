@@ -6,9 +6,10 @@ import { faArrowLeft, faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaGoogleDrive } from "react-icons/fa";
 import UploadToFirebase from "./UploadToFirebase";
+import Loader from "./Loader";
+import BackToAdmin from "./BackToAdmin";
 
-
-export default function UploadFileToDrive() {
+export default function UploadFileToDrive({ setIsopen }) {
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState(null);
     const [selectedmovie, setSelectedMovie] = useState(null);
@@ -19,7 +20,6 @@ export default function UploadFileToDrive() {
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
     const languages = ['english', 'tamil', 'telugu', 'malayalam', 'hindi', 'korean', 'tamil dubbed'];
-    const [ispasswordmatch, setIsPasswordMatch] = useState(false);
 
     useEffect(() => {
         const loadGoogleAPI = () => {
@@ -290,17 +290,14 @@ export default function UploadFileToDrive() {
     
 
     return (
-      <>  { ispasswordmatch ? 
-          <div className="justify-center flex h-screen items-center"> 
-              <input type="password" placeholder="enter the key" cla />
-              <button>Login</button>
-          </div> : <div className="m-10 mb-20">
+      <>  
+       <div className="m-10 mb-20">
             {authError && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
                     <span className="block sm:inline">{authError}</span>
                 </div>
             )}
-
+           <BackToAdmin setIsOpen={setIsopen} />
            {!selectedmovie && <div className="flex flex-col gap-2">
                 <button 
                     onClick={() => setSelectedType(p => !p)} 
@@ -323,9 +320,7 @@ export default function UploadFileToDrive() {
             }
 
             {isLoading && (
-                <div className="mt-5 text-white text-center">
-                    Loading...
-                </div>
+                <Loader loading={isLoading} />
             )}
            
             {!selectedmovie && !isLoading && (
@@ -333,7 +328,7 @@ export default function UploadFileToDrive() {
                     {movies?.results?.map((movie) => (
                         <div 
                             key={movie.id} 
-                            className="flex gap-3 items-center cursor-pointer hover:scale-105 transition-transform p-3 rounded-md"
+                            className="flex gap-3 items-center cursor-pointer lg:hover:scale-105 transition-transform p-3 rounded-md"
                             onClick={() => handleClick(movie)}
                         >
                             <img 
@@ -467,7 +462,7 @@ export default function UploadFileToDrive() {
                     </div>
                 </div>
             )}
-        </div>}
+            </div>
       </>
     );
 }

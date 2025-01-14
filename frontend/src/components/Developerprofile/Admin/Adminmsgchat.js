@@ -3,18 +3,18 @@ import { FaArrowLeft, FaUser } from 'react-icons/fa';
 import { addDoc, collection, query, orderBy, onSnapshot, doc, collectionGroup, updateDoc, setDoc, getDocs } from 'firebase/firestore';
 import { db } from "../../../utils/firebase";
 import SendIcon from '@mui/icons-material/Send';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import BackToAdmin from '../../admin/BackToAdmin';
 
- function Adminmsgchat() {
+ function Adminmsgchat({ setIsopen }) {
   const [newMessage, setNewMessage] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const [showUserList, setShowUserList] = useState(true); 
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef(null);
-  const [isauth, setisauth] = useState(false);
-  const [password, setpassword] = useState('');
   const mounted = useRef(true); 
-  const passwordmodle = 'Pubg@001';
 
   useEffect(() => {
     const storeInitialStatus = async () => {
@@ -52,15 +52,6 @@ import SendIcon from '@mui/icons-material/Send';
     };
   }, []);
 
-  const checkPassword = () => {
-    if (passwordmodle !== password) {
-      alert('Password is wrong');
-    } else if (password === passwordmodle) {
-      setisauth(true);
-    }
-  };
-
-  // Fetch all messages and organize by user
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -142,8 +133,7 @@ import SendIcon from '@mui/icons-material/Send';
   
         snapshot.forEach(async (doc) => {
           const messageDocRef = doc.ref;
-  
-          // Update the isread field to true for each document
+          
           await updateDoc(messageDocRef, {
             isread: true,
           });
@@ -155,37 +145,15 @@ import SendIcon from '@mui/icons-material/Send';
       }
     };
   
-    updateMessageRead(); // Call the function when selectedUser changes
+    updateMessageRead();
   }, [selectedUser]);
-  
-  
   
   return (
     <>
-      {
-        !isauth ? (
-          <div className='justify-center flex'>
-            <div className='h-screen flex justify-center items-center'>
-            <input
-              type='text'
-              className='ml-2 outline-none rounded-md m-1 p-2'
-              placeholder='password'
-              onChange={(e) => setpassword(e.target.value)}
-            />
-            <button
-              className='bg-rose-600 p-2 m-2 text-black rounded-md'
-              onClick={checkPassword}
-            >
-              Let`s go
-            </button>
-          </div>
-          </div>
-        ) : (
-          <div className="w-full z-10">
-            <div className="relative w-full h-full flex rounded-lg shadow-xl overflow-hidden">
-
-              {/* User List for Small and Medium Screens */}
-              <div className={`lg:w-full sm: w-[30%] md:w-[25%] h-full p-2 border-r overflow-y-auto transition-all duration-300 ${showUserList ? 'block' : 'hidden sm:block'}`}>
+      <div className="w-full z-10 h-full">
+            <div className="h-full w-full flex rounded-lg shadow-xl overflow-hidden">
+            <BackToAdmin setIsOpen={setIsopen} />
+              <div className={`lg:w-full sm: w-full md:w-[25%] p-2 border-r overflow-y-auto transition-all duration-300 ${showUserList ? 'block' : 'hidden sm:block'}`}>
                 <p className="font-semibold text-gray-400 mb-4">Users</p>
                 <ul className="space-y-2 max-h-full">
                   {users.map((user, index) => (
@@ -200,9 +168,7 @@ import SendIcon from '@mui/icons-material/Send';
                   ))}
                 </ul>
               </div>
-
-              {/* Chat Window */}
-              <div className={`w-fit flex-1 flex flex-col bg-slate-900 mb-12 ${showUserList ? 'hidden sm:flex' : 'flex'}`}>
+              <div className={`flex flex-col lg:w-full bg-slate-900 mb-12 ${showUserList ? 'hidden sm:flex' : 'flex'}`}>
                 {selectedUser ? (
                   <>
                     <div className="flex items-center justify-between p-4 bg-green-300 border-b">
@@ -232,8 +198,7 @@ import SendIcon from '@mui/icons-material/Send';
                         );
                       })}
                     </div>
-
-                    <div className="p-2 flex items-center space-x-2 fixed bottom-0 lg:w-[940px] sm:w-[415px] bg-slate-900">
+                    <div className="p-2 flex items-center space-x-2 fixed bottom-0  bg-slate-900 lg:w-[600px] sm: w-[350px]">
                       <input
                         type="text"
                         placeholder="Type a message..."
@@ -256,9 +221,7 @@ import SendIcon from '@mui/icons-material/Send';
                 )}
               </div>
             </div>
-          </div>
-        )
-      }
+        </div>
     </>
   );
 }

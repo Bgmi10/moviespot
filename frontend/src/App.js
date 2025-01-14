@@ -28,7 +28,6 @@ const LazyTvseries = lazy(() => import('./components/Tvseries/Tvseries'));
 const LazyRefundPolicy = lazy(() => import('./components/Refundpolicy'));
 const LazyPrivacy = lazy(() => import('./components/Privacy'));
 const DeveloperProfile = lazy(() => import('./components/Developerprofile/Developerprofile'));
-const AdminMsgChat = lazy(() => import('./components/Developerprofile/Admin/Adminmsgchat'));
 const Contact = lazy(() => import('./components/Contact'));
 
 const App = () => {

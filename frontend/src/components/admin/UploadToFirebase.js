@@ -7,6 +7,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import Loader from "./Loader";
 
 export default function UploadToFirebase({ selectedMovie }) {
   const [collections, setCollections] = useState([]);
@@ -336,11 +337,7 @@ export default function UploadToFirebase({ selectedMovie }) {
           </div>
         )}
       </div>
-      {loading && (
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="text-white">Loading...</div>
-        </div>
-      )}
+      <Loader loading={loading} />
     </>
   );
 }

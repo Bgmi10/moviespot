@@ -7,7 +7,6 @@ import { faArrowCircleRight, faUserCircle } from '@fortawesome/free-solid-svg-ic
 import { random } from '../utils/Helper'
 import SendIcon from '@mui/icons-material/Send';
 
-
 export const Livechat = () => {
 
   const [msg,setmsg] = useState('')

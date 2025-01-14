@@ -3,10 +3,6 @@ import { useSelector } from 'react-redux';
 import Searchcatagory from './Searchcatagory';
 import { Quicksearch } from './Quicksearch';
 
-
-
-
-
 const Searchbar = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
