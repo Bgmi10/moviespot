@@ -1,43 +1,25 @@
 import { useState } from "react";
-import Adminmsgchat from "../Developerprofile/Admin/Adminmsgchat";
+import Adminmsgchat from "./Adminmsgchat";
 import UploadFileToDrive from "./UploadFileToDrive";
 import ManageMedia from "./ManageMedia";
 import AdminCheck from "./AdminCheck";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import WelcomeAdmin from "./WelcomeAdmin";
+import { adminMenu } from "./constants";
 
 export default function Admin() {
     const [selecteditem, setSelectedItem] = useState('Home');
     const [isopen, setIsopen] = useState(false);
     const [isauth, setIsAuth] = useState(false);
     const [password, setPassword] = useState('');
-
-    const data = [
-        {
-            id: 4,
-            name: 'Home'
-        },
-        {
-            id: 1,
-            name: "Admin Chat"
-        },
-        {
-            id: 2,
-            name: "Upload Video To Drive"
-        },
-        {
-            id: 3,
-            name: "Manage Media"
-        }
-    ]
     
     return(
         <>
           { isauth ? <AdminCheck setIsAuthenticated={setIsAuth} setpassword={setPassword} password={password} /> : <div className="flex h-screen">
               {isopen && <div className="h-screen flex">
-                  <div className="w-72 h-full bg-slate-950 lg:fixed border border-gray-700">
-                     <div className="flex justify-between border-b border-gray-700 p-3 bg-slate-900 text-white items-center">
+                  <div className="w-72 h-full lg:fixed border-r border-gray-700">
+                     <div className="flex justify-between border-b border-gray-700 p-3 text-white items-center">
                          <span className="text-xl">Admin</span>
                          <FontAwesomeIcon icon={faClose} onClick={() =>{ 
                             setIsopen(false);
@@ -46,7 +28,7 @@ export default function Admin() {
                      </div>
                      <div>
                           {
-                           data.map((i) => (
+                           adminMenu.map((i) => (
                                <div key={i.id}  onClick={() => {
                                 setSelectedItem(i.name);
                                 setIsopen(false);

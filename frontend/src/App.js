@@ -16,6 +16,7 @@ import Usefetchmainslider from './components/Tvseries/Usefetchmainslider';
 import { Adbanner } from './components/Subscription/Adbanner';
 import Searchbar from './components/Search/Searchbar';
 import Admin from './components/admin/Admin';
+import useFetchSlider from './components/Hooks/useFetchSlider';
 
 const LazyTamilmovieDetails = lazy(() => import('./components/TamilmovieDetails'));
 const LazySearchdetail = lazy(() => import('./components/Search/Searchdetail'));
@@ -31,34 +32,27 @@ const DeveloperProfile = lazy(() => import('./components/Developerprofile/Develo
 const Contact = lazy(() => import('./components/Contact'));
 
 const App = () => {
-  const theme = useSelector(store => store.theme.toggletheme);
   const location = useLocation();
-
+  const type = useSelector((t) => t.movietoggle.togglemovie);
+  const { sliderdata, loader } = useFetchSlider(!type ? "movies" : "series"); 
   const today = new Date().toISOString().split('T')[0];
-  const category = 'movie';
-  const data = Usefetchmainslider({ category });
-  const filterMovies = data?.data?.results.slice(15, 20);
-
-  const isHomepage = location.pathname === '/';
   const isLoginPage = location.pathname === '/login';
   const isProfilePage = location.pathname === '/profile';
   const isDeveloperPage = location.pathname === '/developer-profile';
   const isAdminPage = location.pathname === '/admin';
-  const isContactPage = location.pathname === '/contact';
   const isSearchCategory = location.pathname === '/search-catagory';
 
   return (
-    <div className={theme ? `bg-slate-950` : `bg-white`}>
+    <div className="from-[#131314] via-black to-black bg-gradient-to-l">
       {!isLoginPage && !isProfilePage && !isDeveloperPage &&  !isAdminPage && <Header />}
       {isSearchCategory && <Searchbar />}
-
       <Suspense fallback={<LottieAnimation gif={preloader} />}>
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <Mainslider data={filterMovies} />
+                <Mainslider data={sliderdata} loader={loader} />
                 <Popular
                   title="Upcoming Movies"
                   apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`}
@@ -70,7 +64,7 @@ const App = () => {
                 <Popular title="Popular Movies" apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort="with_original_language=ta" />
                 <Popular title="Comedy Genres" apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort="with_original_language=ta&with_genres=35" />
                 <Popular title="Malayalam Dubbed" apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort="with_original_language=ml&with_genres=10749" />
-                <Chatbot />
+                {/* <Chatbot /> */}
               </>
             }
           />

@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaArrowLeft, FaUser } from 'react-icons/fa';
 import { addDoc, collection, query, orderBy, onSnapshot, doc, collectionGroup, updateDoc, setDoc, getDocs } from 'firebase/firestore';
-import { db } from "../../../utils/firebase";
+import { db } from "../../utils/firebase";
 import SendIcon from '@mui/icons-material/Send';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import BackToAdmin from '../../admin/BackToAdmin';
+import BackToAdmin from './BackToAdmin';
 
  function Adminmsgchat({ setIsopen }) {
   const [newMessage, setNewMessage] = useState('');

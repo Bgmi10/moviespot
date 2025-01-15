@@ -1,155 +1,173 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
-import { showflixapi } from '../utils/Showflixapi';
-import './cutom-slide.css'; 
-import { Link } from 'react-router-dom';
+  import React, { useState, useEffect } from 'react';
+  import { motion, AnimatePresence } from 'framer-motion';
+  import { wrap } from 'popmotion';
+  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+  import { faPlay, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+  import { Link } from 'react-router-dom';
+  import { poster_url, poster_url_desktop, profile_url } from '../utils/constans';
+  import RatingCircle from './RatingCircle';
+  import gif from "../img/movieSpotgif.gif"
 
-export const Mainslider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [animating, setAnimating] = useState(false); 
-  const [startPosition, setStartPosition] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const totalSlides = showflixapi.length;
-  const sliderRef = useRef(null);
-
-  const nextSlide = () => {
-    setAnimating(true);
-    setTimeout(() => {
-      setAnimating(false);
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 500); // Adjusted duration for faster transition
-  };
-  
-  
-    const prevSlide = () => {
-    setAnimating(true);
-    setTimeout(() => {
-      setAnimating(false);
-      setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-    }, 500);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000); // Adjusted interval time for faster autoplay
-    return () => clearInterval(interval);
-  }, []); 
- 
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartPosition(e.clientX); // Track initial mouse down position
+  const variants = {
+    enter: (direction) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
+  };
 
-    const currentPosition = e.clientX;
-    const difference = startPosition - currentPosition;
+  export const Mainslider = ({ data, loader }) => {
+    const [[page, direction], setPage] = useState([0, 0]);
+    const [totalMovies, setTotalMovies] = useState(0);
 
-    if (difference > 50) {
-      nextSlide(); // Slide to the next slide if dragged left
-      setIsDragging(false);
-    } else if (difference < -50) {
-      prevSlide(); // Slide to the previous slide if dragged right
-      setIsDragging(false);
+    useEffect(() => {
+      if (data) {
+        setTotalMovies(data.length);
+      }
+    }, [data]);
+    
+    const movieIndex = wrap(0, totalMovies, page);
+
+    const paginate = (newDirection) => {
+      setPage([page + newDirection, newDirection]);
+    };
+
+    if (loader) {
+      return <div className="flex items-center justify-center h-screen">Loading...</div>;
     }
-  };
 
-  const handleMouseUp = () => {
-    setIsDragging(false); // End the drag operation
-  };
-  const handleTouchStart = (e) => {
-    setStartPosition(e.touches[0].clientX);
-    setIsDragging(true);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-
-    const currentPosition = e.touches[0].clientX;
-    const difference = startPosition - currentPosition;
-
-    if (difference > 50) {
-      nextSlide();
-      setIsDragging(false);
-    } else if (difference < -50) {
-      prevSlide();
-      setIsDragging(false);
+    if (!data || totalMovies === 0) {
+      return <div className="flex items-center justify-center h-screen">No movies available</div>;
     }
-  };
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
-  return (
-    <div className="slider-container relative cursor-grab"  ref={sliderRef}
-    onMouseDown={handleMouseDown}
-    onMouseMove={handleMouseMove}
-    onMouseUp={handleMouseUp}
-    onMouseLeave={handleMouseUp} // Handle if the mouse leaves the slider area
-    onTouchStart={handleTouchStart}
-    onTouchMove={handleTouchMove}
-    onTouchEnd={handleTouchEnd}>
-      
-      {showflixapi.map((i, index) => (
-        <Link to={`/searchdetail/${i.objectId}`}key={i.objectId}>
-        <div
-        className={`slide absolute inset-0 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-          style={{ zIndex: index === currentSlide ? 1 : 0 }}
-          
-        >
-          <img
-            src={i.backdrop_path || i.backdrop }
-            className="sm: w-full sm: h-full lg:w-auto lg:h-auto object-cover object-center"
-            alt=""
-          />
-          <div
-            className="absolute inset-0 bg-black bg-opacity-60 flex flex-col sm:flex-row px-4 py-[40px] sm:py-[148px] lg:px-[125px] lg:py-36"
-            style={{
-              backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 50%)',
+    return (
+      <div className="relative w-full h-screen overflow-hidden pointer-events-auto z-20">
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={page}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: 'spring', stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 },
             }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1);
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1);
+              }
+            }}
+            className="absolute w-full h-full"
           >
-            <div className="lg:flex sm: py-32 lg:py-0">
-              <img
-                src={ i.poster_path || i.poster}
-                className={`mb-2 rounded-xl duration-500 lg:h-80 sm: h-auto w-24 sm:w-auto ml-5 transition-transform ${animating ? 'transform scale-50 opacity-0' : 'transform scale-100 opacity-100'}`}
-                // style={{
-                //   zIndex: 10,
-                //   filter: `drop-shadow(0 0 7px ${dominantColor})`
-                // }}
-                alt=""
-               
-              />
-              <div className="px-5">
-                <h1 className={`text-white lg:text-5xl font-bold sm: text-3xl transition-transform duration-500 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
-                  {i.name || i.title || i.movieName}
-                </h1>
-                <p className={`text-gray-100  sm: text-[10px] sm: py-4 lg:text-[15px] transition-transform duration-500 font-extralight ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}>
-                  {i.overview || i.storyline}
-                </p>
-                <div className="mt-3  " >
-                  <span className={`border-2 rounded-md lg:p-[8px] sm: p-[5px] text-white transition-transform duration-500 items-center  sm: w-24 ${animating ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`} >
-                    Play Now
-                    <FontAwesomeIcon icon={faPlay} className="ml-1 sm:ml-2 text-rose-600" />
-                  </span>
-                 
+            <Link
+              to={`/searchdetail/${data[movieIndex].id}`}
+              className="block w-full h-full cursor-grab"
+            >
+              <div className="relative w-full h-full">
+                <img
+                  src={`${poster_url_desktop}${data[movieIndex].backdropPath}`}
+                  alt={data[movieIndex].title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 backdrop-brightness-50 bg-gradient-to-t from-black via-transparent to-transparent" />
+                <div className="absolute top-32 left-20 right-10 p-10 flex items-start">
+                  {loader ? <img
+                    src={gif}
+                    alt={data[movieIndex].title}
+                    className="lg:w-72  sm: w-40 h-auto rounded-xl shadow-lg mr-8"
+                  /> : <img
+                  src={`${poster_url}${data[movieIndex].posterPath}`}
+                  alt={data[movieIndex].title}
+                  className="lg:w-72  sm: w-40 h-auto rounded-xl shadow-lg mr-8"
+                />}
+                  <div className="flex-1">
+                    <h2 className="text-6xl font-bold text-white mb-5">{data[movieIndex].title}</h2>
+                    <p className="text-xl text-gray-200 mb-6 line-clamp-2">
+                      {data[movieIndex].overview}
+                    </p>
+                    <div className='flex gap-2 mb-6'>
+                      {data[movieIndex].language?.map((u) =>  <button
+                      key={u}
+                      className="border-2 backdrop-blur-md text-white rounded-lg px-7 py-2 text-xl font-semibold duration-300 ease-linear relative">
+                        {u}
+                      </button>
+                      )}
+                    </div>
+                    <div className='mb-6 flex gap-2'>
+                    <RatingCircle rating={data[movieIndex].averageRating} maxRating={10} />
+                    </div>
+                    <div className='mb-6 flex gap-2'>
+                    <button
+                      className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 ${
+                        data[movieIndex].adult ? "bg-red-500 text-white" : "bg-blue-500 text-white"
+                      }`}
+                      title={data[movieIndex].adult ? "This movie is suitable for adults only." : "This movie is suitable for all ages."}
+                    >
+                      {data[movieIndex].adult ? (
+                        <>
+                          <span>🔞</span> <span>Adult</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>🧒</span> <span>All Ages</span>
+                        </>
+                      )}
+                  </button>
+
+                    </div>
+                    <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center hover:bg-red-700 transition duration-300">
+                      <FontAwesomeIcon icon={faPlay} className="mr-2" />
+                      Watch Now
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </Link>
+          </motion.div>
+        </AnimatePresence>
+        <div className="absolute top-1/2 transform -translate-y-1/2 left-4 z-20">
+          <button
+            className="bg-black bg-opacity-50 text-white p-4 rounded-full hover:bg-opacity-75 transition duration-300 outline-none"
+            onClick={() => paginate(-1)}
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
         </div>
-        </Link>
-      ))}
-      {/* Dot Indicators */}
-      <ul className="slick-dots">
-        {showflixapi.map((_, index) => (
-          <li key={index} className={index === currentSlide ? 'slick-active' : ''}>
-            <button onClick={() => setCurrentSlide(index)}></button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+        <div className="absolute top-1/2 transform -translate-y-1/2 right-4 z-20">
+          <button
+            className="bg-black bg-opacity-50 text-white p-4 rounded-full hover:bg-opacity-75 transition duration-300 outline-none"
+            onClick={() => paginate(1)}
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </div>
+      </div>
+    );
+  };
+

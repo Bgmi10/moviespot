@@ -1,41 +1,42 @@
-import { faBars, faPlay, faSearch, faTape, faTv } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { togglemovie } from '../utils/Movieslice';
+import MovieIcon from '@mui/icons-material/Movie';
+import SearchIcon from '@mui/icons-material/Search';
+import TvIcon from '@mui/icons-material/Tv';
 
 export const Bottomnavbar = () => {
   const [toggle, setToggle] = useState(false);
   const dispatch = useDispatch();
+  const location = useLocation();
 
-  const toggletype = useSelector((store) => store.movietoggle.togglemovie);
-
- 
   const handleClick = () => {
-    
     dispatch(togglemovie(toggle));
   };
 
   const handletvclick = () =>{   
-    setToggle(true)
-    dispatch(togglemovie(true))
-  }
+    setToggle(true);
+    dispatch(togglemovie(true));
+  };
 
-  // Determine the background color based on toggletype
-  
+  const getIconColor = (path) => {
+    return location.pathname === path ? 'text-rose-700' : 'text-white';
+  };
 
   return (
-    <div className={` sm:hidden fixed inset-x-0 bottom-0  transition-colors bg-slate-900 opacity-80 duration-500 flex justify-between px-5 py-2 z-50 `}>
-      <Link to="/">
-        <FontAwesomeIcon icon={faTape} className={!toggletype ? "text-rose-600 text-2xl" : 'text-white text-2xl '} onClick={handleClick} />
+    <div className={`sm:hidden fixed inset-x-0 bottom-0 border-t border-gray-600 transition-colors bg-transparent backdrop-blur-md duration-500 flex justify-between px-5 py-2 z-50`}>
+      <Link to="/" onClick={handleClick} className='flex gap-1 items-center'>
+        <MovieIcon className={`${getIconColor('/')}`} style={{fontSize: "31px"}} />
+        <span className={`${getIconColor('/')} text-lg font-semibold`}>Movies</span>
       </Link>
-      
-      <Link to="/tv-series">
-        <FontAwesomeIcon icon={faTv} className={toggletype ?  "text-rose-600 text-2xl cursor-pointer" : 'text-white text-2xl'} onClick={handletvclick} />
+      <Link to="/tv-series" onClick={handletvclick} className='flex gap-1 items-center'>
+        <TvIcon className={`${getIconColor('/tv-series')}`} style={{fontSize: "31px"}} />
+        <span className={`${getIconColor('/tv-series')} text-lg font-semibold`}>Series</span>
       </Link>
-      <Link to={'/search-catagory'}>
-      <FontAwesomeIcon icon={faSearch} className="text-white text-2xl" />
+      <Link to="/search-catagory" className='flex gap-1 items-center'>
+        <SearchIcon className={`${getIconColor('/search-catagory')}`} style={{fontSize: "31px"}} />
+        <span className={`${getIconColor('/search-catagory')} text-lg font-semibold`}>Search</span>
       </Link>
     </div>
   );

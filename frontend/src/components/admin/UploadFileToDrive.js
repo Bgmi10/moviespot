@@ -8,6 +8,7 @@ import { FaGoogleDrive } from "react-icons/fa";
 import UploadToFirebase from "./UploadToFirebase";
 import Loader from "./Loader";
 import BackToAdmin from "./BackToAdmin";
+import { languages } from "./constants";
 
 export default function UploadFileToDrive({ setIsopen }) {
     const [query, setQuery] = useState('');
@@ -19,7 +20,8 @@ export default function UploadFileToDrive({ setIsopen }) {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
-    const languages = ['english', 'tamil', 'telugu', 'malayalam', 'hindi', 'korean', 'tamil dubbed'];
+    
+    console.log(selectedmovie)
 
     useEffect(() => {
         const loadGoogleAPI = () => {
@@ -118,8 +120,7 @@ export default function UploadFileToDrive({ setIsopen }) {
             const res = await axios.get(`https://api.themoviedb.org/3/search/${selectedtype ? "movie" : "tv"}`, { 
                 params: {
                     api_key: process.env.REACT_APP_API_KEY,
-                    query: query,
-                    language: "ta"
+                    query: query
                 }
             });
             setMovies(res.data);

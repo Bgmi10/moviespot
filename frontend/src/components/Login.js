@@ -28,20 +28,15 @@ const Login = () => {
       hi
      </option>
   </select>
-
-  
-
 </div>
       <div className="relative h-screen justify-center flex lg:items-center">
         <Oauthlogin />
       </div>
-
       <div className=" text-xs text-gray-500 cursor-pointer justify-center flex mt-[-240px] ml-8">
         <Link to="/terms/condition">
         {Multilang.terms}
        </Link> 
       </div>
-       
       </>
   );
 };

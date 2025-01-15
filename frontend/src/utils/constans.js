@@ -1,9 +1,7 @@
-export const poster_url = 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2'
-export const poster_url_desktop = 'https://media.themoviedb.org/t/p/w1066_and_h600_bestv2'
-export const moviespot_gif = "../img/movieSpotgif.gif"
+export const  poster_url = 'https://image.tmdb.org/t/p/original'
+export const poster_url_desktop = 'https://image.tmdb.org/t/p/original'
+export const moviespot_gif = "../img/movieSpotgif.gif";
 export const profile_url  = 'https://media.themoviedb.org/t/p/w276_and_h350_face'
-
-{/* <img src={  gif } className='rounded-2xl p-[10px] ml-3  cursor-pointer  border-none outline-none hover:scale-105 h-[131px] lg:w-[150px] lg:h-[200px] ' alt={item.title}></img> */}
 
 export const tamilmovies = [
   {
@@ -161,9 +159,7 @@ export const tamilmovies = [
     realesdata: "2022"
   }
 ];
-
   
-
 export const vijayhits = [
   {
       id: 626392,
@@ -277,9 +273,6 @@ export const vijayhits = [
   }
 ];
 
-    
-
-
 export const main_slider = [
   {
     id: 781732,
@@ -328,8 +321,6 @@ export const main_slider = [
     download_link: "https://drive.google.com/file/d/12DsJte2bRVESc40T1-mV1FmkZNxu3OnL/view?usp=drivesdk",
   },
 ];
-
-
 
 export const ajith_hits = [
   {

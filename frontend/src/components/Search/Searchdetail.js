@@ -10,8 +10,6 @@ import how_to_Donload_vid from '../../img/howodownload.mp4'
 import { Crewcast } from '../Crewcast'
 import ReactPlayer from 'react-player'
 import { Feedbackform } from '../Feedback/Feedbackform'
-import { showflixapi } from '../../utils/Showflixapi'
-
 
 const Searchdetail = () => {
  
@@ -41,17 +39,7 @@ const Searchdetail = () => {
     }
 
   }
-
-    
-    const data1 = showflixapi.filter((i) => i.objectId === id)
-    if(data1.length > 0){
-     setdata(data1);
-    }
-    else{
-      fetch_search_data();
-    }
-
-   },[type, id])
+},[type, id]);
 
    const categoryname = !movietoggle  ? data?.title?.split(' ').join('-') : data?.name?.split(' ').join('-');
    const toggle_type_release_data = !movietoggle ? data?.release_date?.slice(0,4) : data?.last_air_date?.slice(0,4);

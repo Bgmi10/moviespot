@@ -32,7 +32,7 @@ export default function UploadToFirebase({ selectedMovie }) {
   const DEFAULT_CATEGORIES = {
     [MEDIA_TYPES.MOVIES]: ['Latest', 'Upcoming', 'Tamil', 'Malayalam', 'Hindi', 'English'],
     [MEDIA_TYPES.SERIES]: ['Latest', 'Ongoing', 'Tamil', 'Malayalam', 'Hindi', 'English'],
-    [CONTENT_TYPES.SLIDER]: ['Featured', 'Trending', 'Popular', 'New Releases'] // Added default slider categories
+    [CONTENT_TYPES.SLIDER]: ['Featured', 'Trending', 'Popular', 'New Releases']
   };
 
   useEffect(() => {
@@ -55,7 +55,6 @@ export default function UploadToFirebase({ selectedMovie }) {
         setCollections([MEDIA_TYPES.MOVIES, MEDIA_TYPES.SERIES]);
       }
       else if (pathString === CONTENT_TYPES.SLIDER) {
-        // Fetch existing slider categories
         const sliderRef = collection(db, CONTENT_TYPES.SLIDER);
         const snapshot = await getDocs(sliderRef);
         const existingCategories = snapshot.docs.map(doc => doc.data().name);
@@ -85,10 +84,8 @@ export default function UploadToFirebase({ selectedMovie }) {
       let snapshot;
       
       if (currentPath[0] === CONTENT_TYPES.SLIDER) {
-        // For slider, fetch all documents without type filtering
         snapshot = await getDocs(collRef);
       } else {
-        // For media, use type filtering
         const contentTypeQuery = query(collRef, where("type", "==", currentPath.includes(MEDIA_TYPES.MOVIES) ? "movies" : "series"));
         snapshot = await getDocs(contentTypeQuery);
       }
@@ -114,7 +111,6 @@ export default function UploadToFirebase({ selectedMovie }) {
       const pathString = getCurrentPathString();
 
       if (pathString === CONTENT_TYPES.SLIDER) {
-        // Create new slider category
         const sliderRef = collection(db, CONTENT_TYPES.SLIDER);
         await addDoc(sliderRef, {
           name: newCollectionName,
@@ -123,7 +119,6 @@ export default function UploadToFirebase({ selectedMovie }) {
         });
       } 
       else if (Object.values(MEDIA_TYPES).includes(pathString.split('/').pop())) {
-        // Create new media category
         const categoriesRef = collection(db, `${pathString}/categories`);
         await addDoc(categoriesRef, {
           name: newCollectionName,
@@ -152,10 +147,8 @@ export default function UploadToFirebase({ selectedMovie }) {
       let targetRef;
       
       if (pathString === CONTENT_TYPES.SLIDER) {
-        // Upload to slider collection
         targetRef = collection(db, `${CONTENT_TYPES.SLIDER}/${selectedCategory}/content`);
       } else {
-        // Upload to media category
         targetRef = collection(db, `${pathString}/categories/${selectedCategory}/content`);
       }
       
@@ -174,6 +167,7 @@ export default function UploadToFirebase({ selectedMovie }) {
         averageRating: selectedMovie.vote_average,
         createdAt: new Date(),
         updatedAt: new Date(),
+        collectionType: currentPath[0] === CONTENT_TYPES.SLIDER ? "slider" : "media"  
       };
       
       await addDoc(targetRef, movieData);
@@ -225,7 +219,7 @@ export default function UploadToFirebase({ selectedMovie }) {
 
         {currentPath?.length === 0 && (
           <div className="grid grid-cols-2 gap-4">
-            {collections.map((type) => (
+            {collections?.map((type) => (
               <button
                 key={type}
                 onClick={() => navigateToPath(type)}
@@ -239,7 +233,7 @@ export default function UploadToFirebase({ selectedMovie }) {
 
         {currentPath?.length === 1 && currentPath[0] === CONTENT_TYPES.MEDIA && (
           <div className="grid grid-cols-2 gap-4">
-            {collections.map((type) => (
+            {collections?.map((type) => (
               <button
                 key={type}
                 onClick={() => navigateToPath(`${CONTENT_TYPES.MEDIA}/${type}`)}
@@ -272,7 +266,7 @@ export default function UploadToFirebase({ selectedMovie }) {
                     selectedCategory === category ? 'bg-blue-600' : 'bg-gray-800 hover:bg-gray-700'
                   }`}
                 >
-                  {category}
+                  {category && category}
                 </button>
               ))}
             </div>

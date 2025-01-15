@@ -1,108 +1,69 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import MovieIcon from '@mui/icons-material/Movie';
+import SearchIcon from '@mui/icons-material/Search';
+import TvIcon from '@mui/icons-material/Tv';
+import { useDispatch } from 'react-redux';
+import { togglemovie } from '../utils/Movieslice';
 
 export const Headeritems = () => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
-    const [scroll , setScroll] = useState(true)
+  const dispatch = useDispatch();
 
-    const header_list = [
-        {
-          title: 'Movies',
-          link: '/'
-        },
-        {
-          title: 'Tv-series',
-          link: '/tv-series'
-        },
-        {
-          title: 'Search',
-          link: '/search-catagory'
-        },
-        {
-          title: 'Contact-us',
-          link: '/contact'
-        },
-        {
-            title : 'Developer-Profile ',
-            link : '/developer-profile'
-        }
-    ];
+  const handleToggleToSeries = () => {
+    dispatch(togglemovie(true));
+  }
+  
+  const handleToggleToMovies = () => {
+    dispatch(togglemovie(false));
+  }
 
-    useEffect(() => {
-        const handlemousemove = (e) => {
-            setPosition({
-                x: e.clientX,
-                y: e.clientY
-            });
-        };
+  const header_list = [
+    {
+      title: 'Movies',
+      link: '/',
+      icon: <MovieIcon className="text-rose-700" style={{fontSize: "31px"}} />,
+      toggleClick: handleToggleToMovies
+    },
+    {
+      title: 'Series',
+      link: '/tv-series',
+      icon: <TvIcon className="text-rose-700" style={{fontSize: "31px"}} />,
+      toggleClick: handleToggleToSeries
+    },
+    {
+      title: 'Search',
+      link: '/search-catagory',
+      icon: <SearchIcon className="text-rose-700" style={{fontSize: "31px"}} />,
+    },
+  ];
 
-        window.addEventListener('mousemove', handlemousemove);
-
-        return () => window.removeEventListener('mousemove', handlemousemove);
-    }, []);
-
-    useEffect(() => {
-        const navitems = document.querySelectorAll('.navitems');
-        navitems.forEach((i) => {
-            const rect = i.getBoundingClientRect();
-
-            if (
-                position.x >= rect.left &&
-                position.x <= rect.right &&
-                position.y >= rect.top &&
-                position.y <= rect.bottom
-            ) {
-                setTargetPosition({
-                    x: rect.left - 528,
-                    y: rect.top +2,
-                    width: rect.width ,
-                    height: rect.height-4,
-                });
+  return (
+    <>
+      <div className="lg:flex sm: hidden">
+        {header_list.map((item, index) => (
+          <NavLink
+            to={item.link}
+            key={index}
+            onClick={item.toggleClick}
+            className={({ isActive }) =>
+              `p-2 m-3 text-2xl font-bold navitems relative group ${
+                isActive ? 'text-rose-600' : 'text-white hover:text-rose-600 '
+              }`
             }
-        });
-    }, [position]);
-
-    const mouseeffect = {
-        position: 'fixed',
-        width: `${targetPosition.width}px`,
-        height: `${targetPosition.height}px`,
-        backgroundColor: '#313030',
-        borderRadius: '4px',
-        transform: `translate(${targetPosition.x}px, ${targetPosition.y}px)`,
-        transition: 'transform 0.3s ease, width 0.3s ease, height 0.3s ease', // Smooth transition
-        pointerEvents: 'none',
-        zIndex: -1, 
-    };
-  
-   
-    const handlescroll = () => {
-       
-        setScroll(window.scrollY === 0)
-       
-    }
-   useEffect(() => {
-
-  
-    window.addEventListener('scroll' , handlescroll)
-
-    return () => window.removeEventListener('scroll' , handlescroll)
-   },[])
-    return (
-        <>
-           {scroll  && <div className="hidden sm:flex ml-[400px] fixed  mt-[-33px] ">
-                <div style={mouseeffect} ></div>
-
-                {header_list.map((item, index) => (
-                    <Link to={item.link} key={index}>
-                        <h1 className='p-2 text-gray-400 m-4 navitems relative'>
-                            {item.title}
-                        </h1>
-                    </Link>
-                ))}
-            </div>}
-        </>
-    );
+          >
+            <div className="flex gap-1 items-center">
+              <span>{item.icon}</span>
+              <span>{item.title}</span>
+            </div>
+            <span
+              className={`absolute left-1/2 bottom-0 h-[2px] w-0 bg-rose-600 shadow-[0_0_6px_2px_rgba(255,255,255,0.3)]  opacity-0 transition-all duration-500 ease-out transform -translate-x-1/2 ${
+                'group-hover:w-full group-hover:scale-x-100 group-hover:opacity-100 group-hover:left-1/2 ' +
+                (item.link === window.location.pathname ? 'w-full opacity-100 left-1/2' : '')
+              }`}
+            ></span>
+          </NavLink>
+        ))}
+      </div>
+    </>
+  );
 };
-
-

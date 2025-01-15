@@ -13,8 +13,6 @@ const rootelement = document.getElementById('root')
 const root = createRoot(rootelement)
 
 root.render(
-
-
       <Auth0Provider
           domain="moviesspot.au.auth0.com"
           clientId="0HS51AbFWHJWt7hdsFEJlCR21aFGuM6K"
@@ -22,16 +20,10 @@ root.render(
           redirect_uri: window.location.origin,
           }}
       >
-             <Router>
-              
-                   <Provider store={store}>
-              
-                         <App />
-                
-                   </Provider>
-
-             </Router>
-
+        <Router>              
+           <Provider store={store}>
+              <App />
+           </Provider>
+        </Router>
       </Auth0Provider>
-
   )
