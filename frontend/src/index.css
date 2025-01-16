@@ -35,3 +35,13 @@
     -moz-appearance: textfield;
   }
 
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;  
+  }
+
+  .navbar.scrolled {
+    background-color: #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+  }

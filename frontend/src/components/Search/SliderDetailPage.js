@@ -1,0 +1,181 @@
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faPlay, faStar } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
+import ShareIcon from '@mui/icons-material/Share';
+import { Crewcast } from '../Crewcast';
+import { Feedbackform } from '../Feedback/Feedbackform';
+import useSearchSliderApi from '../Hooks/useSearchSliderApi';
+import Loader from '../admin/Loader';
+import { poster_url } from '../../utils/constans';
+import RatingCircle from '../RatingCircle';
+
+const SliderDetailPage = () => {
+  const [feedbackform , setfeedbackform] = useState(false)
+  const { id } = useParams();
+  const theme = useSelector(store => store.theme.toggletheme);
+  const movietoggle = useSelector(store => store.movietoggle.togglemovie);
+  const { data, loader } = useSearchSliderApi(id);
+   console.log(data);
+  const handleshareclick = async () =>{
+   const url  = `https://movieapp-cd283.web.app/searchdetail/${id}`;
+   const whatsappUrl = `https://api.whatsapp.com/send?text=${url}`;
+   window.open(whatsappUrl , '_blank');
+  }
+  
+  const handleshowfeedbackform = () =>{
+    setfeedbackform(true);
+  }
+
+  const getImageSource = () => {
+    if (data) {
+      return `${poster_url}${data?.[0]?.backdropPath}`;
+    } else if (data?.[0]?.backdropPath) {
+      return data?.[0]?.backdropPath;
+    }
+  };
+
+  const posterimg = () => {
+    if (data) {
+      return `${poster_url}${data?.[0]?.posterPath}`;
+    } else if (data?.[0]?.posterPath) {
+      return data?.[0].posterPath;
+    }
+  };
+
+  const handlePlayVideo = () => {
+   
+  }
+    
+ return (
+     <> 
+  {loader ? <Loader loading={loader}/> : ( 
+    <div>  
+      <div  className="flex flex-col items-center">
+        {feedbackform && <Feedbackform data={data} toggleform={setfeedbackform} movieid={id} theme={theme} />}
+        <div className="relative  inset-0 ease-in-out  shadow-lg rounded-lg text-white" >
+            <img src={getImageSource()}  className="sm: w-full sm: h-[800px] lg:w-auto lg:h-auto object-cover  object-center brightness-50"/>
+            <div
+            className="absolute inset-0 flex flex-col  px-4  lg:py-[148px] sm: py-[120px] "
+            style={{
+              backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 50%)',
+            }}
+          >
+            <div className="lg:flex lg:py-0">
+              <img
+                src={posterimg()}
+                className={`mb-2 rounded-xl duration-500 ml-5 transition-transform h-auto w-80`}
+                style={{
+                  zIndex: 10,
+                }}
+                alt=""
+              />
+             <div className="px-5">
+                <h1 className={`text-white lg:text-6xl font-bold sm: text-3xl transition-transform duration-500 lg:mb-6 sm: mb-3 `}>
+                  {data?.[0]?.title}
+                </h1>
+                <p className="lg:text-xl sm: text-md text-gray-200 lg:mb-6 sm: mb-3">
+                  {data?.[0]?.overview}
+                </p>
+                <div className='flex gap-2 lg:mb-6 sm: mb-4'>
+                  {data?.[0]?.language?.map((u) => (
+                    <span
+                      key={u}
+                      className="border-2 backdrop-blur-lg text-white rounded-lg lg:px-7 lg:py-2 sm: p-1 lg:text-xl font-semibold duration-300 ease-linear relative sm: text-lg"
+                    >
+                      {u}
+                    </span>
+                  ))}
+                </div>
+                <div className='lg:mb-6 sm: mb-4 flex gap-2'>
+                 {data && <RatingCircle rating={data?.[0]?.averageRating} maxRating={10} />}
+                </div>
+                <div className='lg:mb-6 sm: mb-4 flex gap-2'>
+                  <span
+                    className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 ${
+                      data?.[0]?.adult ? "bg-red-500 text-white" : "bg-blue-500 text-white"
+                    }`}
+                  >
+                    {data?.[0]?.adult ? (
+                      <>
+                        <span>This movie is suitable for adults only. 🔞</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>This movie is suitable for all ages. 🧒</span>
+                      </>
+                    )}
+                  </span>
+                </div>
+                <div className={theme ? 'text-gray-300 lg:flex' : 'text-gray-700 lg:flex p-2'}>
+                   <div className={"px-4 py-2 rounded-md flex bg-blue-500 items-center gap-2"} onClick={handlePlayVideo}>
+                    <span className='font-bold'>Play</span>
+                    <FontAwesomeIcon icon={faPlay} />
+                   </div>
+                   <a
+                      href={`https://rubyvid.com/d/${data?.[0]?.streamruby}`}
+                     className={"px-4 py-2 rounded-md  flex lg:ml-4 sm: w-fit lg:w-auto bg-white font-bold text-black" }
+                   >
+                     Download Link <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1 ml-1 text-rose-600'}/>
+                   </a>
+                    <button
+                      className={"bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md flex lg:ml-4 text-white font-bold"}
+                      onClick={handleshowfeedbackform}
+                    >
+                    <FontAwesomeIcon icon={faStar} className='text-yellow-300 mt-1 m-1' /> Rate Now
+                    </button>
+                    <button
+                      className={"bg-blue-500 px-4 py-2 rounded-md  flex lg:ml-4 text-white font-bold"}
+                      onClick={handleshareclick}
+                    >
+                      Share <ShareIcon className='mt-[2px]' />
+                    </button>
+               </div>
+          <div>
+        </div>
+     </div>         
+   </div>
+  </div>
+</div>
+    </div>
+      <iframe
+       src="https://drive.google.com/file/d/12qZir8oCEMM76BtC_udsS9FpraK_-CFt/preview"
+       width="350"
+       height="200"
+       allow="autoplay"
+       style={{ borderRadius: "20px", border: "none" }}
+       allowFullScreen
+     />
+     <Crewcast id={id} />
+    </div>)}
+    </>
+    
+  )
+}
+
+export default SliderDetailPage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

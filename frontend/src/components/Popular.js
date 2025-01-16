@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { LottieAnimation } from './lottie';
-import * as animi from './anima.json';
 import { settings } from '../utils/Helper';
 import { poster_url } from '../utils/constans';
 import Slider from 'react-slick';
@@ -49,10 +47,6 @@ export const Popular = ({ title, apiurl, sort }) => {
           </h1>
         </a>
       </div>
-
-      {!data.results ? (
-        <LottieAnimation gif={animi} />
-      ) : (
         <Slider {...settings}>
           {data?.results?.map((item) => (
             <a href={`/searchdetail/${item.id}`} key={item.id}>
@@ -85,7 +79,6 @@ export const Popular = ({ title, apiurl, sort }) => {
             </a>
           ))}
         </Slider>
-      )}
     </div>
   );
 };

@@ -1,80 +1,90 @@
-import {  faArrowRight, faClose, faStar } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, {  useState } from 'react'
-import { Formcontent } from './Formcontent'
-import { hashtags } from '../../utils/Feedbackhashtags'
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faClose, faStar } from '@fortawesome/free-solid-svg-icons';
+import { Formcontent } from './Formcontent';
+import { hashtags } from '../../utils/Feedbackhashtags';
 import Slider from '@mui/material/Slider';
-import {  useSelector } from 'react-redux'
-import * as gif from './feedBackcompletedgif.json'
-import { LottieAnimation } from '../lottie'
-import * as emojigif from './emoji2.json'
+import { useSelector } from 'react-redux';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export const Feedbackform = ({data , toggleform , movieid , theme}) => {
-  
-    const [starvalue , setstarvalue] = useState(0)
+export const Feedbackform = ({ data, toggleform, movieid, theme }) => {
+  const [starvalue, setstarvalue] = useState(0);
+  const feedbackformsubmission = useSelector(store => store.feedbackformsubmission);
 
-    const feedbackformsubmission = useSelector(store => store.feedbackformsubmission)
-  
-    const handlechange = (e) =>{
-        setstarvalue(e.target.value)
-    } 
-     
-    const targetRatingHashtags = hashtags.flatMap(ratingObj => ratingObj[starvalue ]);
-    const dynamic_hash_heading = hashtags.flatMap(ratingObj => ratingObj[starvalue ] ? ratingObj.title : null);
+  const handlechange = (e) => {
+    setstarvalue(e.target.value);
+  };
+
+  const targetRatingHashtags = hashtags.flatMap(ratingObj => ratingObj[starvalue]);
+  const dynamic_hash_heading = hashtags.flatMap(ratingObj => ratingObj[starvalue] ? ratingObj.title : null);
 
   return (
-   <>
-     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-md">
-          <div className="relative flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 animate-fadeIn">
-    
-          { feedbackformsubmission ?
-           <div> <LottieAnimation gif={gif}   />
-            <p className='text-white'>Your Feedback Is Our Beacon ! </p> 
-            </div> : 
-          <div className={  'w-96 h-auto  rounded-md transition-transform border' }>
-           <div className={theme ? 'flex justify-evenly shadow-gray-800  shadow-md rounded-md' : 'flex justify-evenly  shadow-md rounded-md' }>
-            
-              <span className={theme ? 'text-white p-2  font-medium text-center m-3 ml-20' : 'text-black p-2  font-medium text-center m-3'}> How was the movie ? <p className='text-rose-600'>{data?.title || data?.[0]?.movieName}</p> </span>
-
-              <FontAwesomeIcon icon={faClose} className={'text-gray-400 text-2xl mt-7 ml-10 cursor-pointer'} onClick={() => toggleform(false)} />
-
-            </div>            
-
-            <div>
-
-                <h1 className={theme ?  'font-medium text-white p-2 mt-6 text-center' : 'text-black p-2 mt-6'}> How would you rate the movie ? </h1>
-                {starvalue === 0 && <div className='mb-[-70px] mt-[-70px]'><LottieAnimation gif={emojigif}  /></div> }
-
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-md"
+      >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          className="relative w-full max-w-md p-6 bg-white dark:bg-black rounded-lg shadow-xl"
+        >
+          {feedbackformsubmission ? (
+            <div className="text-center py-10">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">Thank You!</h2>
+              <p className="text-gray-600 dark:text-gray-300">Your feedback is our beacon!</p>
             </div>
-               
-            <div > 
-                
-                 <p className='font-extralight text-sm text-center text-gray-400'> slide to rate <FontAwesomeIcon icon={faArrowRight} className='text-gray-500 text-sm' /> </p>
-                 
-                 <div className='flex items-center ml-4 w-[350px]'>
+          ) : (
+            <>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  How was the movie?
+                </h2>
+                <button
+                  onClick={() => toggleform(false)}
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white transition-colors"
+                >
+                  <FontAwesomeIcon icon={faClose} className="text-2xl z-50" />
+                </button>
+              </div>
+              <h3 className="text-xl font-semibold text-rose-600 mb-6">
+                {data?.[0]?.title}
+              </h3>
+              <div className="mb-8">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-gray-600 dark:text-gray-300 flex items-center">
+                    Slide to rate <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                  </span>
+                  <div className="flex items-center">
+                    <span className="text-2xl font-bold mr-2 text-gray-800 dark:text-white">{starvalue}</span>
+                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 text-2xl" />
+                  </div>
+                </div>
+                <Slider
+                  value={starvalue}
+                  onChange={handlechange}
+                  step={1}
+                  marks
+                  min={0}
+                  max={5}
+                  valueLabelDisplay="auto"
+                />
+              </div>
+              <Formcontent
+                starvalue={starvalue}
+                dynamic_hash_heading={dynamic_hash_heading}
+                targetRatingHashtags={targetRatingHashtags}
+                movieid={movieid}
+                theme={theme}
+              />
+            </>
+          )}
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
 
-               <Slider
-                   defaultValue={30}
-                   value={starvalue}
-                   valueLabelDisplay="auto"
-                   shiftStep={30}
-                   step={1}
-                   marks
-                   max={5}
-                   onChange={handlechange}
-                   size='medium'
-                   color="secondary"
-               />
-
-          <h1 className=' font-bold text-gray-600  text-2xl ml-4'>{starvalue} </h1>  <FontAwesomeIcon icon= {faStar}  className='text-yellow-300 text-2xl '/>
-      </div>
-
-    </div>
-     < Formcontent starvalue={starvalue}  dynamic_hash_heading = { dynamic_hash_heading} targetRatingHashtags={targetRatingHashtags} movieid={movieid} theme={theme}/>
-
-    </div>}
-    </div>
-  </div>
-</>
-  )
-}

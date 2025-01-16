@@ -4,10 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown , faClose  } from '@fortawesome/free-solid-svg-icons'
 import {Recommendation} from './Recommendation'
 import { useSelector } from 'react-redux';
-import how_to_Donload_vid from '../img/howodownload.mp4'
 import { Share, SlowMotionVideo } from '@mui/icons-material';
-import ReactPlayer from 'react-player';
-
 
 const TamilmovieDetails = ({data}) => {
   const { Id } = useParams()
@@ -109,13 +106,6 @@ const handleshareclick = async () =>{
             isshow && 
             <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-sm ">
                <FontAwesomeIcon icon={faClose}  onClick={() => setisshow(false)} className='text-4xl cursor-pointer text-rose-600 bg-black rounded-full p-3 mr-10 '/>
-          <div className="relativ e flex justify-center items-center w-96 h-auto  lg:w-[95%] overflow-hidden shadow-lg rounded-lg m-6 transition transform duration-700 ease-in-out scale-95 opacity-0 animate-fadeIn ">
-         
-           
-            <div className='backdrop-blur-sm mt-3 outline-none'>
-            
-                 <ReactPlayer url={how_to_Donload_vid }  loop={true} controls={true}  playing={true} width={"350px"} height={'200px'} style={{borderRadius : "20px"}}/>
-                 </div></div>
             </div>
           }
             </div>

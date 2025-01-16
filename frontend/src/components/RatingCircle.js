@@ -41,8 +41,8 @@ const RatingCircle= ({ rating, maxRating = 10 }) => {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-white text-sm font-bold drop-shadow-md">{rating.toFixed(1)}</span>
-        <span className="text-white text-[10px] drop-shadow-md">/ 10</span>
+        <span className="text-white lg:text-sm xs: text-[10px] font-bold drop-shadow-md">{rating.toFixed(1)}</span>
+        <span className="text-white lg:text-[10px] xs: text-[8px] drop-shadow-md">/ 10</span>
       </div>
     </div>
   );

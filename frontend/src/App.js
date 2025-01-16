@@ -9,17 +9,13 @@ import { Mainslider } from './components/Mainslider';
 import { ajith_hits, tamilmovies, vijayhits } from './utils/constans';
 import { Popular } from './components/Popular';
 import Footer from './components/Footer';
-import * as preloader from './components/anima.json';
-import { LottieAnimation } from './components/lottie';
 import { Bottomnavbar } from './components/Bottomnavbar';
-import Usefetchmainslider from './components/Tvseries/Usefetchmainslider';
-import { Adbanner } from './components/Subscription/Adbanner';
 import Searchbar from './components/Search/Searchbar';
 import Admin from './components/admin/Admin';
 import useFetchSlider from './components/Hooks/useFetchSlider';
 
 const LazyTamilmovieDetails = lazy(() => import('./components/TamilmovieDetails'));
-const LazySearchdetail = lazy(() => import('./components/Search/Searchdetail'));
+const LazySearchdetail = lazy(() => import('./components/Search/SliderDetailPage'));
 const LazyTerms = lazy(() => import('./components/Terms'));
 const LazySearchpage = lazy(() => import('./components/Search/Searchpage'));
 const LazyPopulardetail = lazy(() => import('./components/Populardetail'));
@@ -43,10 +39,11 @@ const App = () => {
   const isSearchCategory = location.pathname === '/search-catagory';
 
   return (
+    <>  
+    {!isLoginPage && !isProfilePage && !isDeveloperPage &&  !isAdminPage && <Header />}
     <div className="from-[#131314] via-black to-black bg-gradient-to-l">
-      {!isLoginPage && !isProfilePage && !isDeveloperPage &&  !isAdminPage && <Header />}
       {isSearchCategory && <Searchbar />}
-      <Suspense fallback={<LottieAnimation gif={preloader} />}>
+      <Suspense>
         <Routes>
           <Route
             path="/"
@@ -73,7 +70,7 @@ const App = () => {
           <Route path="/moviedetail/vijayhits/:Id" element={<LazyTamilmovieDetails data={vijayhits} />} />
           <Route path="/terms-condition" element={<LazyTerms />} />
           <Route path="/privacy-policy" element={<LazyPrivacy />} />
-          <Route path="/searchdetail/:id" element={<LazySearchdetail />} />
+          <Route path="/slider/detail/:id" element={<LazySearchdetail />} />
           <Route path="/searchpage" element={<LazySearchpage />} />
           <Route path="/livechat" element={<Livechat />} />
           <Route path="/popular-detail" element={<LazyPopulardetail />} />
@@ -81,7 +78,7 @@ const App = () => {
           <Route path="/refund-policy" element={<LazyRefundPolicy />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-      </Suspense>
+       </Suspense>
          <Suspense>
           <Routes>
             <Route path="/login" element={<LazyLogin />} />
@@ -91,6 +88,8 @@ const App = () => {
          </Suspense>
       {!isDeveloperPage && !isAdminPage && <Bottomnavbar />}
     </div>
+    <Footer />
+    </>
   );
 };
 

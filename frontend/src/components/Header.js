@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggletheme } from '../utils/Themeslice';
@@ -6,13 +6,13 @@ import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Profile from '../Oauth/Profile';
-import './hamburger.css';
 import { Headeritems } from './Headeritems';
 
 const Header = () => {
   const theme1 = useSelector(store => store.theme.toggletheme);
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated } = useAuth0();
+  const [change, setChange] = useState(false);
   const dispatch = useDispatch();
  
   const toggle = () => {
@@ -22,9 +22,19 @@ const Header = () => {
   const handleToggle = () => {
     setIsOpen(prev => !prev);
   };
+  
+  const handleScroll = () => {
+     const e = window.scrollY > 10;
+     setChange(e);
+  };
+
+  useEffect(() => {
+   window.addEventListener('scroll', handleScroll);
+   return () => window.removeEventListener('scroll', handleScroll);
+  },[change]);
 
   return (
-    <nav className="inset-0 flex justify-between fixed z-50 items-start p-3 pointer-events-auto w-full top-0 left-0 right-0">
+    <nav className={`fixed top-0 left-0 right-0 flex justify-between items-start p-3 w-full bg-gradient-to-b from-black/1 to-transparent z-50 ${change ? "transition-transform backdrop-blur-lg border-b border-gray-600" : "transition" }`}>
       <div className="flex items-center space-x-4 lg:mt-5 sm: mt-0">
         <h1 className="text-rose-600 bg-black text-2xl font-semibold p-2 rounded-lg border-none outline-none" >
           Movie<span className='text-white'>Spot</span>
@@ -37,6 +47,7 @@ const Header = () => {
           onChange={toggle}
           size={30}
           style={{ color: theme1 ? '#be123c' : '#ffffff'}}
+          className='sm: mt-2 lg:mt-0'
         />
         {/* <div className="relative inline-block ">
           {isAuthenticated ? (

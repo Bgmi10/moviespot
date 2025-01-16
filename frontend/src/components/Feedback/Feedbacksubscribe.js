@@ -3,6 +3,8 @@ import { doc, collection, query, getDocs } from "firebase/firestore";
 import { db } from '../../utils/firebase';
 import { useSelector } from 'react-redux';
 import { FaStar } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 export const Feedbacksubscribe = ({ movieId }) => {
   const [data, setData] = useState([]);
@@ -54,29 +56,25 @@ export const Feedbacksubscribe = ({ movieId }) => {
     <>
       <div className='mt-10'>
         {data && (
-          <span className={` ${theme ? ' sm: text-3xl lg:text-3xl font-bold  text-gray-300 sm: px-3 m-1  mt-10  ' : 'text-3xl font-bold  text-gray-700 sm: px-4 m-1  mt-10'} `}>
+          <span className={` ${theme ? 'sm: text-3xl lg:text-3xl font-bold  text-gray-300 sm: px-3 m-1  mt-10  ' : 'text-3xl font-bold  text-gray-700 sm: px-4 m-1 mt-10'} `}>
             Ratings and Reviews
           </span>
         )}
       </div>
-      {data?.length === 0 ? (
-        <div className='justify-center flex '>
-        <p className={theme ? 'text-gray-400 font-medium text-xl mb-14 mt-5' : 'text-gray-600 text-xl font-medium mb-14 mt-5'}>No reviews</p>
-        </div>
-      ) : (
-        <div className='flex justify-center  flex-wrap'>
+        <div className='flex justify-start flex-wrap m-3'>
           {data?.map((i) => (
             <div
               key={i.id}
-              className={`border ${theme ? 'border-gray-700 bg-slate-800 w-[370px] text-gray-300' : 'border-gray-300 bg-white text-gray-700'} rounded-lg mt-10 h-auto w-2/4 p-3 m-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out`}
+              className={`border ${theme ? 'text-gray-300' : 'bg-white text-gray-700'} w-80 rounded-lg mt-10 p-3 m-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out`}
             >
-              <div className='flex items-center justify-between mb-3 '>
-                <div className='flex justify-start '>
-                <img
-                  src={i.userprofilepic || 'https://in.bmscdn.com/in/synopsis-new/noimguser.jpg'}
+              <div className='flex items-center justify-between mb-3'>
+                <div className='flex justify-start items-center'>
+                {i.userprofilepic ? <img
+                  src={i.userprofilepic}
                   alt='user profile'
                   className='h-8 w-8 rounded-full'
-                />
+                /> :
+                <FontAwesomeIcon icon={faUser} />}
                 <span className={`text-lg font-semibold ${theme ? 'text-gray-300 ml-2' : 'ml-2 text-gray-700'}`}>
                   {i?.username || 'User'}
                 </span>
@@ -90,9 +88,9 @@ export const Feedbacksubscribe = ({ movieId }) => {
                 {i.userfeedbackhashtag.map((item, index) => (
                   <span
                     key={index}
-                    className={`inline-block ${theme ? 'bg-gray-700 text-white' : 'bg-gray-300 text-gray-700'} text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2`}
+                    className={`inline-block ${theme ? 'bg-rose-600 text-white' : 'bg-rose-600 text-white'} text-xs font-medium px-3 py-1 rounded-full mr-2 mb-2`}
                   >
-                    #{item}
+                    {item}
                   </span>
                 ))}
               </div>
@@ -105,7 +103,6 @@ export const Feedbacksubscribe = ({ movieId }) => {
             </div>
           ))}
         </div>
-      )}
     </>
   );
 };
