@@ -1,12 +1,16 @@
-import { collection, doc, getDocs, query, where } from "firebase/firestore"
-import { useEffect, useState } from "react"
-import { db } from "../../utils/firebase"
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../../utils/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToSliderDetail } from "../../store/cacheSliderSlice";
 
 export default function useSearchSlider(id) {
     const [loader, setLoader] = useState(false);
     const [data, setData] = useState(null);
-    const [error, setError] = useState(''); 
-    
+    const [error, setError] = useState('');
+    const dispatch = useDispatch();
+    const cacheSliderDetailData = useSelector((store) => store.cacheSlider.sliderDetail);
+
     const fetchData = async() => {
         try{
             setLoader(true);
@@ -19,6 +23,7 @@ export default function useSearchSlider(id) {
                 ...i.data()
             }));
             setData(data);
+            dispatch(addItemToSliderDetail(data));
         } catch(e) {
             console.log(e);
             setError('error fetching slider data');
@@ -28,7 +33,12 @@ export default function useSearchSlider(id) {
     }
 
     useEffect(() => {
-      if(id) fetchData();
+        if(id) {
+           if(cacheSliderDetailData){
+              const filteredCacheData = cacheSliderDetailData.find(item => item.id === parseInt(id));   
+              filteredCacheData ? setData([filteredCacheData]) : fetchData();
+            }
+        };
     },[id]);
     
     return{

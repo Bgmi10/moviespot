@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faPlay, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import ShareIcon from '@mui/icons-material/Share';
 import { Crewcast } from '../Crewcast';
@@ -15,11 +15,10 @@ const SliderDetailPage = () => {
   const [feedbackform , setfeedbackform] = useState(false)
   const { id } = useParams();
   const theme = useSelector(store => store.theme.toggletheme);
-  const movietoggle = useSelector(store => store.movietoggle.togglemovie);
   const { data, loader } = useSearchSliderApi(id);
-   console.log(data);
-  const handleshareclick = async () =>{
-   const url  = `https://movieapp-cd283.web.app/searchdetail/${id}`;
+  
+  const handleshareclick = async() => {
+   const url  = `https://movieapp-cd283.web.app/slider/detail/${id}`;
    const whatsappUrl = `https://api.whatsapp.com/send?text=${url}`;
    window.open(whatsappUrl , '_blank');
   }
@@ -47,17 +46,18 @@ const SliderDetailPage = () => {
   const handlePlayVideo = () => {
    
   }
-    
+  const MoviefileId = data?.[0]?.drivePreviewUrl?.[0]?.url.match(/\/d\/(.*?)\//)?.[1];
+
  return (
      <> 
   {loader ? <Loader loading={loader}/> : ( 
     <div>  
-      <div  className="flex flex-col items-center">
+      <div  className="flex flex-col">
         {feedbackform && <Feedbackform data={data} toggleform={setfeedbackform} movieid={id} theme={theme} />}
-        <div className="relative  inset-0 ease-in-out  shadow-lg rounded-lg text-white" >
-            <img src={getImageSource()}  className="sm: w-full sm: h-[800px] lg:w-auto lg:h-auto object-cover  object-center brightness-50"/>
+        <div className="relative  inset-0 ease-in-out shadow-lg rounded-lg text-white" >
+            <img src={getImageSource()}  className="sm: w-full sm: h-[800px] lg:w-full lg:h-full object-cover  object-center brightness-50"/>
             <div
-            className="absolute inset-0 flex flex-col  px-4  lg:py-[148px] sm: py-[120px] "
+            className="absolute inset-0 flex flex-col  px-4  lg:py-[148px] sm: py-[120px]"
             style={{
               backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 50%)',
             }}
@@ -65,17 +65,17 @@ const SliderDetailPage = () => {
             <div className="lg:flex lg:py-0">
               <img
                 src={posterimg()}
-                className={`mb-2 rounded-xl duration-500 ml-5 transition-transform h-auto w-80`}
+                className={`mb-2 rounded-2xl duration-500 ml-5 transition-transform h-auto lg:w-80 sm: w-32`}
                 style={{
                   zIndex: 10,
                 }}
                 alt=""
               />
              <div className="px-5">
-                <h1 className={`text-white lg:text-6xl font-bold sm: text-3xl transition-transform duration-500 lg:mb-6 sm: mb-3 `}>
+                <h1 className={`text-white lg:text-6xl font-bold sm: text-3xl transition-transform duration-500 lg:mb-6 sm: mb-1`}>
                   {data?.[0]?.title}
                 </h1>
-                <p className="lg:text-xl sm: text-md text-gray-200 lg:mb-6 sm: mb-3">
+                <p className="lg:text-xl sm: text-md text-gray-200 lg:mb-6 sm: mb-3 sm: line-clamp-4 lg:line-clamp-6">
                   {data?.[0]?.overview}
                 </p>
                 <div className='flex gap-2 lg:mb-6 sm: mb-4'>
@@ -108,45 +108,37 @@ const SliderDetailPage = () => {
                     )}
                   </span>
                 </div>
-                <div className={theme ? 'text-gray-300 lg:flex' : 'text-gray-700 lg:flex p-2'}>
-                   <div className={"px-4 py-2 rounded-md flex bg-blue-500 items-center gap-2"} onClick={handlePlayVideo}>
+                <div className={theme ? 'text-gray-300 sm: grid lg:flex lg:gap-0 sm: grid-cols-2 sm: gap-3' : 'text-gray-700 lg:flex p-2'}>
+                   <div className={"px-6 py-3 text-center lg:w-auto rounded-md flex bg-rose-500 items-center gap-1 cursor-pointer hover:bg-rose-700"} onClick={handlePlayVideo}>
                     <span className='font-bold'>Play</span>
                     <FontAwesomeIcon icon={faPlay} />
                    </div>
                    <a
-                      href={`https://rubyvid.com/d/${data?.[0]?.streamruby}`}
-                     className={"px-4 py-2 rounded-md  flex lg:ml-4 sm: w-fit lg:w-auto bg-white font-bold text-black" }
+                      href={`https://drive.google.com/uc?export=download&id=${MoviefileId}`}
+                      className="px-6 py-3 rounded-md flex lg:ml-2 lg:w-auto bg-gradient-to-r from-rose-500 to-indigo-600 font-bold text-white hover:bg-indigo-700 transition duration-300"
                    >
-                     Download Link <FontAwesomeIcon icon={faArrowDown}  className={'animate-bounce px-2 py-1 ml-1 text-rose-600'}/>
+                     Download HD
                    </a>
                     <button
-                      className={"bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md flex lg:ml-4 text-white font-bold"}
+                      className={"bg-red-600 hover:bg-red-700 px-6 py-3 lg:w-auto rounded-md flex lg:ml-2 text-white font-bold"}
                       onClick={handleshowfeedbackform}
                     >
                     <FontAwesomeIcon icon={faStar} className='text-yellow-300 mt-1 m-1' /> Rate Now
                     </button>
                     <button
-                      className={"bg-blue-500 px-4 py-2 rounded-md  flex lg:ml-4 text-white font-bold"}
+                      className={"bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-md lg:w-auto flex lg:ml-2 text-white font-bold"}
                       onClick={handleshareclick}
                     >
                       Share <ShareIcon className='mt-[2px]' />
                     </button>
+                      </div>
+                 <div>
                </div>
-          <div>
-        </div>
-     </div>         
-   </div>
-  </div>
-</div>
-    </div>
-      <iframe
-       src="https://drive.google.com/file/d/12qZir8oCEMM76BtC_udsS9FpraK_-CFt/preview"
-       width="350"
-       height="200"
-       allow="autoplay"
-       style={{ borderRadius: "20px", border: "none" }}
-       allowFullScreen
-     />
+            </div>         
+          </div>
+         </div>
+       </div>
+       </div>
      <Crewcast id={id} />
     </div>)}
     </>

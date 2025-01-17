@@ -1,4 +1,3 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +12,7 @@ import 'swiper/css/autoplay';
 
 export const Mainslider = ({ data, loader }) => {
   const navigate = useNavigate();
-
+  
   if (loader) {
     return <Loader loading={loader} />;
   }
@@ -23,7 +22,7 @@ export const Mainslider = ({ data, loader }) => {
   }
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden cursor-grab">
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={0}
@@ -34,9 +33,9 @@ export const Mainslider = ({ data, loader }) => {
         pagination = {{
           clickable: true
         }}
-        className="w-full h-full"
+        className={`w-full h-full`}
       >
-        {data.map((movie) => (
+        {data && data?.map((movie) => (
           <SwiperSlide key={movie.id}>
             <div className="relative w-full h-full">
               <img

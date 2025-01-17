@@ -1,12 +1,17 @@
-import { collection, doc, getDocs, query, where } from "firebase/firestore"
-import { useEffect, useState } from "react"
-import { db } from "../../utils/firebase"
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../../utils/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToSeriesSlider, addItemToMovieSlider } from "../../store/cacheSliderSlice";
 
 export default function useFetchSlider(type) {
     const [loader, setLoader] = useState(false);
-    const [sliderdata, setSliderData] = useState(null);
+    const [moviessliderdata, setMoviesSliderData] = useState(null);
+    const [seriessliderdata, setSeriesSliderData] = useState(null);
     const [error, setError] = useState('');
-
+    const dispatch = useDispatch();
+    const cacheSliderData = useSelector((store) => store.cacheSlider);
+    
     const fetchData = async() => {
         try{
             setLoader(true);
@@ -18,9 +23,10 @@ export default function useFetchSlider(type) {
                 id: i.id,
                 ...i.data()
             }));
-            setSliderData(data);
+            data && type === "movies" ? setMoviesSliderData(data) : setSeriesSliderData(data);
+            data && type === "movies" ? dispatch(addItemToMovieSlider(data)) : dispatch(addItemToSeriesSlider(data));
         } catch(e) {
-            console.log(e);
+            console.log(e); 
             setError('error fetching slider data');
         } finally {
             setLoader(false);
@@ -28,11 +34,18 @@ export default function useFetchSlider(type) {
     }
 
     useEffect(() => {
-      if(type) fetchData();
+      if(type) {
+        if(cacheSliderData.moviesSlider === null || cacheSliderData.seriesSlider === null){
+            fetchData();
+            return;
+        }
+        type === "movies" ? setMoviesSliderData(cacheSliderData?.moviesSlider) : setSeriesSliderData(cacheSliderData?.seriesSlider);
+      }
     },[type]);
     
     return{
-     sliderdata,
+     moviessliderdata,
+     seriessliderdata,
      error,
      loader
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from 'react-redux';
-import { toggletheme } from '../utils/Themeslice';
+import { toggletheme } from '../store/themeSlice';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -10,17 +10,12 @@ import { Headeritems } from './Headeritems';
 
 const Header = () => {
   const theme1 = useSelector(store => store.theme.toggletheme);
-  const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated } = useAuth0();
   const [change, setChange] = useState(false);
   const dispatch = useDispatch();
  
   const toggle = () => {
     dispatch(toggletheme());
-  };
-
-  const handleToggle = () => {
-    setIsOpen(prev => !prev);
   };
   
   const handleScroll = () => {

@@ -1,8 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { togglecategory  , type1} from '../../utils/Movieslice';
+import { togglecategory  , type1} from '../../store/movieSlice';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import Mainslider from '../Mainslider';
+import useFetchSlider from '../Hooks/useFetchSlider';
 
 
 const Searchcatagory = () => {
@@ -11,7 +13,6 @@ const Searchcatagory = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = (value) => {
-
     const toggle_value = value === 'movie' ? false : true;
     dispatch(togglecategory(toggle_value));
     setIsOpen(false); 
@@ -19,10 +20,12 @@ const Searchcatagory = () => {
     dispatch(type1(value))// Close the dropdown after selection
   };
 
+  const { sliderdata, loader } = useFetchSlider('series');
+
   return (
     <>
       <div>
-       
+        <Mainslider data={sliderdata} loader={loader} />
         <div className='flex justify-center  m-6'>  
         <span className='justify-center flex text-gray-400 mt-1 text-lg font-semibold'>
           Select Category

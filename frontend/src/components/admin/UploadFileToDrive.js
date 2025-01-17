@@ -20,8 +20,6 @@ export default function UploadFileToDrive({ setIsopen }) {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
-    
-    console.log(selectedmovie)
 
     useEffect(() => {
         const loadGoogleAPI = () => {
@@ -39,7 +37,7 @@ export default function UploadFileToDrive({ setIsopen }) {
                 await new Promise((resolve) => window.gapi.load('client:auth2', resolve));
                 
                 await window.gapi.client.init({
-                    clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+                    clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID, 
                     scope: 'https://www.googleapis.com/auth/drive.file',
                     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
                     ux_mode: 'popup',
@@ -176,7 +174,7 @@ export default function UploadFileToDrive({ setIsopen }) {
       const metadata = {
           name: fileName,
           mimeType: file.type,
-          parents: ['root']
+          parents: ['1t1bxmTbH9jGWMY_4qpo90HbKsPEKTeRT']
       };
 
       const formData = new FormData();
@@ -202,7 +200,8 @@ export default function UploadFileToDrive({ setIsopen }) {
           return {
               url: `https://drive.google.com/file/d/${response.data.id}/preview`,
               moviespotFileName: response.data.name,
-              fileType: response.data.mimeType
+              fileType: response.data.mimeType,
+              season: !selectedtype &&  
           };
       } catch (error) {
           throw error;
@@ -333,15 +332,15 @@ export default function UploadFileToDrive({ setIsopen }) {
                             onClick={() => handleClick(movie)}
                         >
                             <img 
-                                src={movie.poster_path ? poster_url + movie.poster_path : gif} 
-                                alt={movie.title || movie.name}
-                                className="w-20 rounded-md"
+                             src={movie.poster_path ? poster_url + movie.poster_path : gif} 
+                             alt={movie.title || movie.name}
+                             className="w-20 rounded-md"
                             />
                             <div className="flex flex-col gap-1">
-                                <span className="text-white">{movie.title || movie.name}</span>
-                                <span className="text-amber-500">Language: {movie.original_language}</span>
-                                <span className="text-orange-500">Rating: {movie.vote_average}</span>
-                                <span className="text-gray-400">{movie.release_date || movie.first_air_date}</span>
+                              <span className="text-white">{movie.title || movie.name}</span>
+                              <span className="text-amber-500">Language: {movie.original_language}</span>
+                              <span className="text-orange-500">Rating: {movie.vote_average}</span>
+                              <span className="text-gray-400">{movie.release_date || movie.first_air_date}</span>
                             </div>
                         </div>
                     ))}

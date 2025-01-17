@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { settings } from '../utils/Helper';
 import { poster_url } from '../utils/constans';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -47,7 +46,7 @@ export const Popular = ({ title, apiurl, sort }) => {
           </h1>
         </a>
       </div>
-        <Slider {...settings}>
+        <Slider>
           {data?.results?.map((item) => (
             <a href={`/searchdetail/${item.id}`} key={item.id}>
               <div

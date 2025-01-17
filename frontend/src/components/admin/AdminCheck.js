@@ -1,4 +1,4 @@
-import { checkPassword } from "../../utils/Checkpassword";
+import { checkPassword } from "../../utils/checkpassword";
 
 export default function AdminCheck({ setIsAuthenticated, setpassword, password }) {
   return(

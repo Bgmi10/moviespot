@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {settings} from '../utils/Helper';
 import { useSelector } from 'react-redux';
 
 const Moviecard = ({ title, data }) => {
@@ -11,7 +10,7 @@ const Moviecard = ({ title, data }) => {
   return (
      <div  className='lg:p-2'>
      <h2 className={theme ? "text-2xl font-medium text-gray-300 mb-4 px-2 mt-6 " : "text-2xl font-medium text-gray-800 mb-4 px-2 mt-2 relative"}>{title}</h2>
-       <Slider {...settings}  >
+       <Slider>
          {data?.map((item,index)=> ( 
             <div key={index} >
               <a href={ data.length >= 13  ? `/moviedetail/nowplaying/${item.id}` : `/moviedetail/vijayhits/${item.id}`}>

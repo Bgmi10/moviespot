@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import Header from './components/Header';
 import Tamilmovies from './components/Tamilmovies';
 import Chatbot from './components/Chatbot';
-import { Livechat } from './components/Livechat';
 import { Mainslider } from './components/Mainslider';
 import { ajith_hits, tamilmovies, vijayhits } from './utils/constans';
 import { Popular } from './components/Popular';
@@ -13,6 +12,7 @@ import { Bottomnavbar } from './components/Bottomnavbar';
 import Searchbar from './components/Search/Searchbar';
 import Admin from './components/admin/Admin';
 import useFetchSlider from './components/Hooks/useFetchSlider';
+import Tvseries from './components/Tvseries/Tvseries';
 
 const LazyTamilmovieDetails = lazy(() => import('./components/TamilmovieDetails'));
 const LazySearchdetail = lazy(() => import('./components/Search/SliderDetailPage'));
@@ -21,7 +21,6 @@ const LazySearchpage = lazy(() => import('./components/Search/Searchpage'));
 const LazyPopulardetail = lazy(() => import('./components/Populardetail'));
 const LazyLogin = lazy(() => import('./components/Login'));
 const LazyUserProfile = lazy(() => import('./Oauth/Userprofile'));
-const LazyTvseries = lazy(() => import('./components/Tvseries/Tvseries'));
 const LazyRefundPolicy = lazy(() => import('./components/Refundpolicy'));
 const LazyPrivacy = lazy(() => import('./components/Privacy'));
 const DeveloperProfile = lazy(() => import('./components/Developerprofile/Developerprofile'));
@@ -29,8 +28,7 @@ const Contact = lazy(() => import('./components/Contact'));
 
 const App = () => {
   const location = useLocation();
-  const type = useSelector((t) => t.movietoggle.togglemovie);
-  const { sliderdata, loader } = useFetchSlider(!type ? "movies" : "series"); 
+  const { moviessliderdata, loader } = useFetchSlider("movies"); 
   const today = new Date().toISOString().split('T')[0];
   const isLoginPage = location.pathname === '/login';
   const isProfilePage = location.pathname === '/profile';
@@ -49,7 +47,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <Mainslider data={sliderdata} loader={loader} />
+                <Mainslider data={moviessliderdata} loader={loader} />
                 <Popular
                   title="Upcoming Movies"
                   apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`}
@@ -72,9 +70,8 @@ const App = () => {
           <Route path="/privacy-policy" element={<LazyPrivacy />} />
           <Route path="/slider/detail/:id" element={<LazySearchdetail />} />
           <Route path="/searchpage" element={<LazySearchpage />} />
-          <Route path="/livechat" element={<Livechat />} />
           <Route path="/popular-detail" element={<LazyPopulardetail />} />
-          <Route path="/tv-series" element={<LazyTvseries />} />
+          <Route path="/tv-series" element={ <Tvseries /> } />
           <Route path="/refund-policy" element={<LazyRefundPolicy />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
@@ -88,7 +85,6 @@ const App = () => {
          </Suspense>
       {!isDeveloperPage && !isAdminPage && <Bottomnavbar />}
     </div>
-    <Footer />
     </>
   );
 };

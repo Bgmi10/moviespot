@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-const searchslice = createSlice({
+const searchCacheSlice = createSlice({
     name:"searchcache",
     initialState:{},
     reducers:{
@@ -13,6 +12,5 @@ const searchslice = createSlice({
     }
 })
 
-export default searchslice.reducer
-
-export const {cacheresults} = searchslice.actions
+export default searchCacheSlice.reducer;
+export const {cacheresults} = searchCacheSlice.actions

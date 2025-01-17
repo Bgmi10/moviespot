@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
-import {settings} from '../utils/Helper'
 import {poster_url} from '../utils/constans'
 import moviespotgif from '../img/movieSpotgif.gif'
 import { useSelector } from 'react-redux'
@@ -32,7 +31,7 @@ const fetch_recommend_data = async () =>{
   <div >
    {!data ? <p className='text-gray-400 ml-[120px] font-bold'>Loading...</p>  : <div>
          <h2 className={theme ? "text-3xl font-bold  text-gray-300  ml-4  mt-10 " : "text-2xl font-bold  text-gray-700 mb-4 ml-4 mt-2 "}>{Recommendations}</h2>
-        <Slider {...settings} >
+        <Slider>
          {
           data?.results?.map((item)=>(
             <a href={`/searchdetail/${item.id}`}  key={item.id}>

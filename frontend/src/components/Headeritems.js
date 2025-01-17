@@ -3,32 +3,19 @@ import { NavLink } from 'react-router-dom';
 import MovieIcon from '@mui/icons-material/Movie';
 import SearchIcon from '@mui/icons-material/Search';
 import TvIcon from '@mui/icons-material/Tv';
-import { useDispatch } from 'react-redux';
-import { togglemovie } from '../utils/Movieslice';
 
 export const Headeritems = () => {
-  const dispatch = useDispatch();
-
-  const handleToggleToSeries = () => {
-    dispatch(togglemovie(true));
-  }
-  
-  const handleToggleToMovies = () => {
-    dispatch(togglemovie(false));
-  }
 
   const header_list = [
     {
       title: 'Movies',
       link: '/',
       icon: <MovieIcon className="text-rose-700" style={{fontSize: "31px"}} />,
-      toggleClick: handleToggleToMovies
     },
     {
       title: 'Series',
       link: '/tv-series',
       icon: <TvIcon className="text-rose-700" style={{fontSize: "31px"}} />,
-      toggleClick: handleToggleToSeries
     },
     {
       title: 'Search',
@@ -44,7 +31,6 @@ export const Headeritems = () => {
           <NavLink
             to={item.link}
             key={index}
-            onClick={item.toggleClick}
             className={({ isActive }) =>
               `p-2 m-3 text-2xl font-bold navitems relative group ${
                 isActive ? 'text-rose-600' : 'text-white hover:text-rose-600 '

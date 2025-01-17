@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faClose, faStar } from '@fortawesome/free-solid-svg-icons';
 import { Formcontent } from './Formcontent';
-import { hashtags } from '../../utils/Feedbackhashtags';
+import { hashtags } from '../../utils/constans';
 import Slider from '@mui/material/Slider';
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';

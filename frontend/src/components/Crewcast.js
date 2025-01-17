@@ -43,12 +43,12 @@ export const Crewcast = ({ id }) => {
    
   return (
     <div>
-        {castdata && <h1 className={theme ? 'text-3xl font-boldtext-gray-300 sm: px-4  mt-10' : 'text-gray-700 text-2xl font-bold ml-4 mt-10'}>Cast & Crew </h1>}
+        {castdata && <h1 className={theme ? 'lg:text-3xl sm: text-2xl font-bold text-gray-300 sm: px-4 mt-10' : 'text-gray-700 text-2xl font-bold ml-4 mt-10'}>Cast & Crew </h1>}
       <Slider  className='lg:ml-0 sm: ml-8 p-7' {...settings}>
         {
-          castdata?.cast?.map((i) =>(
-              <div key={i.id} className='mt-6'>
-                <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path} className='rounded-lg'/>
+          castdata?.cast?.map((i) =>( 
+              <div key={i.id}>
+                <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path} className='rounded-2xl'/>
                 <div className='ml-3'>
                   <h1 className='text-gray-300 font-medium  text-xl '>{i.name}</h1>
                   <span className={theme ? 'text-gray-500  font-light text-lg' : 'text-gray-700 font-light text-lg'}>{i.character}</span>
