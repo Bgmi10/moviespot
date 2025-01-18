@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -11,12 +11,37 @@ import Loader from '../admin/Loader';
 import { poster_url } from '../../utils/constans';
 import RatingCircle from '../RatingCircle';
 
+// ds for seasons would be the hash where it holds key with season and the value would be an array of episodes;
+// const items = { "season1": [{ id, season, url }], "season2": [{ id, season, url }] }
+
 const SliderDetailPage = () => {
-  const [feedbackform , setfeedbackform] = useState(false)
+  const [feedbackform , setfeedbackform] = useState(false);
   const { id } = useParams();
   const theme = useSelector(store => store.theme.toggletheme);
   const { data, loader } = useSearchSliderApi(id);
-  
+  const [seasons, setSeasons] = useState({});
+
+  console.log(data);
+
+  useEffect(() => {
+   setSeasons((prev) => {
+    const existingCopy = { ...prev };
+    
+    data?.[0]?.drivePreviewUrl?.forEach((item) => {
+      const { season, url, moviespotFileName, fileType } = item;
+
+      if(season){
+         if(!existingCopy[season]){
+            existingCopy[season] = [];
+         }
+         existingCopy[season].push({ url, season, moviespotFileName, fileType });
+      }
+    });
+
+    return existingCopy;
+   });
+  },[data]);
+
   const handleshareclick = async() => {
    const url  = `https://movieapp-cd283.web.app/slider/detail/${id}`;
    const whatsappUrl = `https://api.whatsapp.com/send?text=${url}`;
@@ -49,8 +74,8 @@ const SliderDetailPage = () => {
   const MoviefileId = data?.[0]?.drivePreviewUrl?.[0]?.url.match(/\/d\/(.*?)\//)?.[1];
 
  return (
-     <> 
-  {loader ? <Loader loading={loader}/> : ( 
+  <> 
+   {loader ? <Loader loading={loader}/> : ( 
     <div>  
       <div  className="flex flex-col">
         {feedbackform && <Feedbackform data={data} toggleform={setfeedbackform} movieid={id} theme={theme} />}
@@ -82,7 +107,7 @@ const SliderDetailPage = () => {
                   {data?.[0]?.language?.map((u) => (
                     <span
                       key={u}
-                      className="border-2 backdrop-blur-lg text-white rounded-lg lg:px-7 lg:py-2 sm: p-1 lg:text-xl font-semibold duration-300 ease-linear relative sm: text-lg"
+                      className="border-2 backdrop-blur-lg text-white rounded-lg lg:px-4 lg:py-2 sm: p-1 lg:text-xl font-semibold duration-300 ease-linear relative sm: text-lg"
                     >
                       {u}
                     </span>
@@ -139,6 +164,30 @@ const SliderDetailPage = () => {
          </div>
        </div>
        </div>
+     {
+      data && data?.[0]?.type === "series" &&
+      <div>
+         {
+           Object.entries(seasons).map(([title, item], index) => (
+             <div key={index}>
+                <div className="flex flex-col m-4 gap-2">
+                   <span className="lg:text-3xl text-rose-600 font-bold">Season - <span className='lg:text-3xl text-white font-bold'>{index + 1}</span></span>
+                   <div>
+                      {
+                        item?.map((item, index) => (
+                        <div key={index} className='flex flex-col gap-4 w-fit m-5'>
+                          <button className='border text-white p-3 rounded-lg font-bold'>Episode 0{index + 1} <FontAwesomeIcon icon={faPlay} className="text-white "/></button>
+                          <button className='p-3 bg-white text-black rounded-lg font-bold'>Download</button>
+                        </div>  
+                        ))
+                      }
+                   </div>
+                </div>
+             </div>
+           ))
+         }
+      </div>
+     }  
      <Crewcast id={id} />
     </div>)}
     </>

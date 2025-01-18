@@ -20,6 +20,9 @@ export default function UploadFileToDrive({ setIsopen }) {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
+    const [seasontype, setSeasonType] = useState(0);
+
+    console.log(selectedmovie);
 
     useEffect(() => {
         const loadGoogleAPI = () => {
@@ -201,7 +204,7 @@ export default function UploadFileToDrive({ setIsopen }) {
               url: `https://drive.google.com/file/d/${response.data.id}/preview`,
               moviespotFileName: response.data.name,
               fileType: response.data.mimeType,
-              season: !selectedtype &&  
+              season: !selectedtype && `Season_${seasontype}`
           };
       } catch (error) {
           throw error;
@@ -260,9 +263,9 @@ export default function UploadFileToDrive({ setIsopen }) {
                     }
                 }
                 
-                setSelectedMovie(prev => ({ 
+                setSelectedMovie((prev) => ({ 
                     ...prev, 
-                    drivePreviewUrl: uploadResults,
+                    drivePreviewUrl: [...prev?.drivePreviewUrl || [], ...uploadResults],
                     type: "series"
                 }));
             }
@@ -419,6 +422,7 @@ export default function UploadFileToDrive({ setIsopen }) {
                                            // accept="video/*"
                                         />
                                     </label>
+                                    
                                 </div>
 
                                 {files.length > 0 && (
@@ -454,6 +458,11 @@ export default function UploadFileToDrive({ setIsopen }) {
                                             <FaGoogleDrive className="text-white text-xl" />
                                             <span>{isLoading ? 'Uploading...' : 'Upload to Drive'}</span>
                                         </button>
+                                        {
+                                      !selectedtype && <div>
+                                          <input type="number" onChange={(e) => setSeasonType(e.target.value)} value={seasontype} className="bg-white" />
+                                      </div>
+                                    }
                                     </div>
                                 )}
                             </div>

@@ -48,7 +48,7 @@ const App = () => {
             element={
               <>
                 <Mainslider data={moviessliderdata} loader={loader} />
-                <Popular
+                {/* <Popular
                   title="Upcoming Movies"
                   apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`}
                   sort={`popularity.desc&with_original_language=ta&release_date.gte=${today}`}
@@ -59,7 +59,7 @@ const App = () => {
                 <Popular title="Popular Movies" apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort="with_original_language=ta" />
                 <Popular title="Comedy Genres" apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort="with_original_language=ta&with_genres=35" />
                 <Popular title="Malayalam Dubbed" apiurl={`https://api.themoviedb.org/3/discover/movie?&api_key=`} sort="with_original_language=ml&with_genres=10749" />
-                {/* <Chatbot /> */}
+                <Chatbot /> */}
               </>
             }
           />

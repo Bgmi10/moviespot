@@ -23,7 +23,7 @@ export const Crewcast = ({ id }) => {
 
   const settings = {
      infinite: true, 
-     slidesToShow: 5,
+     slidesToShow: 4,
      slidesToScroll: 1,
      
      autoplay: true, 
@@ -43,15 +43,17 @@ export const Crewcast = ({ id }) => {
    
   return (
     <div>
-        {castdata && <h1 className={theme ? 'lg:text-3xl sm: text-2xl font-bold text-gray-300 sm: px-4 mt-10' : 'text-gray-700 text-2xl font-bold ml-4 mt-10'}>Cast & Crew </h1>}
-      <Slider  className='lg:ml-0 sm: ml-8 p-7' {...settings}>
+        {castdata && <h1 className={theme ? 'lg:text-3xl outline-none sm: text-2xl font-bold text-white sm: px-4 mt-10' : 'text-black text-2xl font-bold ml-4 mt-10'}>Cast & Crew </h1>}
+      <Slider className='sm: ml-8 outline-none m-6' {...settings}>
         {
           castdata?.cast?.map((i) =>( 
-              <div key={i.id}>
-                <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path} className='rounded-2xl'/>
-                <div className='ml-3'>
-                  <h1 className='text-gray-300 font-medium  text-xl '>{i.name}</h1>
-                  <span className={theme ? 'text-gray-500  font-light text-lg' : 'text-gray-700 font-light text-lg'}>{i.character}</span>
+              <div key={i.id} className='relative w-fit px-2'>
+                <div className='w-full relative'>
+                  <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path} className='rounded-2xl w-full'/>
+                  <div className='absolute mt-[-70px] rounded-b-2xl backdrop-blur-md px-2 py-2 w-full bg-gradient-to-t  from-black/50 to-transparent'>
+                    <h1 className='text-white font-bold text-xl'>{i.name}</h1>
+                    <span className={theme ? 'text-gray-300 text-lg z-20' : 'text-gray-700 font-light text-lg'}>{i.character ? i.character : 'unknown'}</span>
+                  </div>
                 </div>
               </div>    
           ))

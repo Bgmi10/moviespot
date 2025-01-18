@@ -54,20 +54,20 @@ export const Feedbacksubscribe = ({ movieId }) => {
   };
 
   return (
-    <div className="container lg:mx-4 sm: mx-auto sm: px-4  py-8">
+    <div className="container lg:mx-0 sm: mx-auto sm: px-4  py-9">
       {data.length > 0 && (
-        <h2 className={`text-2xl md:text-3xl font-bold mb-6 ${theme ? 'text-gray-300' : 'text-gray-700'}`}>
-          Ratings and Reviews
+        <h2 className={`lg:text-3xl md:text-3xl font-bold mb-6 ${theme ? 'text-white' : 'text-black'}`}>
+          Ratings & Reviews
         </h2>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg: m-5">
         {data?.map((i) => (
           <motion.div
             key={i.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className={`border rounded-lg p-4 ${theme ? 'text-gray-300' : 'bg-white text-gray-700'} shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out`}
+            className={`border-2 rounded-lg p-4 ${theme ? 'text-gray-300' : 'bg-white text-gray-700'} shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out`}
           >
             <div className='flex items-center justify-between mb-4'>
               <div className='flex items-center'>
@@ -113,7 +113,7 @@ export const Feedbacksubscribe = ({ movieId }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className={`text-center text-lg ${theme ? 'text-gray-400' : 'text-gray-600'}`}
+          className={`text-center sm: text-sm lg:text-lg ${theme ? 'text-gray-400' : 'text-gray-600'}`}
         >
           No reviews yet. Be the first to leave a review!
         </motion.p>

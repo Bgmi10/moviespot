@@ -63,7 +63,7 @@ export const Mainslider = ({ data, loader }) => {
                   {movie.language.map((lang) => (
                         <span
                           key={lang}
-                          className="border-2 text-white rounded-lg lg:px-7 lg:py-2 sm: p-1 lg:text-xl 
+                          className="border-2 text-white rounded-lg lg:px-4 lg:py-2 sm: p-1 lg:text-xl 
                           font-semibold sm: text-lg"
                         >
                           {lang}
