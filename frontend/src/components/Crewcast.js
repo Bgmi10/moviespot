@@ -11,7 +11,7 @@ import { Feedbacksubscribe } from './Feedback/Feedbacksubscribe';
 export const Crewcast = ({ id }) => {
    const [castdata , setcastdata] = useState(null);
    const theme = useSelector(store => store.theme.toggletheme);
-
+   console.log(castdata)
    useEffect(() =>{
       const fetch_cast_data = async () =>{
           const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
@@ -25,7 +25,6 @@ export const Crewcast = ({ id }) => {
      infinite: true, 
      slidesToShow: 4,
      slidesToScroll: 1,
-     
      autoplay: true, 
      autoplaySpeed: 2000,  
      arrows: false,

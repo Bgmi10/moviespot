@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
@@ -10,9 +10,7 @@ import useSearchSliderApi from '../Hooks/useSearchSliderApi';
 import Loader from '../admin/Loader';
 import { poster_url } from '../../utils/constans';
 import RatingCircle from '../RatingCircle';
-
-// ds for seasons would be the hash where it holds key with season and the value would be an array of episodes;
-// const items = { "season1": [{ id, season, url }], "season2": [{ id, season, url }] }
+import { extractDriveId } from '../../utils/helper';
 
 const SliderDetailPage = () => {
   const [feedbackform , setfeedbackform] = useState(false);
@@ -20,27 +18,32 @@ const SliderDetailPage = () => {
   const theme = useSelector(store => store.theme.toggletheme);
   const { data, loader } = useSearchSliderApi(id);
   const [seasons, setSeasons] = useState({});
-
-  console.log(data);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
-   setSeasons((prev) => {
-    const existingCopy = { ...prev };
-    
-    data?.[0]?.drivePreviewUrl?.forEach((item) => {
-      const { season, url, moviespotFileName, fileType } = item;
-
-      if(season){
-         if(!existingCopy[season]){
-            existingCopy[season] = [];
-         }
-         existingCopy[season].push({ url, season, moviespotFileName, fileType });
-      }
+    if (!data?.[0]?.drivePreviewUrl) return;
+  
+    setSeasons((prev) => {
+      const updatedSeasons = { ...prev };
+  
+      data[0].drivePreviewUrl.forEach((item) => {
+        const { season, url, moviespotFileName, fileType } = item;
+  
+        if (season) {
+          if (!updatedSeasons[season]) {
+            updatedSeasons[season] = [];
+          }
+          updatedSeasons[season] = [
+            ...updatedSeasons[season],
+            { url, season, moviespotFileName, fileType },
+          ];
+        }
+      });
+  
+      return updatedSeasons;
     });
-
-    return existingCopy;
-   });
-  },[data]);
+  }, [data]);
+  
 
   const handleshareclick = async() => {
    const url  = `https://movieapp-cd283.web.app/slider/detail/${id}`;
@@ -69,9 +72,8 @@ const SliderDetailPage = () => {
   };
 
   const handlePlayVideo = () => {
-   
+    navigate(`/slider/detail/${id}/${extractDriveId(data?.[0]?.drivePreviewUrl?.[0]?.url)}`);
   }
-  const MoviefileId = data?.[0]?.drivePreviewUrl?.[0]?.url.match(/\/d\/(.*?)\//)?.[1];
 
  return (
   <> 
@@ -134,16 +136,21 @@ const SliderDetailPage = () => {
                   </span>
                 </div>
                 <div className={theme ? 'text-gray-300 sm: grid lg:flex lg:gap-0 sm: grid-cols-2 sm: gap-3' : 'text-gray-700 lg:flex p-2'}>
+                  {data?.[0]?.type === "movies" && <>
                    <div className={"px-6 py-3 text-center lg:w-auto rounded-md flex bg-rose-500 items-center gap-1 cursor-pointer hover:bg-rose-700"} onClick={handlePlayVideo}>
-                    <span className='font-bold'>Play</span>
-                    <FontAwesomeIcon icon={faPlay} />
-                   </div>
-                   <a
-                      href={`https://drive.google.com/uc?export=download&id=${MoviefileId}`}
-                      className="px-6 py-3 rounded-md flex lg:ml-2 lg:w-auto bg-gradient-to-r from-rose-500 to-indigo-600 font-bold text-white hover:bg-indigo-700 transition duration-300"
-                   >
-                     Download HD
-                   </a>
+                      <span className='font-bold'>Play</span>
+                      <FontAwesomeIcon icon={faPlay} />
+                     </div>
+                     <a
+                        href={
+                         `https://drive.google.com/uc?export=download&id=${extractDriveId(data?.[0]?.drivePreviewUrl?.[0]?.url)}`
+                        }
+                        className="px-6 py-3 rounded-md flex lg:ml-2 lg:w-auto bg-gradient-to-r from-rose-500 to-indigo-600 font-bold text-white hover:bg-indigo-700 transition duration-300"
+                     >
+                       Download HD
+                     </a>
+                     </>
+                   }
                     <button
                       className={"bg-red-600 hover:bg-red-700 px-6 py-3 lg:w-auto rounded-md flex lg:ml-2 text-white font-bold"}
                       onClick={handleshowfeedbackform}
@@ -168,21 +175,23 @@ const SliderDetailPage = () => {
       data && data?.[0]?.type === "series" &&
       <div>
          {
-           Object.entries(seasons).map(([title, item], index) => (
-             <div key={index}>
-                <div className="flex flex-col m-4 gap-2">
-                   <span className="lg:text-3xl text-rose-600 font-bold">Season - <span className='lg:text-3xl text-white font-bold'>{index + 1}</span></span>
-                   <div>
+           Object.entries(seasons).map(([title, item], seasonIndex) => (
+             <div key={seasonIndex}>
+                <div className="flex flex-col">
+                  <div className='m-4'>
+                    <span className="lg:text-3xl text-rose-600 font-bold sm: text-2xl">Season - <span className='lg:text-3xl sm: text-2xl text-white font-bold'>{seasonIndex + 1} </span></span>
+                   </div>
+                   <div className='flex flex-wrap ml-5 gap-0'>
                       {
                         item?.map((item, index) => (
-                        <div key={index} className='flex flex-col gap-4 w-fit m-5'>
-                          <button className='border text-white p-3 rounded-lg font-bold'>Episode 0{index + 1} <FontAwesomeIcon icon={faPlay} className="text-white "/></button>
-                          <button className='p-3 bg-white text-black rounded-lg font-bold'>Download</button>
+                        <div key={index} className='flex flex-col gap-4 m-2'>
+                          <button className='border text-white p-3 rounded-lg px-10 font-bold' onClick={() => navigate(`/slider/detail/${id}/${extractDriveId(item.url)}?season=${seasonIndex + 1}?episode=${index + 1}`)}>Episode 0{index + 1} <FontAwesomeIcon icon={faPlay} className="text-white"/></button>
+                          <a className='p-3 bg-white text-black px-14 rounded-lg font-bold' href={`https://drive.google.com/uc?export=download&id=${extractDriveId(item.url)}`}>Download</a>
                         </div>  
                         ))
                       }
                    </div>
-                </div>
+                </div>  
              </div>
            ))
          }

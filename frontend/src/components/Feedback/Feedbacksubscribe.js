@@ -55,11 +55,9 @@ export const Feedbacksubscribe = ({ movieId }) => {
 
   return (
     <div className="container lg:mx-0 sm: mx-auto sm: px-4  py-9">
-      {data.length > 0 && (
-        <h2 className={`lg:text-3xl md:text-3xl font-bold mb-6 ${theme ? 'text-white' : 'text-black'}`}>
+        <h2 className={`lg:text-3xl md:text-3xl sm: text-2xl font-bold mb-6 ${theme ? 'text-white' : 'text-black'}`}>
           Ratings & Reviews
         </h2>
-      )}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg: m-5">
         {data?.map((i) => (
           <motion.div

@@ -25,6 +25,7 @@ const LazyRefundPolicy = lazy(() => import('./components/Refundpolicy'));
 const LazyPrivacy = lazy(() => import('./components/Privacy'));
 const DeveloperProfile = lazy(() => import('./components/Developerprofile/Developerprofile'));
 const Contact = lazy(() => import('./components/Contact'));
+const LazySliderVideoPlayer = lazy(() => import('./components/Search/SliderVideoPlayer'))
 
 const App = () => {
   const location = useLocation();
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/terms-condition" element={<LazyTerms />} />
           <Route path="/privacy-policy" element={<LazyPrivacy />} />
           <Route path="/slider/detail/:id" element={<LazySearchdetail />} />
+          <Route path="/slider/detail/:id/:videoId" element={<LazySliderVideoPlayer />} />
           <Route path="/searchpage" element={<LazySearchpage />} />
           <Route path="/popular-detail" element={<LazyPopulardetail />} />
           <Route path="/tv-series" element={ <Tvseries /> } />
@@ -84,6 +86,7 @@ const App = () => {
           </Routes>
          </Suspense>
       {!isDeveloperPage && !isAdminPage && <Bottomnavbar />}
+      <Footer />
     </div>
     </>
   );
