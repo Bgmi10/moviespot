@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { profile_url } from '../utils/constans'
+import { profile_url } from '../utils/constants'
 import Slider from 'react-slick'
 import moviespot_gif  from '../img/ms1.gif'
 import 'slick-carousel/slick/slick.css';
@@ -11,7 +11,7 @@ import { Feedbacksubscribe } from './Feedback/Feedbacksubscribe';
 export const Crewcast = ({ id }) => {
    const [castdata , setcastdata] = useState(null);
    const theme = useSelector(store => store.theme.toggletheme);
-   console.log(castdata)
+
    useEffect(() =>{
       const fetch_cast_data = async () =>{
           const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
@@ -19,7 +19,7 @@ export const Crewcast = ({ id }) => {
           setcastdata(json);
       }
       if(id)fetch_cast_data();
-   },[id])
+   },[id]);
 
   const settings = {
      infinite: true, 

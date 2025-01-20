@@ -1,5 +1,4 @@
 export const extractDriveId = (url) => {
-    console.log(url)
     return url.match(/\/d\/(.*?)\//)?.[1];
 }
 

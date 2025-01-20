@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faClose, faStar } from '@fortawesome/free-solid-svg-icons';
 import { Formcontent } from './Formcontent';
-import { hashtags } from '../../utils/constans';
+import { hashtags } from '../../utils/constants';
 import Slider from '@mui/material/Slider';
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -24,7 +24,7 @@ export const Feedbackform = ({ data, toggleform, movieid, theme }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-40 backdrop-blur-md"
+        className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50 backdrop-blur-md"
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}

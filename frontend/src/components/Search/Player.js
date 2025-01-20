@@ -1,8 +1,7 @@
-import React from 'react'
-import { Star, Calendar, Globe, Film, Tag, Info, Tv, Hash } from 'lucide-react'
+import { Star, Calendar, Globe, Film, Tag, Info, Tv, Hash } from 'lucide-react';
 
 export default function EnhancedPlayer({ previewUrl, data }) {
-    console.log(data);
+  
   return (
     <div className="min-h-screen text-white mt-24">
       <div className="container mx-auto px-4 py-8">
@@ -18,7 +17,6 @@ export default function EnhancedPlayer({ previewUrl, data }) {
             ></iframe>
           </div>
         </div>
-
         <div className="space-y-6">
           <h1 className="sm: text-3xl lg:text-5xl font-bold leading-tight">{data?.title}</h1>
           {(data?.season || data?.episode) && (

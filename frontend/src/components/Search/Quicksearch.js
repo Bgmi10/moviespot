@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { poster_url } from '../../utils/constans'
+import { poster_url } from '../../utils/constants'
 import gif from '../../img/ms1.gif'
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { poster_url } from '../utils/constans';
+import { poster_url } from '../utils/constants';
 import gif from '../img/movieSpotgif.gif';
 
 const Populardetail = () => {

@@ -33,8 +33,8 @@ export default function SliderVideoPlayer() {
 
   return (
     <>
-       <ScrollToTop />
-       <Player previewUrl={previewUrl} data={currentSliderData} />
+      <ScrollToTop />
+      <Player previewUrl={previewUrl} data={currentSliderData} />
     </>
   );
 }

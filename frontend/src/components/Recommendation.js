@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
-import {poster_url} from '../utils/constans'
+import {poster_url} from '../utils/constants'
 import moviespotgif from '../img/movieSpotgif.gif'
 import { useSelector } from 'react-redux'
 

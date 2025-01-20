@@ -17,7 +17,7 @@ const store = configureStore({
    },
    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: {
-         ignoredActions: ['cacheSlider/addItemToMovieSlider', 'cacheSlider/addItemToSeriesSlider'],
+         ignoredActions: ['cacheSlider/addItemToMovieSlider', 'cacheSlider/addItemToSeriesSlider', 'cacheSlider/addItemToSliderDetail'],
          ignoredPaths: ['cacheSlider.moviesSlider', 'cacheSlider.seriesSlider', 'cacheSlider.sliderDetail'],
       }
    })

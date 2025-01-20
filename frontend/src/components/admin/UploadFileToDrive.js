@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
-import { poster_url } from "../../utils/constans";
+import { poster_url } from "../../utils/constants";
 import gif from "../../img/movieSpotgif.gif";
 import { faArrowLeft, faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,9 +21,7 @@ export default function UploadFileToDrive({ setIsopen }) {
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
     const [seasontype, setSeasonType] = useState(0);
-
-    console.log(selectedmovie);
-
+    
     useEffect(() => {
         const loadGoogleAPI = () => {
             return new Promise((resolve) => {
