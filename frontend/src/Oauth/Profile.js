@@ -4,8 +4,8 @@ import React, { useState  , useRef} from "react";
 import LogoutButton from "./LogoutButton";
 import { Login, Logout } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import auth from "../components/Hooks/useauth";
-import Useauth from "../components/Hooks/useauth";
+import auth from "../components/hooks/useauth";
+import Useauth from "../components/hooks/useauth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 

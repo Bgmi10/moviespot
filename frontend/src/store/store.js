@@ -1,19 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import Chatslice from "./chatSlice";
 import Themeslice from "./themeSlice";
 import Movieslice from "./movieSlice";
 import feedbackFormsubmissionslice from "./feedbackFormsubmissionslice";
 import searchCacheSlice from "./searchCacheSlice";
-import CacheSliderSlice from "./cacheSliderSlice";
+import cacheSliderSlice from "./cacheSliderSlice";
+import cacheSectionSlice from "./cacheSectionSlice";
 
 const store = configureStore({
    reducer: {
-    chat: Chatslice,
     cache: searchCacheSlice,
     theme: Themeslice,
     movietoggle: Movieslice,
     feedbackformsubmission: feedbackFormsubmissionslice,
-    cacheSlider: CacheSliderSlice
+    cacheSlider: cacheSliderSlice,
+    cacheSection: cacheSectionSlice
    },
    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: {

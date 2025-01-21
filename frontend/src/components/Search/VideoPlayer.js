@@ -5,7 +5,7 @@ import { previewDriveUrl } from "../../utils/helper";
 import Player from "./Player";
 import ScrollToTop from "../ScrollToTop";
 
-export default function SliderVideoPlayer() {
+export default function VideoPlayer() {
   const { videoId, id } = useParams();
   const data = useSelector((store) => store.cacheSlider.sliderDetail);
   const [currentSliderData, setCurrentSliderData] = useState(null);
@@ -26,8 +26,8 @@ export default function SliderVideoPlayer() {
       const episodeMatch = currentPath.match(/[?&]episode=(\d+)/);
 
       if (seasonMatch && episodeMatch) {
-          setCurrentSliderData((prev) => ({ ...prev, season: seasonMatch[1], episode: episodeMatch[1] }))
-        }
+        setCurrentSliderData((prev) => ({ ...prev, season: seasonMatch[1], episode: episodeMatch[1] }))
+      }
     }
   }, [data, videoId, id, navigate]);
 

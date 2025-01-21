@@ -11,12 +11,16 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/autoplay';
 import ScrollToTop from './ScrollToTop';
+import { useState } from 'react';
 
 export const Mainslider = ({ data, loader }) => {
   const navigate = useNavigate();
+  const [isGrabbing, setIsGrabbing] = useState(false);
     
   return (
-    <div className="relative w-full h-screen cursor-grab">
+    <div className={`relative w-full h-screen `}
+    
+    >
       <ScrollToTop />
     {loader ? <Loader loading={loader} /> : <Swiper
         modules={[Autoplay, Pagination]}
@@ -33,12 +37,14 @@ export const Mainslider = ({ data, loader }) => {
       >
         {data?.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full" 
+            >
               <img
                 src={`${poster_url_desktop}${movie?.backdropPath}`}
                 alt={movie?.title}
                 className="w-full h-full object-cover"
                 loading="eager"
+                
               />
               <div className="absolute inset-0 backdrop-brightness-50 bg-gradient-to-t from-black via-transparent to-transparent" />
               
@@ -46,10 +52,13 @@ export const Mainslider = ({ data, loader }) => {
                 <motion.div
                   initial="hidden"
                   animate="visible"
-                  className="absolute sm: top-24 lg:left-24 right-10 p-10 sm: flex-col lg:flex-row flex items-start lg:top-20"
+                  className={`absolute sm: top-24 lg:left-24 right-10 p-10 sm: flex-col lg:flex-row flex items-start lg:top-20 ${!isGrabbing ? "cursor-grab" : "cursor-grabbing" }`}
                 >
                   <motion.div 
                     className="relative group"
+                    onMouseDown={() => setIsGrabbing(true)}
+                  onMouseLeave={() => setIsGrabbing(false)}
+                  onMouseUp={() => setIsGrabbing(false)}
                   >
                     <img
                       src={`${poster_url}${movie?.posterPath}`}
@@ -61,13 +70,13 @@ export const Mainslider = ({ data, loader }) => {
 
                   <div className="flex-1">
                     <motion.h2
-                      className="lg:text-6xl lg:mt-0 sm: text-3xl font-bold text-white lg:mb-7 sm: mb-2 sm:mt-1"
+                      className="lg:text-6xl lg:mt-0 sm: text-3xl font-bold text-white lg:mb-7 sm: mb-2 sm: mt-3"
                     >
                       {movie.title}
                     </motion.h2>
 
                     <motion.p 
-                      className="lg:text-xl sm: text-md text-gray-200 lg:mb-8 sm: mb-3 line-clamp-4"
+                      className="lg:text-xl sm: text-md text-gray-200 lg:mb-8 sm: mb-3 line-clamp-3"
                     >
                       {movie?.overview}
                     </motion.p>
@@ -78,7 +87,7 @@ export const Mainslider = ({ data, loader }) => {
                       {movie.language.map((lang) => (
                         <span
                           key={lang}
-                          className="border-2 text-white rounded-lg lg:px-4 lg:py-2 sm: p-1 lg:text-xl font-bold backdrop-blur-sm"
+                          className="border-2 text-white rounded-lg px-4 py-2 lg:text-xl sm: text-sm font-bold backdrop-blur-sm"
                         >
                           {lang}
                         </span>
@@ -94,7 +103,7 @@ export const Mainslider = ({ data, loader }) => {
                     <motion.div 
                       className="lg:mb-8 sm: mb-4 flex gap-2"
                     >
-                      <span className="lg:px-4 lg:py-2 sm: p-1 lg:text-xl rounded-lg font-bold flex items-center gap-2 transition-colors duration-300 backdrop-blur-sm border-2 text-white">
+                      <span className="px-4 py-2 lg:text-xl sm: text-sm rounded-lg font-bold flex items-center gap-2 transition-colors duration-300 backdrop-blur-sm border-2 text-white">
                         {movie?.adult ? (
                           <>
                             <span>🔞</span>
@@ -109,7 +118,7 @@ export const Mainslider = ({ data, loader }) => {
                       </span>
                     </motion.div>
                     <motion.button
-                      className="bg-red-600 text-white lg:px-6 lg:py-3 sm: p-1 lg:text-xl rounded-lg font-bold flex items-center 
+                      className="bg-red-600 text-white px-6 py-3 sm: p-1 lg:text-xl  sm: text-md rounded-lg font-bold flex items-center 
                         hover:bg-red-700 z-50 cursor-pointer"
                       onClick={() => navigate(`/slider/detail/${movie.id}`)}
                     >

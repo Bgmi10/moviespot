@@ -6,19 +6,17 @@ import { useSelector } from 'react-redux';
 import ShareIcon from '@mui/icons-material/Share';
 import { Crewcast } from '../Crewcast';
 import { Feedbackform } from '../Feedback/Feedbackform';
-import useSearchSliderApi from '../Hooks/useSearchSliderApi';
 import Loader from '../admin/Loader';
 import { poster_url } from '../../utils/constants';
 import RatingCircle from '../RatingCircle';
 import { extractDriveId } from '../../utils/helper';
 
-const SliderDetailPage = () => {
+const DetailPage = ({ data, loader, error }) => {
   const [feedbackform , setfeedbackform] = useState(false);
-  const { id } = useParams();
   const theme = useSelector(store => store.theme.toggletheme);
-  const { data, loader } = useSearchSliderApi(id);
   const [seasons, setSeasons] = useState({});
   const navigate = useNavigate();
+  const { id } = useParams();
   
   useEffect(() => {
     if (!data?.[0]?.drivePreviewUrl) return;
@@ -204,7 +202,7 @@ const SliderDetailPage = () => {
   )
 }
 
-export default SliderDetailPage
+export default DetailPage
 
 
 

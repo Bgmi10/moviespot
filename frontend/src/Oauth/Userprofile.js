@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Useauth from '../components/Hooks/useauth';
+import Useauth from '../components/hooks/useauth';
 import verfied_gif from '../img/00071.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import notverfied_gif from '../img/00024.png'

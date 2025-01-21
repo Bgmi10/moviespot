@@ -4,7 +4,7 @@ import { db } from "../../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToSliderDetail } from "../../store/cacheSliderSlice";
 
-export default function useSearchSlider(id) {
+export default function useSliderDetailPage(id) {
     const [loader, setLoader] = useState(false);
     const [data, setData] = useState(null);
     const [error, setError] = useState('');
@@ -33,8 +33,8 @@ export default function useSearchSlider(id) {
     }
 
     useEffect(() => {
-        if(id) {
-           if(cacheSliderDetailData){
+        if (id) {
+           if (cacheSliderDetailData) {
               const filteredCacheData = cacheSliderDetailData.find(item => item.id === parseInt(id));   
               filteredCacheData ? setData([filteredCacheData]) : fetchData();
             }

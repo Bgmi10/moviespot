@@ -7,7 +7,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useSelector } from 'react-redux';
 import { Feedbacksubscribe } from './Feedback/Feedbacksubscribe';
 
-
 export const Crewcast = ({ id }) => {
    const [castdata , setcastdata] = useState(null);
    const theme = useSelector(store => store.theme.toggletheme);

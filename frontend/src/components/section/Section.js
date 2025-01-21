@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import { poster_url } from '../../utils/constants';
-import useFetchCategory from '../Hooks/useFetchCategory';
+import useFetchCategory from '../hooks/useFetchSection';
 import { Link } from 'react-router-dom';
 import Loader from '../admin/Loader';
 import 'slick-carousel/slick/slick.css';
@@ -11,6 +11,17 @@ import 'slick-carousel/slick/slick-theme.css';
 
 export default function Section({ title, type, category }) {
   const { data, error, loader } = useFetchCategory(type, category);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+
+    return () => clearTimeout(timer);
+  },[]);
 
   const settings = {
     dots: false,
@@ -62,14 +73,14 @@ export default function Section({ title, type, category }) {
           </div>
         </Link>
       </div>
-        <Slider {...settings} className="movie-slider">
-          {loader ? <div className='p-20 items-center flex justify-center'><Loader loading={loader}/></div>: data?.map((movie) => (
+        {isClient &&  <Slider {...settings}>
+          {loader ? <div className='p-20 items-center flex justify-center h-full'><Loader loading={loader}/></div>: data?.map((movie) => (
             <motion.div
               key={movie.id}
               className="relative group px-1"
               whileHover={{ scale: 1.01 }}
             >
-              <Link to={`/section/detail/${movie.id}`}>
+              <Link to={`/section/detail/${movie.type}/${movie.category}/${movie.id}`}>
                 <motion.img
                   src={`${poster_url}${movie.posterPath}`}
                   alt={movie.title}
@@ -89,18 +100,19 @@ export default function Section({ title, type, category }) {
                 {movie.title}
               </motion.h3>
               <div className='flex flex-wrap gap-1 mt-1'>
-                 {movie.language.map((item) =>  
+                 {movie.language.map((item, index) =>  
                   <motion.h1
-                  className="lg:text-[11px] bg-red-600 sm: text-xs px-1 rounded-xl text-white font-bold"
+                  className="lg:text-[11px] bg-red-600 sm: text-[8px] px-1 rounded-xl text-white font-bold"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
+                  key={index}
                   >{item}</motion.h1> 
                  )} 
                </div>
             </motion.div>
           ))}
-        </Slider>
+        </Slider>}
     </div>
   );
 }
