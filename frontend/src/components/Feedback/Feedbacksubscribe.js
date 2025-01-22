@@ -6,13 +6,16 @@ import { FaStar } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
+import Loader from '../admin/Loader';
 
 export const Feedbacksubscribe = ({ movieId }) => {
   const [data, setData] = useState([]);
   const theme = useSelector(store => store.theme.toggletheme);
+  const [loader, setLoader] = useState(false);
 
   const fetch_data = async () => {
     try {
+      setLoader(true);
       const movieRef = doc(db, "movies", String(movieId));
       const feedbacksCollectionRef = collection(movieRef, "feedbacks");
       const q = query(feedbacksCollectionRef);
@@ -26,6 +29,8 @@ export const Feedbacksubscribe = ({ movieId }) => {
       setData(feedbacks);
     } catch (error) {
       console.error("Error fetching feedbacks: ", error);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -54,10 +59,22 @@ export const Feedbacksubscribe = ({ movieId }) => {
   };
 
   return (
-    <div className="container lg:mx-0 sm: mx-auto sm: px-4  py-9">
+   <>  
+      <div className="container lg:mx-0 sm: mx-auto sm: px-4  py-9">
         <h2 className={`lg:text-3xl md:text-3xl sm: text-2xl font-bold mb-6 ${theme ? 'text-white' : 'text-black'}`}>
           Ratings & Reviews
         </h2>
+        {data.length === 0 && 
+         <div className='flex justify-center text-center'>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className={`sm: text-sm sm: mt-10 lg:text-lg ${theme ? 'text-gray-400' : 'text-gray-600'}`}
+          >
+            No reviews yet. Be the first to leave a review!
+          </motion.span>
+        </div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg: m-5">
         {data?.map((i) => (
           <motion.div
@@ -106,17 +123,8 @@ export const Feedbacksubscribe = ({ movieId }) => {
           </motion.div>
         ))}
       </div>
-      {data.length === 0 && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className={`text-center sm: text-sm lg:text-lg ${theme ? 'text-gray-400' : 'text-gray-600'}`}
-        >
-          No reviews yet. Be the first to leave a review!
-        </motion.p>
-      )}
     </div>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Searchcatagory from './Searchcatagory';
 import { Quicksearch } from './Quicksearch';
+import ScrollToTop from '../ScrollToTop';
 
 const Searchbar = () => {
 
@@ -19,9 +20,6 @@ const Searchbar = () => {
 
   
    const SpeechRecognition = () => {
-
-   
-
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
       const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
@@ -47,11 +45,9 @@ const Searchbar = () => {
     }
   };
   
-  
-
   return (
-    
-    <div className={theme ? `py-32` : `bg-white`}  >
+    <div className={theme ? `py-32` : `bg-white`}>
+      <ScrollToTop />
       <div className={ `flex justify-center items-center` }>
       <div  className="flex items-center relative">
         <div className="relative">
@@ -60,7 +56,7 @@ const Searchbar = () => {
             placeholder={'Search for ' + `${category_type}...`}
             value={searchTerm}
             onChange={handleSearch}
-            className={theme ? "p-2 border outline-none border-gray-900 rounded-md m-2 lg:w-[700px] sm: w-60 bg-slate-900 text-white "  : "p-2 border rounded-md  border-gray-900  m-2 lg:w-[700px] outline-none sm: w-60  text-gray-500 " }
+            className={theme ? "p-2 border outline-none border-gray-900 rounded-md m-2 lg:w-[700px] sm: w-60 bg-slate-900 text-white "  : "p-2 border rounded-md  border-gray-900  m-2 lg:w-[700px] outline-none sm: w-60  text-gray-500"}
           />
           <button
             type="button"
@@ -102,7 +98,7 @@ const Searchbar = () => {
       </div>
     </div>
          <div>
-             <Searchcatagory />
+            <Searchcatagory />
           </div>
          <div>
             <Quicksearch searchQuery={searchTerm}  type={category_type}/>

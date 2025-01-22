@@ -7,18 +7,19 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useSelector } from 'react-redux';
 import { Feedbacksubscribe } from './Feedback/Feedbacksubscribe';
 
-export const Crewcast = ({ id }) => {
+export const Crewcast = ({ id, type }) => {
+
    const [castdata , setcastdata] = useState(null);
    const theme = useSelector(store => store.theme.toggletheme);
 
-   useEffect(() =>{
-      const fetch_cast_data = async () =>{
-          const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
-          const json = await res.json();
-          setcastdata(json);
-      }
-      if(id)fetch_cast_data();
-   },[id]);
+   const fetch_cast_data = async () =>{
+    const res = await fetch(`https://api.themoviedb.org/3/${type === "movies" ? "movie" : "tv"}/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
+    const json = await res.json();
+    setcastdata(json);
+   }
+   useEffect(() =>{ 
+      if (id && type) fetch_cast_data();
+    },[id, type]);
 
   const settings = {
      infinite: true, 
@@ -57,9 +58,7 @@ export const Crewcast = ({ id }) => {
           ))
         }
       </Slider>
-      <div>
-        <Feedbacksubscribe movieId={id}/>
-      </div>
+        <Feedbacksubscribe movieId={id}/> 
     </div>
   )
 }

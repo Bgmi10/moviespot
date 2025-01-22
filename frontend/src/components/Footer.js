@@ -4,6 +4,7 @@ import { FaMailBulk, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
 import MovieIcon from '@mui/icons-material/Movie';
 import SearchIcon from '@mui/icons-material/Search';
 import TvIcon from '@mui/icons-material/Tv';
+import { Link } from 'react-router-dom';
 
 export default function ScrollAnimatedFooter() {
   const footerRef = useRef(null);
@@ -11,14 +12,14 @@ export default function ScrollAnimatedFooter() {
 
   const { scrollYProgress } = useScroll({
     target: footerRef,
-    offset: ["start end", "start start"]
+    offset: ["start end", "end end"]
   });
 
   const scaleX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 1]), 
+    useTransform(scrollYProgress, [0.5, 1], [0, 1]), 
     {
-      stiffness: 500,
-      damping: 90,
+      stiffness: 100,
+      damping: 30,
       restDelta: 0.001
     }
   );
@@ -29,20 +30,22 @@ export default function ScrollAnimatedFooter() {
       className="bg-black text-white mt-20 relative bottom-0 w-full"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-100px" }} 
       transition={{ duration: 0.5 }}
     >
-      <div className="absolute top-0 left-0 right-0 h-[2px] overflow-hidden">
+       <div className="absolute top-0 left-0 right-0 h-[2px] w-full overflow-hidden">
         <motion.div 
           ref={borderRef}
-          className="h-full w-full bg-gradient-to-r from-gray-950 via-gray-950 to-rose-600"
+          className="relative h-full w-full"
           style={{ 
             scaleX,
             transformOrigin: "left"
           }}
-        />
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-rose-600 to-rose-600" />
+        </motion.div>
       </div>
-      <div className="relative w-full z-10 px-4 sm:px-6 lg:px-20 py-14 sm:py-12">
+      <div className="relative w-full z-10 sm: px-6 lg:px-20 sm: py-14">
         <div className="grid sm:grid-cols-2 sm: gap-12 lg:flex lg:justify-between">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -53,10 +56,25 @@ export default function ScrollAnimatedFooter() {
             <div className="text-2xl font-bold mb-4">
               <span className="text-rose-600">Quick</span> Links
             </div>
-            <ul className="text-gray-300 space-y-2">
-              <li className="hover:text-rose-600 transition duration-300 cursor-pointer"><MovieIcon fontSize='small'/>  Movies</li>
-              <li className="hover:text-rose-600 transition duration-300 cursor-pointer"><TvIcon fontSize='small'/>  Series</li>
-              <li className="hover:text-rose-600 transition duration-300 cursor-pointer"><SearchIcon fontSize='small'/>  Search</li>
+            <ul className="text-gray-300 flex flex-col gap-3">
+              <Link to={"/"}> 
+                <li className="hover:text-rose-600 transition duration-300 cursor-pointer flex gap-2 items-center">
+                  <MovieIcon fontSize='small'/>
+                  <span>Movies</span>
+                </li>
+              </Link>
+              <Link to="/tv-series">
+                <li className="hover:text-rose-600 transition duration-300 cursor-pointer gap-2 items-center flex">
+                  <TvIcon fontSize='small'/> 
+                  <span>Series</span>
+                </li>
+              </Link>
+              <Link to="/search-category">
+                <li className="hover:text-rose-600 transition duration-300 cursor-pointer flex items-center gap-2">
+                  <SearchIcon fontSize='small'/>
+                  <span>Search</span>
+                </li>
+              </Link>
             </ul>
           </motion.div>
 
@@ -98,7 +116,7 @@ export default function ScrollAnimatedFooter() {
         </div>
 
         <motion.div 
-          className="mt-12 text-center text-gray-300 pt-6 border-t border-gray-800"
+          className="mt-12 text-center text-gray-300 pt-4 border-t border-gray-800"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
@@ -117,7 +135,7 @@ export default function ScrollAnimatedFooter() {
           </div>
           <p className="mt-4">©2025 MovieSpot. All rights reserved.</p>
           <div className="flex gap-2 items-center justify-center mt-4">
-            <span>Made with ❤️ from</span> 
+            <span>Made with <span className='animate-pulse'>❤️</span> from</span> 
             <img src="https://emojigraph.org/media/twitter/flag-india_1f1ee-1f1f3.png" alt="Indian flag" className="h-5 w-5" />
           </div>
         </motion.div>

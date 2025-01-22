@@ -8,7 +8,7 @@ const cacheSectionSlice = createSlice({
         sectionDetailPage: []
     },
     reducers: {
-        addItemToMoviesSections: (state, action) => {
+        addItemToMoviesSection: (state, action) => {
             const { sectionName, sectionData } = action.payload;
             
             if (!state.moviesSections[sectionName]) {
@@ -39,5 +39,5 @@ const cacheSectionSlice = createSlice({
 });
 
 export default cacheSectionSlice.reducer;
-export const { addItemToMoviesSections, addItemToSeriesSection, addItemToSectionDetailPage } = cacheSectionSlice.actions;
+export const { addItemToMoviesSection, addItemToSeriesSection, addItemToSectionDetailPage } = cacheSectionSlice.actions;
 

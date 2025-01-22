@@ -17,8 +17,8 @@ const store = configureStore({
    },
    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: {
-         ignoredActions: ['cacheSlider/addItemToMovieSlider', 'cacheSlider/addItemToSeriesSlider', 'cacheSlider/addItemToSliderDetail'],
-         ignoredPaths: ['cacheSlider.moviesSlider', 'cacheSlider.seriesSlider', 'cacheSlider.sliderDetail'],
+         ignoredActions: ['cacheSlider/addItemToMovieSlider', 'cacheSlider/addItemToSeriesSlider', 'cacheSlider/addItemToSliderDetail', 'cacheSection/addItemToMoviesSection', 'cacheSection/addItemToSeriesSection', 'cacheSection/addItemToSectionDetailPage'],
+         ignoredPaths: ['cacheSlider.moviesSlider', 'cacheSlider.seriesSlider', 'cacheSlider.sliderDetail', 'cacheSection.moviesSections', 'cacheSection.seriesSections', 'cacheSection.sectionDetailPage'],
       }
    })
 })

@@ -1,0 +1,17 @@
+@media screen and (max-width: 400px) {
+ 
+   .posterimg {
+      width: 120px;
+      height: auto;
+   }
+   
+   .title {
+      font-size: 22px;
+   }
+
+   .overview {
+      font-size: 11px;
+   }
+
+
+}

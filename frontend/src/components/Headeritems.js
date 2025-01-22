@@ -19,7 +19,7 @@ export const Headeritems = () => {
     },
     {
       title: 'Search',
-      link: '/search-catagory',
+      link: '/search-category',
       icon: <SearchIcon className="text-rose-700" style={{fontSize: "31px"}} />,
     },
   ];

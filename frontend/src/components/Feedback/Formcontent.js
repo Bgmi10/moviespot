@@ -3,7 +3,7 @@ import { db } from "../../utils/firebase";
 import { doc, collection, addDoc } from "firebase/firestore";
 import { useDispatch } from 'react-redux';
 import { useAuth0 } from "@auth0/auth0-react";
-import { updation } from '../../store/feedbackFormsubmissionslice';
+import { updation } from '../../redux/feedbackFormsubmissionslice';
 import { motion } from 'framer-motion';
 
 export const Formcontent = ({ starvalue, dynamic_hash_heading, targetRatingHashtags, movieid, theme }) => {

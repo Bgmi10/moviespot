@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import profile from '../../img/profile.jpeg';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
@@ -10,16 +10,13 @@ import { Project } from './Project';
 import { Freelanceprojects, opensourceprojects, projects } from './Utils/constants';
 import { Feedback } from './Feedback';
 import ChatBox from './Chatbox/Chatbox';
-
-
+import "../mainslider.css";
 
 const Developerprofile = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [showForm, setShowForm] = useState(false); 
-  const [userscroll, setUserscroll] = useState(0);
-
+  const [showForm, setShowForm] = useState(false);
+  
   const handleHireClick = () => {
-   
     setShowForm(true); 
   };
 
@@ -84,8 +81,6 @@ const Developerprofile = () => {
                 }}
                 onClick={handleHireClick}
               />
-             
-             
               <motion.div
                 style={{
                   position: 'absolute',

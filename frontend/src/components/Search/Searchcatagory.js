@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { togglecategory  , type1} from '../../store/movieSlice';
+import { togglecategory  , type1} from '../../redux/movieSlice';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 const Searchcatagory = () => {
   const dispatch = useDispatch();
-  const [localtype, setLocaltype] = useState('movie');
+  const [localtype, setLocaltype] = useState('movies');
   const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = (value) => {
@@ -36,15 +36,15 @@ const Searchcatagory = () => {
             <div className='absolute left-0 right-0 mt-1 bg-slate-800 rounded-md shadow-lg z-10'>
               <div 
                 className='cursor-pointer p-2 text-gray-200 hover:bg-slate-700 transition duration-200'
-                onClick={() => handleChange('movie')}
+                onClick={() => handleChange('movies')}
               >
-                Movie
+                Movies
               </div>
               <div 
                 className='cursor-pointer p-2 text-gray-200 hover:bg-slate-700 transition duration-200'
-                onClick={() => handleChange('tv')}
+                onClick={() => handleChange('series')}
               >
-                TV
+                Series
               </div>
             </div>
           

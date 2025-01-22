@@ -1,8 +1,8 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, limit, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToMoviesSections, addItemToSeriesSection } from "../../store/cacheSectionSlice";
+import { addItemToMoviesSection, addItemToSeriesSection } from "../../redux/cacheSectionSlice";
 
 export default function useFetchSection(type, category) {
   const [data, setData] = useState(null);
@@ -16,14 +16,16 @@ export default function useFetchSection(type, category) {
     try{
       setLoader(true);
       const docRef = collection(db, "media", type, "categories", category, "content");
-      const docSnap = await getDocs(docRef);
+      const q = query(docRef, limit(12));
+      const docSnap = await getDocs(q);
+      
       const contentData = docSnap.docs.map(item => ({
        id: item.id,
        ...item.data()
       }));
 
       if (type === "movies") { 
-        dispatch(addItemToMoviesSections({
+        dispatch(addItemToMoviesSection({
           sectionName: category,
           sectionData: contentData
         }));
@@ -35,12 +37,11 @@ export default function useFetchSection(type, category) {
           sectionData: contentData
         }));
       }
-
       setData(contentData);
-      setLoader(false);
     } catch (e) {
       console.log(e);
       setError(e);
+    } finally {
       setLoader(false);
     }
   }

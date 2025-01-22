@@ -102,7 +102,7 @@ export default function Section({ title, type, category }) {
               <div className='flex flex-wrap gap-1 mt-1'>
                  {movie.language.map((item, index) =>  
                   <motion.h1
-                  className="lg:text-[11px] bg-red-600 sm: text-[8px] px-1 rounded-xl text-white font-bold"
+                  className="lg:text-[11px] bg- sm: text-[8px] px-1 rounded-xl text-rose-600 font-bold"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
