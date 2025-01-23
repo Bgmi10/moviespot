@@ -171,7 +171,12 @@ export default function UploadToFirebase({ selectedMovie }) {
       };
       
       await addDoc(targetRef, movieData);
+      
+      const mediaSearchRef = collection(db, "mediaSearch");
+      await addDoc(mediaSearchRef, movieData);
+
       await fetchDocuments(targetRef.path);
+
       setLoading(false);
       alert('File uploaded to server successfully...');
       setCategories('');

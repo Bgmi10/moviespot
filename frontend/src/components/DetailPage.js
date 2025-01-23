@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faShare, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faShare, faSpinner, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { Crewcast } from './Crewcast';
 import { Feedbackform } from './Feedback/Feedbackform';
@@ -10,6 +10,7 @@ import { poster_url, poster_url_desktop } from '../utils/constants';
 import RatingCircle from './RatingCircle';
 import { extractDriveId } from '../utils/helper';
 import ScrollToTop from './ScrollToTop';
+import axios from 'axios';
 
 const DetailPage = ({ data, loader, error }) => {
   const [feedbackform , setfeedbackform] = useState(false);
@@ -17,6 +18,7 @@ const DetailPage = ({ data, loader, error }) => {
   const [seasons, setSeasons] = useState({});
   const navigate = useNavigate();
   const { id } = useParams();
+  const [shrinkloader, setShrinkLoader] = useState(false);
   
   useEffect(() => {
     if (!data?.[0]?.drivePreviewUrl) return;
@@ -42,7 +44,6 @@ const DetailPage = ({ data, loader, error }) => {
     });
   }, [data]);
   
-  console.log(data);
   const handleshareclick = async() => {
    const url  = `https://movieapp-cd283.web.app/slider/detail/${id}`;
    const whatsappUrl = `https://api.whatsapp.com/send?text=${url}`;
@@ -58,6 +59,19 @@ const DetailPage = ({ data, loader, error }) => {
   const handlePlayVideo = () => {
     navigate(`/slider/detail/${id}/${extractDriveId(data?.[0]?.drivePreviewUrl?.[0]?.url)}`);
   }
+
+  const handleGenerateShrinkLink = async(url) => {
+    setShrinkLoader(true);
+    try{
+      const response = await axios.get(`https://shrinkme.io/api?api=f8c27b0bf544459944e809712ce63c02b4c3689d&url=${encodeURIComponent(url)}`, {}, { headers : { "Content-Type": "application/json" } });
+      const finalUrl = response.data.shortenedUrl;
+      window.location.href  = finalUrl;
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setShrinkLoader(false);
+    }
+  } 
 
  return (
   <>
@@ -146,30 +160,35 @@ const DetailPage = ({ data, loader, error }) => {
                     {data?.[0]?.type === 'movies' && (
                       <>
                         <div
-                          className="lg:py-4 lg:px-10  sm: px-6 text-xl text-center lg:w-auto rounded-lg flex bg-rose-500 items-center gap-2 cursor-pointer hover:bg-rose-700"
+                          className="lg:py-4 lg:px-4  sm: px-6 text-xl text-center lg:w-auto rounded-lg flex bg-rose-500 items-center gap-2 cursor-pointer hover:bg-rose-700"
                           onClick={handlePlayVideo}
                         >
                             <span className="font-bold">Play Now</span>
                             <FontAwesomeIcon icon={faPlay} className="mt-1 text-xl" />
                         </div>
-                        <a
-                          href={`https://drive.google.com/uc?export=download&id=${extractDriveId(
+                        <button
+                          onClick={() => handleGenerateShrinkLink(`https://drive.google.com/uc?export=download&id=${extractDriveId(
                             data?.[0]?.drivePreviewUrl?.[0]?.url
-                          )}`}
-                          className="sm: px-3 sm: py-2 lg:px-10 lg:py-4 lg:text-xl sm: text-lg rounded-lg flex lg:ml-2 lg:w-auto bg-gradient-to-r from-rose-500 to-indigo-600 font-bold text-white hover:bg-indigo-700 transition duration-300"
+                          )}`)}
+                          className="sm: px-3 sm: py-2 lg:px-4 lg:py-4 lg:text-xl sm: text-lg rounded-lg flex lg:ml-2 lg:w-auto bg-gradient-to-r from-rose-500 to-indigo-600 font-bold text-white hover:bg-indigo-700 transition duration-300"
                         >
-                          Download HD
-                        </a>
+                        {shrinkloader ? 
+                         <div className="items-center flex gap-1"> 
+                           <FontAwesomeIcon icon={faSpinner} spin /> <span>Generating link...</span> 
+                         </div> 
+                         :
+                         "Download HD"}
+                        </button>
                       </>
                     )}
                     <button
-                      className="bg-red-600 hover:bg-red-700 lg:py-4 sm: px-6 sm: py-3 lg:px-10 sm: text-lg lg:text-xl lg:w-auto rounded-lg flex lg:ml-2 text-white font-bold"
+                      className="bg-red-600 hover:bg-red-700 lg:py-4 sm: px-6 sm: py-3 lg:px-4 sm: text-lg lg:text-xl lg:w-auto rounded-lg flex lg:ml-2 text-white font-bold"
                       onClick={handleshowfeedbackform}
                     >
                       <FontAwesomeIcon icon={faStar} className="text-yellow-300 mt-1 m-1 text-xl" /> Rate Now
                     </button>
                     <button
-                      className="bg-blue-500 hover:bg-blue-600 lg:py-4 sm: px-6 sm: py-3 lg:px-10 lg:text-xl sm: text-lg rounded-lg lg:w-auto flex lg:ml-2 text-white font-bold"
+                      className="bg-blue-500 hover:bg-blue-600 lg:py-4 sm: px-6 sm: py-3 lg:px-4 lg:text-xl sm: text-lg rounded-lg lg:w-auto flex lg:ml-2 text-white font-bold"
                       onClick={handleshareclick}
                     >
                       Share <FontAwesomeIcon icon={faShare} className="text-xl ml-2 mt-1" />
@@ -210,14 +229,14 @@ const DetailPage = ({ data, loader, error }) => {
                           >
                             Episode 0{index + 1} <FontAwesomeIcon icon={faPlay} className="text-white" />
                           </button>
-                          <a
+                          <button
+                          onClick={() => handleGenerateShrinkLink(`https://drive.google.com/uc?export=download&id=${extractDriveId(
+                           episode.url
+                          )}`)}
                             className="p-3 bg-white text-black px-14 rounded-lg font-bold"
-                            href={`https://drive.google.com/uc?export=download&id=${extractDriveId(
-                              episode.url
-                            )}`}
                           >
                             Download
-                          </a>
+                          </button>
                         </div>
                       ))}
                     </div>

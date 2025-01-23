@@ -3,51 +3,32 @@ import { poster_url } from '../../utils/constants'
 import gif from '../../img/ms1.gif'
 
 
-export const Quicksearch = ({searchQuery, type}) => {
-  // Todo need to cache the results 
+export const Quicksearch = ({ data }) => {
     const [page, setPage] = useState(1)
     const [endpage, setEndpage] = useState(false)
-    const [data, setData] = useState([])
-    
 
-    const fetch_data = async () => {
-      try{
-        const res = await fetch(`https://api.themoviedb.org/3/search/${type}?query=${searchQuery}&page=${page}&api_key=${process.env.REACT_APP_API_KEY}`);
-        const json = await res?.json()
-        setData(prev => [ ...prev, ...json?.results])
-      }
-      catch (e) {
-        console.log(e)
-      }
-    }
 
-    useEffect(() => {
-      if (endpage) {
-        setPage(prev => prev + 1)
-      }
-    },[])
-
-    const handlescroll = () => {
-      setEndpage(window.innerHeight + window.scrollY >= document.body.scrollHeight - 400)
-    }
+    // const handlescroll = () => {
+    //   setEndpage(window.innerHeight + window.scrollY >= document.body.scrollHeight - 400)
+    // }
  
-    useEffect(() =>{ 
-       window.addEventListener('scroll' , handlescroll);
-       return () => window.removeEventListener('scroll' , handlescroll);
-    }, [])
+    // useEffect(() =>{ 
+    //    window.addEventListener('scroll' , handlescroll);
+    //    return () => window.removeEventListener('scroll' , handlescroll);
+    // }, [])
    
-    useEffect(() => {
-      if (page === true) {
-        fetch_data()
-        return;
-      }
-      const t = setTimeout(() => {
-        if (page && searchQuery) {
-         fetch_data();
-        }      
-      }, 400);
-       return () => clearTimeout(t);
-    }, [page, searchQuery])
+    // useEffect(() => {
+    //   if (page === true) {
+    //     fetch_data()
+    //     return;
+    //   }
+    //   const t = setTimeout(() => {
+    //     if (page && searchQuery) {
+    //      fetch_data();
+    //     }      
+    //   }, 400);
+    //    return () => clearTimeout(t);
+    // }, [page, searchQuery])
 
 
      return (
@@ -59,7 +40,7 @@ export const Quicksearch = ({searchQuery, type}) => {
           <div className="flex flex-col items-center">
           <div className="w-full aspect-[2/3] relative overflow-hidden rounded-lg">
               <img
-                src={item?.poster_path ? `${poster_url}${item?.poster_path}` : gif}
+                src={item?.posterPath ? `${poster_url}${item?.posterPath}` : gif}
                 alt="movie poster"
                 className="lg:w-full lg:h-full sm: h-52 sm: w-32 object-cover hover:scale-105 transition-transform duration-300"
               />

@@ -1,117 +1,150 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import Searchcatagory from './Searchcatagory';
-import { Quicksearch } from './Quicksearch';
-import ScrollToTop from '../ScrollToTop';
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, Mic, X } from "lucide-react";
+import poster from "../../img/poster.jpeg";
+import useSearch from "../hooks/useSearch";
 
-const Searchbar = () => {
-
-  const [searchTerm, setSearchTerm] = useState('');
+const UpdatedSearchbar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [listening, setListening] = useState(false);
-  const [transcript, setTranscript] = useState('');
-  const latestSearchTerm = useRef('');
-  const theme = useSelector(store => store.theme.toggletheme)
-  const category_type = useSelector(store => store.movietoggle.type1)
+  const [transcript, setTranscript] = useState("");
+  const [searchType, setSearchType] = useState("movies");
+  const [language, setLanguage] = useState("all");
 
-  
- const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
+  const { data, loader, error } = useSearch(searchType, searchTerm, language);
 
-  
-   const SpeechRecognition = () => {
-    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  const languages = [
+    "English", "Tamil", "Hindi", "Malayalam", 
+    "Telugu", "Korean", "Tamil Dubbed", "Kannada", "All"
+  ]
+
+  const handleSpeechRecognition = () => {
+    if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+      const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition
+      const recognition = new Recognition()
 
       recognition.onstart = () => {
-        setListening(true);
-        setTranscript('');
-      };
+        setListening(true)
+        setTranscript("")
+      }
 
       recognition.onresult = (event) => {
-        const currentTranscript = event.results[0][0].transcript;
-        setSearchTerm(currentTranscript);
-        setTranscript(currentTranscript);
-        latestSearchTerm.current = currentTranscript;
-      };
+        const currentTranscript = event.results[0][0].transcript
+        setSearchTerm(currentTranscript)
+        setTranscript(currentTranscript)
+      }
 
       recognition.onend = () => {
-        setListening(false);
-      };
+        setListening(false)
+      }
 
-      recognition.start();
+      recognition.start()
     } else {
-      alert('Speech recognition is not supported in your browser');
+      alert("Speech recognition not supported")
     }
-  };
-  
+  }
+
   return (
-    <div className={theme ? `py-32` : `bg-white`}>
-      <ScrollToTop />
-      <div className={ `flex justify-center items-center` }>
-      <div  className="flex items-center relative">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder={'Search for ' + `${category_type}...`}
-            value={searchTerm}
-            onChange={handleSearch}
-            className={theme ? "p-2 border outline-none border-gray-900 rounded-md m-2 lg:w-[700px] sm: w-60 bg-slate-900 text-white "  : "p-2 border rounded-md  border-gray-900  m-2 lg:w-[700px] outline-none sm: w-60  text-gray-500"}
-          />
-          <button
-            type="button"
-            onClick={SpeechRecognition}
-            className="absolute right-0 top-3 p-2 mr-3 transition-all duration-300 flex items-end"
-            disabled={listening}
+    
+    <div className="relative">
+      <img src={poster} className="absolute lg:bottom-[286px] sm: bottom-[325px]"/>
+      <div className="relative z-10 py-32 text-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold text-center mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <svg
-              className={`w-4 h-4 text-gray-500 ${
-                listening ? 'animate-bounce' : ''
-              }`}
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 16 20"
+            Discover Your Next Favorite {searchType}
+          </motion.h1>
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="flex items-center">
+              <div className="relative flex-grow">
+                <input
+                  type="text"
+                  placeholder={`Search for ${searchType}...`}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full py-[13px] pl-6 pr-28 text-lg rounded-l-full bg-transparent text-white placeholder-white/70 border-2 focus:outline-none focus:border-white"
+                />
+                {searchTerm && (
+                  <button 
+                    onClick={() => setSearchTerm("")} 
+                    className="absolute right-16 top-1/2 transform -translate-y-1/2 text-white/70 hover:text-white"
+                  >
+                    <X size={24} />
+                  </button>
+                )}
+              </div>
+              <div className="flex">
+                <motion.button
+                  type="button"
+                  onClick={handleSpeechRecognition}
+                  className={`absolute right-20 top-5 ${
+                    listening ? "text-rose-600" : "text-white"
+                  } ${listening ? "animate-pulse" : ""}`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Mic size={24} />
+                </motion.button>
+                <motion.button
+                  type="submit"
+                  className="p-4 lg:py-[15px] sm: py-[16px] border-l-0 bg-gradient border-2 rounded-r-full"
+                >
+                  <Search size={24} />
+                </motion.button>
+              </div>
+            </div>
+            <motion.div
+              className="mt-8 flex flex-wrap justify-center gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 7v3a5.006 5.006 0 0 1-5 5H6a5.006 5.006 0 0 1-5-5V7m7 9v3m-3 0h6M7 1h2a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3Z"
-              />
-            </svg>
-          </button>
+              <div className="flex flex-col items-start gap-2">
+                <label htmlFor="type-select" className="text-sm font-medium">
+                  Type:
+                </label>
+                <select
+                  id="type-select"
+                  value={searchType}
+                  onChange={(e) => setSearchType(e.target.value)}
+                  className="bg-white/20 backdrop-blur-lg border border-white/30 text-white text-sm rounded-lg focus:border-rose-500 block w-full p-2.5"
+                >
+                  <option value="movies" className="text-gray-900">Movies</option>
+                  <option value="series" className="text-gray-900">Series</option>
+                </select>
+              </div>
+              <div className="flex flex-col items-start gap-2">
+                <label htmlFor="language-select" className="text-sm font-medium">
+                  Language:
+                </label>
+                <select
+                  id="language-select"
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  className="bg-white/20 backdrop-blur-lg border border-white/30 text-white text-sm rounded-lg focus:border-rose-500 block w-full p-2.5"
+                >
+                  {languages.map((lang) => (
+                    <option key={lang.toLowerCase()} value={lang.toLowerCase()} className="text-gray-900">
+                      {lang}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
-        <a href={`/searchpage?query=${searchTerm}`} >
-        <button type="submit" className="bg-rose-600 rounded-md p-2 w-20  cursor-pointer font-serif" >
-          Search
-        </button>
-        </a>
-        
-        {listening && (
-          <p className="absolute right-8 top-8 text-gray-600 m-4 p-2">
-            {transcript}
-          </p>
-        )}
-           
       </div>
     </div>
-         <div>
-            <Searchcatagory />
-          </div>
-         <div>
-            <Quicksearch searchQuery={searchTerm}  type={category_type}/>
-        </div>
-         
-      </div>
-      
-  );
-};
+  )
+}
 
-export default Searchbar;
-
-
-
-
-// here problem is user type input results is coming from cache i need to  prevent that 
+export default UpdatedSearchbar
