@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import { convertToTitleCase } from "../../utils/helper";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToSearchCache } from "../../redux/cacheSearchSlice";
 
-export default function useSearch(type, userQuery, language) {
+export default function useFetchSearchData(type, userQuery, language) {
     const [data, setData] = useState(null);
     const [loader, setLoader] = useState(false);
     const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+    const cachedSearchData = useSelector(store => store.cacheSearch);
+
     const fetchData = async() => {
         try{
             setLoader(true);
@@ -29,7 +34,10 @@ export default function useSearch(type, userQuery, language) {
                 id: item.id,
                 ...item.data()
             }));
-            
+            dispatch(addItemToSearchCache({
+                userQuery: userQuery,
+                data: contentData
+            }));
             setData(contentData);
         } catch (e) {
             console.log(e);
@@ -41,10 +49,14 @@ export default function useSearch(type, userQuery, language) {
 
     useEffect(() => {
       const timer = setTimeout(() => {
-        fetchData();
+        if (cachedSearchData[userQuery]) {
+            setData(cachedSearchData[userQuery])
+        } else {
+          fetchData();
+        }
       }, 500);
-      return () => clearTimeout(timer);
-        
+
+      return () => clearTimeout(timer);  
     }, [type, userQuery, language]);
 
     return {

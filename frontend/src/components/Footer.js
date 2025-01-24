@@ -63,13 +63,13 @@ export default function ScrollAnimatedFooter() {
                   <span>Movies</span>
                 </li>
               </Link>
-              <Link to="/tv-series">
+              <Link to="/series">
                 <li className="hover:text-rose-600 transition duration-300 cursor-pointer gap-2 items-center flex">
                   <TvIcon fontSize='small'/> 
                   <span>Series</span>
                 </li>
               </Link>
-              <Link to="/search-category">
+              <Link to="/search">
                 <li className="hover:text-rose-600 transition duration-300 cursor-pointer flex items-center gap-2">
                   <SearchIcon fontSize='small'/>
                   <span>Search</span>

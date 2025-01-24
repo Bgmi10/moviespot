@@ -2,16 +2,17 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Mic, X } from "lucide-react";
 import poster from "../../img/poster.jpeg";
-import useSearch from "../hooks/useSearch";
+import useFetchSearchData from "../hooks/useFetchSearchData";
+import { MovieSearchCard } from "./MovieSearchCard";
 
-const UpdatedSearchbar = () => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [searchType, setSearchType] = useState("movies");
   const [language, setLanguage] = useState("all");
 
-  const { data, loader, error } = useSearch(searchType, searchTerm, language);
+  const { data, loader, error } = useFetchSearchData(searchType, searchTerm, language);
 
   const languages = [
     "English", "Tamil", "Hindi", "Malayalam", 
@@ -45,10 +46,10 @@ const UpdatedSearchbar = () => {
   }
 
   return (
-    
-    <div className="relative">
-      <img src={poster} className="absolute lg:bottom-[286px] sm: bottom-[325px]"/>
-      <div className="relative z-10 py-32 text-white">
+   <> 
+    <div className="relative min-h-screen">
+      <img src={poster} className="absolute lg:bottom-52 inset-0"/>
+      <div className="relative z-10 py-32 text-white bg-gradient-to-t from-black via-black pb-96">
         <div className="max-w-4xl mx-auto px-4">
           <motion.h1
             className="text-4xl md:text-5xl font-bold text-center mb-8"
@@ -71,7 +72,7 @@ const UpdatedSearchbar = () => {
                   placeholder={`Search for ${searchType}...`}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full py-[13px] pl-6 pr-28 text-lg rounded-l-full bg-transparent text-white placeholder-white/70 border-2 focus:outline-none focus:border-white"
+                  className="w-full py-[13px] pl-6 pr-28 text-lg rounded-l-full bg-transparent text-white placeholder-white/70 backdrop-blur-sm border-2 focus:outline-none focus:border-white"
                 />
                 {searchTerm && (
                   <button 
@@ -86,7 +87,7 @@ const UpdatedSearchbar = () => {
                 <motion.button
                   type="button"
                   onClick={handleSpeechRecognition}
-                  className={`absolute right-20 top-5 ${
+                  className={`absolute right-20 top-4 ${
                     listening ? "text-rose-600" : "text-white"
                   } ${listening ? "animate-pulse" : ""}`}
                   whileHover={{ scale: 1.1 }}
@@ -96,7 +97,7 @@ const UpdatedSearchbar = () => {
                 </motion.button>
                 <motion.button
                   type="submit"
-                  className="p-4 lg:py-[15px] sm: py-[16px] border-l-0 bg-gradient border-2 rounded-r-full"
+                  className="p-4 lg:py-[15px] sm: py-[16px] border-l-0 bg-gradient border-2 rounded-r-full backdrop-blur-sm"
                 >
                   <Search size={24} />
                 </motion.button>
@@ -116,7 +117,7 @@ const UpdatedSearchbar = () => {
                   id="type-select"
                   value={searchType}
                   onChange={(e) => setSearchType(e.target.value)}
-                  className="bg-white/20 backdrop-blur-lg border border-white/30 text-white text-sm rounded-lg focus:border-rose-500 block w-full p-2.5"
+                  className="backdrop-blur-sm outline-none bg-transparent border-2 text-white text-sm rounded-lg block w-full p-2.5"
                 >
                   <option value="movies" className="text-gray-900">Movies</option>
                   <option value="series" className="text-gray-900">Series</option>
@@ -130,7 +131,7 @@ const UpdatedSearchbar = () => {
                   id="language-select"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="bg-white/20 backdrop-blur-lg border border-white/30 text-white text-sm rounded-lg focus:border-rose-500 block w-full p-2.5"
+                  className="backdrop-blur-sm border-2 text-sm rounded-lg outline-none bg-transparent block w-full p-2.5"
                 >
                   {languages.map((lang) => (
                     <option key={lang.toLowerCase()} value={lang.toLowerCase()} className="text-gray-900">
@@ -142,9 +143,12 @@ const UpdatedSearchbar = () => {
             </motion.div>
           </motion.div>
         </div>
+        <MovieSearchCard data={data} loader={loader} error={error} query={searchTerm} />
       </div>
     </div>
+   
+    </>
   )
 }
 
-export default UpdatedSearchbar
+export default SearchBar

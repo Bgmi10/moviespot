@@ -19,8 +19,9 @@ const DetailPage = ({ data, loader, error }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [shrinkloader, setShrinkLoader] = useState(false);
+  console.log(data);
   
-  useEffect(() => {
+  useEffect(() => { 
     if (!data?.[0]?.drivePreviewUrl) return;
   
     setSeasons((prev) => {
@@ -115,7 +116,7 @@ const DetailPage = ({ data, loader, error }) => {
                 />
                 <div className="px-5">
                   <h1 className="text-white lg:text-6xl font-bold sm: text-3xl transition-transform duration-500 lg:mb-6 sm: mb-1">
-                    {data?.[0]?.title}
+                    {data?.[0]?.title} <span>({data?.[0]?.releaseDate.slice(0, 4)})</span>
                   </h1>
                   <p className="lg:text-xl sm: text-md text-gray-200 lg:mb-8 sm: mb-3 sm: line-clamp-4 lg:line-clamp-6">
                     {data?.[0]?.overview}

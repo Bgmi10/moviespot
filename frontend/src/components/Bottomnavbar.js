@@ -17,13 +17,13 @@ export const Bottomnavbar = () => {
         <MovieIcon className={`${getIconColor('/')}`} style={{fontSize: "31px"}} />
         <span className={`${getIconColor('/')} text-lg font-semibold`}>Movies</span>
       </Link>
-      <Link to="/tv-series" className='flex gap-1 items-center'>
-        <TvIcon className={`${getIconColor('/tv-series')}`} style={{fontSize: "31px"}} />
-        <span className={`${getIconColor('/tv-series')} text-lg font-semibold`}>Series</span>
+      <Link to="/series" className='flex gap-1 items-center'>
+        <TvIcon className={`${getIconColor('/series')}`} style={{fontSize: "31px"}} />
+        <span className={`${getIconColor('/series')} text-lg font-semibold`}>Series</span>
       </Link>
-      <Link to="/search-catagory" className='flex gap-1 items-center'>
-        <SearchIcon className={`${getIconColor('/search-catagory')}`} style={{fontSize: "31px"}} />
-        <span className={`${getIconColor('/search-catagory')} text-lg font-semibold`}>Search</span>
+      <Link to="/search" className='flex gap-1 items-center'>
+        <SearchIcon className={`${getIconColor('/search')}`} style={{fontSize: "31px"}} />
+        <span className={`${getIconColor('/search')} text-lg font-semibold`}>Search</span>
       </Link>
     </div>
   );

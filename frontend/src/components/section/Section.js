@@ -97,8 +97,9 @@ export default function Section({ title, type, category }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                {movie.title}
+                {movie.title} 
               </motion.h3>
+              <span className="text-white">({movie.releaseDate.slice(0, 4)})</span>
               <div className='flex flex-wrap gap-1 mt-1'>
                  {movie.language.map((item, index) =>  
                   <motion.h1

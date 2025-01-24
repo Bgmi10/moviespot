@@ -9,6 +9,7 @@ export default function MoviesHome() {
     <>
       <Mainslider data={moviessliderdata} loader={loader} />
       <Section title={"English"} type={"movies"} category={"English"} />
+      <Section title={"Tamil"} type={"movies"} category={"Tamil"} />
       <Section title={"New Releases"} type={"movies"} category={"New Releases"} />
     </>
     )

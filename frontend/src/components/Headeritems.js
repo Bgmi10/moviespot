@@ -14,12 +14,12 @@ export const Headeritems = () => {
     },
     {
       title: 'Series',
-      link: '/tv-series',
+      link: '/series',
       icon: <TvIcon className="text-rose-700" style={{fontSize: "31px"}} />,
     },
     {
       title: 'Search',
-      link: '/search-category',
+      link: '/search',
       icon: <SearchIcon className="text-rose-700" style={{fontSize: "31px"}} />,
     },
   ];

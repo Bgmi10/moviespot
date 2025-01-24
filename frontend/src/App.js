@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Bottomnavbar } from './components/Bottomnavbar';
-import Searchbar from './components/Search/Searchbar';
+import SearchBar from './components/Search/Searchbar';
 import Admin from './components/admin/Admin';
 import MoviesHome from './components/movies/MoviesHome';
 import SeriesHome from './components/series/SeriesHome';
+import SearchDetailPage from './components/Search/SearchDetailPage';
 
 const LazyTerms = lazy(() => import('./components/Terms'));
 const LazySearchpage = lazy(() => import('./components/Search/Searchpage'));
@@ -17,6 +18,7 @@ const Contact = lazy(() => import('./components/Contact'));
 const LazySliderVideoPlayer = lazy(() => import('./components/player/VideoPlayer'));
 const LazySectionDetailPage = lazy(() => import('./components/section/SectionDetailPage'));
 const LazySliderDetailPage = lazy(() => import("./components/slider/SliderDetailPage"));
+const LazySearchDetailPage = lazy(() => import("./components/Search/SearchDetailPage"));
 
 const App = () => {
   const location = useLocation();
@@ -29,10 +31,10 @@ const App = () => {
     <>  
     {!isLoginPage && !isProfilePage && !isDeveloperPage &&  !isAdminPage && <Header />}
     <div className="from-[#131314] via-black to-black bg-gradient-to-l">
-      
       <Suspense>
-        <Routes>
-          <Route path="/search-category" element={<Searchbar />} />
+        <Routes> 
+          <Route path="/search" element={<SearchBar />} />
+          <Route path="/search/detail/:id" element={<LazySearchDetailPage />} />
           <Route path="/" element={<MoviesHome />} />
           <Route path="/section/detail/:type/:category/:id" element={<LazySectionDetailPage />} />
           <Route element={<Admin />} path="/admin" />
@@ -41,7 +43,8 @@ const App = () => {
           <Route path="/slider/detail/:id" element={<LazySliderDetailPage />} />
           <Route path="/slider/detail/:id/:videoId" element={<LazySliderVideoPlayer />} />
           <Route path="/searchpage" element={<LazySearchpage />} />
-          <Route path="/tv-series" element={<SeriesHome />} />
+
+          <Route path="/series" element={<SeriesHome />} />
           <Route path="/refund-policy" element={<LazyRefundPolicy />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

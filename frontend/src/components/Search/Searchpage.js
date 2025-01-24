@@ -69,8 +69,8 @@ const Searchpage = () => {
               />
            </div>
             <div className="mt-2 w-full lg:p-1">
-                <p className="text-gray-300 lg:text-xl sm: text-sm sm:text-base font-normal truncate">
-                  {item.title}
+                <p className="text-white lg:text-xl sm: text-sm sm:text-base font-normal truncate">
+                  {item.title} ({item.releaseDate.slice(0, 4)})
                 </p>
               </div>
             </div>

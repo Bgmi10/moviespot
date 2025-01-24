@@ -67,15 +67,13 @@ export const Mainslider = ({ data, loader }) => {
                     <motion.h2
                       className="lg:text-6xl lg:mt-0 sm: text-3xl font-bold text-white lg:mb-5 sm: mb-2 sm: mt-3 title"
                     >
-                      {movie.title}
+                      {movie.title} <span className="text-bold text-3xl">({movie.releaseDate.slice(0,4)})</span>
                     </motion.h2>
-
                     <motion.p 
                       className="lg:text-xl sm: text-md text-gray-200 lg:mb-5 sm: mb-3 line-clamp-3 overview"
                     >
                       {movie?.overview}
                     </motion.p>
-
                     <motion.div 
                       className="flex gap-2 lg:mb-5 sm: mb-4 flex-wrap"
                     >
