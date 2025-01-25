@@ -1,4 +1,4 @@
-export const languages = ['english', 'tamil', 'telugu', 'malayalam', 'hindi', 'korean', 'tamil dubbed'];
+export const languages = ['english', 'tamil', 'telugu', 'malayalam', 'hindi', 'korean', 'tamil dubbed', 'kanada'];
 
 export const adminMenu = [
     {

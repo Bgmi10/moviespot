@@ -15,7 +15,7 @@ const LazyRefundPolicy = lazy(() => import('./components/Refundpolicy'));
 const LazyPrivacy = lazy(() => import('./components/Privacy'));
 const DeveloperProfile = lazy(() => import('./components/Developerprofile/Developerprofile'));
 const Contact = lazy(() => import('./components/Contact'));
-const LazySliderVideoPlayer = lazy(() => import('./components/player/VideoPlayer'));
+const LazyVideoPlayer = lazy(() => import('./components/player/VideoPlayer'));
 const LazySectionDetailPage = lazy(() => import('./components/section/SectionDetailPage'));
 const LazySliderDetailPage = lazy(() => import("./components/slider/SliderDetailPage"));
 const LazySearchDetailPage = lazy(() => import("./components/Search/SearchDetailPage"));
@@ -41,9 +41,8 @@ const App = () => {
           <Route path="/terms-condition" element={<LazyTerms />} />
           <Route path="/privacy-policy" element={<LazyPrivacy />} />
           <Route path="/slider/detail/:id" element={<LazySliderDetailPage />} />
-          <Route path="/slider/detail/:id/:videoId" element={<LazySliderVideoPlayer />} />
+          <Route path="/slider/detail/:id/:videoId" element={<LazyVideoPlayer />} />
           <Route path="/searchpage" element={<LazySearchpage />} />
-
           <Route path="/series" element={<SeriesHome />} />
           <Route path="/refund-policy" element={<LazyRefundPolicy />} />
           <Route path="/contact" element={<Contact />} />

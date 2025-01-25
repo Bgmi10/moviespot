@@ -19,7 +19,6 @@ const DetailPage = ({ data, loader, error }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [shrinkloader, setShrinkLoader] = useState(false);
-  console.log(data);
   
   useEffect(() => { 
     if (!data?.[0]?.drivePreviewUrl) return;

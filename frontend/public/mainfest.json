@@ -1,0 +1,128 @@
+{
+    "short_name": "MovieSpot",
+    "name": "MovieSpot - Stream & Download Movies, Series, and More",
+    "description": "MovieSpot is your ultimate platform for streaming movies, series, high-resolution downloads, and seamless video playback with an intuitive search feature. Completely ad-free and free of cost.",
+    "icons": [
+      {
+        "src": "/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-maskable.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f43f5e",
+    "theme_color": "#f43f5e",
+    "orientation": "portrait",
+    "scope": "/",
+    "lang": "en",
+    "categories": [
+      "entertainment",
+      "movies",
+      "series",
+      "video-streaming",
+      "downloads"
+    ],
+    "screenshots": [
+      {
+        "src": "/screenshots/screenshot1.png",
+        "sizes": "1280x720",
+        "type": "image/png"
+      },
+      {
+        "src": "/screenshots/screenshot2.png",
+        "sizes": "1280x720",
+        "type": "image/png"
+      },
+      {
+        "src": "/screenshots/screenshot3.png",
+        "sizes": "1280x720",
+        "type": "image/png"
+      }
+    ],
+    "features": {
+      "streaming": true,
+      "downloads": true,
+      "search": true,
+      "videoPlayer": true,
+      "highResolution": true,
+      "adFree": true
+    },
+    "permissions": [
+      "internet",
+      "storage",
+      "notifications"
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "iarc_rating_id": "e10+",
+    "shortcuts": [
+      {
+        "name": "Stream Movies",
+        "short_name": "Movies",
+        "description": "Stream your favorite movies in high resolution",
+        "url": "/",
+        "icons": [
+          {
+            "src": "/icons/shortcut-movies.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          }
+        ]
+      },
+      {
+        "name": "Stream Series",
+        "short_name": "Series",
+        "description": "Discover and stream popular series",
+        "url": "/series",
+        "icons": [
+          {
+            "src": "/icons/shortcut-series.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          }
+        ]
+      },
+      {
+        "name": "Search Content",
+        "short_name": "Search",
+        "description": "Quickly search movies and series",
+        "url": "/search",
+        "icons": [
+          {
+            "src": "/icons/shortcut-search.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          }
+        ]
+      }
+    ],
+    "serviceworker": {
+      "src": "/service-worker.js",
+      "scope": "/",
+      "type": "module",
+      "update_via_cache": "none"
+    }
+  }
+  

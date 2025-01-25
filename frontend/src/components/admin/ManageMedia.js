@@ -10,7 +10,7 @@ const MEDIA_TYPES = ['movies', 'series'];
 const SLIDER_CATEGORIES = ['Featured', 'Trending', 'Popular', 'New Releases'];
 
 const HARDCODED_CATEGORIES = {
-  movies: ['Latest', 'Upcoming', 'Tamil', 'Malayalam', 'Hindi', 'English'],
+  movies: ['Latest', 'Upcoming', 'Tamil', 'Malayalam', 'Hindi', 'English', 'Vijay’s Top Hits (Tamil)', 'Top Hits 2024'],
   series: ['Latest', 'Ongoing', 'Tamil', 'Malayalam', 'Hindi', 'English'],
 };
 

@@ -1,4 +1,4 @@
-import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../utils/firebase";
 import { addItemToSearchDetailPageCache } from "../../redux/cacheSearchSlice";

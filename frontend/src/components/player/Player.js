@@ -1,20 +1,26 @@
-import { Star, Calendar, Globe, Film, Tag, Info, Tv, Hash } from 'lucide-react';
+import { Star, Calendar, Globe, Film, Tag, Info, Tv, Hash, Video } from 'lucide-react';
 
 export default function EnhancedPlayer({ previewUrl, data }) {
-  
+
   return (
     <div className="min-h-screen text-white mt-24">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <div className="relative w-full pb-[56.25%] overflow-hidden rounded-xl shadow-2xl">
             <iframe
-              src={previewUrl}
+              src={previewUrl + '?usp=drivesdk&embedded=true&rm=minimal'}
               allow="autoplay=true; fullscreen"
               allowFullScreen
               webkitallowfullscreen="true"
               mozallowfullscreen="true"
               className="absolute top-0 left-0 w-full h-full border-0"
             ></iframe>
+            <style jsx>{`
+                 iframe {
+                   margin-top: -50px;
+                   height: calc(100% + 50px);
+                 }
+            `}</style>
           </div>
         </div>
         <div className="space-y-6">

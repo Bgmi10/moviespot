@@ -9,7 +9,8 @@ export default function VideoPlayer() {
   const { videoId, id } = useParams();
   const sliderCachedData = useSelector((store) => store.cacheSlider.sliderDetail);
   const sectionCachedData = useSelector((store) => store.cacheSection.sectionDetailPage);
-  const data = [...sliderCachedData, ...sectionCachedData];
+  const searchCachedData = useSelector(store => store.cacheSearch.searchDetailPageCache);
+  const data = [...sliderCachedData, ...sectionCachedData, ...searchCachedData];
   const [currentSliderData, setCurrentSliderData] = useState(null);
   const navigate = useNavigate();
   const previewUrl = previewDriveUrl(videoId);
