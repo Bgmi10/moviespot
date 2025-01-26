@@ -4,55 +4,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, orientation=landscape">
   <title>MovieSpot - Watch & Download Movies & Series Free</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="./logo.PNG">
+  
+  <!-- Alternate Links -->
   <link rel="alternate" href="https://moviesspot.buzz" hreflang="en" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
-  <meta property="og:title" content="MovieSpot" />
+  <link rel="canonical" href="https://moviesspot.buzz" />
+  
+  <!-- Metadata -->
   <meta name="description" content="Moviespot lets you stream movies and series in HD, download content, and enjoy an ad-free experience for free! Explore our seamless video player and powerful search feature today.">
-  <meta name="keywords" content="stream movies, download series, HD streaming, free video platform, ad-free content, Moviespot, download movies, download latest movies, download latest series, download series, new release movies, popular movies, tamil movies, hindi movies, telugu movies, malayalam movies, kanada movies, tamil movies 2024, telugu movies 2024, feel good movies 2024, korean series, action movies, action series, new release series, ">
+  <meta name="keywords" content="stream movies, download series, HD streaming, free video platform, ad-free content, Moviespot, download movies, download latest movies, download series, new release movies, popular movies, tamil movies, hindi movies, telugu movies, malayalam movies, kannada movies, tamil movies 2024, telugu movies 2024, feel good movies 2024, korean series, action movies, action series, new release series">
+  
+  <!-- Open Graph Metadata -->
   <meta property="og:title" content="Moviespot - Watch & Download Movies & Series Free" />
-  <meta property="og:description" content="Stream movies and series in HD for free. Ad-free and high-quality downloads available in MovieSpot" />
-  <meta property="og:image" content="" />
+  <meta property="og:description" content="Stream movies and series in HD for free. Ad-free and high-quality downloads available in MovieSpot." />
+  <meta property="og:image" content="/images/og-image.png" />
   <meta property="og:url" content="https://moviesspot.buzz" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://moviesspot.buzz" />
+
+  <!-- Twitter Metadata -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Moviespot - Watch & Download Movies & Series Free" />
-  <meta name="twitter:description" content="Stream movies and series in HD for free. Ad-free and high-quality downloads available in MovieSpot" />
-  <meta name="twitter:image" content="https://moviesspot.buzz/images/twitter-card.jpg" />
-  <link rel="canonical" href="https://moviesspot.buzz" />
-  <link href="./mainfest.json" />
-  <script src="./bundle.js"></script>
+  <meta name="twitter:description" content="Stream movies and series in HD for free. Ad-free and high-quality downloads available in MovieSpot." />
+  <meta name="twitter:image" content="/images/twitter-card.jpg" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="96x96" href="./favicon-96x96.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+  <!-- Manifest -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Styles and Scripts -->
+  <script src="./bundle.js" defer></script>
 </head>
 <body>
   <div id="root"></div>
+
+  <!-- Request Metrics -->
   <script>
-    (function(t,e,n,r){
-      function a(){return e && e.now ? e.now() : null;}
-      if(!n.version){
-        n._events=[];n._errors=[];n._metadata={};n._urlGroup=null;window.RM=n;
-        n.install=function(e){
-          n._options=e;
-          var a=t.createElement("script");
-          a.async=true;
-          a.crossOrigin="anonymous";
-          a.src=r;
-          var o=t.getElementsByTagName("script")[0];
-          o.parentNode.insertBefore(a,o);
-        };
-        n.identify=function(t,e){n._userId=t;n._identifyOptions=e;};
-        n.sendEvent=function(t,e){n._events.push({eventName:t,metadata:e,time:a()});};
-        n.setUrlGroup=function(t){n._urlGroup=t;};
-        n.track=function(t,e){n._errors.push({error:t,metadata:e,time:a()});};
-        n.addMetadata=function(t){n._metadata=Object.assign(n._metadata,t);};
+    (function(t, e, n, r) {
+      function a() {
+        return e && e.now ? e.now() : null;
       }
-    })(document,window.performance,window.RM||{},"https://cdn.requestmetrics.com/agent/current/rm.js");
-    RM.install({ 
-        token: "g4qw5hk:p4js5dj"
+      if (!n.version) {
+        n._events = [];
+        n._errors = [];
+        n._metadata = {};
+        n._urlGroup = null;
+        window.RM = n;
+        n.install = function(e) {
+          n._options = e;
+          var a = t.createElement("script");
+          a.async = true;
+          a.crossOrigin = "anonymous";
+          a.src = r;
+          var o = t.getElementsByTagName("script")[0];
+          o.parentNode.insertBefore(a, o);
+        };
+        n.identify = function(t, e) {
+          n._userId = t;
+          n._identifyOptions = e;
+        };
+        n.sendEvent = function(t, e) {
+          n._events.push({ eventName: t, metadata: e, time: a() });
+        };
+        n.setUrlGroup = function(t) {
+          n._urlGroup = t;
+        };
+        n.track = function(t, e) {
+          n._errors.push({ error: t, metadata: e, time: a() });
+        };
+        n.addMetadata = function(t) {
+          n._metadata = Object.assign(n._metadata, t);
+        };
+      }
+    })(document, window.performance, window.RM || {}, "https://cdn.requestmetrics.com/agent/current/rm.js");
+    RM.install({
+      token: "g4qw5hk:p4js5dj"
     });
   </script>
 
   <!-- Google APIs -->
-  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://apis.google.com/js/api.js" defer></script>
 </body>
 </html>

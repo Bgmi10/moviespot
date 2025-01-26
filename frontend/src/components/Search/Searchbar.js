@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Mic, X } from "lucide-react";
 import poster from "../../img/poster.jpeg";
 import useFetchSearchData from "../hooks/useFetchSearchData";
+import ScrollToTop from "../ScrollToTop";
 import { MovieSearchCard } from "./MovieSearchCard";
 
 const SearchBar = () => {
@@ -47,6 +48,7 @@ const SearchBar = () => {
 
   return (
    <> 
+   <ScrollToTop />
     <div className="relative min-h-screen">
       <img src={poster} className="absolute lg:bottom-52 inset-0"/>
       <div className="relative z-10 py-32 text-white bg-gradient-to-t from-black via-black pb-96">

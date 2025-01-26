@@ -7,10 +7,8 @@ import SearchBar from './components/Search/Searchbar';
 import Admin from './components/admin/Admin';
 import MoviesHome from './components/movies/MoviesHome';
 import SeriesHome from './components/series/SeriesHome';
-import SearchDetailPage from './components/Search/SearchDetailPage';
 
 const LazyTerms = lazy(() => import('./components/Terms'));
-const LazySearchpage = lazy(() => import('./components/Search/Searchpage'));
 const LazyRefundPolicy = lazy(() => import('./components/Refundpolicy'));
 const LazyPrivacy = lazy(() => import('./components/Privacy'));
 const DeveloperProfile = lazy(() => import('./components/Developerprofile/Developerprofile'));
@@ -19,6 +17,7 @@ const LazyVideoPlayer = lazy(() => import('./components/player/VideoPlayer'));
 const LazySectionDetailPage = lazy(() => import('./components/section/SectionDetailPage'));
 const LazySliderDetailPage = lazy(() => import("./components/slider/SliderDetailPage"));
 const LazySearchDetailPage = lazy(() => import("./components/Search/SearchDetailPage"));
+const LazySectionPage = lazy(() => import("./components/section/SectionPage"));
 
 const App = () => {
   const location = useLocation();
@@ -37,12 +36,12 @@ const App = () => {
           <Route path="/search/detail/:id" element={<LazySearchDetailPage />} />
           <Route path="/" element={<MoviesHome />} />
           <Route path="/section/detail/:type/:category/:id" element={<LazySectionDetailPage />} />
+          <Route path="/section/:title/:type/:category" element={<LazySectionPage />} />
           <Route element={<Admin />} path="/admin" />
           <Route path="/terms-condition" element={<LazyTerms />} />
           <Route path="/privacy-policy" element={<LazyPrivacy />} />
           <Route path="/slider/detail/:id" element={<LazySliderDetailPage />} />
           <Route path="/slider/detail/:id/:videoId" element={<LazyVideoPlayer />} />
-          <Route path="/searchpage" element={<LazySearchpage />} />
           <Route path="/series" element={<SeriesHome />} />
           <Route path="/refund-policy" element={<LazyRefundPolicy />} />
           <Route path="/contact" element={<Contact />} />

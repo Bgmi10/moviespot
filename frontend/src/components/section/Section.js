@@ -65,15 +65,15 @@ export default function Section({ title, type, category }) {
   return (
     <div className="lg:p-10 mt-8 sm: p-3">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="lg:text-4xl sm: text-md font-bold border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] text-white backdrop-blur-lg rounded-3xl lg:px-12 sm: px-10 py-1">{title}</h2>
-        <Link to={`/section/detail/${type}/${category}`} className="group flex items-center text-white font-bold lg:text-2xl transition-colors duration-300">
-          <div className='items-center flex font-bold lg:text-4xl sm: text-md sm: px-10 border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] lg:px-12 rounded-3xl py-1' >
+        <h2 className="lg:text-4xl sm: text-sm font-bold border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] text-white backdrop-blur-lg rounded-3xl lg:px-10 sm: px-6 py-1">{title}</h2>
+        <Link to={`/section/${title}/${type}/${category}`} className="group flex items-center text-white font-bold lg:text-2xl transition-colors duration-300">
+          <div className='items-center flex font-bold lg:text-4xl sm: text-md sm: px-6 border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] lg:px-10 rounded-3xl py-1' >
             <span className="mr-2 group-hover:text-rose-600">More</span>
             <FaArrowRight className="group-hover:translate-x-10 transition-transform duration-300 group-hover:text-rose-600" />
           </div>
         </Link>
       </div>
-        {isClient &&  <Slider {...settings}>
+        {isClient && <Slider {...settings}>
           {loader ? <div className='p-20 items-center flex justify-center h-full'><Loader loading={loader}/></div>: data?.map((movie) => (
             <motion.div
               key={movie.id}
@@ -103,7 +103,7 @@ export default function Section({ title, type, category }) {
               <div className='flex flex-wrap gap-1 mt-1'>
                  {movie.language.map((item, index) =>  
                   <motion.h1
-                  className="lg:text-[11px] bg- sm: text-[8px] px-1 rounded-xl text-rose-600 font-bold"
+                  className="lg:text-[11px] sm: text-[8px] px-1 text-rose-600 font-bold"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -114,6 +114,7 @@ export default function Section({ title, type, category }) {
             </motion.div>
           ))}
         </Slider>}
+
     </div>
   );
 }

@@ -9,6 +9,7 @@ import UploadToFirebase from "./UploadToFirebase";
 import Loader from "./Loader";
 import BackToAdmin from "./BackToAdmin";
 import { languages } from "./constants";
+import ExtractMultiVideo from "./ExtractMultiVideo";
 
 export default function UploadFileToDrive({ setIsopen }) {
     const [query, setQuery] = useState('');
@@ -464,6 +465,7 @@ export default function UploadFileToDrive({ setIsopen }) {
                                     </div>
                                 )}
                             </div>
+                            <ExtractMultiVideo />
                           <UploadToFirebase  selectedMovie={selectedmovie}/>
                         </div>
                     </div>

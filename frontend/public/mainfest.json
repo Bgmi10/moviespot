@@ -1,7 +1,7 @@
 {
     "short_name": "MovieSpot",
-    "name": "MovieSpot - Stream & Download Movies, Series, and More",
-    "description": "MovieSpot is your ultimate platform for streaming movies, series, high-resolution downloads, and seamless video playback with an intuitive search feature. Completely ad-free and free of cost.",
+    "name": "MovieSpot - Watch & Download Movies, Series, and More",
+    "description": "MovieSpot is your ultimate platform for Watching movies, series, high-resolution downloads, and seamless video playback with an intuitive search feature. Completely ad-free and free of cost.",
     "icons": [
       {
         "src": "/icons/icon-192x192.png",
@@ -14,18 +14,7 @@
         "type": "image/png"
       },
       {
-        "src": "/icons/icon-384x384.png",
-        "sizes": "384x384",
-        "type": "image/png"
-      },
-      {
-        "src": "/icons/icon-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      },
-      {
-        "src": "/icons/icon-maskable.png",
-        "sizes": "512x512",
+        "src": "/icons/maskable-icon.png",
         "type": "image/png",
         "purpose": "maskable"
       }
@@ -46,17 +35,22 @@
     ],
     "screenshots": [
       {
-        "src": "/screenshots/screenshot1.png",
+        "src": "/screenshots/moviespot-screenshot-1.PNG",
         "sizes": "1280x720",
         "type": "image/png"
       },
       {
-        "src": "/screenshots/screenshot2.png",
+        "src": "/screenshots/moviespot-screenshot-2.PNG",
         "sizes": "1280x720",
         "type": "image/png"
       },
       {
-        "src": "/screenshots/screenshot3.png",
+        "src": "/screenshots/moviespot-screenshot-3.PNG",
+        "sizes": "1280x720",
+        "type": "image/png"
+      },
+      {
+        "src": "/screenshots/moviespot-screenshot-4.PNG",
         "sizes": "1280x720",
         "type": "image/png"
       }
@@ -79,9 +73,9 @@
     "iarc_rating_id": "e10+",
     "shortcuts": [
       {
-        "name": "Stream Movies",
+        "name": "Watching Movies",
         "short_name": "Movies",
-        "description": "Stream your favorite movies in high resolution",
+        "description": "Watch your favorite movies in high resolution",
         "url": "/",
         "icons": [
           {
@@ -94,7 +88,7 @@
       {
         "name": "Stream Series",
         "short_name": "Series",
-        "description": "Discover and stream popular series",
+        "description": "Discover and Watch popular series",
         "url": "/series",
         "icons": [
           {
