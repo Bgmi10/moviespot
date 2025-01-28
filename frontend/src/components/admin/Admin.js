@@ -16,7 +16,7 @@ export default function Admin() {
     
     return(
         <>
-          { isauth ? <AdminCheck setIsAuthenticated={setIsAuth} setpassword={setPassword} password={password} /> : <div className="flex h-screen">
+          { !isauth ? <AdminCheck setIsAuthenticated={setIsAuth} setpassword={setPassword} password={password} /> : <div className="flex h-screen">
               {isopen && <div className="h-screen flex">
                   <div className="w-72 h-full lg:fixed border-r border-gray-700">
                      <div className="flex justify-between border-b border-gray-700 p-3 text-white items-center">

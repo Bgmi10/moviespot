@@ -32,8 +32,8 @@ export const Mainslider = ({ data, loader }) => {
         }}
         className="w-full h-full"
       >
-        {data?.map((movie) => (
-          <SwiperSlide key={movie.id}>
+        {data?.map((movie, index) => (
+          <SwiperSlide key={index}>
             <div className="relative w-full h-full">
               <img
                 src={`${poster_url_desktop}${movie?.backdropPath}`}

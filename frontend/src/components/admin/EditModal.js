@@ -9,7 +9,10 @@ export default function EditModal({ item, onClose, onSubmit, languages }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditedItem(prev => ({ ...prev, [name]: value }));
+    setEditedItem(prev => ({
+      ...prev,
+      [name]: name === 'id' || name === 'averageRating' ? Number(value) : value
+    }));
   };
 
   const handleLanguageToggle = (language) => {
@@ -39,10 +42,10 @@ export default function EditModal({ item, onClose, onSubmit, languages }) {
       <div className="bg-gray-800 p-6 rounded-lg max-h-[90vh] overflow-y-auto">
         <h3 className="text-white font-semibold mb-2">Edit {editedItem.title}</h3>
         <form onSubmit={handleSubmit} className="space-y-2">
-          {['title', 'posterPath', 'backdropPath', 'averageRating', 'type', 'overview', 'category', 'releaseDate', 'collectionType'].map(field => (
+          {['title', 'posterPath', 'backdropPath', 'averageRating', 'type', 'overview', 'category', 'releaseDate', 'collectionType', 'id'].map(field => (
             <input
               key={field}
-              type="text"
+              type={field === 'averageRating' || field === 'id' ? 'number' : 'text'}
               name={field}
               className="w-full p-2 rounded bg-gray-700 text-white"
               placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
@@ -109,4 +112,3 @@ export default function EditModal({ item, onClose, onSubmit, languages }) {
     </div>
   );
 }
-

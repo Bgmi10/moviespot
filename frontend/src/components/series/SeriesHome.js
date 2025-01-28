@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mainslider } from '../Mainslider';
+import Mainslider from '../Mainslider';
 import Section from '../section/Section';
 import useFetchSlider from '../hooks/useFetchSlider';
 

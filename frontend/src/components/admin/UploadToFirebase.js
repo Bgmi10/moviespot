@@ -153,7 +153,8 @@ export default function UploadToFirebase({ selectedMovie }) {
       }
       
       const movieData = {
-        id: selectedMovie.id,
+        id: Date.now(),
+        tmdbId: selectedMovie.id,
         title: selectedMovie.title || selectedMovie.name,
         overview: selectedMovie.overview,
         posterPath: selectedMovie.poster_path,

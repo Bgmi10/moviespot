@@ -20,6 +20,7 @@ export default function ManageMedia({ setIsOpen }) {
   const [sliderData, setSliderData] = useState(null);
   const [error, setError] = useState(null);
   const [editItem, setEditItem] = useState(null);
+  const [mediasearchdata, setMediaSearchData] = useState(null);
 
   const fetchCollectionData = async (collectionPath) => {
     const collectionRef = collection(db, collectionPath);
@@ -66,10 +67,27 @@ export default function ManageMedia({ setIsOpen }) {
     return sliderResults;
   };
 
+  const fetchMediaSearch = async() => {
+    try {
+      const collectionRef = collection(db, "mediaSearch");
+      const docRef = await getDocs(collectionRef);
+
+      const finalData = docRef.docs.map((item) => ({
+        id: item.id,
+        ...item.data()
+      }));
+
+      setMediaSearchData(finalData);
+    } catch (e) {
+      console.log(e);
+      setError(e, "error fetching media search data");
+    }
+  }
+
   const fetchCollections = async () => {
     setLoading(true);
     try {
-      const [media, slider] = await Promise.all([fetchMediaData(), fetchSliderData()]);
+      const [media, slider] = await Promise.all([fetchMediaData(), fetchSliderData(), fetchMediaSearch()]);
       setMediaData(media);
       setSliderData(slider);
       if (Object.keys(media).length === 0 && Object.keys(slider).length === 0) {
@@ -82,6 +100,8 @@ export default function ManageMedia({ setIsOpen }) {
       setLoading(false);
     }
   };
+
+  
 
   const handleEditClick = (item) => {
     setEditItem(item);
@@ -116,7 +136,7 @@ export default function ManageMedia({ setIsOpen }) {
 
   const renderContent = (content, mediaType, categoryId) => (
     <div className="space-y-2">
-      {content.map(item => (
+      {content?.map(item => (
         <div key={item.id} className="flex items-center space-x-2 bg-gray-700 p-2 rounded">
           {item.posterPath && (
             <img
@@ -181,6 +201,19 @@ export default function ManageMedia({ setIsOpen }) {
           </div>
         </div>
       )}
+
+      {
+         <div className="space-y-6 mt-8">
+         <h2 className="text-xl text-white font-semibold">MediaSearch Content</h2>
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+             <div className="p-4 bg-gray-800 rounded-lg">
+               <p className="text-gray-400 text-sm mb-2">Content: {mediasearchdata?.length} items</p>
+             {mediasearchdata && renderContent(mediasearchdata, "mediaSearch", "asdlk")}
+             </div>
+         </div>
+       </div>
+     
+      }
       
       {!loading && !mediaData && !sliderData && (
         <div className="text-white">No data found</div>

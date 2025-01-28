@@ -19,7 +19,8 @@ const DetailPage = ({ data, loader, error }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [shrinkloader, setShrinkLoader] = useState(false);
-  
+
+  console.log(seasons , data);
   useEffect(() => { 
     if (!data?.[0]?.drivePreviewUrl) return;
   
@@ -28,8 +29,8 @@ const DetailPage = ({ data, loader, error }) => {
   
       data[0].drivePreviewUrl.forEach((item) => {
         const { season, url, moviespotFileName, fileType } = item;
-  
-        if (season) {
+        
+        if (season || url) {
           if (!updatedSeasons[season]) {
             updatedSeasons[season] = [];
           }
@@ -245,7 +246,7 @@ const DetailPage = ({ data, loader, error }) => {
               ))}
             </div>
   )}
-  <Crewcast id={id} type={data?.[0]?.type}/>
+  <Crewcast id={data?.[0]?.id || data?.[0]?.tmbdId} type={data?.[0]?.type} />
 </>
 
   )

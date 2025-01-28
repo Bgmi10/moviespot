@@ -74,9 +74,9 @@ export default function Section({ title, type, category }) {
         </Link>
       </div>
         {isClient && <Slider {...settings}>
-          {loader ? <div className='p-20 items-center flex justify-center h-full'><Loader loading={loader}/></div>: data?.map((movie) => (
+          {loader ? <div className='p-20 items-center flex justify-center h-full'><Loader loading={loader}/></div>: data?.map((movie, index) => (
             <motion.div
-              key={movie.id}
+              key={index}
               className="relative group px-1"
               whileHover={{ scale: 1.01 }}
             >
