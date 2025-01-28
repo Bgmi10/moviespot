@@ -11,7 +11,10 @@ import { adminMenu } from "./constants";
 export default function Admin() {
     const [selecteditem, setSelectedItem] = useState('Home');
     const [isopen, setIsopen] = useState(false);
-    const [isauth, setIsAuth] = useState(false);
+    const [isauth, setIsAuth] = useState(() => {
+        const isAuth = localStorage.getItem('isAdminAuth');
+        return isAuth && isAuth
+    });
     const [password, setPassword] = useState('');
     
     return(

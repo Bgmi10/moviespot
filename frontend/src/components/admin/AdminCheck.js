@@ -1,6 +1,13 @@
 import { checkPassword } from "../../utils/checkpassword";
 
-export default function AdminCheck({ setIsAuthenticated, setpassword, password }) {
+export default function AdminCheck({ setpassword, password, setIsAuthenticated }) {
+
+  const handleClick = () => {
+    const isauth = checkPassword(password);
+    localStorage.setItem('isAdminAuth', isauth);
+    setIsAuthenticated(true);
+  }
+
   return(
     <div className='justify-center flex'>
         <div className='h-screen flex justify-center items-center'>
@@ -12,10 +19,7 @@ export default function AdminCheck({ setIsAuthenticated, setpassword, password }
             />
             <button
               className='bg-rose-600 p-2 m-2 text-black rounded-md'
-              onClick={() => { 
-                const a = checkPassword(password);
-                setIsAuthenticated(a);
-            }}
+              onClick={handleClick}
             >
               Let`s go
             </button>
