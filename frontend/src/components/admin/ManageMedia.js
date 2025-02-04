@@ -10,7 +10,7 @@ const MEDIA_TYPES = ['movies', 'series'];
 const SLIDER_CATEGORIES = ['Featured', 'Trending', 'Popular', 'New Releases'];
 
 const HARDCODED_CATEGORIES = {
-  movies: ['Latest', 'Upcoming', 'Tamil', 'Malayalam', 'Hindi', 'English', 'Vijay’s Top Hits (Tamil)', 'Top Hits 2024'],
+  movies: ['Latest', 'Upcoming', 'Tamil', 'Malayalam', 'Hindi', 'English', 'Vijay’s Top Hits (Tamil)', 'Top Hits 2024', 'New Releases'],
   series: ['Latest', 'Ongoing', 'Tamil', 'Malayalam', 'Hindi', 'English'],
 };
 
@@ -21,7 +21,8 @@ export default function ManageMedia({ setIsOpen }) {
   const [error, setError] = useState(null);
   const [editItem, setEditItem] = useState(null);
   const [mediasearchdata, setMediaSearchData] = useState(null);
-
+  const [selectedMedia, setSelectedMedia] = useState("");
+     
   const fetchCollectionData = async (collectionPath) => {
     const collectionRef = collection(db, collectionPath);
     const snapshot = await getDocs(collectionRef);
@@ -73,7 +74,7 @@ export default function ManageMedia({ setIsOpen }) {
       const docRef = await getDocs(collectionRef);
 
       const finalData = docRef.docs.map((item) => ({
-        id: item.id,
+        firebaseId: item.id,
         ...item.data()
       }));
 
@@ -109,6 +110,13 @@ export default function ManageMedia({ setIsOpen }) {
 
   const handleEditSubmit = async (updatedItem) => {
     try {
+      if (selectedMedia === "mediaSearch") {
+        const itemRef = doc(db, "mediaSearch", updatedItem.firebaseId);
+        await updateDoc(itemRef, updatedItem);
+        setEditItem(null);  
+        fetchCollections();
+        return;
+      }
       const itemRef = doc(db, `${updatedItem.collectionType}/${updatedItem.collectionType === "media" ? updatedItem.type : ""}${updatedItem.collectionType === "media" ? "/categories/" : ""}${updatedItem.category}/content`, String(updatedItem.firebaseId));
       await updateDoc(itemRef, updatedItem);
       setEditItem(null);  
@@ -121,6 +129,13 @@ export default function ManageMedia({ setIsOpen }) {
 
   const handleDeleteClick = async (itemId, mediaType, category, collectionType) => {
     try {
+      if (selectedMedia === "mediaSearch") {
+        console.log("Deleting from mediasearch", itemId);
+        const itemRef = doc(db, "mediaSearch", itemId);
+        await deleteDoc(itemRef);
+        fetchCollections();
+        return;
+      }
       const itemRef = doc(db, `${collectionType}/${collectionType === "media" ? mediaType : ""}${collectionType === "media" ? "/categories/" : ""}${category}/content`, itemId);
       await deleteDoc(itemRef);
       fetchCollections();
@@ -136,8 +151,8 @@ export default function ManageMedia({ setIsOpen }) {
 
   const renderContent = (content, mediaType, categoryId) => (
     <div className="space-y-2">
-      {content?.map(item => (
-        <div key={item.id} className="flex items-center space-x-2 bg-gray-700 p-2 rounded">
+      {content?.map((item, index) => (
+        <div key={index} className="flex items-center space-x-2 bg-gray-700 p-2 rounded" onClick={() => setSelectedMedia(mediaType)}>
           {item.posterPath && (
             <img
               src={`https://image.tmdb.org/t/p/w92${item.posterPath}`}
@@ -225,6 +240,7 @@ export default function ManageMedia({ setIsOpen }) {
           onClose={() => setEditItem(null)}
           onSubmit={handleEditSubmit}
           languages={languages}
+          selectedMedia={selectedMedia}
         />
       )}
     </div>

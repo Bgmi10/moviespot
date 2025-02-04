@@ -58,6 +58,7 @@ export default function UploadToFirebase({ selectedMovie }) {
         const sliderRef = collection(db, CONTENT_TYPES.SLIDER);
         const snapshot = await getDocs(sliderRef);
         const existingCategories = snapshot.docs.map(doc => doc.data().name);
+        console.log(existingCategories);
         const allCategories = [...new Set([...DEFAULT_CATEGORIES[CONTENT_TYPES.SLIDER], ...existingCategories])];
         setCategories(allCategories);
       }
@@ -153,8 +154,7 @@ export default function UploadToFirebase({ selectedMovie }) {
       }
       
       const movieData = {
-        id: Date.now(),
-        tmdbId: selectedMovie.id,
+        id:  selectedMovie.id,
         title: selectedMovie.title || selectedMovie.name,
         overview: selectedMovie.overview,
         posterPath: selectedMovie.poster_path,

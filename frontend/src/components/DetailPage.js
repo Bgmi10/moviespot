@@ -95,14 +95,11 @@ const DetailPage = ({ data, loader, error }) => {
             <div className="relative">
             <img
               src={data?.[0]?.backdropPath !== null ? poster_url_desktop + data?.[0]?.backdropPath : noImage}
-              className="w-full lg:h-full object-cover object-center brightness-50 sm: h-screen"
+              className="w-full lg:h-full object-cover object-center sm: h-screen brightness-75"
               loading='eager'
             />
             <div
-              className="absolute inset-0 flex flex-col sm: px-4 lg:px-10 lg:py-[120px] sm: py-[120px]"
-              style={{
-                backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.8) 20%, rgba(0, 0, 0, 0.4) 50%)',
-              }}
+              className="absolute inset-0 flex flex-col sm: px-4 lg:px-10 lg:py-[120px] sm: py-[120px] bg-gradient-to-t from-black"
             >
               <div className="lg:flex lg:py-0">
                 <img
@@ -246,7 +243,7 @@ const DetailPage = ({ data, loader, error }) => {
               ))}
             </div>
   )}
-  <Crewcast id={data?.[0]?.id || data?.[0]?.tmbdId} type={data?.[0]?.type} />
+  <Crewcast id={data?.[0]?.id} type={data?.[0]?.type} />
 </>
 
   )

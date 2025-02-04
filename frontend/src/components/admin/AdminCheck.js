@@ -4,8 +4,13 @@ export default function AdminCheck({ setpassword, password, setIsAuthenticated }
 
   const handleClick = () => {
     const isauth = checkPassword(password);
-    localStorage.setItem('isAdminAuth', isauth);
-    setIsAuthenticated(true);
+
+    if (isauth) {
+      localStorage.setItem('isAdminAuth', isauth);
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
   }
 
   return(
