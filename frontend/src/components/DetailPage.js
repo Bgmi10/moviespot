@@ -95,11 +95,12 @@ const DetailPage = ({ data, loader, error }) => {
             <div className="relative">
             <img
               src={data?.[0]?.backdropPath !== null ? poster_url_desktop + data?.[0]?.backdropPath : noImage}
-              className="w-full lg:h-full object-cover object-center sm: h-screen brightness-75"
+              className="w-full lg:h-full object-cover object-center sm: h-screen"
+              style={{ position: 'relative', top: '-100px' }}
               loading='eager'
             />
             <div
-              className="absolute inset-0 flex flex-col sm: px-4 lg:px-10 lg:py-[120px] sm: py-[120px] bg-gradient-to-t from-black"
+              className="absolute inset-0 flex flex-col sm: px-4 lg:px-10 lg:py-[120px] sm: py-[120px] bg-gradient-to-t from-black via-black/95 to-transparent"
             >
               <div className="lg:flex lg:py-0">
                 <img

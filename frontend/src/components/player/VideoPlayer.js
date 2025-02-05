@@ -18,6 +18,7 @@ export default function VideoPlayer() {
   useEffect(() => {
     if (data.length === 0) {
       navigate(`/slider/detail/${id}`);
+      //http://localhost:3000/section/detail/movies/English/1156593
     }
 
     if (data && id) {

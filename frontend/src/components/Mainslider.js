@@ -40,11 +40,9 @@ export const Mainslider = ({ data, loader }) => {
                 alt={movie?.title}
                 className="w-full h-full object-cover"
                 loading="eager"
-                
               />
                <div 
-                 className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"
-                 style={{ backdropFilter: 'brightness(0.7)' }}
+                 className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"
               />
               {(
                 <motion.div

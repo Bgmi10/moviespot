@@ -114,7 +114,6 @@ export default function ScrollAnimatedFooter() {
             </div>
           </motion.div>
         </div>
-
         <motion.div 
           className="mt-12 text-center text-gray-300 pt-4 border-t border-gray-800"
           initial={{ y: 20, opacity: 0 }}
@@ -123,13 +122,13 @@ export default function ScrollAnimatedFooter() {
           transition={{ duration: 0.5, delay: 0.8 }}
         >
           <div className="space-x-4">
-            <span className="hover:text-rose-600 transition duration-300 cursor-pointer">
+            <span className="hover:text-rose-600 transition duration-300 cursor-pointer" onClick={() => window.location.href = '/terms-condition'}> 
               Terms of Service
             </span>
-            <span className="hover:text-rose-600 transition duration-300 cursor-pointer">
+            <span className="hover:text-rose-600 transition duration-300 cursor-pointer" onClick={() => window.location.href = "/privacy-policy"}>
               Privacy Policy
             </span>
-            <span className="hover:text-rose-600 transition duration-300 cursor-pointer">
+            <span className="hover:text-rose-600 transition duration-300 cursor-pointer" onClick={() => window.location.href = "/refund-policy"}>
               Refund Policy
             </span>
           </div>

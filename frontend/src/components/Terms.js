@@ -7,13 +7,13 @@ import React from 'react'
        <div className='py-5'>
         <h1 className='text-gray-300 font-bold '>Introduction</h1>
         <p className='font-light text-gray-400'>
-       {welcome}  
+       {welcome || "welcome to moveispot terms and condition"} 
         </p>
        </div>
        <div className='py-5'>
-       <h1 className='text-gray-300 font-bold '> {policy1}</h1>
+       <h1 className='text-gray-300 font-bold '> {policy1 || "1. Server"}</h1>
         <p className='font-light text-gray-400'>
-       {policy1info}
+       {policy1info || "moviespot does not host any of the movies or series on its server. All the content is provided by non-affiliated third parties."}
         </p>
        </div>
        <div className='py-5' >
