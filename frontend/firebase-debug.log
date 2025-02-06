@@ -1,0 +1,38 @@
+[debug] [2025-02-06T23:17:19.932Z] ----------------------------------------------------------------------
+[debug] [2025-02-06T23:17:19.938Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-02-06T23:17:19.939Z] CLI Version:   13.15.1
+[debug] [2025-02-06T23:17:19.939Z] Platform:      win32
+[debug] [2025-02-06T23:17:19.939Z] Node Version:  v20.12.2
+[debug] [2025-02-06T23:17:19.940Z] Time:          Fri Feb 07 2025 04:47:19 GMT+0530 (India Standard Time)
+[debug] [2025-02-06T23:17:19.940Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-02-06T23:17:19.948Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-02-06T23:17:20.170Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-02-06T23:17:20.170Z] > authorizing via signed-in user (subashchandraboseravi45@gmail.com)
+[debug] [2025-02-06T23:17:20.171Z] [iam] checking project movieapp-cd283 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-02-06T23:17:20.172Z] > refreshing access token with scopes: []
+[debug] [2025-02-06T23:17:20.174Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-02-06T23:17:20.174Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-02-06T23:17:20.918Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-02-06T23:17:20.918Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-02-06T23:17:20.958Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/movieapp-cd283:testIamPermissions [none]
+[debug] [2025-02-06T23:17:20.958Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/movieapp-cd283:testIamPermissions x-goog-quota-user=projects/movieapp-cd283
+[debug] [2025-02-06T23:17:20.959Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/movieapp-cd283:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-02-06T23:17:21.274Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-02-06T23:17:21.274Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-02-06T23:17:22.347Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/movieapp-cd283:testIamPermissions 200
+[debug] [2025-02-06T23:17:22.347Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/movieapp-cd283:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-02-06T23:17:22.348Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/movieapp-cd283 [none]
+[debug] [2025-02-06T23:17:22.838Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/movieapp-cd283 200
+[debug] [2025-02-06T23:17:22.838Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/movieapp-cd283 {"projectId":"movieapp-cd283","projectNumber":"787864521829","displayName":"MovieSpot","name":"projects/movieapp-cd283","resources":{"hostingSite":"movieapp-cd283","realtimeDatabaseInstance":"movieapp-cd283-default-rtdb","locationId":"us-central"},"state":"ACTIVE","etag":"1_2ab9ca6c-5bbe-4ca5-887e-e3d66268aa9b"}
+[info] 
+[info] === Deploying to 'movieapp-cd283'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2025-02-06T23:17:22.849Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/movieapp-cd283/versions [none]
+[debug] [2025-02-06T23:17:22.849Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/movieapp-cd283/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2025-02-06T23:17:24.398Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/movieapp-cd283/versions 200
+[debug] [2025-02-06T23:17:24.398Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/movieapp-cd283/versions {"name":"projects/787864521829/sites/movieapp-cd283/versions/9b214a0689a1545b","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[movieapp-cd283]: beginning deploy... 
+[info] i  hosting[movieapp-cd283]: found 102 files in build 
+[debug] [2025-02-06T23:17:24.471Z] [hosting] uploading with 200 concurrency

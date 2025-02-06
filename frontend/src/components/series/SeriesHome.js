@@ -8,8 +8,8 @@ const SeriesHome = () => {
   return (
     <div className='text-white'>
      <Mainslider data={seriessliderdata} loader={loader} />
-     <Section title={"English"} type={"series"} category={"English" } />
      <Section title={"BollyWood"} type={"series"} category={"Hindi" } />
+     <Section title={"Malayalam"} type={"series"} category={"Malayalam" } />
     </div>
     
   )
