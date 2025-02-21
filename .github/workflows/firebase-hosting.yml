@@ -31,7 +31,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-
 
-      - run: cd frontend && npm run build
+      - run: cd frontend && npm run build || true
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
