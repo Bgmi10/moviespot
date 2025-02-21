@@ -30,8 +30,9 @@ const Header = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 flex justify-between items-start p-3 w-full bg-gradient-to-b from-black/1 to-transparent z-50 ${change ? "transition-transform backdrop-blur-lg border-b border-gray-600" : "transition" }`}>
+      <div className='sm: w-[20px] lg:hidden'></div>
       <div className="flex items-center space-x-4 lg:mt-5 sm: mt-0">
-        <h1 className="text-rose-600 bg-black text-2xl font-semibold p-2 rounded-lg border-none outline-none" >
+        <h1 className="text-rose-600 bg-black text-2xl font-semibold p-3 px-8 py-2 rounded-full border-none outline-none" >
           Movie<span className='text-white'>Spot</span>
         </h1>
       </div>

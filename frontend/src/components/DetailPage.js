@@ -20,7 +20,6 @@ const DetailPage = ({ data, loader, error }) => {
   const { id } = useParams();
   const [shrinkloader, setShrinkLoader] = useState(false);
 
-  console.log(seasons , data);
   useEffect(() => { 
     if (!data?.[0]?.drivePreviewUrl) return;
   

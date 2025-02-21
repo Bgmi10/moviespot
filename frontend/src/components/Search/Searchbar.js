@@ -145,7 +145,7 @@ const SearchBar = () => {
             </motion.div>
           </motion.div>
         </div>
-        <MovieSearchCard data={data} loader={loader} error={error} query={searchTerm} />
+        <MovieSearchCard data={data} loader={loader} error={error} query={searchTerm} searchType={searchType} language={language} />
       </div>
     </div>
    
