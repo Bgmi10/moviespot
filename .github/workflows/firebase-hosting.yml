@@ -21,4 +21,3 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MOVIEAPP_CD283 }}
           channelId: live
           projectId: movieapp-cd283
-          entryPoint: frontend
