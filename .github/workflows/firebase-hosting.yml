@@ -1,4 +1,4 @@
-name: Deploy to Firebase Hosting on merge
+name: Deploy to Firebase Hosting 
 
 on:
   push:
@@ -11,25 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Cache node_modules to speed up installation
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: frontend/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - run: cd frontend && npm install --force
-
-      # Cache the build folder to speed up deployments
-      - name: Cache build output
-        uses: actions/cache@v3
-        with:
-          path: frontend/build
-          key: ${{ runner.os }}-build-${{ github.run_id }}
-          restore-keys: |
-            ${{ runner.os }}-build-
 
       - run: cd frontend && npm run build || true
 
@@ -39,3 +21,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MOVIEAPP_CD283 }}
           channelId: live
           projectId: movieapp-cd283
+          entryPoint: frontend
