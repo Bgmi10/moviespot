@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import useFetchCategoryDetailPage from "../hooks/useFetchSectionDetailPage";
+import useFetchCategoryDetailPage from "../../hooks/useFetchSectionDetailPage";
 import DetailPage from "../DetailPage";
 
 export default function SectionDetailPage() {

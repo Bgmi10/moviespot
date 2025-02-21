@@ -1,8 +1,8 @@
 import { collection, getDocs, limit, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../utils/firebase";
+import { db } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToMoviesSection, addItemToSeriesSection } from "../../redux/cacheSectionSlice";
+import { addItemToMoviesSection, addItemToSeriesSection } from "../redux/cacheSectionSlice";
 
 export default function useFetchSection(type, category) {
   const [data, setData] = useState(null);

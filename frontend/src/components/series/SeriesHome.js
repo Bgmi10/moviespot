@@ -1,7 +1,7 @@
 import React from 'react';
 import Mainslider from '../Mainslider';
 import Section from '../section/Section';
-import useFetchSlider from '../hooks/useFetchSlider';
+import useFetchSlider from '../../hooks/useFetchSlider';
 
 const SeriesHome = () => {
   const { seriessliderdata, loader } = useFetchSlider('series'); 

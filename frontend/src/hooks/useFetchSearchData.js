@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../utils/firebase";
-import { convertToTitleCase } from "../../utils/helper";
+import { db } from "../utils/firebase";
+import { convertToTitleCase } from "../utils/helper";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToSearchCache } from "../../redux/cacheSearchSlice";
+import { addItemToSearchCache } from "../redux/cacheSearchSlice";
 
 export default function useFetchSearchData(type, userQuery, language) {
     const [data, setData] = useState(null);

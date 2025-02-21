@@ -1,4 +1,4 @@
-import useFetchSlider from "../hooks/useFetchSlider";
+import useFetchSlider from "../../hooks/useFetchSlider";
 import Mainslider from "../Mainslider";
 import Section from "../section/Section";
 

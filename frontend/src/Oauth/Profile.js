@@ -1,13 +1,7 @@
 
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState  , useRef} from "react";
 import LogoutButton from "./LogoutButton";
-import { Login, Logout } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import auth from "../components/hooks/useauth";
-import Useauth from "../components/hooks/useauth";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import Useauth from "../hooks/useauth";
 
 const Profile = () => {
  

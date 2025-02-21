@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Mic, X } from "lucide-react";
 import poster from "../../img/poster.jpeg";
-import useFetchSearchData from "../hooks/useFetchSearchData";
+import useFetchSearchData from "../../hooks/useFetchSearchData";
 import ScrollToTop from "../ScrollToTop";
 import { MovieSearchCard } from "./MovieSearchCard";
 

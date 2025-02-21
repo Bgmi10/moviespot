@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import useSectionPage from "../hooks/useSectionPage";
+import useSectionPage from "../../hooks/useSectionPage";
 import Loader from "../admin/Loader";
 import { poster_url } from "../../utils/constants";
 import gif from "../../img/movieSpotgif.gif";

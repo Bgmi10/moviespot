@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import { poster_url } from '../../utils/constants';
-import useFetchCategory from '../hooks/useFetchSection';
+import useFetchCategory from '../../hooks/useFetchSection';
 import { Link } from 'react-router-dom';
 import Loader from '../admin/Loader';
 import 'slick-carousel/slick/slick.css';

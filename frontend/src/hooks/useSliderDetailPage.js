@@ -1,8 +1,8 @@
 import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../utils/firebase";
+import { db } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToSliderDetail } from "../../redux/cacheSliderSlice";
+import { addItemToSliderDetail } from "../redux/cacheSliderSlice";
 
 export default function useSliderDetailPage(id) {
     const [loader, setLoader] = useState(false);

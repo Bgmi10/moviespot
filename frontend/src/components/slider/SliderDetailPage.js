@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import DetailPage from "../DetailPage";
-import useSliderDetailPage from "../hooks/useSliderDetailPage";
+import useSliderDetailPage from "../../hooks/useSliderDetailPage";
 
 export default function SliderDetailPage() {
     const { id } = useParams();

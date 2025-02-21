@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../utils/firebase";
-import { addItemToSectionPage } from "../../redux/cacheSectionSlice";
+import { db } from "../utils/firebase";
+import { addItemToSectionPage } from "../redux/cacheSectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function useSectionPage(type, category, title) {
