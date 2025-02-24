@@ -33,7 +33,7 @@ const Header = () => {
       <div className='sm: w-[20px] lg:hidden'></div>
       <div className="flex items-center space-x-4 lg:mt-5 sm: mt-0">
         <h1 className="text-rose-600 bg-black text-2xl font-semibold p-3 px-8 py-2 rounded-full border-none outline-none" >
-          Movie<span className='text-white'>mm</span>
+          Movie<span className='text-white'>Spot</span>
         </h1>
       </div>
       <div className='lg:flex items-center'>

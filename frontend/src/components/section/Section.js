@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import Loader from '../admin/Loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import movieSpotgif from "../../img/movieSpotgif.gif"; 
+import PreloadImage from '../PreloadImage'; // Import the PreloadImage component
 
 export default function Section({ title, type, category }) {
   const { data, error, loader } = useFetchCategory(type, category);
@@ -21,7 +23,7 @@ export default function Section({ title, type, category }) {
     }, 100);
 
     return () => clearTimeout(timer);
-  },[]);
+  }, []);
 
   const settings = {
     dots: false,
@@ -73,48 +75,55 @@ export default function Section({ title, type, category }) {
           </div>
         </Link>
       </div>
-        {isClient && <Slider {...settings}>
-          {loader ? <div className='p-20 items-center flex justify-center h-full'><Loader loading={loader}/></div>: data?.map((movie, index) => (
-            <motion.div
-              key={index}
-              className="relative group px-1"
-              whileHover={{ scale: 1.01 }}
-            >
-              <Link to={`/section/detail/${movie.type}/${movie.category}/${movie.id}`}>
-                <motion.img
-                  src={`${poster_url}${movie.posterPath}`}
-                  alt={movie.title}
-                  className="w-full h-auto rounded-2xl shadow-lg"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  loading='lazy'
-                />
-              </Link>
-              <motion.h3
-                className="mt-2 lg:text-2xl sm: md font-bold text-white truncate"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+      
+      {(
+        isClient && (
+          <Slider {...settings}>
+            {data?.map((movie, index) => (
+              <motion.div
+                key={index}
+                className="relative group px-1"
+                whileHover={{ scale: 1.01 }}
               >
-                {movie.title} 
-              </motion.h3>
-              <span className="text-white">({movie.releaseDate.slice(0, 4)})</span>
-              <div className='flex flex-wrap gap-1 mt-1'>
-                 {movie.language.map((item, index) =>  
-                  <motion.h1
-                  className="lg:text-[11px] sm: text-[8px] px-1 text-rose-600 font-bold"
+                <Link to={`/section/detail/${movie.type}/${movie.category}/${movie.id}`}>
+                  <div className="relative w-full" style={{ aspectRatio: '2/3' }}>
+                    <PreloadImage 
+                      src={`${poster_url}${movie.posterPath}`}
+                      placeholder={movieSpotgif}
+                      lazy={true}
+                      className="w-full h-full"
+                      imgClassName="w-full h-full object-cover rounded-2xl shadow-lg"
+                      alt={movie.title}
+                    />
+                  </div>
+                </Link>
+                <motion.h3
+                  className="mt-2 lg:text-2xl sm: md font-bold text-white truncate"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  key={index}
-                  >{item}</motion.h1> 
-                 )} 
-               </div>
-            </motion.div>
-          ))}
-        </Slider>}
-
+                >
+                  {movie.title} 
+                </motion.h3>
+                <span className="text-white">({movie.releaseDate.slice(0, 4)})</span>
+                <div className='flex flex-wrap gap-1 mt-1'>
+                  {movie.language.map((item, index) =>  
+                    <motion.h1
+                      className="lg:text-[11px] sm: text-[8px] px-1 text-rose-600 font-bold"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                      key={index}
+                    >
+                      {item}
+                    </motion.h1> 
+                  )} 
+                </div>
+              </motion.div>
+            ))}
+          </Slider>
+        )
+      )}
     </div>
   );
 }
