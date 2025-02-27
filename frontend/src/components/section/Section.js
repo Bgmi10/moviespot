@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import movieSpotgif from "../../img/movieSpotgif.gif"; 
 import PreloadImage from '../PreloadImage';
-import "./section.css";
+
 
 export default function Section({ title, type, category }) {
   const { data, error, loader } = useFetchCategory(type, category);
