@@ -118,7 +118,7 @@ export const Mainslider = ({ data, loader }) => {
                         animate="visible"
                         exit="exit"
                         variants={staggerChildren}
-                        className="absolute sm: top-14 lg:left-0 right-10 p-10 sm: flex-col lg:flex-row flex items-start lg:top-[70px] z-20"
+                        className="absolute sm: top-8 lg:left-0 right-10 p-10 sm: flex-col lg:flex-row flex items-start lg:top-[70px] z-20"
                       >
                         <motion.div 
                           className="relative group"
@@ -137,9 +137,9 @@ export const Mainslider = ({ data, loader }) => {
                         <div className="flex-1">
                           <motion.h2
                             variants={fadeInUp}
-                            className="lg:text-6xl lg:mt-0 sm:text-3xl font-bold text-white lg:mb-5 sm: mb-2 sm: mt-3 title"
+                            className="lg:text-6xl lg:mt-0 sm: text-2xl font-bold text-white lg:mb-5 sm: mb-2 sm: mt-3 title"
                           >
-                            {movie.title} <span className="text-bold text-3xl">({movie.releaseDate.slice(0,4)})</span>
+                            {movie.title} <span className="text-bold lg:text-3xl text-lg">({movie.releaseDate.slice(0,4)})</span>
                           </motion.h2>
                           
                           <motion.p 

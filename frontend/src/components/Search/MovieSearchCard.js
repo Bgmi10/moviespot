@@ -6,6 +6,8 @@ import { db } from '../../utils/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import PreloadImage from '../PreloadImage';
+import movieSpotgif from "../../img/movieSpotgif.gif";
 
 export const MovieSearchCard = ({ data, loader, query, searchType, language }) => {
   const [firebaseLoader, setFirebaseLoader] = useState(false);
@@ -28,7 +30,9 @@ export const MovieSearchCard = ({ data, loader, query, searchType, language }) =
       setFirebaseLoader(false);
     }
   }
+
   const removedLastWord = searchType.slice(0, searchType.length - 1);
+  
   return (
     <div className="p-5">
      { isFormSubmit && 
