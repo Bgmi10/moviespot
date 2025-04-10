@@ -7,6 +7,7 @@ import SearchBar from './components/Search/Searchbar';
 import Admin from './components/admin/Admin';
 import MoviesHome from './components/movies/MoviesHome';
 import SeriesHome from './components/series/SeriesHome';
+import UserRequestNotification from './components/UserRequestNotification';
 
 const LazyTerms = lazy(() => import('./components/Terms'));
 const LazyRefundPolicy = lazy(() => import('./components/Refundpolicy'));
@@ -53,8 +54,9 @@ const App = () => {
        </Routes>
       </Suspense>
       {!isDeveloperPage && !isAdminPage && <Bottomnavbar />}
-     {!isAdminPage && <Footer />}
+      {!isAdminPage && <Footer />}
     </div>
+      <UserRequestNotification />
     </>
   );
 };

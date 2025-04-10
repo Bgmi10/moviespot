@@ -9,6 +9,7 @@ import UploadToFirebase from "./UploadToFirebase";
 import Loader from "./Loader";
 import BackToAdmin from "./BackToAdmin";
 import { languages } from "./constants";
+import UserRequest from "./UserRequest";
 
 export default function UploadFileToDrive({ setIsopen }) {
     const [query, setQuery] = useState('');
@@ -21,7 +22,8 @@ export default function UploadFileToDrive({ setIsopen }) {
     const [isLoading, setIsLoading] = useState(false);
     const [authError, setAuthError] = useState(null);
     const [seasontype, setSeasonType] = useState(0);
-    
+    const [userRequest, setUserRequest] = useState(null);
+
     useEffect(() => {
         const loadGoogleAPI = () => {
             return new Promise((resolve) => {
@@ -464,7 +466,8 @@ export default function UploadFileToDrive({ setIsopen }) {
                                     </div>
                                 )}
                             </div>
-                          <UploadToFirebase  selectedMovie={selectedmovie}/>
+                          <UserRequest setUserRequest={setUserRequest} />
+                          <UploadToFirebase  selectedMovie={selectedmovie} userRequest={userRequest} />
                         </div>
                     </div>
                 </div>

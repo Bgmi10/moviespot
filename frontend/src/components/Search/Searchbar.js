@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Mic, X } from "lucide-react";
 import poster from "../../img/poster.jpeg";
@@ -12,6 +12,9 @@ const SearchBar = () => {
   const [transcript, setTranscript] = useState("");
   const [searchType, setSearchType] = useState("movies");
   const [language, setLanguage] = useState("all");
+  const params = new URLSearchParams(window.location.search);
+  const queryParams = params.get("query");
+  const typeParams = params.get("type"); 
 
   const { data, loader, error } = useFetchSearchData(searchType, searchTerm, language);
 
@@ -19,6 +22,15 @@ const SearchBar = () => {
     "English", "Tamil", "Hindi", "Malayalam", 
     "Telugu", "Korean", "Tamil Dubbed", "Kannada", "All"
   ]
+
+  useEffect(() => {
+    if (queryParams && typeParams) {
+      const trimmedVersion = queryParams.trim();
+      setSearchTerm(trimmedVersion);
+      const trimmedType = typeParams.trim();
+      setSearchType(trimmedType);
+    };
+  }, [queryParams]);
 
   const handleSpeechRecognition = () => {
     if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {

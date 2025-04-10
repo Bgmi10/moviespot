@@ -6,10 +6,13 @@ import {
   getDocs,
   query,
   where,
+  doc,
+  updateDoc,
 } from "firebase/firestore";
 import Loader from "./Loader";
+import brevoEmailService from "../../services/brevoEmailService";
 
-export default function UploadToFirebase({ selectedMovie }) {
+export default function UploadToFirebase({ selectedMovie, userRequest }) {
   const [collections, setCollections] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [newCollectionName, setNewCollectionName] = useState("");
@@ -18,6 +21,8 @@ export default function UploadToFirebase({ selectedMovie }) {
   const [isCreatingCollection, setIsCreatingCollection] = useState(false);
   const [loading, setLoading] = useState(false);
   const [currentPath, setCurrentPath] = useState([]);
+
+  console.log(selectedMovie);
 
   const CONTENT_TYPES = {
     MEDIA: 'media',
@@ -141,6 +146,24 @@ export default function UploadToFirebase({ selectedMovie }) {
 
   const uploadToCollection = async () => {
     if (!selectedCategory || !selectedMovie) return;
+
+    if (userRequest.firebaseId !== "") {
+      try {
+        const docRef = doc(db, "user-requests", userRequest.firebaseId);
+        await updateDoc(docRef, {
+          isUploaded: true, 
+          originalTitle: selectedMovie.title
+        });
+        
+        if (userRequest.userEmail !== "") {
+          const backdropPathImage = `https://media.themoviedb.org/t/p/w533_and_h300_bestv2${selectedMovie.backdrop_path}`
+          await brevoEmailService(userRequest.userEmail, userRequest, backdropPathImage, selectedMovie.title, selectedMovie.type);
+        }
+
+      } catch (e) {
+        console.log(e);
+      }
+    }
     
     try {
       setLoading(true);
