@@ -5,6 +5,9 @@ import poster from "../../img/poster.jpeg";
 import useFetchSearchData from "../../hooks/useFetchSearchData";
 import ScrollToTop from "../ScrollToTop";
 import { MovieSearchCard } from "./MovieSearchCard";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../utils/firebase";
+import { brevoAdminEmail } from "../../services/brevoAdminEmail";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,6 +25,37 @@ const SearchBar = () => {
     "English", "Tamil", "Hindi", "Malayalam", 
     "Telugu", "Korean", "Tamil Dubbed", "Kannada", "All"
   ]
+
+  async function fetchUserdata() {
+    try{
+      const res = await fetch("https://api.geoapify.com/v1/ipinfo?&apiKey=464ed0df1c0342c6a959b07bdcad59a5");
+      const userData = await res.json();
+      await addDoc(collection(db, "user-requests"), {
+        id: Math.floor(Math.random() * 1000),
+        userIp: userData.ip,
+        userCountry: userData.country.name, 
+        userPhoneCode: userData.country.phone_code,
+        userNativeFlag: userData.country.flag,
+        userCurrency: userData.country.currency,
+        userContinent: userData.continent.name,
+        userState: userData.state.name,
+        userCity: userData.city.name,
+       });
+       
+       await brevoAdminEmail({
+        userData,
+        searchType,
+        language
+      });
+      
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    fetchUserdata();
+  }, [])
 
   useEffect(() => {
     if (queryParams && typeParams) {

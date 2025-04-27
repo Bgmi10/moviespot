@@ -6,6 +6,7 @@ import { db } from '../../utils/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { brevoAdminEmail } from '../../services/brevoAdminEmail';
 
 export const MovieSearchCard = ({ data, loader, query, searchType, language }) => {
   const [firebaseLoader, setFirebaseLoader] = useState(false);
@@ -48,6 +49,15 @@ export const MovieSearchCard = ({ data, loader, query, searchType, language }) =
       type: searchType,
       language: language
      });
+
+     await brevoAdminEmail({
+      userEmail,
+      userData,
+      query,
+      searchType,
+      language
+     });
+    
      setIsFormSubmit(true);
     } catch (e) {
       console.log(e);
