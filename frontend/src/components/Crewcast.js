@@ -23,8 +23,8 @@ export const Crewcast = ({ id, type }) => {
 
   const settings = {
      infinite: true, 
-     slidesToShow: 4,
-     slidesToScroll: 1,
+     slidesToShow: 7,
+     slidesToScroll: 4,
      autoplay: true, 
      autoplaySpeed: 2000,  
      arrows: false,
@@ -32,8 +32,8 @@ export const Crewcast = ({ id, type }) => {
        {
          breakpoint: 768,
          settings: {
-           slidesToShow: 1,
-           slidesToScroll: 1,
+           slidesToShow: 3,
+           slidesToScroll: 2,
            arrows: false
          },
        },
@@ -48,14 +48,15 @@ export const Crewcast = ({ id, type }) => {
           castdata?.cast?.map((i) =>( 
               <div key={i.id} className='relative w-fit px-2'>
                 <div className='w-full relative'>
-                  <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path} className='rounded-2xl w-full'/>
-                  <div className='absolute mt-[-70px] rounded-b-2xl backdrop-blur-md px-2 py-2 w-full bg-gradient-to-t  from-black/50 to-transparent'>
-                    <h1 className='text-white font-bold text-xl'>{i.name}</h1>
-                    <span className={theme ? 'text-gray-300 text-lg z-20' : 'text-gray-700 font-light text-lg'}>{i.character ? i.character : 'unknown'}</span>
-                  </div>
+                  <img src={i.profile_path === null ? moviespot_gif : profile_url + i.profile_path} className='rounded-2xl w-full' alt='cast'/>
+                  
                 </div>
+                <div className='rounded-b-2xl backdrop-blur-md px-2 py-2 w-full bg-gradient-to-t  from-black/50 to-transparent'>
+                    <h1 className='text-white font-bold text-sm lg:text-xl'>{i.name}</h1>
+                    <span className={theme ? 'text-gray-300 text-xs lg:text-lg z-20' : 'text-gray-700 font-light text-xs lg:text-lg '}>{i.character ? i.character : 'unknown'}</span>
+                  </div>
               </div>    
-          ))
+          ))  
         }
       </Slider>
         <Feedbacksubscribe movieId={id}/> 

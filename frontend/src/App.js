@@ -56,7 +56,7 @@ const App = () => {
       {!isDeveloperPage && !isAdminPage && <Bottomnavbar />}
       {!isAdminPage && <Footer />}
     </div>
-      <UserRequestNotification />
+      {/* <UserRequestNotification /> */}
     </>
   );
 };

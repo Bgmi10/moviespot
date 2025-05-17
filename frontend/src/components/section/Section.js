@@ -40,9 +40,9 @@ export default function Section({ title, type, category }) {
   return (
     <div className="px-4 py-6 lg:p-10 mt-4 md:mt-8 ">
       <div className="flex justify-between items-center mb-4 md:mb-6">
-        <h2 className="text-lg md:text-2xl lg:text-4xl font-bold border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] text-white backdrop-blur-lg rounded-3xl px-4 lg:px-10 py-1">{title}</h2>
+        <h2 className="text-md md:text-2xl lg:text-2xl font-bold border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] text-white backdrop-blur-lg rounded-3xl px-4 lg:px-10 py-1">{title}</h2>
         <Link to={`/section/${title}/${type}/${category}`} className="group flex items-center text-white font-bold text-sm lg:text-2xl transition-colors duration-300">
-          <div className='items-center flex font-bold text-sm md:text-xl lg:text-4xl px-3 md:px-6 border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] lg:px-10 rounded-3xl py-1' >
+          <div className='items-center flex font-bold text-sm md:text-xl lg:text-2xl px-3 md:px-6 border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] lg:px-10 rounded-3xl py-1' >
             <span className="mr-2 group-hover:text-rose-600">More</span>
             <FaArrowRight className="group-hover:translate-x-10 transition-transform duration-300 group-hover:text-rose-600" />
           </div>
@@ -53,31 +53,30 @@ export default function Section({ title, type, category }) {
         <div className='swiper-container'> 
           <Swiper
             modules={[Navigation]}
-            navigation={true}
+            navigation={false}
             spaceBetween={10}
             slidesPerView={getSlidesPerView()}
             slidesPerGroup={getSlidesPerView()}
             breakpoints={{
               640: {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-                navigation: false
+                slidesPerView: 6,
+                slidesPerGroup: 5,
               },
               768: {
-                slidesPerView: 3,
-                slidesPerGroup: 3
-              },
-              1024: {
                 slidesPerView: 4,
                 slidesPerGroup: 4
               },
-              1280: {
-                slidesPerView: 5,
-                slidesPerGroup: 5
-              },
-              1536: {
+              1024: {
                 slidesPerView: 6,
                 slidesPerGroup: 6
+              },
+              1280: {
+                slidesPerView: 8,
+                slidesPerGroup: 8
+              },
+              1536: {
+                slidesPerView: 8,
+                slidesPerGroup: 8
               }
             }}
             className="swiper-section"
@@ -101,7 +100,7 @@ export default function Section({ title, type, category }) {
                     </div>
                   </Link>
                   <motion.h3
-                    className="mt-2 text-sm md:text-lg lg:text-2xl font-bold text-white truncate"
+                    className="mt-2 text-sm md:text-lg lg:text-lg font-bold text-white truncate"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
@@ -112,7 +111,7 @@ export default function Section({ title, type, category }) {
                   <div className='flex flex-wrap gap-1 mt-1'>
                     {movie.language.map((item, index) =>  
                       <motion.h1
-                        className="text-[8px] md:text-[11px] px-1 text-rose-600 font-bold"
+                        className="text-[8px] md:text-[11px] px-1 text-blue-500 font-bold"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}

@@ -22,8 +22,6 @@ export default function UploadToFirebase({ selectedMovie, userRequest }) {
   const [loading, setLoading] = useState(false);
   const [currentPath, setCurrentPath] = useState([]);
 
-  console.log(selectedMovie);
-
   const CONTENT_TYPES = {
     MEDIA: 'media',
     SLIDER: 'slider'
@@ -145,9 +143,8 @@ export default function UploadToFirebase({ selectedMovie, userRequest }) {
   };
 
   const uploadToCollection = async () => {
-    if (!selectedCategory || !selectedMovie) return;
-
-    if (userRequest.firebaseId !== "") {
+    
+    if (userRequest && userRequest.firebaseId !== "") {
       try {
         const docRef = doc(db, "user-requests", userRequest.firebaseId);
         await updateDoc(docRef, {

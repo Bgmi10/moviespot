@@ -32,7 +32,7 @@ export const Headeritems = () => {
             to={item.link}
             key={index}
             className={({ isActive }) =>
-              `p-2 m-3 text-2xl font-bold navitems relative group ${
+              `p-2 m-3 text-xl font-bold navitems relative group ${
                 isActive ? 'text-rose-600' : 'text-white hover:text-rose-600 '
               }`
             }

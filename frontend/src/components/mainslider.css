@@ -79,4 +79,9 @@
    background-color: white;
  }
  
- 
+
+ @media screen and (max-width: 399px) {
+  .responsive-overview {
+    display: none;
+  }
+}
