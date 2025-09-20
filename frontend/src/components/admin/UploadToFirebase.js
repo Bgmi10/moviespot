@@ -174,22 +174,23 @@ export default function UploadToFirebase({ selectedMovie, userRequest }) {
       }
       
       const movieData = {
-        id:  selectedMovie.id,
-        title: selectedMovie.title || selectedMovie.name,
-        overview: selectedMovie.overview,
-        posterPath: selectedMovie.poster_path,
-        releaseDate: selectedMovie.release_date || selectedMovie.first_air_date,
-        drivePreviewUrl: selectedMovie.drivePreviewUrl,
-        type: selectedMovie.type,
-        category: selectedCategory,
-        language: selectedMovie.languages,
-        adult: selectedMovie.adult,
-        backdropPath: selectedMovie.backdrop_path,
-        averageRating: selectedMovie.vote_average,
+        id: selectedMovie.id,
+        title: selectedMovie.title || selectedMovie.name || "Untitled",
+        overview: selectedMovie.overview || "",
+        posterPath: selectedMovie.poster_path || "",
+        releaseDate: selectedMovie.release_date || selectedMovie.first_air_date || "",
+        drivePreviewUrl: selectedMovie.drivePreviewUrl || "",
+        type: selectedMovie.type || "unknown",
+        category: selectedCategory || "uncategorized",
+        language: selectedMovie.languages ?? "unknown",  // ✅ fixed
+        adult: selectedMovie.adult ?? false,
+        backdropPath: selectedMovie.backdrop_path || "",
+        averageRating: selectedMovie.vote_average ?? 0,
         createdAt: new Date(),
         updatedAt: new Date(),
-        collectionType: currentPath[0] === CONTENT_TYPES.SLIDER ? "slider" : "media"  
+        collectionType: currentPath[0] === CONTENT_TYPES.SLIDER ? "slider" : "media"
       };
+      
       
       await addDoc(targetRef, movieData);
       

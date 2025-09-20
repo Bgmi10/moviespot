@@ -1,10 +1,9 @@
-import { checkPassword } from "../../utils/checkPassword";
+import { checkPassword } from "../../utils/Checkpassword";
 
 export default function AdminCheck({ setpassword, password, setIsAuthenticated }) {
 
   const handleClick = () => {
     const isauth = checkPassword(password);
-
     if (isauth) {
       localStorage.setItem('isAdminAuth', isauth);
       setIsAuthenticated(true);

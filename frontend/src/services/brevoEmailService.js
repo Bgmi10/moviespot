@@ -7,8 +7,8 @@ export default async function brevoEmailService(email, contentDetails, movieBack
       },
       body: JSON.stringify({
         sender: {
-          name: 'MovieSpot',
-          email: 'subashchandraboseravi45@gmail.com',
+          name: 'Moviespot',
+          email: 'subhashchandrabosep97@jnn.edu.in',
         },
         to: [{ email }],
         subject: '🎬 Your Requested Movie is Ready on MovieSpot!',

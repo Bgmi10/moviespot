@@ -1,4 +1,5 @@
 export async function brevoAdminEmail({ userEmail, userData, query, searchType, language }) {
+  console.log(process.env.REACT_APP_BREVO_API_KEY)
     const res = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
@@ -7,8 +8,8 @@ export async function brevoAdminEmail({ userEmail, userData, query, searchType, 
       },
       body: JSON.stringify({
         sender: {
-          name: 'MovieSpot Admin',
-          email: 'subashchandraboseravi45@gmail.com',
+          name: 'Moviespot',
+          email: 'subhashchandrabosep97@jnn.edu.in',
         },
         to: [{ email: 'subashchandraboseravi45@gmail.com' }], // Admin's Email
         subject: '📩 New Movie Request Received on MovieSpot!',
