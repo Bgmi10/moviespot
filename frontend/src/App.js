@@ -8,6 +8,7 @@ import Admin from './components/admin/Admin';
 import MoviesHome from './components/movies/MoviesHome';
 import SeriesHome from './components/series/SeriesHome';
 import UserRequestNotification from './components/UserRequestNotification';
+import { Donate } from './components/Donate';
 
 const LazyTerms = lazy(() => import('./components/Terms'));
 const LazyRefundPolicy = lazy(() => import('./components/Refundpolicy'));
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/series" element={<SeriesHome />} />
           <Route path="/refund-policy" element={<LazyRefundPolicy />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/donate" element={<Donate />} />
         </Routes>
       </Suspense>
       <Suspense>

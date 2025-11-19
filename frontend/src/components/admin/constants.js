@@ -16,5 +16,9 @@ export const adminMenu = [
     {
         id: 3,
         name: "Manage Media"
-    }
+    }, 
+    {
+        id: 8,
+        name: "Upload Video To s3"
+    },
 ]

@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import MovieIcon from '@mui/icons-material/Movie';
 import SearchIcon from '@mui/icons-material/Search';
 import TvIcon from '@mui/icons-material/Tv';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+
 
 export const Headeritems = () => {
 
@@ -22,6 +24,11 @@ export const Headeritems = () => {
       link: '/search',
       icon: <SearchIcon className="text-rose-700" style={{fontSize: "31px"}} />,
     },
+    {
+      title: "Donate Us",
+      link: '/donate',
+      icon: <VolunteerActivismIcon />
+    }
   ];
 
   return (
