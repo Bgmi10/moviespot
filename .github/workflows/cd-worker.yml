@@ -47,8 +47,8 @@ jobs:
              --network mvsp-worker \
              -v /home/ubuntu/env/mvsp-worker.env:/app/.env \
              -p 5001:5001 \
-             ${{ secrets.DOCKER_USERNAME }}/mvsp-worker
+             ${{ secrets.DOCKER_USERNAME }}/mvsp:worker
 
-           sudo docker exec mvspw-worker npx prisma migrate deploy --schema=src/prisma/schema.prisma
-           sudo docker exec mvspw-worker npm run db:generate
+           sudo docker exec mvsp-worker npx prisma migrate deploy --schema=src/prisma/schema.prisma
+           sudo docker exec mvsp-worker npm run db:generate
            echo "Worker deployment completed successfully"
