@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
 
@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: backend
-          file: backend/Dockerfile
+          file: ./backend/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/mvsp:backend
