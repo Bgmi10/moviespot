@@ -1,0 +1,54 @@
+name: Build & push to docker && deploy to ec2
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'backend/**'
+      - '.github/workflows/cd-backend.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push image to Docker Hub (Staging)
+        uses: docker/build-push-action@v3
+        with:
+          context: backend
+          file: backend/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/mvsp-backend
+
+      - name: Verify Docker image
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp-backend
+
+      - name: Deploy to STAGING EC2
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.ECS_HOST }}
+          username: ${{ secrets.ECS_USERNAME }}
+          key: ${{ secrets.ECS_KEY }}
+          script: |
+           sudo docker stop mvsp-backend || true
+           sudo docker rm mvsp-backend || true
+           sudo docker network create mvsp-backend || true
+           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp-backend
+           sudo docker run -d \
+             --name mvsp-backend \
+             --network mvsp-backend \
+             -v /home/ubuntu/env/mvsp-backend.env:/app/.env \
+             -p 5000:5000 \
+             ${{ secrets.DOCKER_USERNAME }}/mvsp-backend
+
+           sudo docker exec mvsp-backend npx prisma migrate deploy --schema=src/prisma/schema.prisma
+           sudo docker exec mvsp-backend npm run db:generate
+           echo "Backend deployment completed successfully"
