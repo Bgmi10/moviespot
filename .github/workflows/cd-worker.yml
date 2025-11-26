@@ -26,7 +26,9 @@ jobs:
           context: worker
           file: worker/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/mvsp:worker
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/mvsp:worker
+            ${{ secrets.DOCKER_USERNAME }}/mvsp:worker-latest
 
       - name: Verify Docker image
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp:worker
