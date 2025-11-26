@@ -6,7 +6,7 @@ export default function SliderDetailPage() {
     const { id } = useParams();
 
     const { data, error, loader } = useSliderDetailPage(id);
-
+    
     return(
         <DetailPage data={data} loader={loader} error={error} id={id} />
     )

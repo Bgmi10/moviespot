@@ -152,27 +152,44 @@ export default function ManageMedia({ setIsOpen }) {
   const renderContent = (content, mediaType, categoryId) => (
     <div className="space-y-2">
       {content?.map((item, index) => (
-        <div key={index} className="flex items-center space-x-2 bg-gray-700 p-2 rounded" onClick={() => setSelectedMedia(mediaType)}>
-          {item.posterPath && (
-            <img
-              src={`https://image.tmdb.org/t/p/w92${item.posterPath}`}
-              alt={item.title}
-              className="w-8 h-12 rounded"
-            />
-          )}
-          <span className="text-white text-sm">{item.title}</span>
-          <button
-            className="text-red-500"
-            onClick={() => handleDeleteClick(item.firebaseId, mediaType, categoryId, item.collectionType)}
-          >
-            Delete
-          </button>
-          <button
-            className="text-yellow-500"
-            onClick={() => handleEditClick(item)}
-          >
-            Edit
-          </button>
+        <div key={index} className="bg-gray-700 p-3 rounded" onClick={() => setSelectedMedia(mediaType)}>
+          <div className="flex items-center space-x-3 mb-2">
+            {item.posterPath && (
+              <img
+                src={`https://image.tmdb.org/t/p/w92${item.posterPath}`}
+                alt={item.title}
+                className="w-8 h-12 rounded"
+              />
+            )}
+            <div className="flex-1">
+              <span className="text-white text-sm font-medium">{item.title}</span>
+              <div className="flex flex-col gap-1 mt-1">
+                {item.drivePreviewUrl && (
+                  <span className="text-blue-400 text-xs">📁 Drive URL available</span>
+                )}
+                {item.dashUrl && (
+                  <span className="text-orange-400 text-xs">🎬 DASH URL available</span>
+                )}
+                {!item.drivePreviewUrl && !item.dashUrl && (
+                  <span className="text-red-400 text-xs">⚠️ No streaming URLs</span>
+                )}
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <button
+                className="text-yellow-500 hover:text-yellow-400 text-sm px-2 py-1 rounded bg-gray-600"
+                onClick={() => handleEditClick(item)}
+              >
+                Edit
+              </button>
+              <button
+                className="text-red-500 hover:text-red-400 text-sm px-2 py-1 rounded bg-gray-600"
+                onClick={() => handleDeleteClick(item.firebaseId, mediaType, categoryId, item.collectionType)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       ))}
     </div>

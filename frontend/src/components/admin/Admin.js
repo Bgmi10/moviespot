@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import WelcomeAdmin from "./WelcomeAdmin";
 import { adminMenu } from "./constants";
-import { UploadFileTos3 } from "./UploadFileTos3";
 
 export default function Admin() {
     const [selecteditem, setSelectedItem] = useState('Home');
@@ -48,7 +47,6 @@ export default function Admin() {
                  { selecteditem === "Admin Chat" && <Adminmsgchat setIsopen={setIsopen} /> }
                  { selecteditem === "Home" && <WelcomeAdmin setIsopen={setIsopen} /> }
                  { selecteditem === "Upload Video To Drive" && <UploadFileToDrive setIsopen={setIsopen} /> }
-                 { selecteditem === "Upload Video To s3" && <UploadFileTos3 setIsopen={setIsopen} /> }
                  { selecteditem === "Manage Media" && <ManageMedia setIsOpen={setIsopen}/> }
                 </div>}
           </div>}

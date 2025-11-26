@@ -14,7 +14,9 @@ export default function VideoPlayer() {
   const [currentSliderData, setCurrentSliderData] = useState(null);
   const navigate = useNavigate();
   const previewUrl = previewDriveUrl(videoId);
-  
+  const searchParams = new URLSearchParams(window.location.search);
+  const isDash = searchParams.get('dash')
+  console.log(currentSliderData)
   useEffect(() => {
     if (data.length === 0) {
       navigate(`/slider/detail/${id}`);
@@ -38,7 +40,7 @@ export default function VideoPlayer() {
   return (
     <>
       <ScrollToTop />
-      <Player previewUrl={previewUrl} data={currentSliderData} />
+      <Player previewUrl={previewUrl} data={currentSliderData} isDash={isDash} />
     </>
   );
 }

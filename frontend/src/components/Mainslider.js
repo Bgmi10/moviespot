@@ -284,7 +284,7 @@ export const Mainslider = ({ data, loader }) => {
   const navigate = useNavigate(); 
  const [activeIndex, setActiveIndex] = useState(0);
  const [swiperInstance, setSwiperInstance] = useState(null);
-
+  console.log(data)
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { 

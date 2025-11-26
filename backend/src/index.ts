@@ -4,15 +4,13 @@ import dotenv from "dotenv";
 import { prisma } from "./prisma/index.js";
 import jwt from 'jsonwebtoken';
 import { auth } from "./middlewares/auth.js";
-import { uploadVideo } from "./controllers/uploadVideoController.js";
+import { convertVideoToHLS, uploadVideo } from "./controllers/uploadVideoController.js";
 import { queuePendingJobsCron } from "./cron/cron.js";
 
 dotenv.config({ path: ".env" });
 const app = express();
 const PORT = process.env.PORT;
 
-
-// call teh cron here 
 
 queuePendingJobsCron()
 
@@ -62,6 +60,8 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/generate-upload-url', uploadVideo);
+
+app.post('/convert-hls', convertVideoToHLS);
 
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`);

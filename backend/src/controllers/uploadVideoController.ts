@@ -1,29 +1,83 @@
 import express from "express";
-import { s3 } from "../config/s3.js";
+import { s3, sqs } from "../config/s3.js";
 import { prisma } from "../prisma/index.js";
+import ffmpeg from 'fluent-ffmpeg';
+import ffmpeginstaller from '@ffmpeg-installer/ffmpeg';
+import ffprobeInstaller from '@ffprobe-installer/ffprobe';
+import fs from 'fs';
+import path from 'path';
+
+ffmpeg.setFfprobePath(ffprobeInstaller.path);
+ffmpeg.setFfmpegPath(ffmpeginstaller.path);
+
 
 export const uploadVideo = async (req: express.Request, res: express.Response) => {
   const { filename, filetype } = req.query;
 
   try{
-    const url =  await s3.getSignedUrlPromise("putObject", {
+    // Step 1: Get signed URL for raw video upload
+    const uploadUrl = await s3.getSignedUrlPromise("putObject", {
      Bucket: process.env.S3_BUCKET_NAME,
-     Key: `videos/${filename}`,
+     Key: `videos/raw/${filename}`,
      ContentType: filetype,
-     Expires: 60
+     Expires: 300 // 5 minutes for upload
     }); 
-    const actualS3Url = url.split('?')?.[0];
+    
+    const rawVideoUrl = uploadUrl.split('?')?.[0];
 
-    if (actualS3Url) {
-      await prisma.video.create({
-        data: {
-          url: actualS3Url,
-        }
-      })
-    };
+    if (!rawVideoUrl)return;
 
-    res.status(200).json({ url })
+    // Step 2: Create video record with raw URL
+    const videoRecord = await prisma.video.create({
+      data: {
+        url: rawVideoUrl, // Original video file
+      }
+    });
+
+    res.status(200).json({ 
+      uploadUrl,
+      videoId: videoRecord.id,
+      message: "Upload video, then call /convert-to-hls"
+    });
+
   } catch (e) {
-    console.log(e)
+    console.log(e);
+    res.status(500).json({ error: "Upload failed" });
+  }
+}
+
+export const convertVideoToHLS = async (req: express.Request, res: express.Response) => {
+  const { videoId } = req.body;
+
+  try {
+    // Get video record
+    const video = await prisma.video.findUnique({
+      where: { id: videoId }
+    });
+
+    if (!video) {
+      res.status(404).json({ error: "Video not found" });
+      return;
+    }
+
+    if (video.hlsUrl) {
+      res.status(400).json({ error: "Video already converted to HLS" });
+      return;
+    }
+
+    sqs.sendMessage({
+      QueueUrl: process.env.SQS_URL as string,
+      MessageBody: JSON.stringify({
+        videoId
+      })
+    })
+    
+    res.status(200).json({ 
+      message: "Queued successfully",
+    });
+
+  } catch (error) {
+    console.error('❌ HLS conversion failed:', error);
+    res.status(500).json({ error: "HLS conversion failed" });
   }
 } 

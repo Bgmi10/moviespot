@@ -19,9 +19,10 @@ const DetailPage = ({ data, loader, error }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [shrinkloader, setShrinkLoader] = useState(false);
-
+  const video = data?.[0];
+  
   useEffect(() => { 
-    if (!data?.[0]?.drivePreviewUrl) return;
+    if (!video?.drivePreviewUrl || video.drivePreviewUrl === "") return;
   
     setSeasons((prev) => {
       const updatedSeasons = { ...prev };
@@ -57,7 +58,11 @@ const DetailPage = ({ data, loader, error }) => {
   const noImage = "https://dummyimage.com/600x400/000/fff&text=no+image";
 
   const handlePlayVideo = () => {
-    navigate(`/slider/detail/${id}/${extractDriveId(data?.[0]?.drivePreviewUrl?.[0]?.url)}`);
+    if (video?.drivePreviewUrl?.[0]?.url !== "" && video?.drivePreviewUrl !== "") {
+      navigate(`/slider/detail/${id}/${extractDriveId(data?.[0]?.drivePreviewUrl?.[0]?.url)}`);
+    } else {
+      navigate(`/slider/detail/${id}/${video.dashVideoId}?dash=true`);
+    }
   }
 
   const handleGenerateShrinkLink = async(url) => {

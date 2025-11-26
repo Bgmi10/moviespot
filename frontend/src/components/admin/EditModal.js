@@ -1,10 +1,35 @@
 import { useState, useEffect } from 'react';
 
 export default function EditModal({ item, onClose, onSubmit, languages }) {
-  const [editedItem, setEditedItem] = useState(item);
+  const [editedItem, setEditedItem] = useState(() => {
+    // Ensure drivePreviewUrl is always an array
+    const normalizedItem = {
+      ...item,
+      drivePreviewUrl: Array.isArray(item.drivePreviewUrl) 
+        ? item.drivePreviewUrl 
+        : item.drivePreviewUrl 
+          ? [{ url: item.drivePreviewUrl }] 
+          : [],
+      language: Array.isArray(item.language) ? item.language : [],
+      dashUrl: item.dashUrl || '',
+      dashVideoId: item.dashVideoId || ''
+    };
+    return normalizedItem;
+  });
 
   useEffect(() => {
-    setEditedItem(item);
+    const normalizedItem = {
+      ...item,
+      drivePreviewUrl: Array.isArray(item.drivePreviewUrl) 
+        ? item.drivePreviewUrl 
+        : item.drivePreviewUrl 
+          ? [{ url: item.drivePreviewUrl }] 
+          : [],
+      language: Array.isArray(item.language) ? item.language : [],
+      dashUrl: item.dashUrl || '',
+      dashVideoId: item.dashVideoId || ''
+    };
+    setEditedItem(normalizedItem);
   }, [item]);
 
   const handleChange = (e) => {
@@ -16,12 +41,15 @@ export default function EditModal({ item, onClose, onSubmit, languages }) {
   };
 
   const handleLanguageToggle = (language) => {
-    setEditedItem(prev => ({
-      ...prev,
-      language: prev.language.includes(language)
-        ? prev.language.filter(lang => lang !== language)
-        : [...prev.language, language]
-    }));
+    setEditedItem(prev => {
+      const currentLanguages = Array.isArray(prev.language) ? prev.language : [];
+      return {
+        ...prev,
+        language: currentLanguages.includes(language)
+          ? currentLanguages.filter(lang => lang !== language)
+          : [...currentLanguages, language]
+      };
+    });
   };
 
   const handleDrivePreviewUrlChange = (index, value) => {
@@ -54,13 +82,39 @@ export default function EditModal({ item, onClose, onSubmit, languages }) {
             />
           ))}
 
+          {/* DASH URL Field */}
+          <div>
+            <label className="text-white text-sm">DASH Streaming URL:</label>
+            <input
+              type="text"
+              name="dashUrl"
+              className="w-full p-2 rounded bg-gray-700 text-white"
+              placeholder="https://s3.amazonaws.com/dash/videoId/manifest.mpd"
+              value={editedItem.dashUrl || ''}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* DASH Video ID Field */}
+          <div>
+            <label className="text-white text-sm">DASH Video ID:</label>
+            <input
+              type="text"
+              name="dashVideoId"
+              className="w-full p-2 rounded bg-gray-700 text-white"
+              placeholder="e.g., f591db1e-c0db-4d22-95e4-00e6313501c0"
+              value={editedItem.dashVideoId || ''}
+              onChange={handleChange}
+            />
+          </div>
+
           <div>
             {languages?.map((language) => (
               <button
                 key={language}
                 type="button"
                 className={`p-1 rounded-md border text-white m-1 ${
-                  editedItem.language.includes(language) ? "bg-blue-500 border-blue-500" : "border-gray-600"
+                  (editedItem.language || []).includes(language) ? "bg-blue-500 border-blue-500" : "border-gray-600"
                 }`} 
                 onClick={() => handleLanguageToggle(language)}
               >
@@ -69,14 +123,16 @@ export default function EditModal({ item, onClose, onSubmit, languages }) {
             ))}
           </div>
 
+          {/* Drive URLs Section */}
           <div>
-            {editedItem.drivePreviewUrl.map((item, index) => (
+            <label className="text-white text-sm">Google Drive URLs:</label>
+            {(editedItem.drivePreviewUrl || []).map((item, index) => (
               <input
                 key={index}
                 type="text"
-                value={item.url || ''}
-                placeholder="File URL"
-                className="w-full p-2 rounded bg-gray-700 text-white m-1"
+                value={item?.url || ''}
+                placeholder="Google Drive File URL"
+                className="w-full p-2 rounded bg-gray-700 text-white mb-1"
                 onChange={(e) => handleDrivePreviewUrlChange(index, e.target.value)}
               />
             ))}

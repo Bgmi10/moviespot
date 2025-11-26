@@ -10,6 +10,7 @@ import Loader from "./Loader";
 import BackToAdmin from "./BackToAdmin";
 import { languages } from "./constants";
 import UserRequest from "./UserRequest";
+import { UploadFileTos3 } from "./UploadFileTos3";
 
 export default function UploadFileToDrive({ setIsopen }) {
     const [query, setQuery] = useState('');
@@ -23,6 +24,19 @@ export default function UploadFileToDrive({ setIsopen }) {
     const [authError, setAuthError] = useState(null);
     const [seasontype, setSeasonType] = useState(0);
     const [userRequest, setUserRequest] = useState(null);
+    const [dashUrl, setDashUrl] = useState('');
+    const [dashVideoId, setDashVideoId] = useState('');
+
+    // Update selectedMovie when dashUrl changes
+    useEffect(() => {
+        if (dashUrl && selectedmovie && !selectedmovie.dashUrl) {
+            setSelectedMovie(prev => ({
+                ...prev,
+                dashUrl: dashUrl,
+                dashVideoId: dashVideoId
+            }));
+        }
+    }, [dashUrl]);
 
     useEffect(() => {
         const loadGoogleAPI = () => {
@@ -399,6 +413,17 @@ export default function UploadFileToDrive({ setIsopen }) {
                              </div>
                             </div>
                             <div className="flex w-full mt-6 flex-col">
+                                {/* Google Drive Upload Header */}
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-2">
+                                        <FaGoogleDrive className="text-blue-500 text-2xl" />
+                                        <h3 className="text-white text-lg font-semibold">Google Drive Upload & Storage</h3>
+                                    </div>
+                                    <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-medium">
+                                        DRIVE STORAGE
+                                    </span>
+                                </div>
+
                                 <div
                                     className="flex flex-col items-center justify-center w-full h-56 border-2 border-dashed border-gray-600 rounded-lg hover:border-blue-500 transition duration-300"
                                     onDrop={handleDrop}
@@ -467,6 +492,7 @@ export default function UploadFileToDrive({ setIsopen }) {
                                 )}
                             </div>
                           <UserRequest setUserRequest={setUserRequest} />
+                          <UploadFileTos3 setDashUrl={setDashUrl} setVideoId={setDashVideoId} />
                           <UploadToFirebase  selectedMovie={selectedmovie} userRequest={userRequest} />
                         </div>
                     </div>

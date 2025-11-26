@@ -180,11 +180,13 @@ export default function UploadToFirebase({ selectedMovie, userRequest }) {
         posterPath: selectedMovie.poster_path || "",
         releaseDate: selectedMovie.release_date || selectedMovie.first_air_date || "",
         drivePreviewUrl: selectedMovie.drivePreviewUrl || "",
+        dashUrl: selectedMovie.dashUrl || "", // DASH streaming URL from S3
         type: selectedMovie.type || "unknown",
         category: selectedCategory || "uncategorized",
         language: selectedMovie.languages ?? "unknown",  // ✅ fixed
         adult: selectedMovie.adult ?? false,
         backdropPath: selectedMovie.backdrop_path || "",
+        dashVideoId: selectedMovie.dashVideoId || "",
         averageRating: selectedMovie.vote_average ?? 0,
         createdAt: new Date(),
         updatedAt: new Date(),

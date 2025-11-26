@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Star, Calendar, Globe, Film, Tag, Info, Tv, Hash } from 'lucide-react';
+import { DashPlayer } from "../DashPlayer";
 
-export default function EnhancedPlayer({ previewUrl, data }) {
+export default function EnhancedPlayer({ previewUrl, data, isDash }) {
   const [isLandscape, setIsLandscape] = useState(false);
-
+  
   useEffect(() => {
     const handleOrientation = () => {
       const angle = window.orientation || window.screen.orientation?.angle || 0;
@@ -28,7 +29,7 @@ export default function EnhancedPlayer({ previewUrl, data }) {
 
   return (
     <div className={`relative ${isLandscape ? 'landscape-mode' : ''}`}>
-      <div className={`video-wrapper sm: mt-0 lg:-mt-5 ${isLandscape ? 'fixed inset-0 z-50 bg-black' : 'relative'}`}>
+     { isDash !== "true" ? <div className={`video-wrapper sm: mt-0 lg:-mt-5 ${isLandscape ? 'fixed inset-0 z-50 bg-black' : 'relative'}`}>
         <div className={`
           video-container
           ${isLandscape ? 'w-screen h-screen' : 'w-full pb-[56.25%]'}
@@ -50,7 +51,9 @@ export default function EnhancedPlayer({ previewUrl, data }) {
             }}
           />
         </div>
-      </div>
+      </div> : <div>
+        <DashPlayer src={data?.dashUrl} />
+        </div>}
 
       {!isLandscape && (
         <div className="min-h-screen text-white mt-5 container mx-auto px-4">
