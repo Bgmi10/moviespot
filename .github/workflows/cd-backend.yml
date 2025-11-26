@@ -23,7 +23,7 @@ jobs:
       - name: Build and push image to Docker Hub (Staging)
         uses: docker/build-push-action@v3
         with:
-          context: backend
+          context: ./backend
           file: ./backend/Dockerfile
           push: true
           tags: |
