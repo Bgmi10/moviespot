@@ -26,10 +26,10 @@ jobs:
           context: backend
           file: backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/mvsp-backend
+          tags: ${{ secrets.DOCKER_USERNAME }}/mvsp:backend 
 
       - name: Verify Docker image
-        run: docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp-backend
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp:backend
 
       - name: Deploy to STAGING EC2
         uses: appleboy/ssh-action@v1
@@ -41,7 +41,7 @@ jobs:
            sudo docker stop mvsp-backend || true
            sudo docker rm mvsp-backend || true
            sudo docker network create mvsp-backend || true
-           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp-backend
+           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp:backend
            sudo docker run -d \
              --name mvsp-backend \
              --network mvsp-backend \
