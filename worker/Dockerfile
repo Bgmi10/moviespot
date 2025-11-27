@@ -15,3 +15,4 @@ RUN npm run db:generate
 RUN npm run build
 
 CMD ["npm", "run", "start"]
+
