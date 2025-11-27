@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: backend
-          dockerfile: backend/DockerFile
+          dockerfile: backend/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/mvsp:backend
