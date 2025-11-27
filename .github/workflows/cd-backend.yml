@@ -48,7 +48,7 @@ jobs:
              --network mvsp-backend \
              -v /home/ubuntu/env/mvsp-backend.env:/app/.env \
              -p 5000:5000 \
-             ${{ secrets.DOCKER_USERNAME }}/mvsp:backend
+             ${{ secrets.DOCKER_USERNAME }}/mvsp:backend-latest
 
            sudo docker exec mvsp-backend npx prisma migrate deploy --schema=src/prisma/schema.prisma
            sudo docker exec mvsp-backend npm run db:generate
