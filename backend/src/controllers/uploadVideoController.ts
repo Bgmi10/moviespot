@@ -4,8 +4,6 @@ import { prisma } from "../prisma/index.js";
 import ffmpeg from 'fluent-ffmpeg';
 import ffmpeginstaller from '@ffmpeg-installer/ffmpeg';
 import ffprobeInstaller from '@ffprobe-installer/ffprobe';
-import fs from 'fs';
-import path from 'path';
 
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
 ffmpeg.setFfmpegPath(ffmpeginstaller.path);
