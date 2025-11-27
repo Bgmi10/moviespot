@@ -3,7 +3,7 @@ name: Build & push to docker && deploy to ec2
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'worker/**'
       - '.github/workflows/cd-worker.yml'
