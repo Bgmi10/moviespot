@@ -28,11 +28,10 @@ jobs:
           dockerfile: worker/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/mvsp:worker
             ${{ secrets.DOCKER_USERNAME }}/mvsp:worker-latest
 
       - name: Verify Docker image
-        run: docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp:worker
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp:worker-latest
 
       - name: Deploy to STAGING EC2
         uses: appleboy/ssh-action@v1
@@ -44,7 +43,7 @@ jobs:
            sudo docker stop mvsp-worker || true
            sudo docker rm mvsp-worker || true
            sudo docker network create mvsp-worker || true
-           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp:worker
+           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/mvsp:worker-latest
            sudo docker run -d \
              --name mvsp-worker \
              --network mvsp-worker \
