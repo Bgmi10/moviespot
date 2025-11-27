@@ -11,9 +11,6 @@ dotenv.config({ path: ".env" });
 const app = express();
 const PORT = process.env.PORT;
 
-
-queuePendingJobsCron()
-
 app.use(cors({
     origin: ['http://localhost:3000', process.env.FRONTEND_PROD_URL as string],
     credentials: true
