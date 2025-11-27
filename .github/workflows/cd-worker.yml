@@ -25,7 +25,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: worker
-          dockerfile: worker/Dockerfile
+          dockerfile: worker/DockerFile
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/mvsp:worker
