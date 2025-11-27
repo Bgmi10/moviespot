@@ -3,9 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { prisma } from "./prisma/index.js";
 import jwt from 'jsonwebtoken';
-import { auth } from "./middlewares/auth.js";
 import { convertVideoToHLS, uploadVideo } from "./controllers/uploadVideoController.js";
-import { queuePendingJobsCron } from "./cron/cron.js";
 
 dotenv.config({ path: ".env" });
 const app = express();
