@@ -1,18 +1,18 @@
-FROM node:20-bullseye
+FROM node:20.12.0-alpine3.19
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-
-RUN apt-get update && apt-get install -y ffmpeg curl
-
-RUN npm install
+COPY package.json .
 
 COPY . .
+
+RUN npm install
 
 EXPOSE 5001
 
 RUN npm run db:generate
+
 RUN npm run build
 
 CMD ["npm", "run", "start"]
+
