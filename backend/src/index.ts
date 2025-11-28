@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(cors({
-    origin: ['http://localhost:3000', process.env.FRONTEND_PROD_URL as string],
-    credentials: true
+  origin: ['http://localhost:3000', process.env.FRONTEND_PROD_URL as string],
+  credentials: true
 }));
 app.use(express.json());
 

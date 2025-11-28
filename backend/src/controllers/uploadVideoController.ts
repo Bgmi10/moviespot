@@ -23,7 +23,7 @@ export const uploadVideo = async (req: express.Request, res: express.Response) =
     
     const rawVideoUrl = uploadUrl.split('?')?.[0];
 
-    if (!rawVideoUrl)return;
+    if (!rawVideoUrl) return;
 
     // Step 2: Create video record with raw URL
     const videoRecord = await prisma.video.create({
@@ -63,12 +63,19 @@ export const convertVideoToHLS = async (req: express.Request, res: express.Respo
       return;
     }
 
-    sqs.sendMessage({
-      QueueUrl: process.env.SQS_URL as string,
-      MessageBody: JSON.stringify({
-        videoId
-      })
-    })
+    try {
+      const response = await sqs.sendMessage({
+        QueueUrl: process.env.SQS_URL as string,
+        MessageBody: JSON.stringify({ videoId })
+      }).promise();
+    
+      console.log("📩 SQS Message Sent:", response);
+    } 
+    catch (sqsError) {
+      console.error("❌ SQS Error:", sqsError);
+      return res.status(500).json({ error: "Failed to queue SQS message" });
+    }
+    
     
     res.status(200).json({ 
       message: "Queued successfully",
