@@ -13,7 +13,6 @@ dotenv.config();
 ffmpeg.setFfprobePath(ffprobeInstaller.path);
 ffmpeg.setFfmpegPath(ffmpeginstaller.path);
 
-// Utility to download S3 URL to local file
 async function downloadVideo(url: string, localPath: string): Promise<void> {
   return new Promise((resolve: any, reject) => {
     const file = fs.createWriteStream(localPath);

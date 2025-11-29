@@ -1,1 +1,1 @@
-export const baseUrl = 'https://api.moviespot.fun'
+export const baseUrl = 'http://localhost:5000'
