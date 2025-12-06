@@ -26,14 +26,15 @@ export default function UploadFileToDrive({ setIsopen }) {
     const [userRequest, setUserRequest] = useState(null);
     const [dashUrl, setDashUrl] = useState('');
     const [dashVideoId, setDashVideoId] = useState('');
-
+    
     // Update selectedMovie when dashUrl changes
     useEffect(() => {
         if (dashUrl && selectedmovie && !selectedmovie.dashUrl) {
             setSelectedMovie(prev => ({
                 ...prev,
                 dashUrl: dashUrl,
-                dashVideoId: dashVideoId
+                dashVideoId: dashVideoId,
+                type: selectedtype ? "movies" : "series"
             }));
         }
     }, [dashUrl]);

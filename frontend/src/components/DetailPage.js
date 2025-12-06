@@ -12,7 +12,7 @@ import { extractDriveId } from '../utils/helper';
 import ScrollToTop from './ScrollToTop';
 import axios from 'axios';
 
-const DetailPage = ({ data, loader, error }) => {
+const DetailPage = ({ data, loader }) => {
   const [feedbackform , setfeedbackform] = useState(false);
   const theme = useSelector(store => store.theme.toggletheme);
   const [seasons, setSeasons] = useState({});
@@ -22,7 +22,7 @@ const DetailPage = ({ data, loader, error }) => {
   const video = data?.[0];
   
   useEffect(() => { 
-    if (!video?.drivePreviewUrl || video.drivePreviewUrl === "") return;
+    if (!video?.drivePreviewUrl || video.drivePreviewUrl === "" || !video.drivePreviewUrl.length === 0) return;
   
     setSeasons((prev) => {
       const updatedSeasons = { ...prev };
@@ -58,7 +58,7 @@ const DetailPage = ({ data, loader, error }) => {
   const noImage = "https://dummyimage.com/600x400/000/fff&text=no+image";
 
   const handlePlayVideo = () => {
-    if (video?.drivePreviewUrl?.[0]?.url !== "" && video?.drivePreviewUrl !== "") {
+    if (video?.drivePreviewUrl?.[0]?.url !== "" && video?.drivePreviewUrl !== "" && video?.drivePreviewUrl?.length > 0) {
       navigate(`/slider/detail/${id}/${extractDriveId(data?.[0]?.drivePreviewUrl?.[0]?.url)}`);
     } else {
       navigate(`/slider/detail/${id}/${video.dashVideoId}?dash=true`);
