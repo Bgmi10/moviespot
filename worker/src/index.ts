@@ -45,62 +45,56 @@ async function convertToDASH(inputUrl: string, videoId: string): Promise<string>
       console.log('✅ Download complete');
 
       // Step 2: Run FFmpeg DASH conversion
-      ffmpeg(inputPath)
+      ffmpeg(inputPath) 
         .outputOptions([
           '-f dash',
           '-seg_duration 10',
           '-use_template 1',
           '-use_timeline 1',
-          '-init_seg_name "init-stream$RepresentationID$.m4s"',
-          '-media_seg_name "chunk-stream$RepresentationID$-$Number%05d$.m4s"',
-          '-adaptation_sets "id=0,streams=0,1,2 id=1,streams=3"',
+          '-init_seg_name init-stream$RepresentationID$.m4s',
+          '-media_seg_name chunk-stream$RepresentationID$-$Number%05d$.m4s',
           
           // Video streams - 3 quality levels
-          '-map 0:v:0', '-map 0:v:0', '-map 0:v:0',
+          '-map 0:v:0',
+          '-map 0:v:0', 
+          '-map 0:v:0',
           
           // 1080p
           '-c:v:0 libx264',
           '-b:v:0 5000k',
           '-s:v:0 1920x1080',
           '-profile:v:0 high',
-          '-level:v:0 4.0',
           
           // 720p
           '-c:v:1 libx264',
           '-b:v:1 2500k',
           '-s:v:1 1280x720',
           '-profile:v:1 main',
-          '-level:v:1 3.1',
           
           // 480p
           '-c:v:2 libx264',
           '-b:v:2 1000k',
           '-s:v:2 854x480',
           '-profile:v:2 baseline',
-          '-level:v:2 3.0',
           
           // Audio stream
           '-map 0:a:0',
           '-c:a aac',
           '-b:a 128k',
           '-ar 48000',
+          '-ac 2',
           
           // Encoding settings
           '-preset fast',
           '-g 48',
           '-keyint_min 48',
           '-sc_threshold 0',
-          '-bf 1',
-          '-b_strategy 0',
-          '-threads 0',
           
           // DASH settings
           '-window_size 5',
           '-extra_window_size 10',
           '-remove_at_exit 0',
-          '-streaming 0',
-          '-single_file 0',
-          '-frag_type duration'
+          '-single_file 0'
         ])
         .output(`${outputDir}/manifest.mpd`)
         .on('start', (cmd) => console.log('🚀 FFmpeg command:', cmd))
@@ -201,8 +195,7 @@ async function uploadDASHToS3(localDir: string, videoId: string): Promise<string
       Key: `${s3Folder}${file}`,
       Body: fileContent,
       ContentType: contentType,
-      CacheControl: file.endsWith('.mpd') ? 'max-age=60' : 'max-age=31536000',
-      ACL: 'public-read' // Add this if your bucket requires it
+      CacheControl: file.endsWith('.mpd') ? 'max-age=60' : 'max-age=31536000'
     }).promise();
 
     console.log(`📤 Uploaded: ${file}`);
@@ -306,7 +299,6 @@ async function main() {
       } catch (processingError) {
         console.error('❌ Error processing message:', processingError);
         // Message will become visible again after VisibilityTimeout
-        // Consider implementing a dead-letter queue for failed messages
       }
       
     } catch (error) {
