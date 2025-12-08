@@ -50,12 +50,17 @@ export const convertVideoToHLS = async (req, res) => {
             res.status(400).json({ error: "Video already converted to HLS" });
             return;
         }
-        sqs.sendMessage({
-            QueueUrl: process.env.SQS_URL,
-            MessageBody: JSON.stringify({
-                videoId
-            })
-        });
+        try {
+            const response = await sqs.sendMessage({
+                QueueUrl: process.env.SQS_URL,
+                MessageBody: JSON.stringify({ videoId })
+            }).promise();
+            console.log("📩 SQS Message Sent:", response);
+        }
+        catch (sqsError) {
+            console.error("❌ SQS Error:", sqsError);
+            return res.status(500).json({ error: "Failed to queue SQS message" });
+        }
         res.status(200).json({
             message: "Queued successfully",
         });

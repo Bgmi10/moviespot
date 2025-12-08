@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/config/s3.ts","./src/controllers/uploadvideocontroller.ts","./src/middlewares/auth.ts","./src/prisma/index.ts","./src/prisma/seed.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/config/s3.ts","./src/controllers/uploadvideocontroller.ts","./src/cron/cron.ts","./src/middlewares/auth.ts","./src/prisma/index.ts","./src/prisma/seed.ts"],"version":"5.9.2"}
