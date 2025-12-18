@@ -54,6 +54,26 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.get('/log', async (req, res) => {
+  let count: number = 0;
+  count++
+  try {
+    await prisma.log.create({
+      data: {}
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  
+  res.status(200).json({ message: "Log success" })
+})
+
+app.get('/logs', async (req, res) => {
+  const logs = await prisma.log.findMany({});
+  
+  res.status(200).json({ message: "success", logCount: logs.length })
+})
+
 app.post('/generate-upload-url', uploadVideo);
 
 app.post('/convert-hls', convertVideoToHLS);
