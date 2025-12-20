@@ -6,6 +6,7 @@ import store from './redux/store';
 import { Auth0Provider } from '@auth0/auth0-react';
 import  ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux';
+import { CategoryProvider } from './contexts/CategoryContext';
 
 const root = document.getElementById('root');
 
@@ -22,7 +23,9 @@ if (root) {
       >
         <Router>              
            <Provider store={store}>
+            <CategoryProvider>
               <App />
+            </CategoryProvider>
            </Provider>
         </Router>
       </Auth0Provider>

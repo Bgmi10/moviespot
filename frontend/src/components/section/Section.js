@@ -13,7 +13,7 @@ import PreloadImage from '../PreloadImage';
 
 
 export default function Section({ title, type, category }) {
-  const { data, error, loader } = useFetchCategory(type, category);
+  const { data } = useFetchCategory(type, category);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -30,21 +30,21 @@ export default function Section({ title, type, category }) {
   // Function to determine slides per view based on screen width
   const getSlidesPerView = () => {
     const width = window.innerWidth;
-    if (width < 640) return 3;
+    if (width < 640) return 4;
     if (width < 768) return 3;
-    if (width < 1024) return 4;
+    if (width < 1024) return 8;
     if (width < 1280) return 5;
-    return 6;
+    return 8;
   };
 
   return (
-    <div className="px-4 py-6 lg:p-10 mt-4 md:mt-8 ">
+    <div className="px-4 py-6">
       <div className="flex justify-between items-center mb-4 md:mb-6">
-        <h2 className="text-md md:text-2xl lg:text-2xl font-bold border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] text-white backdrop-blur-lg rounded-3xl px-4 lg:px-10 py-1">{title}</h2>
+        <h2 className="text-xs md:text-2xl lg:text-xl font-bold border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] text-white backdrop-blur-lg rounded-3xl px-4 lg:px-10 py-1">{title}</h2>
         <Link to={`/section/${title}/${type}/${category}`} className="group flex items-center text-white font-bold text-sm lg:text-2xl transition-colors duration-300">
-          <div className='items-center flex font-bold text-sm md:text-xl lg:text-2xl px-3 md:px-6 border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] lg:px-10 rounded-3xl py-1' >
+          <div className='items-center flex font-bold text-xs md:text-xl lg:text-xl px-3 md:px-6 border-2 shadow-[0_0_15px_1px_rgba(255,255,255,0.3)] lg:px-10 rounded-3xl py-1' >
             <span className="mr-2 group-hover:text-rose-600">More</span>
-            <FaArrowRight className="group-hover:translate-x-10 transition-transform duration-300 group-hover:text-rose-600" />
+            <FaArrowRight className="group-hover:text-rose-600" />
           </div>
         </Link>
       </div>
@@ -82,7 +82,7 @@ export default function Section({ title, type, category }) {
             className="swiper-section"
           >
             {data?.map((movie, index) => (
-              <SwiperSlide key={index} className="pb-6">
+              <SwiperSlide key={index}>
                 <motion.div
                   className="relative group"
                   whileHover={{ scale: 1.01 }}
@@ -100,18 +100,17 @@ export default function Section({ title, type, category }) {
                     </div>
                   </Link>
                   <motion.h3
-                    className="mt-2 text-sm md:text-lg lg:text-lg font-bold text-white truncate"
+                    className="mt-1 ml-1 text-xs md:text-lg lg:text-lg font-bold text-white truncate"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    {movie.title} 
+                    {movie.title}  <span className="text-white text-[10px] md:text-sm">({movie.releaseDate.slice(0, 4)})</span>
                   </motion.h3>
-                  <span className="text-white text-xs md:text-sm">({movie.releaseDate.slice(0, 4)})</span>
-                  <div className='flex flex-wrap gap-1 mt-1'>
-                    {movie.language.map((item, index) =>  
+                  <div className='flex flex-wrap mt-1'>
+                    {Array.isArray(movie?.language) && movie.language.map((item, index) =>  
                       <motion.h1
-                        className="text-[8px] md:text-[11px] px-1 text-blue-500 font-bold"
+                        className="text-[8px] md:text-[11px] px-1 text-white font-bold"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}

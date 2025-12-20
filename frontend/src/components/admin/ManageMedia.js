@@ -5,14 +5,11 @@ import Loader from "./Loader";
 import BackToAdmin from "./BackToAdmin";
 import { languages } from "./constants";
 import EditModal from "./EditModal";
+import { useCategory } from "../../contexts/CategoryContext";
+import ManageCategories from "./ManageCategories";
 
 const MEDIA_TYPES = ['movies', 'series'];
 const SLIDER_CATEGORIES = ['Featured', 'Trending', 'Popular', 'New Releases'];
-
-const HARDCODED_CATEGORIES = {
-  movies: ['Latest', 'Upcoming', 'Tamil', 'Malayalam', 'Hindi', 'English', 'Vijay’s Top Hits (Tamil)', 'Top Hits 2024', 'New Releases'],
-  series: ['Latest', 'Ongoing', 'Tamil', 'Malayalam', 'Hindi', 'English'],
-};
 
 export default function ManageMedia({ setIsOpen }) {
   const [loading, setLoading] = useState(false);
@@ -22,7 +19,8 @@ export default function ManageMedia({ setIsOpen }) {
   const [editItem, setEditItem] = useState(null);
   const [mediasearchdata, setMediaSearchData] = useState(null);
   const [selectedMedia, setSelectedMedia] = useState("");
-     
+  const { category } = useCategory(); 
+  
   const fetchCollectionData = async (collectionPath) => {
     const collectionRef = collection(db, collectionPath);
     const snapshot = await getDocs(collectionRef);
@@ -35,7 +33,7 @@ export default function ManageMedia({ setIsOpen }) {
   const fetchMediaData = async () => {
     const mediaResults = {};
     for (const mediaType of MEDIA_TYPES) {
-      const categories = HARDCODED_CATEGORIES[mediaType];
+      const categories = category[mediaType];
       if (categories) {
         mediaResults[mediaType] = {};
         for (const categoryName of categories) {
@@ -199,6 +197,7 @@ export default function ManageMedia({ setIsOpen }) {
     <div className="p-6">
       <BackToAdmin setIsOpen={setIsOpen} /> 
       <Loader loading={loading}/>
+      <ManageCategories />
       {mediaData && (
         <div className="space-y-6">        
           <h2 className="text-xl text-white font-semibold">Media Content</h2>

@@ -1,20 +1,38 @@
+import { useEffect } from "react";
 import useFetchSlider from "../../hooks/useFetchSlider";
 import Mainslider from "../Mainslider";
 import Section from "../section/Section";
+import { baseUrl } from "../../config";
+import { useCategory } from "../../contexts/CategoryContext";
 
 export default function MoviesHome() {  
   const { moviessliderdata, loader } = useFetchSlider("movies"); 
+  const { category } = useCategory();
+
+  const fetchLog = async () => {
+    try {
+      await fetch(baseUrl + '/log');
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useEffect(() => {
+    fetchLog();
+  }, []);
+
+  if (!category) return null
 
     return(
     <>
       <Mainslider data={moviessliderdata} loader={loader} />
-      <Section title={"English"} type={"movies"} category={"English"} />
-      <Section title={"Tamil"} type={"movies"} category={"Tamil"} />
-      <Section title={"New Releases"} type={"movies"} category={"New Releases"} />
-      <Section title={"Vijay’s Top Hits (Tamil)"} type={"movies"} category={"Vijay’s Top Hits (Tamil)"} />
-      <Section title={"Upcoming"} type={"movies"} category={"Upcoming"} />
-      <Section title={"Malayam"} type={"movies"} category={"Malayalam"} />
-      <Section title={"Top Hits 2024"} type={"movies"} category={"Top Hits 2024"} />
+      {
+        category && category?.movies?.map((cat) => (
+          <div key={cat}>
+            <Section title={cat.title} type={"movies"} category={cat.title} />
+          </div>
+        ))
+      }
     </>
     )
 }

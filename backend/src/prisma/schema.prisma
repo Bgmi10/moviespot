@@ -13,6 +13,17 @@ model User {
   email       String          @unique         
   password    String                    
 }
+
+model Category {
+  id         String           @id                @default(uuid())
+  type       CategoryType     @default(MOVIE)
+  title     String?
+}
+
+enum CategoryType {
+  MOVIE
+  SERIE
+}
     
 model Log {
   id          String           @id               @default(uuid())

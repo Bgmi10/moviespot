@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Adminmsgchat from "./Adminmsgchat";
 import UploadFileToDrive from "./UploadFileToDrive";
 import ManageMedia from "./ManageMedia";
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import WelcomeAdmin from "./WelcomeAdmin";
 import { adminMenu } from "./constants";
+import { baseUrl } from "../../config";
 
 export default function Admin() {
     const [selecteditem, setSelectedItem] = useState('Home');
@@ -16,6 +17,23 @@ export default function Admin() {
         return isAuth && isAuth
     });
     const [password, setPassword] = useState('');
+    const [logCount, setLogCount] = useState(0);
+
+    const fetchLogCount = async () => {
+        try {
+            const res = await fetch(baseUrl + '/logs', {
+                method: "GET",
+            });
+            const data = await res.json();
+            setLogCount(data.logCount)
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        fetchLogCount()
+    }, [])
     
     return(
         <>
@@ -45,7 +63,7 @@ export default function Admin() {
                </div>}
                {!isopen && <div className="lg:flex-1 lg:ml-72">
                  { selecteditem === "Admin Chat" && <Adminmsgchat setIsopen={setIsopen} /> }
-                 { selecteditem === "Home" && <WelcomeAdmin setIsopen={setIsopen} /> }
+                 { selecteditem === "Home" && <WelcomeAdmin setIsopen={setIsopen} logCount={logCount} /> }
                  { selecteditem === "Upload Video To Drive" && <UploadFileToDrive setIsopen={setIsopen} /> }
                  { selecteditem === "Manage Media" && <ManageMedia setIsOpen={setIsopen}/> }
                 </div>}

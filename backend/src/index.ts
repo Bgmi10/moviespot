@@ -72,6 +72,66 @@ app.get('/logs', async (req, res) => {
   const logs = await prisma.log.findMany({});
   
   res.status(200).json({ message: "success", logCount: logs.length })
+});
+
+app.get('/category/all', async (req, res) => {
+  try {
+    const category = await prisma.category.findMany({});
+    const clientFormat = {
+      movies: category.filter(cat => cat.type === "MOVIE"),
+      series: category.filter(cat => cat.type === "SERIE")
+    }
+    res.status(200).json({ message: "success", data: clientFormat })
+  } catch (e) {
+    console.log(e)
+  }
+});
+
+app.post('/category', async (req, res) => {
+  const { type, title } = req.body;
+
+  try {
+    await prisma.category.create({
+      data: {
+        type,
+        title
+      }
+    });
+
+    res.status(200).json({ message: "success" })
+  } catch (e) {
+    console.log(e)
+  }
+});
+
+app.put('/category/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title } = req.body;
+
+  try {
+    await prisma.category.update({
+      where: { id },
+      data: { title }
+    });
+    res.status(200).json({ message: "success" });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "error updating category" });
+  }
+});
+
+app.delete('/category/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await prisma.category.delete({
+      where: { id }
+    });
+    res.status(200).json({ message: "success" });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "error deleting category" });
+  }
 })
 
 app.post('/generate-upload-url', uploadVideo);

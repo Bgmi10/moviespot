@@ -6,7 +6,6 @@ import { FaStar } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
-import Loader from '../admin/Loader';
 
 export const Feedbacksubscribe = ({ movieId }) => {
   const [data, setData] = useState([]);
@@ -60,8 +59,8 @@ export const Feedbacksubscribe = ({ movieId }) => {
 
   return (
    <>  
-      <div className="container lg:mx-0 sm: mx-auto sm: px-4  py-9">
-        <h2 className={`lg:text-3xl md:text-3xl sm: text-2xl font-bold mb-6 ${theme ? 'text-white' : 'text-black'}`}>
+      <div className="container lg:mx-0 sm: mx-auto sm: px-4 -mt-10">
+        <h2 className={`lg:text-3xl md:text-3xl text-xl font-bold ${theme ? 'text-white' : 'text-black'}`}>
           Ratings & Reviews
         </h2>
         {data.length === 0 && 

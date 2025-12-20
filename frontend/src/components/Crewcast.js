@@ -42,7 +42,7 @@ export const Crewcast = ({ id, type }) => {
    
   return (
     <div>
-        {castdata && <h1 className={theme ? 'lg:text-3xl outline-none sm: text-2xl font-bold text-white sm: px-4 mt-10' : 'text-black text-2xl font-bold ml-4 mt-10'}>Cast & Crew </h1>}
+        {castdata && <h1 className={theme ? 'lg:text-3xl outline-none text-xl font-bold text-white sm: px-4' : 'text-black text-2xl font-bold ml-4'}>Cast & Crew </h1>}
       <Slider className='sm: ml-8 outline-none m-6' {...settings}>
         {
           castdata?.cast?.map((i) =>( 
