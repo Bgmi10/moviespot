@@ -114,7 +114,6 @@ async function uploadDASHToS3(localDir: string, videoId: string): Promise<string
       Bucket: process.env.S3_BUCKET_NAME!,
       Key: `${s3Folder}${file}`,
       Body: fileContent,
-      ACL: "public-read",
       ContentType: contentType
     }).promise();
 
